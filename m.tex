@@ -1,0 +1,381 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{amsmath, amssymb,amsthm}
+\title{Functional approximation for $U$-statistics in the random connection model}
+%\author{}
+\date{October 2024}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{cor}[theorem]{Corollary}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{defi}[theorem]{Definition}
+\newtheorem{ass}[theorem]{Assumption}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{conj}[theorem]{Conjecture}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\begin{document}
+
+\maketitle
+
+\section{Random connection model}
+
+Consider the following random graph $(V,E)$: the vertex set is given by $V=\eta$, where $\eta=\{X_n: n \in \mathbb{N} \}$ is (a realization of) a homogeneous Poisson point process with unit intensity in $\mathbb{R}^d$. Given the set of vertices $V$ we construct the set of (undirected) edges as follows. Let $g\colon \mathbb{R}^d \to [0,1]$ be a measurable function satisfying $g(x) = g(-x)$ for all $x\in\mathbb{R}^d$ and
+\begin{equation} \label{g1}
+ 0< \int_{\mathbb{R}^d} g(x) dx < \infty.
+\end{equation}
+For every $x,y \in V$ the (undirected) edge connecting $x$ and $y$ is present with probability $g(x-y)$, independently of all the other edges. We will use the notation $x\leftrightarrow y$ if there is an (undirected) edge $\{x,y\} \in E$.
+
+\section{Construction of the random connection model}
+
+We now recall how the random connection model can be constructed from a marked Poisson point process. We choose $\mathbb{M}:=[0,1]^{\mathbb{N}\times\mathbb{N}}$ as mark space and $\mathbf{m}$ to be the distribution of a double sequence of independent random variables uniformly distributed on $[0, 1]$. Then we consider an independent $\mathbf{m}$-marking $\hat{\eta}$ of $\eta$, that is a point process on $\mathbb{R}^d\times \mathbb{M}$. Now we fix a partition $\{A_i\}_{i\in\mathbb{N}}$ of $\mathbb{R}^d$ that consists of bounded Borel sets $A_i$, and we choose an arbitrary ordering in $\mathbb{R}^d$ (for example lexicographic) denoted by $\leq$. For two points $(x,\mathbf{u}=(u_{i,l})_{i,l\in\mathbb{N}})$ and $(y,\mathbf{v}=(v_{i,l})_{i,l\in\mathbb{N}})$ in $\hat{\eta}$ such that $x\leq y$ and $y\in A_i$ is the $mth$ nearest point to $x$ in $A_i$ we define $W_{x,y} := u_{i,m}$. Then, the random graph $G(\eta)$ with vertex set $\eta$ and in which two distinct vertices are connected by an edge if and only if $W_{x,y}\leq g(y-x)$ has the law of the random connection model with connection function $g$ in $\mathbb{R}^d$.
+
+\section{U-statistics}
+
+Using the above notation, define
+ \begin{align}\label{originalUstat}
+     S_t:= \frac{1}{k!}\sum_{(x_1, \ldots, x_k) \in \eta^k_{\neq}} f_t \Big( x_1, \ldots, x_k, (W_{x_i,x_j})_{i,j =1,\ldots, k, i \neq j} \Big) ,
+ \end{align}
+where $f_t$, $t \geq 1$, is a measurable function and the sum is taken over all $k$-tuples of pairwise distinct points. Note that $S$ is not a Poisson U-statistics. Now consider the following. For two points $\hat{x}=(x,\mathbf{u}=(u_{i,l})_{i,l\in\mathbb{N}})$ and $\hat{y}=(y,\mathbf{v}=(v_{i,l})_{i,l\in\mathbb{N}})$ in $\hat{\eta}$ such that $x\leq y$ and $y\in A_i$ define $\hat{W}_{\hat{x},\hat{y}} := u_{i,1}$, and
+$$ \hat{S}_t:= \frac{1}{k!}\sum_{(\hat{x}_1, \ldots, \hat{x}_k) \in \hat{\eta}^k_{\neq}} f_t \Big( {x}_1, \ldots, {x}_k, (\hat{W}_{\hat{x}_i,\hat{x}_j}) \Big) =:  \sum_{(\hat{x}_1, \ldots, \hat{x}_k) \in \hat{\eta}^k_{\neq}} \hat{f}_t ( \hat{x}_1, \ldots, \hat{x}_k ),$$
+which on the other hand is a Poisson U-statistics. Now, choose the partition $\{A_i\}_{i\in\mathbb{N}}$ such that $\lambda_d (A_i) = \frac{\varepsilon}{i}$ for every $i \in \mathbb{N}$, where $\varepsilon>0$ is a given (later chosen to be sufficiently small) number. Then we have
+\begin{align}\label{ShatS}
+\begin{split}
+    \mathbb{P} (S \neq \hat{S}) &= \mathbb{P} ( \exists i \in \mathbb{N} : \eta (A_i) \geq 2 ) \leq \sum_{i=1}^\infty \mathbb{P} ( \eta (A_i) \geq 2 ) \\
+    & \leq \sum_{i=1}^\infty  \lambda_d (A_i)^2 = \varepsilon^2 \sum_{i=1}^\infty \frac{1}{k^2},
+\end{split}
+\end{align}
+so that $\mathbb{P} (S \neq \hat{S}) \to 0$, as $\varepsilon \to 0$. Moreover, for every random variable $N$ we have
+\begin{align} \label{Kineq}
+     d_K (S,N) \leq \mathbb{P} (S \neq \hat{S}) + d_K (\hat{S},N) .
+\end{align}
+
+
+Based on the latter observations, the following approximations could be studied:
+
+\begin{itemize}
+    \item Poisson process approximation, see \cite{dst}
+    \item Quantitative Normal approximation (Wasserstein, Kolmogorov distance), see \cite{reitznerschulte,schulte,eichelsbacher}
+    \item Poisson approximation, see \cite{pianoforte}
+    \item Moderate deviations and concentration inequalities, see \cite{schulte2, bonnet}
+    \item Approximation by $\alpha$-stable distributions
+\end{itemize}
+
+\section{Poisson approximation}
+
+We want to employ \cite[Theorem 7.1]{dst} in order to bound
+$$d_W (\hat{S},Z) $$
+for a Poisson distributed random variable $Z$ with mean $\lambda$. By the latter theorem, we have
+
+\[
+d_W(\hat{S}, Z) \leq \left| \mathbb{E}[\hat{S}] - \lambda \right| + \frac{2^{k+1}}{k!} \, r_t(B)
+\]
+for
+\begin{align*}
+    r_t(B) := \max_{1 \leq \ell \leq k-1} 
+\int_{\hat{X}^\ell} & \left( 
+\int_{\hat{X}^{k - \ell}} 
+\mathbf{1}\big( \hat{f}_t ( \hat{x}_1, \ldots, \hat{x}_k ) \in B \big) \, 
+\hat{K}_t^{k - \ell}(d(x_{\ell+1}, \ldots, x_k)) 
+\right)^2 \\
+& \times \hat{K}_t^\ell(d(x_1, \ldots, x_\ell)),
+\end{align*}
+where $\hat{K}_t = t \hat{K}$ denotes the intensity measure of the Poisson point process $\hat{\eta}$ (and $\hat{K}$ is a $\sigma$-finite measure on the mark space). We write
+\begin{align*}
+   & \int_{\hat{X}^\ell}  \left( 
+\int_{\hat{X}^{k - \ell}} 
+\mathbf{1}\big( \hat{f}_t ( \hat{x}_1, \ldots, \hat{x}_k ) \in B \big) \, 
+\hat{K}_t^{k - \ell}(d(\hat{x}_{\ell+1}, \ldots, \hat{x}_k)) 
+\right)^2  \hat{K}_t^\ell(d(\hat{x}_1, \ldots, \hat{x}_\ell)) \\
+& = \int_{\hat{X}^\ell}  
+\int_{\hat{X}^{k - \ell}}\int_{\hat{X}^{k - \ell}} 
+\mathbf{1}\big( \hat{f}_t ( \hat{x}_1, \ldots, \hat{x}_k ) \in B \big) \,  \mathbf{1}\big( \hat{f}_t ( \hat{x}_1, \ldots, \hat{x}_\ell, \hat{x}'_{\ell+1} \ldots, \hat{x}'_{k} ) \in B \big) \\
+& \qquad \times \hat{K}_t^{k - \ell}(d(\hat{x}_{\ell+1}, \ldots, \hat{x}_k)) \hat{K}_t^{k - \ell}(d(\hat{x}'_{\ell+1}, \ldots, \hat{x}'_k))\hat{K}_t^\ell(d(\hat{x}_1, \ldots, \hat{x}_\ell))\\
+& = \int_{\hat{X}^\ell}  
+\int_{\hat{X}^{k - \ell}}\int_{\hat{X}^{k - \ell}} 
+\mathbf{1}\big( \hat{f}_t ( \hat{x}_1, \ldots, \hat{x}_k ) \in B \big) \,  \mathbf{1}\big( \hat{f}_t ( \hat{x}_1, \ldots, \hat{x}_\ell, \hat{x}'_{\ell+1} \ldots, \hat{x}'_{k} ) \in B \big) \\
+& \qquad \times  \mathbf{1}\big(  ( {x}_1, \ldots, {x}_k, {x}'_{\ell+1} \ldots, {x}'_{k} ) \in \Delta_{2k-\ell} \big) \\
+& \qquad \times \hat{K}_t^{k - \ell}(d(\hat{x}_{\ell+1}, \ldots, \hat{x}_k)) \hat{K}_t^{k - \ell}(d(\hat{x}'_{\ell+1}, \ldots, \hat{x}'_k))\hat{K}_t^\ell(d(\hat{x}_1, \ldots, \hat{x}_\ell)) \\
+ & + \int_{X^\ell}  
+\int_{\hat{X}^{k - \ell}}\int_{\hat{X}^{k - \ell}} 
+\mathbf{1}\big( \hat{f}_t ( \hat{x}_1, \ldots, \hat{x}_k ) \in B \big) \,  \mathbf{1}\big( \hat{f} _t( \hat{x}_1, \ldots, \hat{x}_\ell, \hat{x}'_{\ell+1} \ldots, \hat{x}'_{k} ) \in B \big) \\
+& \qquad \times  \mathbf{1}\big(  ( {x}_1, \ldots, {x}_k, {x}'_{\ell+1} \ldots, {x}'_{k} ) \notin \Delta_{2k-\ell} \big) \\
+& \qquad \times \hat{K}_t^{k - \ell}(d(\hat{x}_{\ell+1}, \ldots, \hat{x}_k)) \hat{K}_t^{k - \ell}(d(\hat{x}'_{\ell+1}, \ldots, \hat{x}'_k))\hat{K}_t^\ell(d(\hat{x}_1, \ldots, \hat{x}_\ell))
+\end{align*}
+with 
+$$\Delta_{2k-\ell} := \left\{ (y_1, \ldots, y_{2k-\ell}) : \exists l, \,\, i,j \in \{1, \ldots, 2k-\ell \}, i \neq j : y_i,y_j \in A_l \right\} .$$
+Next we write
+\begin{align*}
+  &  \int_{\hat{X}^\ell}  
+\int_{\hat{X}^{k - \ell}}\int_{\hat{X}^{k - \ell}} 
+\mathbf{1}\big( \hat{f}_t ( \hat{x}_1, \ldots, \hat{x}_k ) \in B \big) \,  \mathbf{1}\big( \hat{f}_t ( \hat{x}_1, \ldots, \hat{x}_\ell, \hat{x}'_{\ell+1} \ldots, \hat{x}'_{k} ) \in B \big) \\
+& \qquad \times  \mathbf{1}\big(  ( {x}_1, \ldots, {x}_k, {x}'_{\ell+1} \ldots, {x}'_{k} ) \notin \Delta_{2k-\ell} \big) \\
+& \qquad \times \hat{K}_t^{k - \ell}(d(\hat{x}_{\ell+1}, \ldots, \hat{x}_k)) \hat{K}_t^{k - \ell}(d(\hat{x}'_{\ell+1}, \ldots, \hat{x}'_k))\hat{K}_t^\ell(d(\hat{x}_1, \ldots, \hat{x}_\ell)) \\
+& = \mathbb{E} \Bigg[ \int_{X^\ell}  
+\int_{X^{k - \ell}}\int_{X^{k - \ell}} 
+\mathbf{1}\big(  ( {x}_1, \ldots, {x}_k, {x}'_{\ell+1} \ldots, {x}'_{k} ) \notin \Delta_{2k-\ell} \big) \,  \\
+& \qquad \times \mathbf{1}\big( {f}_t ( {x}_1, \ldots, {x}_k , W_{x_i,x_j} ) \in B \big)\mathbf{1}\big( {f}_t ( {x}_1, \ldots, {x}_\ell, {x}'_{\ell+1} \ldots, {x}'_{k}, \tilde{W}_{i,j} ) \in B \big) \\
+& \qquad \times {K}_t^{k - \ell}(d({x}_{\ell+1}, \ldots, {x}_k)) {K}_t^{k - \ell}(d({x}'_{\ell+1}, \ldots, {x}'_k)) {K}_t^\ell(d({x}_1, \ldots, {x}_\ell)) \Bigg] ,
+\end{align*}
+where now $K_t = tK$ denotes the intensity measure of $\eta$, and the random variables $\tilde{W}_{i,j}$ above are taken to be ${W}_{x_i,x_j}$ if $i,j \in [\ell]^2$ and $\overline{W}_{i,j}$ if $i,j \in [k]^2 \setminus [\ell]^2$ with $\overline{W}_{i,j}$ being an independent copy of the weight(s). Note that if $\mathbb{Q}$ denotes the distribution of the weights, we can write
+
+\begin{align*}
+   & \mathbb{E} \Bigg[ \int_{X^\ell}  
+\int_{X^{k - \ell}}\int_{X^{k - \ell}} 
+\mathbf{1}\big(  ( {x}_1, \ldots, {x}_k, {x}'_{\ell+1} \ldots, {x}'_{k} ) \notin \Delta_{2k-\ell} \big) \,  \\
+& \qquad \times \mathbf{1}\big( {f}_t ( {x}_1, \ldots, {x}_k , W_{x_i,x_j} ) \in B \big)\mathbf{1}\big( {f}_t ( {x}_1, \ldots, {x}_\ell, {x}'_{\ell+1} \ldots, {x}'_{k}, \tilde{W}_{i,j} ) \in B \big) \\
+& \qquad \times {K}_t^{k - \ell}(d({x}_{\ell+1}, \ldots, {x}_k)) {K}_t^{k - \ell}(d({x}'_{\ell+1}, \ldots, {x}'_k)) {K}_t^\ell(d({x}_1, \ldots, {x}_\ell)) \Bigg] \\
+& = \int \int_{X^\ell}  
+\int_{X^{k - \ell}}\int_{X^{k - \ell}} 
+\mathbf{1}\big(  ( {x}_1, \ldots, {x}_k, {x}'_{\ell+1} \ldots, {x}'_{k} ) \notin \Delta_{2k-\ell} \big) \,  \\
+&  \times \mathbf{1}\big( {f}_t ( {x}_1, \ldots, {x}_k , w ) \in B \big)\mathbf{1}\big( {f}_t ( {x}_1, \ldots, {x}_\ell, {x}'_{\ell+1} \ldots, {x}'_{k}, w ) \in B \big) \\
+&  \times {K}_t^{k - \ell}(d({x}_{\ell+1}, \ldots, {x}_k)) {K}_t^{k - \ell}(d({x}'_{\ell+1}, \ldots, {x}'_k)) {K}_t^\ell(d({x}_1, \ldots, {x}_\ell)) d\mathbb{Q}^{\frac{(2k - \ell) (2k -\ell-1)}{2}} (dw).
+\end{align*}
+
+We obtain the following result regarding Poisson approximation for the original U-statistics.
+
+\begin{theorem} \label{P1}
+    Let $S$ be the U-statistics given in \eqref{originalUstat}. Let $Z$ be a Poisson distributed random variable with mean $\lambda$. Assume either that
+    \begin{itemize}
+        \item[(i)] the intensity measure $K_t \otimes \mathbb{Q}$ is finite
+    \end{itemize}
+    or
+    \begin{itemize}
+        \item[(ii)] $\mathbb{P} (\exists r_0>0 \,: \, \hat{\eta}( \mathbb{R}^d \times \cdot) = \hat{\eta}( (B(0,r) \times \cdot) \, \forall r \geq r_0 ) = 1$.
+    \end{itemize}
+    Then it holds
+    \begin{align*}
+        d_W({S}, Z) \leq \left| \mathbb{E}[{S}] - \lambda \right| + \frac{2^{k+1}}{k!} \, s_t(B)
+    \end{align*}
+for
+\begin{align*}
+  &  s_t(B) := \max_{1 \leq \ell \leq k-1} 
+\int \int_{X^\ell}  
+\int_{X^{k - \ell}}\int_{X^{k - \ell}} \mathbf{1}\big( {f}_t ( {x}_1, \ldots, {x}_k , w ) \in B \big)  \\
+&  \times \mathbf{1}\big( {f}_t ( {x}_1, \ldots, {x}_\ell, {x}'_{\ell+1} \ldots, {x}'_{k}, w ) \in B \big){K}_t^{k - \ell}(d({x}_{\ell+1}, \ldots, {x}_k)) \\
+&  \times  {K}_t^{k - \ell}(d({x}'_{\ell+1}, \ldots, {x}'_k)) {K}_t^\ell(d({x}_1, \ldots, {x}_\ell)) d\mathbb{Q}^{\frac{(2k - \ell) (2k -\ell-1)}{2}} (dw) .
+\end{align*}
+  
+\end{theorem}
+
+\section{Poisson process approximation}
+
+Now we consider the functional analogue of the previous section. Define for a symmetric and measurable function $f\colon \operatorname{dom} f \to Y$ ($Y$ is some general space) the process
+\begin{align}\label{originalPproc}
+     \xi:= \frac{1}{k!}\sum_{(x_1, \ldots, x_k) \in \eta^k_{\neq}\cap  {\operatorname{dom}'} f} \delta_{f \left( x_1, \ldots, x_k, (W_{x_i,x_j})_{i,j =1,\ldots, k, i \neq j} \right)} ,
+ \end{align}
+where we denote
+$${\operatorname{dom}'} f := \left\{( x_1, \ldots, x_k) : \left( x_1, \ldots, x_k, (W_{x_i,x_j})_{i,j =1,\ldots, k, i \neq j} \right) \in  \operatorname{dom} f\right\} . $$
+As before note that $\xi$ is not induced by a Poisson process. Therefore we define
+$$ \hat{\xi}:= \frac{1}{k!}\sum_{(\hat{x}_1, \ldots, \hat{x}_k) \in \hat{\eta}^k_{\neq} \cap  \operatorname{dom} f} \delta_{f \left( {x}_1, \ldots, {x}_k, (\hat{W}_{\hat{x}_i,\hat{x}_j}) \right)} =:  \sum_{(\hat{x}_1, \ldots, \hat{x}_k) \in \hat{\eta}^k_{\neq}\cap  \operatorname{dom} f} \delta_{\hat{f} ( \hat{x}_1, \ldots, \hat{x}_k )},$$
+which on the other hand is induced by a Poisson process. Note that the intensity measure of $\xi$ is given by
+\begin{align*}
+    L(A) & = \mathbb{E}[\xi(A)] = \frac{1}{k!} \mathbb{E}\left[ \sum_{(x_1, \ldots, x_k) \in \eta^k_{\neq}} \mathbf{1}_{\{ f(x_1, \ldots, x_k, (W_{x_i,x_j})_{i,j =1,\ldots, k, i \neq j}) \in A\}}\right] \\
+    & = \frac{1}{k!}  \int_{\operatorname{dom} f}  \mathbf{1}_{\{ f(x_1, \ldots, x_k, w) \in A\}} K^k(d(x_1, \ldots, x_k)) d\mathbb{Q}^{\frac{k (k-1)}{2}} (dw),
+\end{align*}
+and the one of $\hat{\xi}$ is given by
+\begin{align*}
+    &\hat{L}(A)  = \mathbb{E}[\hat{\xi(A)}] = \frac{1}{k!} \mathbb{E}\left[ \sum_{(\hat{x}_1, \ldots, \hat{x}_k) \in \eta^k_{\neq}} \mathbf{1}_{\{ \hat{f}(\hat{x}_1, \ldots, \hat{x}_k) \in A\}}\right] \\
+    & = \frac{1}{k!}  \int_{\operatorname{dom} f}  \mathbf{1}_{\{  \hat{f}(\hat{x}_1, \ldots, \hat{x}_k) \in A\}} \hat{K}^k(d(\hat{x}_1, \ldots, \hat{x}_k)) \\
+    &  = \frac{1}{k!}  \int_{\operatorname{dom} f} \mathbf{1}_{\{  ( {x}_1, \ldots, {x}_k ) \in \Delta_{k} \} }  \mathbf{1}_{\{  \hat{f}(\hat{x}_1, \ldots, \hat{x}_k) \in A\}} \hat{K}^k(d(\hat{x}_1, \ldots, \hat{x}_k)) \\
+    & \quad +  \frac{1}{k!}  \int_{\operatorname{dom} f} \mathbf{1}_{\{  ( {x}_1, \ldots, {x}_k ) \notin \Delta_{k} \} }  \mathbf{1}_{\{  \hat{f}(\hat{x}_1, \ldots, \hat{x}_k) \in A\}} \hat{K}^k(d(\hat{x}_1, \ldots, \hat{x}_k))
+    =: \operatorname{I} +  \operatorname{II} .
+\end{align*}
+
+Then we have
+$$ \operatorname{I}  \mathrel{\mathop{\to}\limits_{\varepsilon \downarrow 0}} 0
+$$
+and
+
+\begin{align*}
+     \operatorname{II}  & = \frac{1}{k!}  \int_{\operatorname{dom} f} \mathbf{1}_{\{  ( {x}_1, \ldots, {x}_k ) \notin \Delta_{k} \} }  \mathbf{1}_{\{  {f}({x}_1, \ldots, {x}_k, w) \in A\}} {K}^k(d({x}_1, \ldots, {x}_k))d\mathbb{Q}^{\frac{k (k-1)}{2}} (dw) \\
+     &  \mathrel{\mathop{\to}\limits_{\varepsilon \downarrow 0}}\frac{1}{k!}  \int_{\operatorname{dom} f}   \mathbf{1}_{\{  {f}({x}_1, \ldots, {x}_k, w) \in A\}} {K}^k(d({x}_1, \ldots, {x}_k))d\mathbb{Q}^{\frac{k (k-1)}{2}} (dw) ,
+\end{align*}
+both uniformly in $A$, if the intensity measure $K \otimes \mathbb{Q}$ is finite (we set $t=1$ above). Therefore, using \cite[Theorem 3.1]{dst} we obtain the following functional version of Theorem \ref{P1}.
+
+\begin{theorem} \label{P2}
+    Let $\xi$ be the point process given in \eqref{originalPproc}. Let $\zeta$ be a Poisson process with finite intensity measure $M$. Assume either that
+    \begin{itemize}
+        \item[(i)] the intensity measure $K \otimes \mathbb{Q}$ is finite
+    \end{itemize}
+    or
+    \begin{itemize}
+        \item[(ii)] $\mathbb{P} (\exists r_0>0 \,: \, \hat{\eta}( \mathbb{R}^d \times \cdot) = \hat{\eta}( (B(0,r) \times \cdot) \, \forall r \geq r_0 ) = 1$.
+    \end{itemize}
+    Then it holds
+    \begin{align*}
+        d_{KR}({\xi}, \zeta) \leq d_{TV}(L,M) + \frac{2^{k+1}}{k!} \, r(\operatorname{dom} f),
+    \end{align*}
+for
+\begin{align*}
+  &  r(\operatorname{dom} f) := \max_{1 \leq \ell \leq k-1} 
+\int \int_{X^\ell}  
+\int_{X^{k - \ell}}\int_{X^{k - \ell}} \mathbf{1}\big(  ( {x}_1, \ldots, {x}_k , w ) \in \operatorname{dom} f  \big)  \\
+&  \times \mathbf{1}\big( ( {x}_1, \ldots, {x}_\ell, {x}'_{\ell+1} \ldots, {x}'_{k}, w ) \in \operatorname{dom} f \big){K}^{k - \ell}(d({x}_{\ell+1}, \ldots, {x}_k)) \\
+&  \times  {K}^{k - \ell}(d({x}'_{\ell+1}, \ldots, {x}'_k)) {K}^\ell(d({x}_1, \ldots, {x}_\ell)) d\mathbb{Q}^{\frac{(2k - \ell) (2k -\ell-1)}{2}} (dw) .
+\end{align*}
+  
+\end{theorem}
+
+
+\section{Applications}
+
+The following examples can be studied:
+\begin{itemize}
+    \item subgraph counts (CLT, MDPs, concentration, stable limits)
+    \item edge-length functionals (CLT, MDP, stable limits), i.e.
+    $$\frac{1}{2} \sum_{(z_1, z_2) \in \eta^2_{\neq} \cap B^2(0, \rho)} \mathbf{1}\{ z_1 \leftrightarrow z_2 \} \| z_1- z_2 \|^\tau, \quad \tau \in \mathbb{R}$$
+    \item long edges (Poisson approximation), i.e.
+    $$\frac{1}{2} \sum_{(z_1, z_2) \in \eta^2_{\neq} \cap B^2(0, \rho)} \mathbf{1}\{ z_1 \leftrightarrow z_2 \}  \mathbf{1}\{ \|z_1 - z_2\| \geq c_\rho \} $$
+\end{itemize}
+
+One conjecture is that the point process
+$$ \frac{1}{2} \sum_{(z_1, z_2) \in \eta^2_{\neq} \cap B^2(0, \rho)} \delta_{\|z_1 - z_2\| - b_\rho}$$
+converges in distribution to a Poisson point process, for a suitably chosen sequence $b_\rho$.
+
+
+\section{Approximation by $\alpha$-stable random variables}
+
+Fix $\alpha \in (0, 1)$ and $\gamma \in \mathbb{R}$. The goal is to make use of a functional limit theorem for the point processes
+\begin{align*}
+    t^\gamma \cdot \xi_t &:= \frac{1}{k!} \sum_{(x_1, \ldots, x_k) \in \eta^k_{\neq}} 
+\mathbf{1}(h_t(x_1, \ldots, x_k,(W_{x_i,x_j})_{i,j =1,\ldots, k, i \neq j}) \ne 0) \\
+&\quad \delta_{\operatorname{sign}(h_t(x_1, \ldots, x_k,(W_{x_i,x_j})_{i,j =1,\ldots, k, i \neq j})) t^\gamma |h_t(x_1, \ldots, x_k,(W_{x_i,x_j})_{i,j =1,\ldots, k, i \neq j})|^{-\alpha}},
+\end{align*}
+ $t \ge 1$, on $\mathbb{R}$, with $\operatorname{sign}(a) = \mathbf{1}(a \ge 0) - \mathbf{1}(a < 0)$. In fact, having established Theorem \ref{P2} the following application follows from the proof of \cite[Theorem 7.8]{dst}. In the following we denote by $L_t$ the intensity measure of $t^\gamma \cdot \xi_t$, and
+
+\begin{align*}
+  &  r_t(A) := \max_{1 \leq \ell \leq k-1} 
+\int \int_{X^\ell}  
+\int_{X^{k - \ell}}\int_{X^{k - \ell}} \\
+& \quad \mathbf{1}\big(  h_t( {x}_1, \ldots, {x}_k , w ) \neq 0  \big) \mathbf{1}\left( \operatorname{sign}(h_t(x_1, \ldots, x_k,w)) \, |h_t(x_1, \ldots, x_k,w)|^{-\alpha} \in t^{-\gamma} A \right)
+ \\
+&  \times \mathbf{1}\big( h_t( {x}_1, \ldots, {x}_\ell, {x}'_{\ell+1} \ldots, {x}'_{k}, w ) \neq 0 \big) \\
+& \times \mathbf{1}\left( \operatorname{sign}(h_t({x}_1, \ldots, {x}_\ell, {x}'_{\ell+1} \ldots, {x}'_{k},w)) \, |h_t({x}_1, \ldots, {x}_\ell, {x}'_{\ell+1} \ldots, {x}'_{k},w)|^{-\alpha} \in t^{-\gamma} A \right)\\
+&\,{K}^{k - \ell}(d({x}_{\ell+1}, \ldots, {x}_k))   {K}^{k - \ell}(d({x}'_{\ell+1}, \ldots, {x}'_k)) {K}^\ell(d({x}_1, \ldots, {x}_\ell)) d\mathbb{Q}^{\frac{(2k - \ell) (2k -\ell-1)}{2}} (dw) .
+\end{align*}
+
+\begin{theorem}\label{stable}
+Let \( \alpha \in (0, 1) \), and let \( M \) be either the Lebesgue measure on \( \mathbb{R} \) or its restriction to \( \mathbb{R}_+ \). Define
+\[
+Z := \sum_{x \in \zeta} \operatorname{sign}(x) |x|^{-1/\alpha},
+\]
+where \( \zeta \) is a Poisson process with intensity measure \( M\). Assume that there exist a constant \( \gamma \in \mathbb{R} \) and functions \( g_1, g_2, g_3 \colon \mathbb{R}_+^2 \to \mathbb{R}_+ \) such that, for every \( a > 0 \) and \( t \ge 1 \),
+\begin{align*}
+d_{\mathrm{TV}}(L_t|_{[-a,a]}, M|_{[-a,a]}) &\le g_1(a, t), \\
+r_t([-a,a]) &\le g_2(a, t), \\
+\frac{t^{-\gamma/\alpha}}{k!} \, \mathbb{E} \sum_{(x_1, \ldots, x_k) \in \eta^k_{\neq}}
+\frac{\mathbf{1}(|h_t(x_1, \ldots, x_k,(W_{x_i,x_j})_{i,j =1,\ldots, k, i \neq j})| < t^{\gamma/\alpha} a^{-1/\alpha})}{|h_t(x_1, \ldots, x_k,(W_{x_i,x_j})_{i,j =1,\ldots, k, i \neq j})|}
+&\le g_3(a, t).
+\end{align*}
+Then there exists a constant \( C > 0 \), depending only on \( \alpha \) and \( k \), such that
+\[
+d_K(t^{-\gamma/\alpha} S_t, Z) \le C g(t), \quad t \ge 1,
+\]
+where
+\[
+g(t) := \inf_{a > 0} \max\left\{ a^{1/2 - 1/(2\alpha)},\; g_1(a,t),\; g_2(a,t),\; \sqrt{g_3(a,t)} \right\}.
+\]
+\end{theorem}
+
+\section{Compound Poisson approximation}
+
+As another consequence of Theorem \ref{P2} we get the analogue of \cite[Theorem 7.4]{dst}. Consider the family of U-statistics
+
+\begin{align*}
+S_t := \frac{1}{k!} \sum_{(x_1, \ldots, x_k) \in \eta_{t,\neq}^k} h_t(x_1, \ldots, x_k, (W_{x_i,x_j})_{i,j =1,\ldots, k, i \neq j}), \quad t \ge 1,
+\end{align*}
+for a symmetric function $h_t$. Then define
+
+\begin{align*}
+L_t(A) := \frac{1}{k!} \, \mathbb{E} \sum_{(x_1, \ldots, x_k) \in \eta_{t, \neq}^k} 
+\mathbf{1}\left( h_t(x_1, \ldots, x_k, (W_{x_i,x_j})_{i,j =1,\ldots, k, i \neq j}) \in t^{-\gamma} A \setminus \{0\} \right),
+\end{align*}
+for $A \in \mathcal{B}(\mathbb{R})$. We get the following result.
+
+\begin{theorem}\label{compound}
+Let \( \zeta \) be a Poisson process on \( \mathbb{R} \) with a finite intensity measure \( M \), let
+\[
+Z := \sum_{x \in \zeta} x,
+\]
+and let \( \gamma \in \mathbb{R} \). Then, for \( t \ge 1 \),
+\begin{align*}
+d_{\mathrm{TV}}(t^{\gamma} S_t, Z) \le d_{\mathrm{TV}}(L_t, M) + \frac{2^{k+1}}{k!} \, r_t,
+\end{align*}
+with
+\begin{align*}
+  &  r_t(A) := \max_{1 \leq \ell \leq k-1} 
+\int \int_{X^\ell}  
+\int_{X^{k - \ell}}\int_{X^{k - \ell}} \\
+& \, \mathbf{1}\big(  h_t( {x}_1, \ldots, {x}_k , w ) \neq 0  \big) \mathbf{1}\big( h_t( {x}_1, \ldots, {x}_\ell, {x}'_{\ell+1} \ldots, {x}'_{k}, w ) \neq 0 \big) \\
+&\,{K}^{k - \ell}(d({x}_{\ell+1}, \ldots, {x}_k))   {K}^{k - \ell}(d({x}'_{\ell+1}, \ldots, {x}'_k)) {K}^\ell(d({x}_1, \ldots, {x}_\ell)) d\mathbb{Q}^{\frac{(2k - \ell) (2k -\ell-1)}{2}} (dw) .
+\end{align*}
+\end{theorem}
+
+\section{Power-weighted edge-lengths}
+
+Consider the statistics
+
+$$L_\rho (\tau):=\frac{1}{2} \sum_{(z_1, z_2) \in \eta^2_{\neq} \cap B^2(0, \rho)} \mathbf{1}\{ z_1 \leftrightarrow z_2 \} \| z_1- z_2 \|^\tau, \quad \tau \in \mathbb{R}.$$
+
+Proceeding as in \cite[Theorem 3.1]{reitznerschultethaele} gives the following formula for its expectation structure. Recall that $g$ denotes the connection function. We can assume that $g$ is only radially dependent, and denote its radial part by $\bar{g}$.
+
+\begin{lemma} \label{lem:expectedlength}
+    It holds
+    $$ \mathbb{E}[L_\rho (\tau)]= \frac{1}{2} \int_0^\infty \bar{g} (r) r^{\tau + d -1} \int_{\mathbb{S}^{d-1}
+} f_\rho (r u) du dr,$$
+where
+$$f_\rho (ru) = \lambda_d \left( B(0,\rho) \cap (B(0,\rho) + ru) \right)$$
+and $du$ stands for the infinitesimal element of the spherical Lebesgue measure. Moreover, it holds
+\begin{align*}
+    & \frac{1}{2} d \kappa_d \lambda_d(B(0,\rho)) \int_0^\infty \bar{g} (r) r^{\tau + d -1} dr -\kappa_{d-1} S(B(0,\rho)) \int_0^\infty \bar{g} (r) r^{\tau + d -1} dr\\
+    & \leq \mathbb{E}[L_\rho (\tau)] \leq \frac{1}{2} d \kappa_d \lambda_d(B(0,\rho)) \int_0^\infty \bar{g} (r) r^{\tau + d -1} dr,
+\end{align*}
+where $\kappa_d$ denotes the volume of the $d$-dimensional unit ball and $S(B(0,\rho))$ denotes the surface area of the ball  $B(0,\rho)$.
+\end{lemma}
+
+Note that Lemma \ref{lem:expectedlength} shows that the expectation of power-weighted edge-lengths is finite if and only if
+$$\int_0^\infty \bar{g} (r) r^{\tau + d -1} dr< \infty.$$
+If we assume that $\bar{g}$ has polynomial decay $\bar{g}(r) \sim r^{-\alpha}$, $r \to \infty$, for some exponent $\alpha$, this translates to $\alpha>\tau +d$.
+
+Next we give a formula for the variance.
+
+
+\begin{lemma} \label{lem:varlength}
+    Assume that
+    $$\int_0^\infty \bar{g} (r) r^{\tau + d -1} dr< \infty.$$
+    Then $L_\rho (\tau)$ also has finite variance given by
+    \begin{align}\label{varformula}
+    \begin{split}
+        & \operatorname{Var}[L_\rho (\tau)] = \frac{1}{2} \int_{B(0,\rho)}\int_{B(0,\rho)} g(x-y) \| y-x \|^{2\tau} dx  \\
+        & \quad + \int_{B(0,\rho)}\int_{B(0,\rho)} g(x_1-y) \| y-x_1 \|^\tau dx_1 \int_{B(0,\rho)} g(x_2-y)  \| y-x_2 \|^\tau dx_2 dy.
+    \end{split} 
+    \end{align}
+Moreover, if $\bar{g}$ has polynomial decay $\bar{g}(r) \sim r^{-\alpha}$, $r \to \infty$, for some exponent $\alpha$, there is a constant $C \in (0, \infty)$ independent of $\rho$ such that
+$$ \frac{1}{C} \rho^{2d+2\tau - \alpha} \leq \operatorname{Var}[L_\rho (\tau)] \leq C\rho^{2d+2\tau }.$$
+\end{lemma}
+
+\begin{proof}
+    Under the assumption of finite expectations, the formula in \eqref{varformula} can be proven by proceeding as in the proof of \cite[Theorem 3.3]{reitznerschultethaele}. Based on this formula, we now calculate the order of the variance. Using a substitution for the first term on the right-hand side of \eqref{varformula} and the assumption on $\bar{g}$ we have
+    \begin{align*}
+        &\int_{B(0,\rho)}\int_{B(0,\rho)} g(x-y) \| y-x \|^{2\tau} dx dy\\
+        & = \rho^{2d+2\tau} \int_{B(0,1)}\int_{B(0,1)} \bar{g}( \rho\|x-y\| ) \| y-x \|^{2\tau} dxdy \\
+        & \geq  \rho^{2d+2\tau} \int_{B(0,1)}\int_{B(0,1)} \mathbf{1}{(\|x-y\| \geq \delta)} \bar{g}( \rho\|x-y\| ) \| y-x \|^{2\tau} dxdy\\
+        & \sim \rho^{2d+2\tau-\alpha} \int_{B(0,1)}\int_{B(0,1)} \mathbf{1}{(\|x-y\| \geq \delta)} \|x-y\|^{-\alpha}  \| y-x \|^{2\tau} dxdy .
+    \end{align*}
+    Now the assertion follows by observing that
+    \begin{align*}
+         \int_{B(0,\rho)}\int_{B(0,\rho)} g(x_1-y) \| y-x_1 \|^\tau dx_1 \int_{B(0,\rho)} g(x_2-y)  \| y-x_2 \|^\tau dx_2 dy \leq C \rho^{2d+2\tau }.
+    \end{align*}
+\end{proof}
+
+From the statements in Lemma \ref{lem:varlength} we observe that the variance asymptotics is not finite if $\alpha < 2d+2\tau$.
+
+\bibliographystyle{amsplain}
+\bibliography{lit}
+
+\end{document}
