@@ -2,13 +2,10 @@
 \usepackage{graphicx} % Required for inserting images
 \usepackage{amsmath, amssymb,amsthm}
 \usepackage{hyperref}
-\usepackage{color,xcolor}
-\title{\huge Functional approximation for $U$-statistics in the random connection model}
+
+\title{Functional approximation for $U$-statistics in the random connection model}
 %\author{}
-%\date{\today}
-\def\parsedate #1:20#2#3#4#5#6#7#8\empty{20#2#3-#4#5-#6#7}
-\def\moddate{\expandafter\parsedate\pdffilemoddate{\jobname.tex}\empty}
-\date{\moddate}
+\date{October 2024}
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{prop}[theorem]{Proposition}
@@ -24,8 +21,13 @@
 \theoremstyle{remark}
 \newtheorem{remark}[theorem]{Remark}
 
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\IP}{\mathbb{P}}
 
 \newcommand{\R}{\mathbb{R}}
+\newcommand{\Var}{\mathrm{Var}}
+
+
 
 
 
@@ -33,8 +35,13 @@
 
 \maketitle
 
-
 \section{Random connection model}
+
+% Consider the following random graph $(V,E)$: the vertex set is given by $V=\eta$, where $\eta=\{X_n: n \in \mathbb{N} \}$ is (a realization of) a homogeneous Poisson point process with unit intensity in $\mathbb{R}^d$. Given the set of vertices $V$ we construct the set of (undirected) edges as follows. Let $g\colon \mathbb{R}^d \to [0,1]$ be a measurable function satisfying $g(x) = g(-x)$ for all $x\in\mathbb{R}^d$ and
+% \begin{equation} \label{g1}
+%  0< \int_{\mathbb{R}^d} g(x) dx < \infty.
+% \end{equation}
+% For every $x,y \in V$ the (undirected) edge connecting $x$ and $y$ is present with probability $g(x-y)$, independently of all the other edges. We will use the notation $x\leftrightarrow y$ if there is an (undirected) edge $\{x,y\} \in E$.
 Let $\eta$ be a homogeneous Poisson point process with unit intensity in $\mathbb{R}^d$. Let $g\colon \mathbb{R}^d \to [0,1]$ be a measurable function satisfying $g(x) = g(-x)$ for all $x\in\mathbb{R}^d$ and
 \begin{equation} \label{g1}
  0< \int_{\mathbb{R}^d} g(x) \mathrm{d}x < \infty.
@@ -42,43 +49,26 @@ Let $\eta$ be a homogeneous Poisson point process with unit intensity in $\mathb
 Any two distinct points $x,y\in\eta$ are connected by an edge with probability $g(x-y)$, independently of all other edges. The resulting random graph is known as a random connection model (RCM) with connection function $g$, see \cite{meesterroy} for more details.
 
 Counting statistics on RCM gains vastly attention in recent years, including isolated vertices count \cite{Penrose2}, component count \cite{last2} and subgraph counts in \cite{can2022,LiuPrivault},
-with various approaches being proposed to analyze the structure and asymptotic properties of these random graphs. In this note, we focus on various approximation results for counting statistics in RCM by incorporating the random connection model into the framework of Poisson $U$-statistics, see \cite{ReitznerSchulte13}, \cite{last4}, and \cite{schulte} for more details.
+with various approaches being proposed to analyze the structure and asymptotic properties of these random graphs. In this note, we focus on various approximation results for counting statistics in RCM by incorporating the random connection model into the framework of Poisson $U$-statistics, see \cite{reitznerschulte}, \cite{last4}, and \cite{schulte} for more details.
 
 \section{Construction of the random connection model}
 
-In \cite{last2}, the random connection model can be modelled in edge-marked Poisson processes. Alternatively, we can construct the random connection model using a Poisson point process with independent marks.
+We now recall how the random connection model can be constructed from a marked Poisson point process. We choose $\mathbb{M}:=[0,1]^{\mathbb{N}\times\mathbb{N}}$ as mark space and $\mathbf{m}$ to be the distribution of a double sequence of independent random variables uniformly distributed on $[0, 1]$. Then we consider an independent $\mathbf{m}$-marking $\hat{\eta}$ of $\eta$, that is a point process on $\mathbb{R}^d\times \mathbb{M}$. Now we fix a partition $\{A_i\}_{i\in\mathbb{N}}$ of $\mathbb{R}^d$ that consists of bounded Borel sets $A_i$, and we choose an arbitrary ordering in $\mathbb{R}^d$ (for example lexicographic) denoted by $\leq$. For two points $(x,\mathbf{u}=(u_{i,l})_{i,l\in\mathbb{N}})$ and $(y,\mathbf{v}=(v_{i,l})_{i,l\in\mathbb{N}})$ in $\hat{\eta}$ such that $x\leq y$ and $y\in A_i$ is the $mth$ nearest point to $x$ in $A_i$ we define $W_{x,y} := u_{i,m}$. Then, the random graph $G(\eta)$ with vertex set $\eta$ and in which two distinct vertices are connected by an edge if and only if $W_{x,y}\leq g(y-x)$ has the law of the random connection model with connection function $g$ in $\mathbb{R}^d$.
 
-Let $\mathbf{Y}:=[0,1]^{\mathbb{N}\times\mathbb{N}}$ be the mark space and $\mathbb{Q}$ be the distribution of a double sequence of independent random variables uniformly distributed on $[0, 1]$. 
-Let $\hat{\eta}$ be a $\mathbb{Q}$-marking of the Poisson process $\eta$. Known as the marking theorem, c.f. \cite[Themore~5.6]{last3}, $\hat{\eta}$ is a Poisson point process on the space $S:=\mathbb{R}^d \times \mathbf{Y}$ with intensity measure $\lambda_d \otimes \mathbb{Q}$, where $\lambda_d$ is the Lebesgue measure on $\mathbb{R}^d$. The points in $\hat{\eta}$ are of the form $(x,\mathbf{u})=(x,(u_{m,n})_{m,n=1}^\infty)$, where $x\in\mathbb{R}^d$ and $\mathbf{u}=(u_{m,n})_{m,n=1}^\infty$ is a double sequence of independent random variables uniformly distributed on $[0, 1]$.
-% Then we consider an independent $\mathbb{Q}$-marking $\hat{\eta}$ of $\eta$, that is a Poisson point process on $\mathbb{R}^d\times \mathbf{Y}$, c.f. \cite[Theorem~5.6]{last3}. 
+\section{U-statistics}
 
-Let $\{A_i\}_{i\in\mathbb{N}}$ be a partition of $\mathbb{R}^d$ that consists of bounded Borel sets. 
-Taking an arbitrary ordering on $\mathbb{R}^d$, for example the lexicographic order, denoted by $\prec$, we have the following. 
-For any two points $(x,\mathbf{u}),(y,\mathbf{v})\in\hat{\eta}$,
-with $\mathbf{u}=(u_{i,j})_{i,j=1}^\infty$ and $\mathbf{v}=(v_{i,j})_{i,j=1}^\infty$, satisfying $x\prec y$ and $y\in A_i$ is the $m$-th nearest point to $x$ in $A_i$, $m\ge1$, we define $W_{x,y} := u_{i,m}$. The two distinct points $x,y\in\eta$ are connected by an edge if and only if $W_{x,y} \leq g(y-x)$, where $g$ is the connection function. The resulting random graph with vertex set $\eta$ is a random connection model with connection function $g$. 
-% Then, the random graph $G(\eta)$, that has vertex set $\eta$ and in which two distinct vertices are connected by an edge if and only if $W_{x,y}\leq g(x-y)$, has the law of the random connection model with connection function $g$ in $\mathbb{R}^d$.
-
-\section{Poisson $U$-statistics}
-Let $f_t:(\R^d)^k\times[0,1]^{k(k-1)/2}\to\R$ be a measurable function, $t\ge1$. We say $f_t$ is symmetric if for every permutation $\sigma$ of $[k]:=\{1,2,\dots,k\}$, it holds that 
-$$f_t\Big(x_1,\ldots,x_k,(w_{i,j})\Big)=f_t\Big(x_{\sigma(1)},\ldots,x_{\sigma(k)},(w_{\sigma(i),\sigma(j)})\Big).$$
 Using the above notation, define
  \begin{align}\label{originalUstat}
-     S_t:= \frac{1}{k!}\sum_{(x_1, \ldots, x_k) \in \eta^k_{\neq}} f_t \Big( x_1, \ldots, x_k, (W_{x_i,x_j})_{i,j =1,\ldots, k, i \neq j} \Big),
+     S_t:= \frac{1}{k!}\sum_{(x_1, \ldots, x_k) \in \eta^k_{\neq}} f_t \Big( x_1, \ldots, x_k, (W_{x_i,x_j})_{i,j =1,\ldots, k, i \neq j} \Big) ,
  \end{align}
- measurable function and the sum is taken over all $k$-tuples of pairwise distinct points. Note that $S$ is not a Poisson $U$-statistics, as the weight $W_{x_i,x_j}$ depend on other points besides $x_i$ and $x_j$.
-
-Instead, we can consider the following structure. For two points $\hat{x},\hat{y}\in\hat{\eta}$ with $\hat{x}=(x,\mathbf{u})=(x,(u_{i,l})_{i,l\in\mathbb{N}})$ and $\hat{y}=(y,\mathbf{v})=(y,(v_{i,l})_{i,l\in\mathbb{N}})$ in $\hat{\eta}$ such that $x\prec y$ and $y\in A_i$, define $\hat{W}_{\hat{x},\hat{y}} := u_{i,1}$, and
-\begin{eqnarray}
-\hat{S}_t&:=& \frac{1}{k!}\sum_{(\hat{x}_1, \ldots, \hat{x}_k) \in \hat{\eta}^k_{\neq}} f_t \Big( {x}_1, \ldots, {x}_k, (\hat{W}_{\hat{x}_i,\hat{x}_j}) \Big) \\
-&=&  \frac1{k!}\sum_{(\hat{x}_1, \ldots, \hat{x}_k) \in \hat{\eta}^k_{\neq}} \hat{f}_t ( \hat{x}_1, \ldots, \hat{x}_k ),
-\end{eqnarray}
-which on the other hand is a Poisson $U$-statistics. Now, choose the partition $\{A_i\}_{i\in\mathbb{N}}$ such that $\lambda_d (A_i) \textcolor{red}{\le} \frac{\varepsilon}{i}$ for every $i \in \mathbb{N}$, where $\varepsilon>0$ is sufficiently small. Then we have
+where $f_t$, $t \geq 1$, is a measurable function and the sum is taken over all $k$-tuples of pairwise distinct points. Note that $S$ is not a Poisson U-statistics. Now consider the following. For two points $\hat{x}=(x,\mathbf{u}=(u_{i,l})_{i,l\in\mathbb{N}})$ and $\hat{y}=(y,\mathbf{v}=(v_{i,l})_{i,l\in\mathbb{N}})$ in $\hat{\eta}$ such that $x\leq y$ and $y\in A_i$ define $\hat{W}_{\hat{x},\hat{y}} := u_{i,1}$, and
+$$ \hat{S}_t:= \frac{1}{k!}\sum_{(\hat{x}_1, \ldots, \hat{x}_k) \in \hat{\eta}^k_{\neq}} f_t \Big( {x}_1, \ldots, {x}_k, (\hat{W}_{\hat{x}_i,\hat{x}_j}) \Big) =:  \sum_{(\hat{x}_1, \ldots, \hat{x}_k) \in \hat{\eta}^k_{\neq}} \hat{f}_t ( \hat{x}_1, \ldots, \hat{x}_k ),$$
+which on the other hand is a Poisson U-statistics. Now, choose the partition $\{A_i\}_{i\in\mathbb{N}}$ such that $\lambda_d (A_i) = \frac{\varepsilon}{i}$ for every $i \in \mathbb{N}$, where $\varepsilon>0$ is a given (later chosen to be sufficiently small) number. Then we have
 \begin{align}\label{ShatS}
-% \begin{split}
-    \mathbb{P} (S \neq \hat{S}) &= \mathbb{P} ( \exists i \in \mathbb{N} : \eta (A_i) \geq 2 ) \nonumber\\
-    &\leq \sum_{i=1}^\infty \mathbb{P} ( \eta (A_i) \geq 2 ) \nonumber\\
+\begin{split}
+    \mathbb{P} (S \neq \hat{S}) &= \mathbb{P} ( \exists i \in \mathbb{N} : \eta (A_i) \geq 2 ) \leq \sum_{i=1}^\infty \mathbb{P} ( \eta (A_i) \geq 2 ) \\
     & \leq \sum_{i=1}^\infty  \lambda_d (A_i)^2 = \varepsilon^2 \sum_{i=1}^\infty \frac{1}{k^2},
-% \end{split}
+\end{split}
 \end{align}
 so that $\mathbb{P} (S \neq \hat{S}) \to 0$, as $\varepsilon \to 0$. Moreover, for every random variable $N$ we have
 \begin{align} \label{Kineq}
@@ -90,7 +80,7 @@ Based on the latter observations, the following approximations could be studied:
 
 \begin{itemize}
     \item Poisson process approximation, see \cite{dst}
-    \item Quantitative Normal approximation (Wasserstein, Kolmogorov distance), see \cite{ReitznerSchulte13},\cite{schulte}, \cite{eichelsbacher}
+    \item Quantitative Normal approximation (Wasserstein, Kolmogorov distance), see \cite{reitznerschulte,schulte,eichelsbacher}
     \item Poisson approximation, see \cite{pianoforte}
     \item Moderate deviations and concentration inequalities, see \cite{schulte2, bonnet}
     \item Approximation by $\alpha$-stable distributions
@@ -167,7 +157,7 @@ where now $K_t = tK$ denotes the intensity measure of $\eta$, and the random var
 &  \times {K}_t^{k - \ell}(d({x}_{\ell+1}, \ldots, {x}_k)) {K}_t^{k - \ell}(d({x}'_{\ell+1}, \ldots, {x}'_k)) {K}_t^\ell(d({x}_1, \ldots, {x}_\ell)) d\mathbb{Q}^{\frac{(2k - \ell) (2k -\ell-1)}{2}} (dw).
 \end{align*}
 
-We obtain the following result regarding Poisson approximation for the original $U$-statistics.
+We obtain the following result regarding Poisson approximation for the original U-statistics.
 
 \begin{theorem} \label{P1}
     Let $S$ be the U-statistics given in \eqref{originalUstat}. Let $Z$ be a Poisson distributed random variable with mean $\lambda$. Assume either that
@@ -406,34 +396,178 @@ $$ \frac{1}{C} \rho^{2d+2\tau - \alpha} \leq \operatorname{Var}[L_\rho (\tau)] \
 
 From the statements in Lemma \ref{lem:varlength} we observe that the variance asymptotics is not finite if $\alpha < 2d+2\tau$.
 
+\section{$U$-statistics of edge-marked Poisson processes}
+
+Let $(\mathbb{X},\mathcal{X})$ be a measurable space and let $\eta$ be a Poisson process on $\mathbb{X}$ with a $\sigma$-finite non-atomic intensity measure $\lambda$. We assume that $\eta$ can be almost surely written as 
+$$
+\eta=\sum_{i\in I} \delta_{X_i}
+$$
+with random elements $(X_i)_{i\in I}$ on $\mathbb{X}$ and a random index set $I\subseteq\mathbb{N}$, where $\delta_x$ denotes the Dirac measure concentrated on $x$. 
+
+Moreover, let $(\mathbb{M},\mathcal{M})$ be a measurable space with a probability measure $\mathbb{Q}$. Let $(M_{i,j})_{i,j\in\mathbb{N},i\neq j}$ be a family of independent random elements on $\mathbb{M}$ distributed according to $\mathbb{Q}$. Now we assign the mark $M_{i,j}$ to the pair $(X_i,X_j)$ for $i,j\in I$ with $i\neq j$. For $y,z\in\eta$ with $y\neq z$ we denote by $M_{y,z}$ the mark of the pair $(y,z)$. Note that the pairs $(y,z)$ and $(z,y)$ have different marks.
+
+For $k\in\mathbb{N}$ we use the short hand notation $[k]:=\{1,\hdots,k\}$ and define
+$$
+\mathbb{M}^{k\times k}_{\neq}:=\{(u_{i,j})_{i,j\in[k],i\neq j}: u_{i,j}\in \mathbb{M} \text{ for } i,j\in[k],i\neq j\}.
+$$
+Moreover let $\eta^k_{\neq}$ be the set of all $k$-tuples of distinct points of $\eta$.
+
+For $f: \mathbb{X}^k\times \mathbb{M}^{k\times k}_{\neq}\to\mathbb{R}$ with $k\in\mathbb{N}$ we are interested in random variables of the following form:
+\begin{equation}
+S=\sum_{(x_1,\hdots,x_k)\in\eta^k_{\neq}} f(x_1,\hdots,x_k, (M_{x_i,x_j})_{i,j\in[k], i\neq j}).
+\end{equation}
+
+Next we construct a random variable with the same distribution as $S$ that is a function of an underlying Poisson process on a larger space. For this we assume that for each $n\in\mathbb{N}$ there exists a partition $(A_\ell^{(n)})_{\ell\in\mathbb{N}}$ of $\mathbb{X}$ such that the following conditions are satisfied:
+\begin{itemize}
+\item For $x\in\mathbb{X}$ and $n\in\mathbb{N}$ let $A^{(n)}(x)$ be the unique $A^{(n)}_\ell$ such that $x\in A^{(n)}_\ell$. Then,
+\begin{equation}\label{eqn:monotonicity_partition}
+A^{(n)}(x)\subseteq A^{(m)}(x)
+\end{equation}
+for all $x\in\mathbb{X}$ and $m,n\in\mathbb{N}$ with $m\leq n$.
+\item There exists a sequence $(\varepsilon_n)_{n\in\mathbb{N}}$ such that
+\begin{equation}\label{eqn:size_partition}
+\lambda(A_\ell^{(n)}) \leq \frac{\varepsilon_n}{\ell}
+\end{equation}
+for all $\ell,n\in\mathbb{N}$ and $\lim_{n\to\infty}\varepsilon_n=0$.
+\item There exists a measurable function $\operatorname{dist}:\mathbb{X}\times \mathbb{X}\to[0,\infty)$ such that 
+\begin{equation}\label{eqn:uniqueness_distances}
+\lambda^3\left(\left\{(x,y,z)\in \mathbb{X}\times A^{(n)}_\ell\times A_\ell^{(n)}: \operatorname{dist}(x,y)=\operatorname{dist}(x,z)\right\}\right)=0.
+\end{equation}
+for all $\ell,n\in\mathbb{N}$.
+\end{itemize}
+
+We define $\widehat{\mathbb{X}}:=\mathbb{X}\times \mathbb{M}^{\mathbb{N}\times\mathbb{M}}$ and $\widehat{\lambda}:=\lambda\otimes \mathbb{Q}^{\mathbb{N}\times\mathbb{N}}$. Let $\widehat{\eta}$ be a Poisson process on $\widehat{\mathbb{X}}$ with intensity measure $\widehat{\lambda}$.
+
+Let $n\in\mathbb{N}$ and let $(x,(u_{i,j})_{i,j\in\mathbb{N}})$ and $(y,(v_{i,j})_{i,j\in\mathbb{N}})$ be distinct points of $\widehat{\eta}$. Suppose that $y\in A^{(n)}_\ell$ for some $\ell\in\mathbb{N}$. Now we order the points of $\widehat{\eta}$ whose projections to $\mathbb{X}$ are in $A^{(n)}_\ell$ according to the distances of their projections to $\mathbb{X}$ to $x$ with respect to the distance function $\operatorname{dist}$. Note that the assumption \eqref{eqn:uniqueness_distances} ensures that this ordering is almost surely unique. If $y$ is the $k$-th closest point to $x$ in $A^{(n)}_\ell$, then we define 
+\begin{equation}
+\widetilde{M}^{(n)}_{x,y}:=u_{\ell,k}.
+\end{equation}
+Let $\eta_{\mathbb{X}}$ be the projection of $\eta$ to $\mathbb{X}$ and denote the projection of $\hat{x}\in\widehat{\mathbb{X}}$ to $\mathbb{X}$ by $x$. Then, we have
+$$
+(\eta_{\mathbb{X}}, (\widetilde{M}^{(n)}_{x,y})_{x,y\in\eta_{\mathbb{X}}, x\ne y}) \overset{d}{=} (\eta, (M_{x,y})_{x,y\in\eta,x\neq y}).
+$$
+In particular,
+\begin{equation}
+\widetilde{S}^{(n)} = \sum_{(x_1,\hdots,x_k)\in(\eta_{\mathbb{X}})^k_{\neq}} f(x_1,\hdots,x_k, (\widetilde{M}^{(n)}_{x_i,x_j})_{i,j\in[k],i\neq j}) %= \sum_{(\hat{x}_1,\hdots,\hat{x}_k)\in\widehat{\eta}^k_{\neq}} f(x_1,\hdots,x_k, (\widetilde{M}^{(n)}_{x_i,x_j})_{i,j\in[k],i\neq j})
+\end{equation}
+has the same distribution as $S$.
+
+For $n\in\mathbb{N}$ and any distinct points $\hat{x}=(x,(u_{i,j})_{i,j\in\mathbb{N}})$ and $\hat{y}=(y,(v_{i,j})_{i,j\in\mathbb{N}})$ of $\widehat{\eta}$, we define 
+\begin{equation}
+\widehat{M}^{(n)}_{x,y}:=u_{\ell,1},~~~~~\mbox{if}~~~ y\in A^{(n)}_\ell. 
+\end{equation}
+Note that $\widehat{M}^{(n)}_{x,y}=u_{\ell,1}$, in contrast to $\widetilde{M}^{(n)}_{x,y}$, only depends $\hat{x}$ and $\hat{y}$. Thus, for each $n\in\mathbb{N}$ there exists a function $\tilde{m}^{(n)}:\widehat{\mathbb{X}}^k\to\mathbb{M}^{k\times k}_{\neq}$ such that
+for all $(\hat{x}_1,\hdots,\hat{x}_k)\in\widehat{\eta}^k_{\neq}$,
+$$
+ \tilde{m}^{(n)}(\hat{x}_1,\hdots,\hat{x}_k)=(\widehat{M}^{(n)}_{x_i,x_j})_{i,j\in[k],i\neq j}.
+$$
+Next we define
+\begin{equation}
+\widehat{S}^{(n)} = \sum_{(\hat{x}_1,\hdots,\hat{x}_k)\in\widehat{\eta}^k_{\neq}} f(x_1,\hdots,x_k, \tilde{m}^{(n)}(\hat{x}_1,\hdots,\hat{x}_k)).
+\end{equation}
+Note that $\widehat{S}^{(n)}$ is a Poisson $U$-statistic of order $k$ as each summand only depends on the $k$ distinct points $\hat{x}_1,\hdots,\hat{x}_k$.
+
+For $n\in\mathbb{N}$ observe that $\widetilde{M}^{(n)}_{x,y}=\widehat{M}^{(n)}_{x,y}$ if $\eta_{\mathbb{X}}(A^{(n)}_\ell)\leq 1$ for all $\ell\in\mathbb{N}$. As identical edge marks imply $\widetilde{S}^{(n)}=\widehat{S}^{(n)}$, we see that
+\begin{align}
+\mathbb{P}(\widetilde{S}^{(n)}\neq\widehat{S}^{(n)}) & \leq \mathbb{P}(\eta_{\mathbb{X}}(A^{(n)}_\ell)\geq 2 \text{ for some } \ell\in\mathbb{N})\nonumber \\
+& \leq \sum_{\ell=1}^\infty \mathbb{P}(\eta_{\mathbb{X}}(A^{(n)}_\ell)\geq 2) \leq \sum_{\ell=1}^\infty \lambda(A^{(n)}_\ell)^2 \leq \varepsilon_n^2 \sum_{\ell=1}^\infty \frac{1}{\ell^2}.\label{diff1}
+\end{align}
+
+In the following we denote by $\mathbb{Q}^{m\times m}_{\neq}$ with $m\in\mathbb{N}$ the distribution of $(Y_{i,j})_{i,j\in[k], i\neq j}$ for independent $Y_{i,j}$, $i,j\in[m]$, $i\neq j$, distributed according to $\mathbb{Q}$.
+
+\begin{lemma}
+Let $h: \mathbb{X}^m\times \mathbb{M}_{\neq}^{m\times m}\to \mathbb{R}$ with $m\in\mathbb{N}$ be such that $\|h\|_\infty<\infty$ and
+$$
+\lambda^m(\{ (x_1,\hdots,x_m)\in\mathbb{X}^m: h(x_1,\hdots,x_k,u)\neq 0 \text{ for some } u\in\mathbb{M}_{\neq}^{m\times m} \})<\infty.
+$$
+Then,
+\begin{align*}
+& \lim_{n\to\infty} \int_{\widehat{\mathbb{X}}^m} h(x_1,\hdots,x_m, \tilde{m}^{(n)}(\hat{x}_1,\hdots,\hat{x}_m)) \, \widehat{\lambda}^m(d(\hat{x}_1,\hdots,\hat{x}_m) ) \\
+& = \int_{\mathbb{X}^m} \int_{\mathbb{M}^{m\times m}_{\neq}} h(x_1,\hdots,x_m, u) \, \mathbb{Q}_{\neq}^{m\times m}(du) \, \lambda^m(d(x_1,\hdots,x_m)).
+\end{align*}
+\end{lemma}
+
+\begin{proof}
+Define
+$$
+\Delta^{(n)}_m := \{ (x_1,\hdots,x_m) \in \mathbb{X}^m: \exists~\ell\in\mathbb{N}, i,j\in[m], i\ne j\text{ with $x_i,x_j\in A^{(n)}_{\ell}$}\}
+$$
+and
+$$
+\widehat{\Delta}^{(n)}_m := \{ (\hat{x}_1,\hdots,\hat{x}_m) \in \widehat{\mathbb{X}}^m:  \exists~\ell\in\mathbb{N}, i,j\in[m], i\ne j\text{ with $x_i,x_j\in A^{(n)}_{\ell}$}\}.
+$$
+For $(\hat{x}_1,\hdots,\hat{x}_m)\in\widehat{\mathbb{X}}^m\backslash\widehat{\Delta}_m^{(n)}$, $\tilde{m}^{(n)}$ assigns different marks to each pair $(i,j)$ with $i,j\in[m]$ and $i\neq j$ so that
+\begin{align*}
+& \int_{\widehat{\mathbb{X}}^m\backslash\widehat{\Delta}_m^{(n)}} h(x_1,\hdots,x_m, \tilde{m}^{(n)}(\hat{x}_1,\hdots,\hat{x}_m)) \, \widehat{\lambda}^m(d(\hat{x}_1,\hdots,\hat{x}_m) ) \\
+& = \int_{\mathbb{X}^m\backslash\Delta_m^{(n)}} \int_{\mathbb{M}^{m\times m}_{\neq}} h(x_1,\hdots,x_m, u) \, \mathbb{Q}_{\neq}^{m\times m}(du) \, \lambda^m(d(x_1,\hdots,x_m)).
+\end{align*}
+It follows from \eqref{eqn:monotonicity_partition} and \eqref{eqn:size_partition} that
+$$
+\mathbf{1}\{ (\hat{x}_1,\hdots,\hat{x}_m)\in\widehat{\mathbb{X}}^m\backslash\widehat{\Delta}_m^{(n)}\} \to 1 \quad \text{as} \quad n\to \infty \quad \text{for} \quad \widehat{\lambda}^m\text{-a.e. } (\hat{x}_1,\hdots,\hat{x}_m)\in\widehat{\mathbb{X}}^m
+$$
+and
+$$
+\mathbf{1}\{ (x_1,\hdots,x_m)\in\mathbb{X}^m\backslash\Delta_m^{(n)}\} \to 1 \quad \text{as} \quad n\to \infty \quad \text{for} \quad \lambda^m\text{-a.e. } (x_1,\hdots,x_m)\in\mathbb{X}^m.
+$$
+Due to the boundedness of $h$ and the assumptions on its support we can apply the dominated convergence theorem and obtain
+\begin{align*}
+& \lim_{n\to\infty}\int_{\widehat{\mathbb{X}}^m\backslash\widehat{\Delta}_m^{(n)}} h(x_1,\hdots,x_m, \tilde{m}^{(n)}(\hat{x}_1,\hdots,\hat{x}_m)) \, \widehat{\lambda}^m(d(\hat{x}_1,\hdots,\hat{x}_m) ) \\
+& = \lim_{n\to\infty}\int_{\mathbb{X}^m\backslash\Delta_m^{(n)}} \int_{\mathbb{M}^{m\times m}_{\neq}} h(x_1,\hdots,x_m, u) \, \mathbb{Q}_{\neq}^{m\times m}(du) \, \lambda^m(d(x_1,\hdots,x_m)) \\ & = \int_{\mathbb{X}^m} \int_{\mathbb{M}^{m\times m}_{\neq}} h(x_1,\hdots,x_m, u) \, \mathbb{Q}_{\neq}^{m\times m}(du) \, \lambda^m(d(x_1,\hdots,x_m))
+\end{align*}
+and
+$$
+\lim_{n\to\infty} \int_{ \widehat{\Delta}^{(n)}_m} h(x_1,\hdots,x_m, \tilde{m}^{(n)}(\hat{x}_1,\hdots,\hat{x}_m)) \, \widehat{\lambda}^m(d(\hat{x}_1,\hdots,\hat{x}_m) )=0.
+$$
+Combining the two limits proves the statement.
+\end{proof}
+
+
+\section{Normal approximation}
+We first recall the following estimates from \cite[Theorem~4.7]{reitznerschulte} and \cite[Theorem~4.2]{schulte} after adapting a few of notation. 
+
+Let $\overline{\Pi}_{\ge2}(i,i,j,j)$ be the collection of all partitions $\pi$ of 
+$$x_1^{(1)},\dots,x_i^{(1)},x_1^{(2)},\dots,x_i^{(2)},x_1^{(3)},\dots,x_j^{(3)},x_1^{(4)},\dots,x_j^{(4)},$$
+such that 
+\begin{itemize}
+\item two variables with the same upper index are in different blocks of $\pi$;
+\item each block of $\pi$ includes at least two variables;
+\item there is no disjoint sets $A_1,A_2$ with $A_1\cup A_2=[4]$ such that each block of $\pi$ either consists of variables with upper index in $A_1$ or of variables with upper index in $A_2$.
+\end{itemize}
+Let $g_1,g_2:X^i\to\R$ and $g_3,g_4:X^j\to\R$, the tensor product $g_1\otimes g_2\otimes g_3\otimes g_4:X^{2i+2j}\to\R$ is defined by 
+\begin{eqnarray*}
+&&(g_1\otimes g_2\otimes g_3\otimes g_4)(x_1^{(1)},\dots,x_j^{(4)})\\
+&=&g_1(x_1^{(1)},\dots,x_{i}^{(1)})g_2(x_1^{(2)},\dots,x_{i}^{(2)})g_3(x_1^{(3)},\dots,x_{j}^{(3)})g_4(x_1^{(4)},\dots,x_{j}^{(4)}).
+\end{eqnarray*}
+For $\pi\in\overline{\Pi}_{\ge2}(i,i,j,j)$, denote $|pi|$ the number of blocks in $\pi$, and the function $(g_1\otimes g_2\otimes g_3\otimes g_4)_\pi:X^{|\pi|}\to\R$ is defined by replacing all variables in the same block of $\pi$ by a new common variable.
+\begin{prop}Let $F\in L^2(\mathbb{P}_\eta)$ be an absolutely convergent $U$-statistics of order $k$ with variance $\Var F>0$ and let $N$ be a standard Gaussian random variable. Then 
+\begin{eqnarray}
+d_W\left(\frac{F-\E F}{\sqrt{\Var F}},N\right)&\le&2k^{7/2}\sum_{1\le i\le j\le k}\frac{\sqrt{M_{ij}(f)}}{\Var F},\\
+d_K\left(\frac{F-\E F}{\sqrt{\Var F}},N\right)&\le&19k^5\sum_{i,j=1}^k\frac{\sqrt{M_{ij}(f)}}{\Var F}
+\end{eqnarray}
+where 
+\begin{equation}
+    M_{ij}(f):=\sum_{\pi\in\overline{\Pi}_{\ge2}(i,i,j,j)}\int_{X^{|\pi|}}(\overline{f}_i\otimes\overline{f}_i\otimes\overline{f}_j\otimes\overline{f}_j)_{\pi}\mathrm{d}\mu^{|\pi|}.
+\end{equation}
+\end{prop}
+
+
+\begin{theorem}
+Let $f: \mathbb{X}^k\times \mathbb{M}^{k\times k}_{\neq}\to\mathbb{R}$ be a measurable function, and 
+$$S=\sum_{(x_1,\hdots,x_k)\in\eta^k_{\neq}} f(x_1,\hdots,x_k, (M_{x_i,x_j})_{i,j\in[k], i\neq j}).$$ Then, we have
+\begin{eqnarray}
+d_W\left(\frac{S-\E S}{\sqrt{\Var S}},N\right)&\le&2k^{7/2}\sum_{1\le i\le j\le k}\frac{\sqrt{M_{ij}(f)}}{\Var S},\\
+d_K\left(\frac{S-\E S}{\sqrt{\Var S}},N\right)&\le&19k^5\sum_{i,j=1}^k\frac{\sqrt{M_{ij}(f)}}{\Var S}.
+\end{eqnarray}
+\end{theorem}
+\begin{proof}
+By triangle inequality and \eqref{diff1}
+\begin{eqnarray*}
+d_K\left(\frac{S-\E S}{\sqrt{\Var S}},N\right)&\le& d_K\left(\frac{\widehat{S}^{(n)}-\E \widehat{S}^{(n)}}{\sqrt{\Var \widehat{S}^{(n)}}},N\right)+\IP(S\neq\widehat{S}^{(n)})\\
+&=& d_K\left(\frac{\widehat{S}^{(n)}-\E \widehat{S}^{(n)}}{\sqrt{\Var \widehat{S}^{(n)}}},N\right)+\IP(\widetilde{S}^{(n)}\neq\widehat{S}^{(n)})\\
+&\le& d_K\left(\frac{\widehat{S}^{(n)}-\E \widehat{S}^{(n)}}{\sqrt{\Var \widehat{S}^{(n)}}},N\right)+\varepsilon_n^2 \sum_{\ell=1}^\infty \frac{1}{\ell^2}.
+\end{eqnarray*}
+\end{proof}
 \bibliographystyle{apalike}
 \bibliography{lit}
-% \begin{thebibliography}{1}
 
-% \bibitem{bonnet}
-% G.~Bonnet and A.~Gusakova, \emph{{Concentration inequalities for Poisson $ U $-statistics}}, arXiv preprint arXiv:2404.16756 (2024).
-
-% \bibitem{dst}
-% L.~Decreusefond, M.~Schulte, and C.~Th{\"a}le, \emph{{Functional Poisson approximation in Kantorovich--Rubinstein distance with applications to U-statistics and stochastic geometry}}, The Annals of Probability \textbf{44} (2016), no.~3, 2147--2197.
-
-% \bibitem{eichelsbacher}
-% P.~Eichelsbacher and C.~Th{\"a}le, \emph{{New Berry-Esseen bounds for non-linear functionals of Poisson random measures}}, Electronic Journal of Probability \textbf{19} (2014), 1--25.
-
-
-% \bibitem{pianoforte}
-% F.~Pianoforte and M.~Schulte, \emph{Poisson approximation with applications to stochastic geometry}, Electronic Journal of Probability \textbf{26} (2021), 1--36.
-
-% \bibitem{reitznerschulte}
-% M.~Reitzner and M.~Schulte, \emph{{Central limit theorems for U-statistics of Poisson point processes}}, The Annals of Probability \textbf{41} (2013), no.~6, 3879--3909.
-
-% \bibitem{reitznerschultethaele}
-% M.~Reitzner, M.~Schulte, and C.~Th{\"a}le, \emph{{Limit theory for the Gilbert graph}}, Advances in Applied Mathematics \textbf{88} (2017), 26--61.
-
-% \bibitem{schulte}
-% M.~Schulte, \emph{{Normal approximation of Poisson functionals in Kolmogorov distance}}, Journal of Theoretical Probability \textbf{29} (2016), 96--117.
-
-% \bibitem{schulte2}
-% M.~Schulte and C.~Th{\"a}le, \emph{{Moderate deviations on Poisson chaos}}, Electronic Journal of Probability \textbf{29} (2024), 1--27.
-
-% \end{thebibliography}
 \end{document}
