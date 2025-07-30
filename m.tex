@@ -1,9 +1,14 @@
 \documentclass{article}
 \usepackage{graphicx} % Required for inserting images
 \usepackage{amsmath, amssymb,amsthm}
-\title{Functional approximation for $U$-statistics in the random connection model}
+\usepackage{hyperref}
+\usepackage{color,xcolor}
+\title{\huge Functional approximation for $U$-statistics in the random connection model}
 %\author{}
-\date{October 2024}
+%\date{\today}
+\def\parsedate #1:20#2#3#4#5#6#7#8\empty{20#2#3-#4#5-#6#7}
+\def\moddate{\expandafter\parsedate\pdffilemoddate{\jobname.tex}\empty}
+\date{\moddate}
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{prop}[theorem]{Proposition}
@@ -18,36 +23,62 @@
 
 \theoremstyle{remark}
 \newtheorem{remark}[theorem]{Remark}
+
+
+\newcommand{\R}{\mathbb{R}}
+
+
+
 \begin{document}
 
 \maketitle
 
-\section{Random connection model}
 
-Consider the following random graph $(V,E)$: the vertex set is given by $V=\eta$, where $\eta=\{X_n: n \in \mathbb{N} \}$ is (a realization of) a homogeneous Poisson point process with unit intensity in $\mathbb{R}^d$. Given the set of vertices $V$ we construct the set of (undirected) edges as follows. Let $g\colon \mathbb{R}^d \to [0,1]$ be a measurable function satisfying $g(x) = g(-x)$ for all $x\in\mathbb{R}^d$ and
+\section{Random connection model}
+Let $\eta$ be a homogeneous Poisson point process with unit intensity in $\mathbb{R}^d$. Let $g\colon \mathbb{R}^d \to [0,1]$ be a measurable function satisfying $g(x) = g(-x)$ for all $x\in\mathbb{R}^d$ and
 \begin{equation} \label{g1}
- 0< \int_{\mathbb{R}^d} g(x) dx < \infty.
+ 0< \int_{\mathbb{R}^d} g(x) \mathrm{d}x < \infty.
 \end{equation}
-For every $x,y \in V$ the (undirected) edge connecting $x$ and $y$ is present with probability $g(x-y)$, independently of all the other edges. We will use the notation $x\leftrightarrow y$ if there is an (undirected) edge $\{x,y\} \in E$.
+Any two distinct points $x,y\in\eta$ are connected by an edge with probability $g(x-y)$, independently of all other edges. The resulting random graph is known as a random connection model (RCM) with connection function $g$, see \cite{meesterroy} for more details.
+
+Counting statistics on RCM gains vastly attention in recent years, including isolated vertices count \cite{Penrose2}, component count \cite{last2} and subgraph counts in \cite{can2022,LiuPrivault},
+with various approaches being proposed to analyze the structure and asymptotic properties of these random graphs. In this note, we focus on various approximation results for counting statistics in RCM by incorporating the random connection model into the framework of Poisson $U$-statistics, see \cite{ReitznerSchulte13}, \cite{last4}, and \cite{schulte} for more details.
 
 \section{Construction of the random connection model}
 
-We now recall how the random connection model can be constructed from a marked Poisson point process. We choose $\mathbb{M}:=[0,1]^{\mathbb{N}\times\mathbb{N}}$ as mark space and $\mathbf{m}$ to be the distribution of a double sequence of independent random variables uniformly distributed on $[0, 1]$. Then we consider an independent $\mathbf{m}$-marking $\hat{\eta}$ of $\eta$, that is a point process on $\mathbb{R}^d\times \mathbb{M}$. Now we fix a partition $\{A_i\}_{i\in\mathbb{N}}$ of $\mathbb{R}^d$ that consists of bounded Borel sets $A_i$, and we choose an arbitrary ordering in $\mathbb{R}^d$ (for example lexicographic) denoted by $\leq$. For two points $(x,\mathbf{u}=(u_{i,l})_{i,l\in\mathbb{N}})$ and $(y,\mathbf{v}=(v_{i,l})_{i,l\in\mathbb{N}})$ in $\hat{\eta}$ such that $x\leq y$ and $y\in A_i$ is the $mth$ nearest point to $x$ in $A_i$ we define $W_{x,y} := u_{i,m}$. Then, the random graph $G(\eta)$ with vertex set $\eta$ and in which two distinct vertices are connected by an edge if and only if $W_{x,y}\leq g(y-x)$ has the law of the random connection model with connection function $g$ in $\mathbb{R}^d$.
+In \cite{last2}, the random connection model can be modelled in edge-marked Poisson processes. Alternatively, we can construct the random connection model using a Poisson point process with independent marks.
 
-\section{U-statistics}
+Let $\mathbf{Y}:=[0,1]^{\mathbb{N}\times\mathbb{N}}$ be the mark space and $\mathbb{Q}$ be the distribution of a double sequence of independent random variables uniformly distributed on $[0, 1]$. 
+Let $\hat{\eta}$ be a $\mathbb{Q}$-marking of the Poisson process $\eta$. Known as the marking theorem, c.f. \cite[Themore~5.6]{last3}, $\hat{\eta}$ is a Poisson point process on the space $S:=\mathbb{R}^d \times \mathbf{Y}$ with intensity measure $\lambda_d \otimes \mathbb{Q}$, where $\lambda_d$ is the Lebesgue measure on $\mathbb{R}^d$. The points in $\hat{\eta}$ are of the form $(x,\mathbf{u})=(x,(u_{m,n})_{m,n=1}^\infty)$, where $x\in\mathbb{R}^d$ and $\mathbf{u}=(u_{m,n})_{m,n=1}^\infty$ is a double sequence of independent random variables uniformly distributed on $[0, 1]$.
+% Then we consider an independent $\mathbb{Q}$-marking $\hat{\eta}$ of $\eta$, that is a Poisson point process on $\mathbb{R}^d\times \mathbf{Y}$, c.f. \cite[Theorem~5.6]{last3}. 
 
+Let $\{A_i\}_{i\in\mathbb{N}}$ be a partition of $\mathbb{R}^d$ that consists of bounded Borel sets. 
+Taking an arbitrary ordering on $\mathbb{R}^d$, for example the lexicographic order, denoted by $\prec$, we have the following. 
+For any two points $(x,\mathbf{u}),(y,\mathbf{v})\in\hat{\eta}$,
+with $\mathbf{u}=(u_{i,j})_{i,j=1}^\infty$ and $\mathbf{v}=(v_{i,j})_{i,j=1}^\infty$, satisfying $x\prec y$ and $y\in A_i$ is the $m$-th nearest point to $x$ in $A_i$, $m\ge1$, we define $W_{x,y} := u_{i,m}$. The two distinct points $x,y\in\eta$ are connected by an edge if and only if $W_{x,y} \leq g(y-x)$, where $g$ is the connection function. The resulting random graph with vertex set $\eta$ is a random connection model with connection function $g$. 
+% Then, the random graph $G(\eta)$, that has vertex set $\eta$ and in which two distinct vertices are connected by an edge if and only if $W_{x,y}\leq g(x-y)$, has the law of the random connection model with connection function $g$ in $\mathbb{R}^d$.
+
+\section{Poisson $U$-statistics}
+Let $f_t:(\R^d)^k\times[0,1]^{k(k-1)/2}\to\R$ be a measurable function, $t\ge1$. We say $f_t$ is symmetric if for every permutation $\sigma$ of $[k]:=\{1,2,\dots,k\}$, it holds that 
+$$f_t\Big(x_1,\ldots,x_k,(w_{i,j})\Big)=f_t\Big(x_{\sigma(1)},\ldots,x_{\sigma(k)},(w_{\sigma(i),\sigma(j)})\Big).$$
 Using the above notation, define
  \begin{align}\label{originalUstat}
-     S_t:= \frac{1}{k!}\sum_{(x_1, \ldots, x_k) \in \eta^k_{\neq}} f_t \Big( x_1, \ldots, x_k, (W_{x_i,x_j})_{i,j =1,\ldots, k, i \neq j} \Big) ,
+     S_t:= \frac{1}{k!}\sum_{(x_1, \ldots, x_k) \in \eta^k_{\neq}} f_t \Big( x_1, \ldots, x_k, (W_{x_i,x_j})_{i,j =1,\ldots, k, i \neq j} \Big),
  \end{align}
-where $f_t$, $t \geq 1$, is a measurable function and the sum is taken over all $k$-tuples of pairwise distinct points. Note that $S$ is not a Poisson U-statistics. Now consider the following. For two points $\hat{x}=(x,\mathbf{u}=(u_{i,l})_{i,l\in\mathbb{N}})$ and $\hat{y}=(y,\mathbf{v}=(v_{i,l})_{i,l\in\mathbb{N}})$ in $\hat{\eta}$ such that $x\leq y$ and $y\in A_i$ define $\hat{W}_{\hat{x},\hat{y}} := u_{i,1}$, and
-$$ \hat{S}_t:= \frac{1}{k!}\sum_{(\hat{x}_1, \ldots, \hat{x}_k) \in \hat{\eta}^k_{\neq}} f_t \Big( {x}_1, \ldots, {x}_k, (\hat{W}_{\hat{x}_i,\hat{x}_j}) \Big) =:  \sum_{(\hat{x}_1, \ldots, \hat{x}_k) \in \hat{\eta}^k_{\neq}} \hat{f}_t ( \hat{x}_1, \ldots, \hat{x}_k ),$$
-which on the other hand is a Poisson U-statistics. Now, choose the partition $\{A_i\}_{i\in\mathbb{N}}$ such that $\lambda_d (A_i) = \frac{\varepsilon}{i}$ for every $i \in \mathbb{N}$, where $\varepsilon>0$ is a given (later chosen to be sufficiently small) number. Then we have
+ measurable function and the sum is taken over all $k$-tuples of pairwise distinct points. Note that $S$ is not a Poisson $U$-statistics, as the weight $W_{x_i,x_j}$ depend on other points besides $x_i$ and $x_j$.
+
+Instead, we can consider the following structure. For two points $\hat{x},\hat{y}\in\hat{\eta}$ with $\hat{x}=(x,\mathbf{u})=(x,(u_{i,l})_{i,l\in\mathbb{N}})$ and $\hat{y}=(y,\mathbf{v})=(y,(v_{i,l})_{i,l\in\mathbb{N}})$ in $\hat{\eta}$ such that $x\prec y$ and $y\in A_i$, define $\hat{W}_{\hat{x},\hat{y}} := u_{i,1}$, and
+\begin{eqnarray}
+\hat{S}_t&:=& \frac{1}{k!}\sum_{(\hat{x}_1, \ldots, \hat{x}_k) \in \hat{\eta}^k_{\neq}} f_t \Big( {x}_1, \ldots, {x}_k, (\hat{W}_{\hat{x}_i,\hat{x}_j}) \Big) \\
+&=&  \frac1{k!}\sum_{(\hat{x}_1, \ldots, \hat{x}_k) \in \hat{\eta}^k_{\neq}} \hat{f}_t ( \hat{x}_1, \ldots, \hat{x}_k ),
+\end{eqnarray}
+which on the other hand is a Poisson $U$-statistics. Now, choose the partition $\{A_i\}_{i\in\mathbb{N}}$ such that $\lambda_d (A_i) \textcolor{red}{\le} \frac{\varepsilon}{i}$ for every $i \in \mathbb{N}$, where $\varepsilon>0$ is sufficiently small. Then we have
 \begin{align}\label{ShatS}
-\begin{split}
-    \mathbb{P} (S \neq \hat{S}) &= \mathbb{P} ( \exists i \in \mathbb{N} : \eta (A_i) \geq 2 ) \leq \sum_{i=1}^\infty \mathbb{P} ( \eta (A_i) \geq 2 ) \\
+% \begin{split}
+    \mathbb{P} (S \neq \hat{S}) &= \mathbb{P} ( \exists i \in \mathbb{N} : \eta (A_i) \geq 2 ) \nonumber\\
+    &\leq \sum_{i=1}^\infty \mathbb{P} ( \eta (A_i) \geq 2 ) \nonumber\\
     & \leq \sum_{i=1}^\infty  \lambda_d (A_i)^2 = \varepsilon^2 \sum_{i=1}^\infty \frac{1}{k^2},
-\end{split}
+% \end{split}
 \end{align}
 so that $\mathbb{P} (S \neq \hat{S}) \to 0$, as $\varepsilon \to 0$. Moreover, for every random variable $N$ we have
 \begin{align} \label{Kineq}
@@ -59,7 +90,7 @@ Based on the latter observations, the following approximations could be studied:
 
 \begin{itemize}
     \item Poisson process approximation, see \cite{dst}
-    \item Quantitative Normal approximation (Wasserstein, Kolmogorov distance), see \cite{reitznerschulte,schulte,eichelsbacher}
+    \item Quantitative Normal approximation (Wasserstein, Kolmogorov distance), see \cite{ReitznerSchulte13},\cite{schulte}, \cite{eichelsbacher}
     \item Poisson approximation, see \cite{pianoforte}
     \item Moderate deviations and concentration inequalities, see \cite{schulte2, bonnet}
     \item Approximation by $\alpha$-stable distributions
@@ -136,7 +167,7 @@ where now $K_t = tK$ denotes the intensity measure of $\eta$, and the random var
 &  \times {K}_t^{k - \ell}(d({x}_{\ell+1}, \ldots, {x}_k)) {K}_t^{k - \ell}(d({x}'_{\ell+1}, \ldots, {x}'_k)) {K}_t^\ell(d({x}_1, \ldots, {x}_\ell)) d\mathbb{Q}^{\frac{(2k - \ell) (2k -\ell-1)}{2}} (dw).
 \end{align*}
 
-We obtain the following result regarding Poisson approximation for the original U-statistics.
+We obtain the following result regarding Poisson approximation for the original $U$-statistics.
 
 \begin{theorem} \label{P1}
     Let $S$ be the U-statistics given in \eqref{originalUstat}. Let $Z$ be a Poisson distributed random variable with mean $\lambda$. Assume either that
@@ -375,7 +406,34 @@ $$ \frac{1}{C} \rho^{2d+2\tau - \alpha} \leq \operatorname{Var}[L_\rho (\tau)] \
 
 From the statements in Lemma \ref{lem:varlength} we observe that the variance asymptotics is not finite if $\alpha < 2d+2\tau$.
 
-\bibliographystyle{amsplain}
+\bibliographystyle{apalike}
 \bibliography{lit}
+% \begin{thebibliography}{1}
 
+% \bibitem{bonnet}
+% G.~Bonnet and A.~Gusakova, \emph{{Concentration inequalities for Poisson $ U $-statistics}}, arXiv preprint arXiv:2404.16756 (2024).
+
+% \bibitem{dst}
+% L.~Decreusefond, M.~Schulte, and C.~Th{\"a}le, \emph{{Functional Poisson approximation in Kantorovich--Rubinstein distance with applications to U-statistics and stochastic geometry}}, The Annals of Probability \textbf{44} (2016), no.~3, 2147--2197.
+
+% \bibitem{eichelsbacher}
+% P.~Eichelsbacher and C.~Th{\"a}le, \emph{{New Berry-Esseen bounds for non-linear functionals of Poisson random measures}}, Electronic Journal of Probability \textbf{19} (2014), 1--25.
+
+
+% \bibitem{pianoforte}
+% F.~Pianoforte and M.~Schulte, \emph{Poisson approximation with applications to stochastic geometry}, Electronic Journal of Probability \textbf{26} (2021), 1--36.
+
+% \bibitem{reitznerschulte}
+% M.~Reitzner and M.~Schulte, \emph{{Central limit theorems for U-statistics of Poisson point processes}}, The Annals of Probability \textbf{41} (2013), no.~6, 3879--3909.
+
+% \bibitem{reitznerschultethaele}
+% M.~Reitzner, M.~Schulte, and C.~Th{\"a}le, \emph{{Limit theory for the Gilbert graph}}, Advances in Applied Mathematics \textbf{88} (2017), 26--61.
+
+% \bibitem{schulte}
+% M.~Schulte, \emph{{Normal approximation of Poisson functionals in Kolmogorov distance}}, Journal of Theoretical Probability \textbf{29} (2016), 96--117.
+
+% \bibitem{schulte2}
+% M.~Schulte and C.~Th{\"a}le, \emph{{Moderate deviations on Poisson chaos}}, Electronic Journal of Probability \textbf{29} (2024), 1--27.
+
+% \end{thebibliography}
 \end{document}
