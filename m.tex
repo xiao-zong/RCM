@@ -436,7 +436,7 @@ for all $\ell,n\in\mathbb{N}$ and $\lim_{n\to\infty}\varepsilon_n=0$.
 for all $\ell,n\in\mathbb{N}$.
 \end{itemize}
 
-We define $\widehat{\mathbb{X}}:=\mathbb{X}\times \mathbb{M}^{\mathbb{N}\times\mathbb{M}}$ and $\widehat{\lambda}:=\lambda\otimes \mathbb{Q}^{\mathbb{N}\times\mathbb{N}}$. Let $\widehat{\eta}$ be a Poisson process on $\widehat{\mathbb{X}}$ with intensity measure $\widehat{\lambda}$.
+We define $\widehat{\mathbb{X}}:=\mathbb{X}\times \mathbb{M}^{\mathbb{N}\times\mathbb{N}}$ and $\widehat{\lambda}:=\lambda\otimes \mathbb{Q}^{\mathbb{N}\times\mathbb{N}}$. Let $\widehat{\eta}$ be a Poisson process on $\widehat{\mathbb{X}}$ with intensity measure $\widehat{\lambda}$.
 
 Let $n\in\mathbb{N}$ and let $(x,(u_{i,j})_{i,j\in\mathbb{N}})$ and $(y,(v_{i,j})_{i,j\in\mathbb{N}})$ be distinct points of $\widehat{\eta}$. Suppose that $y\in A^{(n)}_\ell$ for some $\ell\in\mathbb{N}$. Now we order the points of $\widehat{\eta}$ whose projections to $\mathbb{X}$ are in $A^{(n)}_\ell$ according to the distances of their projections to $\mathbb{X}$ to $x$ with respect to the distance function $\operatorname{dist}$. Note that the assumption \eqref{eqn:uniqueness_distances} ensures that this ordering is almost surely unique. If $y$ is the $k$-th closest point to $x$ in $A^{(n)}_\ell$, then we define 
 \begin{equation}
@@ -461,8 +461,12 @@ for all $(\hat{x}_1,\hdots,\hat{x}_k)\in\widehat{\eta}^k_{\neq}$,
 $$
  \tilde{m}^{(n)}(\hat{x}_1,\hdots,\hat{x}_k)=(\widehat{M}^{(n)}_{x_i,x_j})_{i,j\in[k],i\neq j}.
 $$
+To be more clear, let $\hat{x}_i=(x_i,(u^{i}_{\imath,j})_{\imath,j\in\mathbb{N}})$, $i\in[k]$, with $x_i\in A^{(n)}_{\ell_i}$ for some $\ell_i\in\mathbb{N}$, $i\in[k]$. It gives that  
+$$
+ \tilde{m}^{(n)}(\hat{x}_1,\hdots,\hat{x}_k)=(\widehat{M}^{(n)}_{x_i,x_j})_{i,j\in[k],i\neq j}=(u^{i}_{\ell_j,1})_{i,j\in[k],i\neq j}.
+$$
 Next we define
-\begin{equation}
+\begin{equation}\label{Ustat1}
 \widehat{S}^{(n)} = \sum_{(\hat{x}_1,\hdots,\hat{x}_k)\in\widehat{\eta}^k_{\neq}} f(x_1,\hdots,x_k, \tilde{m}^{(n)}(\hat{x}_1,\hdots,\hat{x}_k)).
 \end{equation}
 Note that $\widehat{S}^{(n)}$ is a Poisson $U$-statistic of order $k$ as each summand only depends on the $k$ distinct points $\hat{x}_1,\hdots,\hat{x}_k$.
@@ -538,21 +542,27 @@ Let $g_1,g_2:X^i\to\R$ and $g_3,g_4:X^j\to\R$, the tensor product $g_1\otimes g_
 &&(g_1\otimes g_2\otimes g_3\otimes g_4)(x_1^{(1)},\dots,x_j^{(4)})\\
 &=&g_1(x_1^{(1)},\dots,x_{i}^{(1)})g_2(x_1^{(2)},\dots,x_{i}^{(2)})g_3(x_1^{(3)},\dots,x_{j}^{(3)})g_4(x_1^{(4)},\dots,x_{j}^{(4)}).
 \end{eqnarray*}
-For $\pi\in\overline{\Pi}_{\ge2}(i,i,j,j)$, denote $|pi|$ the number of blocks in $\pi$, and the function $(g_1\otimes g_2\otimes g_3\otimes g_4)_\pi:X^{|\pi|}\to\R$ is defined by replacing all variables in the same block of $\pi$ by a new common variable.
-\begin{prop}Let $F\in L^2(\mathbb{P}_\eta)$ be an absolutely convergent $U$-statistics of order $k$ with variance $\Var F>0$ and let $N$ be a standard Gaussian random variable. Then 
+For $\pi\in\overline{\Pi}_{\ge2}(i,i,j,j)$, denote $|\pi|$ the number of blocks in $\pi$, and the function $(g_1\otimes g_2\otimes g_3\otimes g_4)_\pi:X^{|\pi|}\to\R$ is defined by replacing all variables in the same block of $\pi$ by a new common variable.
+\begin{prop}\label{normalU-1}
+    Let $F=\sum_{(x_1,\dots,x_k)\in\eta}f(x_1,\dots,x_k)\in L^2(\mathbb{P}_\eta)$ be an absolutely convergent $U$-statistics of order $k$ with variance $\Var F>0$ and let $N$ be a standard Gaussian random variable. Then 
 \begin{eqnarray}
 d_W\left(\frac{F-\E F}{\sqrt{\Var F}},N\right)&\le&2k^{7/2}\sum_{1\le i\le j\le k}\frac{\sqrt{M_{ij}(f)}}{\Var F},\\
 d_K\left(\frac{F-\E F}{\sqrt{\Var F}},N\right)&\le&19k^5\sum_{i,j=1}^k\frac{\sqrt{M_{ij}(f)}}{\Var F}
 \end{eqnarray}
 where 
 \begin{equation}
-    M_{ij}(f):=\sum_{\pi\in\overline{\Pi}_{\ge2}(i,i,j,j)}\int_{X^{|\pi|}}(\overline{f}_i\otimes\overline{f}_i\otimes\overline{f}_j\otimes\overline{f}_j)_{\pi}\mathrm{d}\mu^{|\pi|}.
+    M_{ij}(f):=\sum_{\pi\in\overline{\Pi}_{\ge2}(i,i,j,j)}\int_{X^{|\pi|}}(\overline{f}_i\otimes\overline{f}_i\otimes\overline{f}_j\otimes\overline{f}_j)_{\pi}\mathrm{d}\mu^{|\pi|},
 \end{equation}
+and 
+\begin{equation}
+    f_i(x_1,\dots,x_i):={k\choose i}\int_{X^{k-i}}f(x_1,\dots,x_i,y_1,\dots,y_{k-i})\mu^{k-i}(\mathrm{d}(y_1,\dots,y_{k-i})),
+\end{equation}
+for $i=1,\dots,k$ and $f_i=0$ for $i>k$.
 \end{prop}
 
 
 \begin{theorem}
-Let $f: \mathbb{X}^k\times \mathbb{M}^{k\times k}_{\neq}\to\mathbb{R}$ be a measurable function, and 
+Let $f: \mathbb{X}^k\times \mathbb{M}^{k\times k}_{\neq}\to\mathbb{R}$ be a bounded measurable function, and 
 $$S=\sum_{(x_1,\hdots,x_k)\in\eta^k_{\neq}} f(x_1,\hdots,x_k, (M_{x_i,x_j})_{i,j\in[k], i\neq j}).$$ Then, we have
 \begin{eqnarray}
 d_W\left(\frac{S-\E S}{\sqrt{\Var S}},N\right)&\le&2k^{7/2}\sum_{1\le i\le j\le k}\frac{\sqrt{M_{ij}(f)}}{\Var S},\\
@@ -564,7 +574,17 @@ By triangle inequality and \eqref{diff1}
 \begin{eqnarray*}
 d_K\left(\frac{S-\E S}{\sqrt{\Var S}},N\right)&\le& d_K\left(\frac{\widehat{S}^{(n)}-\E \widehat{S}^{(n)}}{\sqrt{\Var \widehat{S}^{(n)}}},N\right)+\IP(S\neq\widehat{S}^{(n)})\\
 &=& d_K\left(\frac{\widehat{S}^{(n)}-\E \widehat{S}^{(n)}}{\sqrt{\Var \widehat{S}^{(n)}}},N\right)+\IP(\widetilde{S}^{(n)}\neq\widehat{S}^{(n)})\\
-&\le& d_K\left(\frac{\widehat{S}^{(n)}-\E \widehat{S}^{(n)}}{\sqrt{\Var \widehat{S}^{(n)}}},N\right)+\varepsilon_n^2 \sum_{\ell=1}^\infty \frac{1}{\ell^2}.
+&\le& d_K\left(\frac{\widehat{S}^{(n)}-\E \widehat{S}^{(n)}}{\sqrt{\Var \widehat{S}^{(n)}}},N\right)+\varepsilon_n^2 \sum_{\ell=1}^\infty \frac{1}{\ell^2},
+\end{eqnarray*}
+where is $\widehat{S}^{(n)}$ given in \eqref{Ustat1}.
+From the previous section we know that $\widehat{S}^{(n)}$ is a Poisson $U$-statistic of order $k$ with respect to the Poisson process $\widehat{\eta}$ on $\widehat{\mathbb{X}}$. Thus, we can apply the results from Proposition~\ref{normalU-1}.
+\begin{eqnarray*}
+    \widehat{S}^{(n)}&=&\sum_{(\hat{x}_1,\hdots,\hat{x}_k)\in\widehat{\eta}^k_{\neq}} f(x_1,\hdots,x_k, \tilde{m}^{(n)}(\hat{x}_1,\hdots,\hat{x}_k))\\
+    &=&\sum_{(\hat{x}_1,\hdots,\hat{x}_k)\in\widehat{\eta}^k_{\neq}}f^{(n)}(\hat{x}_1,\hdots,\hat{x}_k),
+\end{eqnarray*}
+where $f^{(n)}(\hat{x}_1,\hdots,\hat{x}_k):=f(x_1,\hdots,x_k, \tilde{m}^{(n)}(\hat{x}_1,\hdots,\hat{x}_k))$. Note $f^{(n)}:\widehat{\mathbb{X}}^k\to \R$ is measurable and bounded.
+\begin{eqnarray*}
+    M_{ij}(f^{(n)})=\sum_{\pi\in\overline{\Pi}_{\ge2}(i,i,j,j)}\int_{\widehat{\mathbb{X}}^{|\pi|}}\left(\overline{f^{(n)}}_i\otimes\overline{f^{(n)}}_i\otimes\overline{f^{(n)}}_j\otimes\overline{f^{(n)}}_j\right)_{\pi}\mathrm{d}\widehat{\lambda}^{|\pi|}
 \end{eqnarray*}
 \end{proof}
 \bibliographystyle{apalike}
