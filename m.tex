@@ -1,6 +1,6 @@
 \documentclass{article}
 \usepackage{graphicx} % Required for inserting images
-\usepackage{amsmath, amssymb,amsthm}
+\usepackage{amsmath,amssymb,amsthm,bm}
 \usepackage{hyperref}
 
 \title{Functional approximation for $U$-statistics in the random connection model}
@@ -26,7 +26,7 @@
 
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\Var}{\mathrm{Var}}
-
+\newcommand{\supp}{\mathrm{Supp}}
 
 
 
@@ -436,7 +436,7 @@ for all $\ell,n\in\mathbb{N}$ and $\lim_{n\to\infty}\varepsilon_n=0$.
 for all $\ell,n\in\mathbb{N}$.
 \end{itemize}
 
-We define $\widehat{\mathbb{X}}:=\mathbb{X}\times \mathbb{M}^{\mathbb{N}\times\mathbb{N}}$ and $\widehat{\lambda}:=\lambda\otimes \mathbb{Q}^{\mathbb{N}\times\mathbb{N}}$. Let $\widehat{\eta}$ be a Poisson process on $\widehat{\mathbb{X}}$ with intensity measure $\widehat{\lambda}$.
+We define $\widehat{\mathbb{X}}:=\mathbb{X}\times \mathbb{M}^{\mathbb{N}\times\mathbb{M}}$ and $\widehat{\lambda}:=\lambda\otimes \mathbb{Q}^{\mathbb{N}\times\mathbb{N}}$. Let $\widehat{\eta}$ be a Poisson process on $\widehat{\mathbb{X}}$ with intensity measure $\widehat{\lambda}$.
 
 Let $n\in\mathbb{N}$ and let $(x,(u_{i,j})_{i,j\in\mathbb{N}})$ and $(y,(v_{i,j})_{i,j\in\mathbb{N}})$ be distinct points of $\widehat{\eta}$. Suppose that $y\in A^{(n)}_\ell$ for some $\ell\in\mathbb{N}$. Now we order the points of $\widehat{\eta}$ whose projections to $\mathbb{X}$ are in $A^{(n)}_\ell$ according to the distances of their projections to $\mathbb{X}$ to $x$ with respect to the distance function $\operatorname{dist}$. Note that the assumption \eqref{eqn:uniqueness_distances} ensures that this ordering is almost surely unique. If $y$ is the $k$-th closest point to $x$ in $A^{(n)}_\ell$, then we define 
 \begin{equation}
@@ -479,7 +479,7 @@ For $n\in\mathbb{N}$ observe that $\widetilde{M}^{(n)}_{x,y}=\widehat{M}^{(n)}_{
 
 In the following we denote by $\mathbb{Q}^{m\times m}_{\neq}$ with $m\in\mathbb{N}$ the distribution of $(Y_{i,j})_{i,j\in[k], i\neq j}$ for independent $Y_{i,j}$, $i,j\in[m]$, $i\neq j$, distributed according to $\mathbb{Q}$.
 
-\begin{lemma}
+\begin{lemma}\label{lma1}
 Let $h: \mathbb{X}^m\times \mathbb{M}_{\neq}^{m\times m}\to \mathbb{R}$ with $m\in\mathbb{N}$ be such that $\|h\|_\infty<\infty$ and
 $$
 \lambda^m(\{ (x_1,\hdots,x_m)\in\mathbb{X}^m: h(x_1,\hdots,x_k,u)\neq 0 \text{ for some } u\in\mathbb{M}_{\neq}^{m\times m} \})<\infty.
@@ -544,7 +544,7 @@ Let $g_1,g_2:X^i\to\R$ and $g_3,g_4:X^j\to\R$, the tensor product $g_1\otimes g_
 \end{eqnarray*}
 For $\pi\in\overline{\Pi}_{\ge2}(i,i,j,j)$, denote $|\pi|$ the number of blocks in $\pi$, and the function $(g_1\otimes g_2\otimes g_3\otimes g_4)_\pi:X^{|\pi|}\to\R$ is defined by replacing all variables in the same block of $\pi$ by a new common variable.
 \begin{prop}\label{normalU-1}
-    Let $F=\sum_{(x_1,\dots,x_k)\in\eta}f(x_1,\dots,x_k)\in L^2(\mathbb{P}_\eta)$ be an absolutely convergent $U$-statistics of order $k$ with variance $\Var F>0$ and let $N$ be a standard Gaussian random variable. Then 
+Let $F\in L^2(\mathbb{P}_\eta)$ be an absolutely convergent $U$-statistics of order $k$ with variance $\Var F>0$ and let $N$ be a standard Gaussian random variable. Then 
 \begin{eqnarray}
 d_W\left(\frac{F-\E F}{\sqrt{\Var F}},N\right)&\le&2k^{7/2}\sum_{1\le i\le j\le k}\frac{\sqrt{M_{ij}(f)}}{\Var F},\\
 d_K\left(\frac{F-\E F}{\sqrt{\Var F}},N\right)&\le&19k^5\sum_{i,j=1}^k\frac{\sqrt{M_{ij}(f)}}{\Var F}
@@ -555,14 +555,15 @@ where
 \end{equation}
 and 
 \begin{equation}
-    f_i(x_1,\dots,x_i):={k\choose i}\int_{X^{k-i}}f(x_1,\dots,x_i,y_1,\dots,y_{k-i})\mu^{k-i}(\mathrm{d}(y_1,\dots,y_{k-i})),
+    \overline{f}_i(x_1,\dots,x_i):={k\choose i}\int_{X^{k-i}}|f(x_1,\dots,x_i,y_1,\dots,y_{k-i})|\mu^{k-i}(\mathrm{d}(y_1,\dots,y_{k-i})),
 \end{equation}
 for $i=1,\dots,k$ and $f_i=0$ for $i>k$.
 \end{prop}
 
 
 \begin{theorem}
-Let $f: \mathbb{X}^k\times \mathbb{M}^{k\times k}_{\neq}\to\mathbb{R}$ be a bounded measurable function, and 
+Let $f: \mathbb{X}^k\times \mathbb{M}^{k\times k}_{\neq}\to\mathbb{R}$ be a bounded measurable function satisfying $\supp(f)\subset B\times\mathbb{M}^{k\times k}_{\neq}$ with some bounded set $B\in \mathcal{X}^k$
+and 
 $$S=\sum_{(x_1,\hdots,x_k)\in\eta^k_{\neq}} f(x_1,\hdots,x_k, (M_{x_i,x_j})_{i,j\in[k], i\neq j}).$$ Then, we have
 \begin{eqnarray}
 d_W\left(\frac{S-\E S}{\sqrt{\Var S}},N\right)&\le&2k^{7/2}\sum_{1\le i\le j\le k}\frac{\sqrt{M_{ij}(f)}}{\Var S},\\
@@ -577,15 +578,32 @@ d_K\left(\frac{S-\E S}{\sqrt{\Var S}},N\right)&\le& d_K\left(\frac{\widehat{S}^{
 &\le& d_K\left(\frac{\widehat{S}^{(n)}-\E \widehat{S}^{(n)}}{\sqrt{\Var \widehat{S}^{(n)}}},N\right)+\varepsilon_n^2 \sum_{\ell=1}^\infty \frac{1}{\ell^2},
 \end{eqnarray*}
 where is $\widehat{S}^{(n)}$ given in \eqref{Ustat1}.
-From the previous section we know that $\widehat{S}^{(n)}$ is a Poisson $U$-statistic of order $k$ with respect to the Poisson process $\widehat{\eta}$ on $\widehat{\mathbb{X}}$. Thus, we can apply the results from Proposition~\ref{normalU-1}.
+From the previous section we know that $\widehat{S}^{(n)}$ is a Poisson $U$-statistic of order $k$ with respect to the Poisson process $\widehat{\eta}$ on $\widehat{\mathbb{X}}$. Furthermore, $\widehat{S}^{(n)}\in L^2(\IP_{\widehat{\eta}})$ due to the boundedness of $f$ and the assumption that $\supp(f)\subset B\times\mathbb{M}^{k\times k}_{\neq}$ with some bounded set $B\in \mathcal{X}^k$.
+Thus, we can apply the results from Proposition~\ref{normalU-1}.
 \begin{eqnarray*}
     \widehat{S}^{(n)}&=&\sum_{(\hat{x}_1,\hdots,\hat{x}_k)\in\widehat{\eta}^k_{\neq}} f(x_1,\hdots,x_k, \tilde{m}^{(n)}(\hat{x}_1,\hdots,\hat{x}_k))\\
     &=&\sum_{(\hat{x}_1,\hdots,\hat{x}_k)\in\widehat{\eta}^k_{\neq}}f^{(n)}(\hat{x}_1,\hdots,\hat{x}_k),
 \end{eqnarray*}
-where $f^{(n)}(\hat{x}_1,\hdots,\hat{x}_k):=f(x_1,\hdots,x_k, \tilde{m}^{(n)}(\hat{x}_1,\hdots,\hat{x}_k))$. Note $f^{(n)}:\widehat{\mathbb{X}}^k\to \R$ is measurable and bounded.
+where 
+$$f^{(n)}(\hat{x}_1,\hdots,\hat{x}_k):=f(x_1,\hdots,x_k, \tilde{m}^{(n)}(\hat{x}_1,\hdots,\hat{x}_k)).$$
+Note $f^{(n)}:\widehat{\mathbb{X}}^k\to \R$ is measurable and bounded. By virtue of Lemma~\ref{lma1}, we have, for eacn $\pi\in\overline{\Pi}_{\ge2}(i,i,j,j)$, 
 \begin{eqnarray*}
-    M_{ij}(f^{(n)})=\sum_{\pi\in\overline{\Pi}_{\ge2}(i,i,j,j)}\int_{\widehat{\mathbb{X}}^{|\pi|}}\left(\overline{f^{(n)}}_i\otimes\overline{f^{(n)}}_i\otimes\overline{f^{(n)}}_j\otimes\overline{f^{(n)}}_j\right)_{\pi}\mathrm{d}\widehat{\lambda}^{|\pi|}
+&&\lim_{n\to\infty}\int_{\widehat{\mathbb{X}}^{|\pi|}}\left(\overline{f^{(n)}}_i\otimes\overline{f^{(n)}}_i\otimes\overline{f^{(n)}}_j\otimes\overline{f^{(n)}}_j\right)_{\pi}\mathrm{d}\widehat{\lambda}^{|\pi|}\\
+&=&\int_{\mathbb{X}^{|\pi|}} \int_{\mathbb{M}^{|\pi|\times |\pi|}_{\neq}} h_{\pi}(x_1,\hdots,x_{|\pi|}, u) \, \mathbb{Q}_{\neq}^{|\pi|\times |\pi|}(du) \, \lambda^{|\pi|}(d(x_1,\hdots,x_|\pi|)),
 \end{eqnarray*}
+with $h_{\pi}:\mathbb{X}^{|\pi|}\times \mathbb{M}^{|\pi|\times |\pi|}_{\neq}\to\R$ defined by 
+\begin{equation}
+h_{\pi}(x_1,\hdots,x_{|\pi|}, u):=\left(\overline{f}_i\otimes\overline{f}_i\otimes\overline{f}_j\otimes\overline{f}_j\right)_{\pi}(x_1,\hdots,x_{|\pi|}, u),
+\end{equation}
+with 
+\begin{eqnarray*}
+    &&\overline{f}_{\ell}(x_1,\dots,x_{\ell},(u_{\imath,\jmath})_{1\le\imath\ne\jmath\le\ell})\\
+    &:=&\int_{\mathbb{X}^{k-\ell}}\int_{\mathbb{M}^{k(k-1)-\ell(\ell-1)}}\left\vert f(x_1,\dots,x_{\ell},y_1,\dots,y_{k-\ell},(u_{\imath,\jmath})_{1\le\imath\ne\jmath\le k})\right\vert\mathbb{Q}^{k(k-1)-\ell(\ell-1)}(d\bm{v})\lambda^{k-\ell}(d(y_1,\dots,y_{k-\ell}))
+\end{eqnarray*}
+with $\bm{v}=\left((u_{\imath,\jmath})_{\substack{\ell<\imath\le k,\jmath\in[k]\\\imath\ne\jmath}},(u_{\imath,\jmath})_{\imath\in[\ell],\ell<\jmath\le k}\right)$ for $\ell=1,\dots,k$.
+% \begin{eqnarray*}
+%     M_{ij}(f^{(n)})=\sum_{\pi\in\overline{\Pi}_{\ge2}(i,i,j,j)}\int_{\widehat{\mathbb{X}}^{|\pi|}}\left(\overline{f^{(n)}}_i\otimes\overline{f^{(n)}}_i\otimes\overline{f^{(n)}}_j\otimes\overline{f^{(n)}}_j\right)_{\pi}\mathrm{d}\widehat{\lambda}^{|\pi|}
+% \end{eqnarray*}
 \end{proof}
 \bibliographystyle{apalike}
 \bibliography{lit}
