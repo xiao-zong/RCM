@@ -416,7 +416,10 @@ For $f: \mathbb{X}^k\times \mathbb{M}^{k\times k}_{\neq}\to\mathbb{R}$ with $k\i
 \begin{equation}
 S=\sum_{(x_1,\hdots,x_k)\in\eta^k_{\neq}} f(x_1,\hdots,x_k, (M_{x_i,x_j})_{i,j\in[k], i\neq j}).
 \end{equation}
-
+We also denote 
+\begin{equation}\label{def-integ1}
+    \overline{S}:=\sum_{(x_1,\hdots,x_k)\in\eta^k_{\neq}} \left|f(x_1,\hdots,x_k, (M_{x_i,x_j})_{i,j\in[k], i\neq j})\right|.
+\end{equation}
 Next we construct a random variable with the same distribution as $S$ that is a function of an underlying Poisson process on a larger space. For this we assume that for each $n\in\mathbb{N}$ there exists a partition $(A_\ell^{(n)})_{\ell\in\mathbb{N}}$ of $\mathbb{X}$ such that the following conditions are satisfied:
 \begin{itemize}
 \item For $x\in\mathbb{X}$ and $n\in\mathbb{N}$ let $A^{(n)}(x)$ be the unique $A^{(n)}_\ell$ such that $x\in A^{(n)}_\ell$. Then,
@@ -477,7 +480,7 @@ For $n\in\mathbb{N}$ observe that $\widetilde{M}^{(n)}_{x,y}=\widehat{M}^{(n)}_{
 & \leq \sum_{\ell=1}^\infty \mathbb{P}(\eta_{\mathbb{X}}(A^{(n)}_\ell)\geq 2) \leq \sum_{\ell=1}^\infty \lambda(A^{(n)}_\ell)^2 \leq \varepsilon_n^2 \sum_{\ell=1}^\infty \frac{1}{\ell^2}.\label{diff1}
 \end{align}
 
-In the following we denote by $\mathbb{Q}^{m\times m}_{\neq}$ with $m\in\mathbb{N}$ the distribution of $(Y_{i,j})_{i,j\in[k], i\neq j}$ for independent $Y_{i,j}$, $i,j\in[m]$, $i\neq j$, distributed according to $\mathbb{Q}$.
+In the following we denote by $\mathbb{Q}^{m\times m}_{\neq}$ with $m\in\mathbb{N}$ the distribution of $(Y_{i,j})_{i,j\in[m], i\neq j}$ for independent $Y_{i,j}$, $i,j\in[m]$, $i\neq j$, distributed according to $\mathbb{Q}$.
 
 \begin{lemma}\label{lma1}
 Let $h: \mathbb{X}^m\times \mathbb{M}_{\neq}^{m\times m}\to \mathbb{R}$ with $m\in\mathbb{N}$ be such that $\|h\|_\infty<\infty$ and
@@ -525,7 +528,6 @@ $$
 Combining the two limits proves the statement.
 \end{proof}
 
-
 \section{Normal approximation}
 We first recall the following estimates from \cite[Theorem~4.7]{reitznerschulte} and \cite[Theorem~4.2]{schulte} after adapting a few of notation. 
 
@@ -562,9 +564,12 @@ for $i=1,\dots,k$ and $f_i=0$ for $i>k$.
 
 
 \begin{theorem}
-Let $f: \mathbb{X}^k\times \mathbb{M}^{k\times k}_{\neq}\to\mathbb{R}$ be a bounded measurable function satisfying $\supp(f)\subset B\times\mathbb{M}^{k\times k}_{\neq}$ with some bounded set $B\in \mathcal{X}^k$
+Let $f: \mathbb{X}^k\times \mathbb{M}^{k\times k}_{\neq}\to\mathbb{R}$ be a bounded measurable function 
+% satisfying $\supp(f)\subset B\times\mathbb{M}^{k\times k}_{\neq}$ with some bounded set $B\in \mathcal{X}^k$
 and 
-$$S=\sum_{(x_1,\hdots,x_k)\in\eta^k_{\neq}} f(x_1,\hdots,x_k, (M_{x_i,x_j})_{i,j\in[k], i\neq j}).$$ Then, we have
+$$S=\sum_{(x_1,\hdots,x_k)\in\eta^k_{\neq}} f(x_1,\hdots,x_k, (M_{x_i,x_j})_{i,j\in[k], i\neq j}).$$ 
+Suppose that $\E\left(\overline{S}^2\right)<\infty$ with $\overline{S}$ given in \eqref{def-integ1}.
+Then, we have
 \begin{eqnarray}
 d_W\left(\frac{S-\E S}{\sqrt{\Var S}},N\right)&\le&2k^{7/2}\sum_{1\le i\le j\le k}\frac{\sqrt{M_{ij}(f)}}{\Var S},\\
 d_K\left(\frac{S-\E S}{\sqrt{\Var S}},N\right)&\le&19k^5\sum_{i,j=1}^k\frac{\sqrt{M_{ij}(f)}}{\Var S}.
@@ -578,7 +583,31 @@ d_K\left(\frac{S-\E S}{\sqrt{\Var S}},N\right)&\le& d_K\left(\frac{\widehat{S}^{
 &\le& d_K\left(\frac{\widehat{S}^{(n)}-\E \widehat{S}^{(n)}}{\sqrt{\Var \widehat{S}^{(n)}}},N\right)+\varepsilon_n^2 \sum_{\ell=1}^\infty \frac{1}{\ell^2},
 \end{eqnarray*}
 where is $\widehat{S}^{(n)}$ given in \eqref{Ustat1}.
-From the previous section we know that $\widehat{S}^{(n)}$ is a Poisson $U$-statistic of order $k$ with respect to the Poisson process $\widehat{\eta}$ on $\widehat{\mathbb{X}}$. Furthermore, $\widehat{S}^{(n)}\in L^2(\IP_{\widehat{\eta}})$ due to the boundedness of $f$ and the assumption that $\supp(f)\subset B\times\mathbb{M}^{k\times k}_{\neq}$ with some bounded set $B\in \mathcal{X}^k$.
+From the previous section we know that $\widehat{S}^{(n)}$ is a Poisson $U$-statistic of order $k$ with respect to the Poisson process $\widehat{\eta}$ on $\widehat{\mathbb{X}}$. Furthermore, $\widehat{S}^{(n)}\in L^2(\IP_{\widehat{\eta}})$ due to the assumption that $\E\left(\overline{S}^2\right)<\infty$. 
+First of all, by the multivariate Mecke formula, we have 
+\begin{eqnarray*}
+    \E[S^2]
+    % &=&\E\left[\left(\sum_{(x_1,\hdots,x_k)\in\eta^k_{\neq}} f(x_1,\hdots,x_k, (M_{x_i,x_j})_{i,j\in[k], i\neq j})\right)\left(\sum_{(x_1,\hdots,x_k)\in\eta^k_{\neq}} f(x_1,\hdots,x_k, (M_{x_i,x_j})_{i,j\in[k], i\neq j})\right)\right]\\
+    &=&\sum_{\ell=0}^k{k\choose\ell}^2\ell!\E\left[\sum_{(x_1,\hdots,x_{2k-\ell})\in\eta^{2k-\ell}_{\neq}} f(x_1,\hdots,x_k, (M_{x_i,x_j})_{i,j\in[k], i\neq j})\right.\\
+    && \left.\times f(x_1,\hdots,x_{\ell},x_{k+1},\dots,x_{2k-\ell}, (M_{x_i,x_j})_{i,j\in[\ell]\cup\{k+1,\dots,2k-\ell\}, i\neq j})\right]\\
+    &=&\sum_{\ell=0}^k{k\choose\ell}^2\ell!\int_{\mathbb{X}^{2k-\ell}}\lambda^{2k-\ell}(d\bm{x})\int_{\mathbb{M}^{(2k-\ell)(2k-\ell)}_{\neq}}f(x_1,\hdots,x_k, (u_{i,j})_{i,j\in[k], i\neq j})\\
+    &&\times f(x_1,\hdots,x_{\ell},x_{k+1},\dots,x_{2k-\ell}, (u_{i,j})_{i,j\in[\ell]\cup\{k+1,\dots,2k-\ell\}, i\neq j})\mathbb{Q}_{\neq}^{(2k-\ell)(2k-\ell)}(d\bm{u}),
+\end{eqnarray*}
+where $\bm{x}=(x_1,\hdots,x_{2k-\ell})$ and $\bm{u}=(u_{i,j})_{i,j\in[2k-\ell], i\neq j}$. The right hand side is finite due to the assumption that $\E\left(\overline{S}^2\right)<\infty$.
+On the other hand, because $\lambda$ is $\sigma$-finite, there exists a sequence of measurable sets $(B_m)_{m\in\mathbb{N}}$ such that for each $m\in\mathbb{N}$, $\lambda(B_m)<\infty$ and $ B_m\uparrow\mathbb{X}$ as $m\to\infty$. Take $f_m:\mathbb{X}^k\times \mathbb{M}^{k\times k}_{\neq}\to\mathbb{R}$ defined by 
+\begin{equation*}
+f_m(x_1,\hdots,x_k, (u_{i,j})_{i,j\in[k], i\neq j}):=f(x_1,\hdots,x_k, (u_{i,j})_{i,j\in[k], i\neq j})\mathbf{1}_{\{(x_1,\hdots,x_k)\in B_m\}}\mathbf{1}_{\{|f|\le m\}}.
+\end{equation*}
+It is clear that $f_m$ converges to $f$ as $m\to\infty$ pointwisely.
+Let $\widehat{S}^{(n)}_m$ be defined by replacing $f$ with $f_m$ in \eqref{Ustat1}. Then, by the bounded convergence theorem, we have 
+\begin{eqnarray*}
+\E\left[(\widehat{S}^{(n)})^2\right]&=&\lim_{m\to\infty}\E\left[(\widehat{S}^{(n)}_m)^2\right]\\
+&=&\lim_{m\to\infty}\sum_{\ell=0}^k{k\choose\ell}^2\ell!\int_{\mathbb{X}^{2k-\ell}}\lambda^{2k-\ell}(d\bm{x})\int_{\mathbb{M}^{(2k-\ell)(2k-\ell)}_{\neq}}f_m(x_1,\hdots,x_k, (u_{i,j})_{i,j\in[k], i\neq j})\\
+    &&\times f_m(x_1,\hdots,x_{\ell},x_{k+1},\dots,x_{2k-\ell}, (u_{i,j})_{i,j\in[\ell]\cup\{k+1,\dots,2k-\ell\}, i\neq j})\mathbb{Q}_{\neq}^{(2k-\ell)(2k-\ell)}(d\bm{u})\\
+    &=&\sum_{\ell=0}^k{k\choose\ell}^2\ell!\int_{\mathbb{X}^{2k-\ell}}\lambda^{2k-\ell}(d\bm{x})\int_{\mathbb{M}^{(2k-\ell)(2k-\ell)}_{\neq}}f(x_1,\hdots,x_k, (u_{i,j})_{i,j\in[k], i\neq j})\\
+    &&\times f(x_1,\hdots,x_{\ell},x_{k+1},\dots,x_{2k-\ell}, (u_{i,j})_{i,j\in[\ell]\cup\{k+1,\dots,2k-\ell\}, i\neq j})\mathbb{Q}_{\neq}^{(2k-\ell)(2k-\ell)}(d\bm{u})<\infty.
+\end{eqnarray*}
+
 Thus, we can apply the results from Proposition~\ref{normalU-1}.
 \begin{eqnarray*}
     \widehat{S}^{(n)}&=&\sum_{(\hat{x}_1,\hdots,\hat{x}_k)\in\widehat{\eta}^k_{\neq}} f(x_1,\hdots,x_k, \tilde{m}^{(n)}(\hat{x}_1,\hdots,\hat{x}_k))\\
