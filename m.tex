@@ -1,5 +1,6 @@
 \documentclass{article}
 \usepackage{graphicx} % Required for inserting images
+\usepackage[a4paper, margin=1.2in]{geometry}
 \usepackage{amsmath,amssymb,amsthm,bm}
 \usepackage{hyperref}
 
@@ -48,7 +49,7 @@ Let $\eta$ be a homogeneous Poisson point process with unit intensity in $\mathb
 \end{equation}
 Any two distinct points $x,y\in\eta$ are connected by an edge with probability $g(x-y)$, independently of all other edges. The resulting random graph is known as a random connection model (RCM) with connection function $g$, see \cite{meesterroy} for more details.
 
-Counting statistics on RCM gains vastly attention in recent years, including isolated vertices count \cite{Penrose2}, component count \cite{last2} and subgraph counts in \cite{can2022,LiuPrivault},
+Counting statistics on RCM gains vastly attention in recent years, including isolated vertices count \cite{Penrose2}, component count \cite{last2} and subgraph counts in \cite{can2022}, \cite{LiuPrivault},
 with various approaches being proposed to analyze the structure and asymptotic properties of these random graphs. In this note, we focus on various approximation results for counting statistics in RCM by incorporating the random connection model into the framework of Poisson $U$-statistics, see \cite{reitznerschulte}, \cite{last4}, and \cite{schulte} for more details.
 
 \section{Construction of the random connection model}
@@ -480,7 +481,7 @@ For $n\in\mathbb{N}$ observe that $\widetilde{M}^{(n)}_{x,y}=\widehat{M}^{(n)}_{
 & \leq \sum_{\ell=1}^\infty \mathbb{P}(\eta_{\mathbb{X}}(A^{(n)}_\ell)\geq 2) \leq \sum_{\ell=1}^\infty \lambda(A^{(n)}_\ell)^2 \leq \varepsilon_n^2 \sum_{\ell=1}^\infty \frac{1}{\ell^2}.\label{diff1}
 \end{align}
 
-In the following we denote by $\mathbb{Q}^{m\times m}_{\neq}$ with $m\in\mathbb{N}$ the distribution of $(Y_{i,j})_{i,j\in[m], i\neq j}$ for independent $Y_{i,j}$, $i,j\in[m]$, $i\neq j$, distributed according to $\mathbb{Q}$.
+In the following we denote by $\mathbb{Q}^{m\times m}_{\neq}$ with $m\in\mathbb{N}$ the distribution of $(Y_{i,j})_{i,j\in[k], i\neq j}$ for independent $Y_{i,j}$, $i,j\in[m]$, $i\neq j$, distributed according to $\mathbb{Q}$.
 
 \begin{lemma}\label{lma1}
 Let $h: \mathbb{X}^m\times \mathbb{M}_{\neq}^{m\times m}\to \mathbb{R}$ with $m\in\mathbb{N}$ be such that $\|h\|_\infty<\infty$ and
@@ -528,6 +529,7 @@ $$
 Combining the two limits proves the statement.
 \end{proof}
 
+
 \section{Normal approximation}
 We first recall the following estimates from \cite[Theorem~4.7]{reitznerschulte} and \cite[Theorem~4.2]{schulte} after adapting a few of notation. 
 
@@ -571,18 +573,34 @@ $$S=\sum_{(x_1,\hdots,x_k)\in\eta^k_{\neq}} f(x_1,\hdots,x_k, (M_{x_i,x_j})_{i,j
 Suppose that $\E\left(\overline{S}^2\right)<\infty$ with $\overline{S}$ given in \eqref{def-integ1}.
 Then, we have
 \begin{eqnarray}
-d_W\left(\frac{S-\E S}{\sqrt{\Var S}},N\right)&\le&2k^{7/2}\sum_{1\le i\le j\le k}\frac{\sqrt{M_{ij}(f)}}{\Var S},\\
-d_K\left(\frac{S-\E S}{\sqrt{\Var S}},N\right)&\le&19k^5\sum_{i,j=1}^k\frac{\sqrt{M_{ij}(f)}}{\Var S}.
+d_W\left(\frac{S-\E S}{\sqrt{\Var S}},N\right)&\le&2k^{7/2}\sum_{1\le i\le j\le k}\frac{\sqrt{M_{ij}(f)}}{\Var S},\label{norbound-1}\\
+d_K\left(\frac{S-\E S}{\sqrt{\Var S}},N\right)&\le&19k^5\sum_{i,j=1}^k\frac{\sqrt{M_{ij}(f)}}{\Var S},\label{norbound-2}
 \end{eqnarray}
+where 
+\begin{eqnarray*}
+    M_{ij}(f)&:=&\sum_{\pi\in\overline{\Pi}_{\ge2}(i,i,j,j)}\int_{\mathbb{X}^{|\pi|}} \int_{\mathbb{M}^{|\pi|\times |\pi|}_{\neq}} \left(\overline{f}_i\otimes\overline{f}_i\otimes\overline{f}_j\otimes\overline{f}_j\right)_{\pi}(\bm{x},\bm{u}) \, \mathbb{Q}_{\neq}^{|\pi|\times |\pi|}(d\bm{u}) \, \lambda^{|\pi|}(d\bm{x}),
+\end{eqnarray*}
+with $\bm{x}=(x_1,\hdots,x_{|\pi|})$, $\bm{u}=(u_{\imath,\jmath})_{1\le\imath\ne\jmath\ne|\pi|}$ and 
+\begin{eqnarray*}
+    &&\overline{f}_{\ell}(x_1,\dots,x_{\ell},(u_{\imath,\jmath})_{1\le\imath\ne\jmath\le\ell})\\
+    &:=&\int_{\mathbb{X}^{k-\ell}}\int_{\mathbb{M}^{k(k-1)-\ell(\ell-1)}}\left\vert f(x_1,\dots,x_{\ell},y_1,\dots,y_{k-\ell},(u_{\imath,\jmath})_{1\le\imath\ne\jmath\le k})\right\vert\mathbb{Q}^{k(k-1)-\ell(\ell-1)}(d\bm{v})\lambda^{k-\ell}(d\bm{y})
+\end{eqnarray*}
+with $\bm{v}=\left((u_{\imath,\jmath})_{1\le\imath\ne\jmath\ne|\pi|}{\substack{\ell<\imath\le k,\jmath\in[k]\\\imath\ne\jmath}},(u_{\imath,\jmath})_{\imath\in[\ell],\ell<\jmath\le k}\right)$ and $\bm{y}=(y_1,\dots,y_{k-\ell})$ for $\ell=1,\dots,k$. 
 \end{theorem}
 \begin{proof}
 By triangle inequality and \eqref{diff1}
+\begin{eqnarray}
+d_K\left(\frac{S-\E S}{\sqrt{\Var S}},N\right)&\le& d_K\left(\frac{\widehat{S}^{(n)}-\E \widehat{S}^{(n)}}{\sqrt{\Var \widehat{S}^{(n)}}},N\right)+2\IP(S\neq\widehat{S}^{(n)})\nonumber\\
+&=& d_K\left(\frac{\widehat{S}^{(n)}-\E \widehat{S}^{(n)}}{\sqrt{\Var \widehat{S}^{(n)}}},N\right)+2\IP(\widetilde{S}^{(n)}\neq\widehat{S}^{(n)})\nonumber\\
+&\le& d_K\left(\frac{\widehat{S}^{(n)}-\E \widehat{S}^{(n)}}{\sqrt{\Var \widehat{S}^{(n)}}},N\right)+2\varepsilon_n^2 \sum_{\ell=1}^\infty \frac{1}{\ell^2},\label{inequ-1}
+\end{eqnarray}
+where is $\widehat{S}^{(n)}$ given in \eqref{Ustat1}, 
 \begin{eqnarray*}
-d_K\left(\frac{S-\E S}{\sqrt{\Var S}},N\right)&\le& d_K\left(\frac{\widehat{S}^{(n)}-\E \widehat{S}^{(n)}}{\sqrt{\Var \widehat{S}^{(n)}}},N\right)+\IP(S\neq\widehat{S}^{(n)})\\
-&=& d_K\left(\frac{\widehat{S}^{(n)}-\E \widehat{S}^{(n)}}{\sqrt{\Var \widehat{S}^{(n)}}},N\right)+\IP(\widetilde{S}^{(n)}\neq\widehat{S}^{(n)})\\
-&\le& d_K\left(\frac{\widehat{S}^{(n)}-\E \widehat{S}^{(n)}}{\sqrt{\Var \widehat{S}^{(n)}}},N\right)+\varepsilon_n^2 \sum_{\ell=1}^\infty \frac{1}{\ell^2},
+    \widehat{S}^{(n)}&:=&\sum_{(\hat{x}_1,\hdots,\hat{x}_k)\in\widehat{\eta}^k_{\neq}} f(x_1,\hdots,x_k, \tilde{m}^{(n)}(\hat{x}_1,\hdots,\hat{x}_k))\\
+    &=&\sum_{(\hat{x}_1,\hdots,\hat{x}_k)\in\widehat{\eta}^k_{\neq}}f^{(n)}(\hat{x}_1,\hdots,\hat{x}_k),
 \end{eqnarray*}
-where is $\widehat{S}^{(n)}$ given in \eqref{Ustat1}.
+with 
+$$f^{(n)}(\hat{x}_1,\hdots,\hat{x}_k):=f(x_1,\hdots,x_k, \tilde{m}^{(n)}(\hat{x}_1,\hdots,\hat{x}_k)).$$
 From the previous section we know that $\widehat{S}^{(n)}$ is a Poisson $U$-statistic of order $k$ with respect to the Poisson process $\widehat{\eta}$ on $\widehat{\mathbb{X}}$. Furthermore, $\widehat{S}^{(n)}\in L^2(\IP_{\widehat{\eta}})$ due to the assumption that $\E\left(\overline{S}^2\right)<\infty$. 
 First of all, by the multivariate Mecke formula, we have 
 \begin{eqnarray*}
@@ -593,13 +611,17 @@ First of all, by the multivariate Mecke formula, we have
     &=&\sum_{\ell=0}^k{k\choose\ell}^2\ell!\int_{\mathbb{X}^{2k-\ell}}\lambda^{2k-\ell}(d\bm{x})\int_{\mathbb{M}^{(2k-\ell)(2k-\ell)}_{\neq}}f(x_1,\hdots,x_k, (u_{i,j})_{i,j\in[k], i\neq j})\\
     &&\times f(x_1,\hdots,x_{\ell},x_{k+1},\dots,x_{2k-\ell}, (u_{i,j})_{i,j\in[\ell]\cup\{k+1,\dots,2k-\ell\}, i\neq j})\mathbb{Q}_{\neq}^{(2k-\ell)(2k-\ell)}(d\bm{u}),
 \end{eqnarray*}
-where $\bm{x}=(x_1,\hdots,x_{2k-\ell})$ and $\bm{u}=(u_{i,j})_{i,j\in[2k-\ell], i\neq j}$. The right hand side is finite due to the assumption that $\E\left(\overline{S}^2\right)<\infty$.
+where $\bm{x}=(x_1,\hdots,x_{2k-\ell})$ and $\bm{u}=(u_{i,j})_{i,j\in[2k-\ell], i\neq j}$. The right hand side is finite due to the assumption that $\E\left(\overline{S}^2\right)<\infty$. And also, we have 
+\begin{eqnarray*}
+\Var(S)&=&\sum_{\ell=1}^k{k\choose\ell}^2\ell!\int_{\mathbb{X}^{2k-\ell}}\lambda^{2k-\ell}(d\bm{x})\int_{\mathbb{M}^{(2k-\ell)(2k-\ell)}_{\neq}}f(x_1,\hdots,x_k, (u_{i,j})_{i,j\in[k], i\neq j})\\
+    &&\times f(x_1,\hdots,x_{\ell},x_{k+1},\dots,x_{2k-\ell}, (u_{i,j})_{i,j\in[\ell]\cup\{k+1,\dots,2k-\ell\}, i\neq j})\mathbb{Q}_{\neq}^{(2k-\ell)(2k-\ell)}(d\bm{u}).
+\end{eqnarray*}
 On the other hand, because $\lambda$ is $\sigma$-finite, there exists a sequence of measurable sets $(B_m)_{m\in\mathbb{N}}$ such that for each $m\in\mathbb{N}$, $\lambda(B_m)<\infty$ and $ B_m\uparrow\mathbb{X}$ as $m\to\infty$. Take $f_m:\mathbb{X}^k\times \mathbb{M}^{k\times k}_{\neq}\to\mathbb{R}$ defined by 
 \begin{equation*}
 f_m(x_1,\hdots,x_k, (u_{i,j})_{i,j\in[k], i\neq j}):=f(x_1,\hdots,x_k, (u_{i,j})_{i,j\in[k], i\neq j})\mathbf{1}_{\{(x_1,\hdots,x_k)\in B_m\}}\mathbf{1}_{\{|f|\le m\}}.
 \end{equation*}
 It is clear that $f_m$ converges to $f$ as $m\to\infty$ pointwisely.
-Let $\widehat{S}^{(n)}_m$ be defined by replacing $f$ with $f_m$ in \eqref{Ustat1}. Then, by the bounded convergence theorem, we have 
+Let $\widehat{S}^{(n)}_m$ be defined by replacing $f$ with $f_m$ in \eqref{Ustat1}. Then, by dominated convergence theorem, we have 
 \begin{eqnarray*}
 \E\left[(\widehat{S}^{(n)})^2\right]&=&\lim_{m\to\infty}\E\left[(\widehat{S}^{(n)}_m)^2\right]\\
 &=&\lim_{m\to\infty}\sum_{\ell=0}^k{k\choose\ell}^2\ell!\int_{\mathbb{X}^{2k-\ell}}\lambda^{2k-\ell}(d\bm{x})\int_{\mathbb{M}^{(2k-\ell)(2k-\ell)}_{\neq}}f_m(x_1,\hdots,x_k, (u_{i,j})_{i,j\in[k], i\neq j})\\
@@ -607,32 +629,28 @@ Let $\widehat{S}^{(n)}_m$ be defined by replacing $f$ with $f_m$ in \eqref{Ustat
     &=&\sum_{\ell=0}^k{k\choose\ell}^2\ell!\int_{\mathbb{X}^{2k-\ell}}\lambda^{2k-\ell}(d\bm{x})\int_{\mathbb{M}^{(2k-\ell)(2k-\ell)}_{\neq}}f(x_1,\hdots,x_k, (u_{i,j})_{i,j\in[k], i\neq j})\\
     &&\times f(x_1,\hdots,x_{\ell},x_{k+1},\dots,x_{2k-\ell}, (u_{i,j})_{i,j\in[\ell]\cup\{k+1,\dots,2k-\ell\}, i\neq j})\mathbb{Q}_{\neq}^{(2k-\ell)(2k-\ell)}(d\bm{u})<\infty.
 \end{eqnarray*}
-
-Thus, we can apply the results from Proposition~\ref{normalU-1}.
-\begin{eqnarray*}
-    \widehat{S}^{(n)}&=&\sum_{(\hat{x}_1,\hdots,\hat{x}_k)\in\widehat{\eta}^k_{\neq}} f(x_1,\hdots,x_k, \tilde{m}^{(n)}(\hat{x}_1,\hdots,\hat{x}_k))\\
-    &=&\sum_{(\hat{x}_1,\hdots,\hat{x}_k)\in\widehat{\eta}^k_{\neq}}f^{(n)}(\hat{x}_1,\hdots,\hat{x}_k),
-\end{eqnarray*}
-where 
-$$f^{(n)}(\hat{x}_1,\hdots,\hat{x}_k):=f(x_1,\hdots,x_k, \tilde{m}^{(n)}(\hat{x}_1,\hdots,\hat{x}_k)).$$
-Note $f^{(n)}:\widehat{\mathbb{X}}^k\to \R$ is measurable and bounded. By virtue of Lemma~\ref{lma1}, we have, for eacn $\pi\in\overline{\Pi}_{\ge2}(i,i,j,j)$, 
+Thus, we can apply the results from Proposition~\ref{normalU-1}. It gives, from \eqref{inequ-1},  
+\begin{eqnarray}
+d_K\left(\frac{S-\E S}{\sqrt{\Var S}},N\right)&\le& 19k^5\sum_{i,j=1}^k\frac{\sqrt{M_{ij}(f^{(n)})}}{\Var(\widehat{S}^{(n)})}+2\varepsilon_n^2 \sum_{\ell=1}^\infty \frac{1}{\ell^2}.\label{inequa-2}
+\end{eqnarray}
+By virtue of Lemma~\ref{lma1}, we have, for each $\pi\in\overline{\Pi}_{\ge2}(i,i,j,j)$, 
 \begin{eqnarray*}
 &&\lim_{n\to\infty}\int_{\widehat{\mathbb{X}}^{|\pi|}}\left(\overline{f^{(n)}}_i\otimes\overline{f^{(n)}}_i\otimes\overline{f^{(n)}}_j\otimes\overline{f^{(n)}}_j\right)_{\pi}\mathrm{d}\widehat{\lambda}^{|\pi|}\\
-&=&\int_{\mathbb{X}^{|\pi|}} \int_{\mathbb{M}^{|\pi|\times |\pi|}_{\neq}} h_{\pi}(x_1,\hdots,x_{|\pi|}, u) \, \mathbb{Q}_{\neq}^{|\pi|\times |\pi|}(du) \, \lambda^{|\pi|}(d(x_1,\hdots,x_|\pi|)),
+&=&\int_{\mathbb{X}^{|\pi|}} \int_{\mathbb{M}^{|\pi|\times |\pi|}_{\neq}} \left(\overline{f}_i\otimes\overline{f}_i\otimes\overline{f}_j\otimes\overline{f}_j\right)_{\pi}(x_1,\hdots,x_{|\pi|}, u) \, \mathbb{Q}_{\neq}^{|\pi|\times |\pi|}(du) \, \lambda^{|\pi|}(d(x_1,\hdots,x_|\pi|)),
 \end{eqnarray*}
-with $h_{\pi}:\mathbb{X}^{|\pi|}\times \mathbb{M}^{|\pi|\times |\pi|}_{\neq}\to\R$ defined by 
-\begin{equation}
-h_{\pi}(x_1,\hdots,x_{|\pi|}, u):=\left(\overline{f}_i\otimes\overline{f}_i\otimes\overline{f}_j\otimes\overline{f}_j\right)_{\pi}(x_1,\hdots,x_{|\pi|}, u),
-\end{equation}
-with 
+By taking $n\to\infty$ in \eqref{inequa-2}, we have shown \eqref{norbound-2}. 
+
+For Wasserstein distance, we have 
 \begin{eqnarray*}
-    &&\overline{f}_{\ell}(x_1,\dots,x_{\ell},(u_{\imath,\jmath})_{1\le\imath\ne\jmath\le\ell})\\
-    &:=&\int_{\mathbb{X}^{k-\ell}}\int_{\mathbb{M}^{k(k-1)-\ell(\ell-1)}}\left\vert f(x_1,\dots,x_{\ell},y_1,\dots,y_{k-\ell},(u_{\imath,\jmath})_{1\le\imath\ne\jmath\le k})\right\vert\mathbb{Q}^{k(k-1)-\ell(\ell-1)}(d\bm{v})\lambda^{k-\ell}(d(y_1,\dots,y_{k-\ell}))
+d_W\left(\frac{S-\E S}{\sqrt{\Var S}},N\right)&\le&d_W\left(\frac{\widehat{S}^{(n)}-\E \widehat{S}^{(n)}}{\sqrt{\Var(\widehat{S}^{(n)})}},N\right)+d_W\left(\frac{\widehat{S}^{(n)}-\E \widehat{S}^{(n)}}{\sqrt{\Var(\widehat{S}^{(n)})}},\frac{S-\E S}{\sqrt{\Var S}}\right)\\
+&\le&2k^{7/2}\sum_{1\le i\le j\le k}\frac{\sqrt{M_{ij}(f^{(n)})}}{\Var(\widehat{S}^{(n)})}+d_W\left(\frac{\widehat{S}^{(n)}-\E \widehat{S}^{(n)}}{\sqrt{\Var(\widehat{S}^{(n)})}},\frac{S-\E S}{\sqrt{\Var S}}\right).
 \end{eqnarray*}
-with $\bm{v}=\left((u_{\imath,\jmath})_{\substack{\ell<\imath\le k,\jmath\in[k]\\\imath\ne\jmath}},(u_{\imath,\jmath})_{\imath\in[\ell],\ell<\jmath\le k}\right)$ for $\ell=1,\dots,k$.
-% \begin{eqnarray*}
-%     M_{ij}(f^{(n)})=\sum_{\pi\in\overline{\Pi}_{\ge2}(i,i,j,j)}\int_{\widehat{\mathbb{X}}^{|\pi|}}\left(\overline{f^{(n)}}_i\otimes\overline{f^{(n)}}_i\otimes\overline{f^{(n)}}_j\otimes\overline{f^{(n)}}_j\right)_{\pi}\mathrm{d}\widehat{\lambda}^{|\pi|}
-% \end{eqnarray*}
+By the definition of the Wasserstein distance and some straightforward computations, it follows that 
+\begin{eqnarray*}
+   d_W\left(\frac{\widehat{S}^{(n)}-\E \widehat{S}^{(n)}}{\sqrt{\Var(\widehat{S}^{(n)})}},\frac{S-\E S}{\sqrt{\Var S}}\right)&\le&\E\left|\frac{\widehat{S}^{(n)}-\E \widehat{S}^{(n)}}{\sqrt{\Var(\widehat{S}^{(n)})}}-\frac{S-\E S}{\sqrt{\Var S}}\right|\\
+   &\le&\frac{\E\left|\widehat{S}^{(n)}-\E \widehat{S}^{(n)}-S+\E S\right|}{\sqrt{\Var(\widehat{S}^{(n)})}}+\E\left|\frac{S-\E S}{\sqrt{\Var(\widehat{S}^{(n)})}}-\frac{S-\E S}{\sqrt{\Var S}}\right|.
+\end{eqnarray*}
+Because of the convergence of $(\widehat{S}^{(n)})_{n\in\mathbb{N}}$ to $S$ in $L^1(\IP)$ and $L^2(\IP)$, the right side vanishes for $n\to\infty$, and we obtain \eqref{norbound-1}.
 \end{proof}
 \bibliographystyle{apalike}
 \bibliography{lit}
