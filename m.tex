@@ -3,10 +3,14 @@
 \usepackage[a4paper, margin=1.2in]{geometry}
 \usepackage{amsmath,amssymb,amsthm,bm}
 \usepackage{hyperref}
+\usepackage{enumitem}
 
 \title{Functional approximation for $U$-statistics in the random connection model}
 %\author{}
-\date{October 2024}
+% \date{October 2024}
+\def\parsedate #1:20#2#3#4#5#6#7#8\empty{20#2#3-#4#5-#6#7}
+\def\moddate{\expandafter\parsedate\pdffilemoddate{\jobname.tex}\empty}
+\date{\moddate}
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{prop}[theorem]{Proposition}
@@ -24,7 +28,7 @@
 
 \newcommand{\E}{\mathbb{E}}
 \newcommand{\IP}{\mathbb{P}}
-
+\newcommand{\N}{\mathbb{N}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\Var}{\mathrm{Var}}
 \newcommand{\supp}{\mathrm{Supp}}
@@ -36,7 +40,7 @@
 
 \maketitle
 
-\section{Random connection model}
+\section{Introduction}
 
 % Consider the following random graph $(V,E)$: the vertex set is given by $V=\eta$, where $\eta=\{X_n: n \in \mathbb{N} \}$ is (a realization of) a homogeneous Poisson point process with unit intensity in $\mathbb{R}^d$. Given the set of vertices $V$ we construct the set of (undirected) edges as follows. Let $g\colon \mathbb{R}^d \to [0,1]$ be a measurable function satisfying $g(x) = g(-x)$ for all $x\in\mathbb{R}^d$ and
 % \begin{equation} \label{g1}
@@ -52,42 +56,117 @@ Any two distinct points $x,y\in\eta$ are connected by an edge with probability $
 Counting statistics on RCM gains vastly attention in recent years, including isolated vertices count \cite{Penrose2}, component count \cite{last2} and subgraph counts in \cite{can2022}, \cite{LiuPrivault},
 with various approaches being proposed to analyze the structure and asymptotic properties of these random graphs. In this note, we focus on various approximation results for counting statistics in RCM by incorporating the random connection model into the framework of Poisson $U$-statistics, see \cite{reitznerschulte}, \cite{last4}, and \cite{schulte} for more details.
 
-\section{Construction of the random connection model}
+\section{Preliminaries}
 
-We now recall how the random connection model can be constructed from a marked Poisson point process. We choose $\mathbb{M}:=[0,1]^{\mathbb{N}\times\mathbb{N}}$ as mark space and $\mathbf{m}$ to be the distribution of a double sequence of independent random variables uniformly distributed on $[0, 1]$. Then we consider an independent $\mathbf{m}$-marking $\hat{\eta}$ of $\eta$, that is a point process on $\mathbb{R}^d\times \mathbb{M}$. Now we fix a partition $\{A_i\}_{i\in\mathbb{N}}$ of $\mathbb{R}^d$ that consists of bounded Borel sets $A_i$, and we choose an arbitrary ordering in $\mathbb{R}^d$ (for example lexicographic) denoted by $\leq$. For two points $(x,\mathbf{u}=(u_{i,l})_{i,l\in\mathbb{N}})$ and $(y,\mathbf{v}=(v_{i,l})_{i,l\in\mathbb{N}})$ in $\hat{\eta}$ such that $x\leq y$ and $y\in A_i$ is the $mth$ nearest point to $x$ in $A_i$ we define $W_{x,y} := u_{i,m}$. Then, the random graph $G(\eta)$ with vertex set $\eta$ and in which two distinct vertices are connected by an edge if and only if $W_{x,y}\leq g(y-x)$ has the law of the random connection model with connection function $g$ in $\mathbb{R}^d$.
+\subsection{Poisson $U$-statistics}
 
-\section{$U$-statistics}
+\subsection{Partitions}
+For any $n\in\N$, we denote $[n]:=\{1,\dots,n\}$.
+Let $t\in\N$ and $q_1,\dots,q_t\in\N$. We define $N_0:=0$, $N_\ell:=\sum_{i=1}^\ell q_i$ and $N:=N_t$. Set $J_\ell:=\{N_{\ell-1}+1,\dots,N_\ell\}$, for $\ell=1,\dots,t.$ A partition $\sigma$ of $[N]$ is a collection $\{B_1,\dots,B_s\}$ of $1\le s\le N$ pairwise disjoint non-empty sets $B_i\subseteq [N]$ called blocks, such that $B_1\cup\cdots\cup B_s=[N]$. The number $s$ of blocks in $\sigma$ is denoted by $|\sigma|$. By $\Pi(q_1,\dots,q_t)$ we denote the set of all partitions $\sigma$ such that $|B\cap J_\ell|\le1$ for all $\ell\in[s]$ and $B\in\sigma$.
 
-Using the above notation, define
- \begin{align}\label{originalUstat}
-     S_t:= \frac{1}{k!}\sum_{(x_1, \ldots, x_k) \in \eta^k_{\neq}} f_t \Big( x_1, \ldots, x_k, (W_{x_i,x_j})_{i,j =1,\ldots, k, i \neq j} \Big) ,
+Every partition $\sigma\in\Pi(q_1,\dots,q_t)$ induces a partition $\sigma^*$ of $[t]$ in the following way: $i,j\in[t]$ are in the same block of $\sigma^*$ whenever there exists a block $B\in\sigma$ such that $|B\cap J_i|=|B\cap J_j|=1$. Let $\widetilde{\Pi}(q_1,\dots,q_t)$ be the collection of all partitions $\sigma\in\Pi(q_1,\dots,q_t)$ such that $|\sigma^*|=1$. Note partitions in $\Pi(q_1,\dots,q_t)$ and $\widetilde{\Pi}(q_1,\dots,q_t)$ are known as non-flat and connected non-flat respectively, see \cite[Chapter~4]{peccati2011}. By $\Pi_{\ge2}(q_1,\dots,q_t)$ and $\widetilde{\Pi}_{\ge2}(q_1,\dots,q_t)$, we denote the sets of all $\sigma\in\Pi(q_1,\dots,q_t)$ and $\sigma\in\widetilde{\Pi}(q_1,\dots,q_t)$ such that $|B|\ge2$ for every $B\in\sigma$. In the case $q_1=\dots=q_t=q$, we write $\Pi^t(q)$, $\widetilde{\Pi}^t(q)$, $\Pi^t_{\ge2}(q)$ and $\widetilde{\Pi}^t_{\ge2}(q)$ instead of $\Pi(q_1,\dots,q_t)$, $\widetilde{\Pi}(q_1,\dots,q_t)$, $\Pi_{\ge2}(q_1,\dots,q_t)$ and $\widetilde{\Pi}_{\ge2}(q_1,\dots,q_t)$ respectively.
+
+Let $(S,\mathcal{S})$ be an arbitrary measurable space. For functions $f^{(\ell)}:S^{q_\ell}\to\R$, $\ell\in[t]$, we define their tensor product $\otimes_{\ell=1}^tf^{(\ell)}:S^N\to\R$ by 
+$$\otimes_{\ell=1}^tf^{(\ell)}(x_1,\dots,x_N):=\prod_{\ell=1}^tf^{(\ell)}(x_{N_{\ell-1}+1},\dots,x_{N_{\ell}}).$$
+For each $\sigma\in\Pi(q_1,\dots,q_t)$, the function $(\otimes_{\ell=1}^tf^{(\ell)})_\sigma:S^{|\sigma|}$ is obtained by replacing all variables that belong to the same block in $\sigma$ by a new common variable.
+
+
+\section{Distributional approximation of $U$-statistics of edge-marked Poisson processes}
+\subsection{Normal approximation}
+
+\begin{theorem}\label{normalapp1}
+Let $f: \mathbb{X}^k\times \mathbb{M}^{k\times k}_{\neq}\to\mathbb{R}$ be a measurable function 
+% satisfying $\supp(f)\subset B\times\mathbb{M}^{k\times k}_{\neq}$ with some bounded set $B\in \mathcal{X}^k$
+and 
+$$S=\sum_{(x_1,\hdots,x_k)\in\eta^k_{\neq}} f(x_1,\hdots,x_k, (M_{x_i,x_j})_{i,j\in[k], i\neq j}).$$ 
+Suppose that $\E\left(\overline{S}^2\right)<\infty$ with $\overline{S}$ given in \eqref{def-integ1}.
+Then, we have
+\begin{eqnarray}
+d_W\left(\frac{S-\E S}{\sqrt{\Var S}},N\right)&\le&2k^{7/2}\sum_{1\le i\le j\le k}\frac{\sqrt{M_{ij}(f)}}{\Var S},\label{norbound-1}\\
+d_K\left(\frac{S-\E S}{\sqrt{\Var S}},N\right)&\le&19k^5\sum_{i,j=1}^k\frac{\sqrt{M_{ij}(f)}}{\Var S},\label{norbound-2}
+\end{eqnarray}
+where 
+\begin{eqnarray*}
+    M_{ij}(f)&:=&\sum_{\pi\in\widetilde{\Pi}_{\ge2}(i,i,j,j)}\int_{\mathbb{X}^{|\pi|}} \int_{\mathbb{M}^{|\pi|\times |\pi|}_{\neq}} \left(\overline{f}_i\otimes\overline{f}_i\otimes\overline{f}_j\otimes\overline{f}_j\right)_{\pi}(\bm{x},\bm{u}) \, \mathbb{Q}_{\neq}^{|\pi|\times |\pi|}(\mathrm{d}\bm{u}) \, \lambda^{|\pi|}(\mathrm{d}\bm{x}),
+\end{eqnarray*}
+with $\bm{x}=(x_1,\hdots,x_{|\pi|})$, $\bm{u}=(u_{\imath,\jmath})_{1\le\imath\ne\jmath\ne|\pi|}$ and 
+\begin{eqnarray*}
+    &&\overline{f}_{\ell}(x_1,\dots,x_{\ell},(u_{\imath,\jmath})_{1\le\imath\ne\jmath\le\ell})\\
+    &:=&\int_{\mathbb{X}^{k-\ell}}\int_{\mathbb{M}^{k(k-1)-\ell(\ell-1)}}\left\vert f(x_1,\dots,x_{\ell},y_1,\dots,y_{k-\ell},(u_{\imath,\jmath})_{1\le\imath\ne\jmath\le k})\right\vert\mathbb{Q}^{k(k-1)-\ell(\ell-1)}(\mathrm{d}\bm{v})\lambda^{k-\ell}(\mathrm{d}\bm{y})
+\end{eqnarray*}
+with $\bm{v}=\left((u_{\imath,\jmath})_{1\le\imath\ne\jmath\ne|\pi|}{\substack{\ell<\imath\le k,\jmath\in[k]\\\imath\ne\jmath}},(u_{\imath,\jmath})_{\imath\in[\ell],\ell<\jmath\le k}\right)$ and $\bm{y}=(y_1,\dots,y_{k-\ell})$ for $\ell=1,\dots,k$. 
+\end{theorem}
+
+
+
+
+
+\subsection{Poisson process approximation}
+Now we consider the functional analogue of the previous section. Define for a symmetric and measurable function $f\colon \operatorname{dom} f \to Y$ ($Y$ is some general space) the process
+\begin{align}\label{originalPproc}
+     \xi:= \frac{1}{k!}\sum_{(x_1, \ldots, x_k) \in \eta^k_{\neq}\cap  {\operatorname{dom}'} f} \delta_{f \left( x_1, \ldots, x_k, (W_{x_i,x_j})_{i,j =1,\ldots, k, i \neq j} \right)} ,
  \end{align}
-where $f_t$, $t \geq 1$, is a measurable function and the sum is taken over all $k$-tuples of pairwise distinct points. Note that $S$ is not a Poisson $U$-statistics. Now consider the following. For two points $\hat{x}=(x,\mathbf{u}=(u_{i,l})_{i,l\in\mathbb{N}})$ and $\hat{y}=(y,\mathbf{v}=(v_{i,l})_{i,l\in\mathbb{N}})$ in $\hat{\eta}$ such that $x\leq y$ and $y\in A_i$ define $\hat{W}_{\hat{x},\hat{y}} := u_{i,1}$, and
-$$ \hat{S}_t:= \frac{1}{k!}\sum_{(\hat{x}_1, \ldots, \hat{x}_k) \in \hat{\eta}^k_{\neq}} f_t \Big( {x}_1, \ldots, {x}_k, (\hat{W}_{\hat{x}_i,\hat{x}_j}) \Big) =:  \sum_{(\hat{x}_1, \ldots, \hat{x}_k) \in \hat{\eta}^k_{\neq}} \hat{f}_t ( \hat{x}_1, \ldots, \hat{x}_k ),$$
-which on the other hand is a Poisson U-statistics. Now, choose the partition $\{A_i\}_{i\in\mathbb{N}}$ such that $\lambda_d (A_i) = \frac{\varepsilon}{i}$ for every $i \in \mathbb{N}$, where $\varepsilon>0$ is a given (later chosen to be sufficiently small) number. Then we have
-\begin{align}\label{ShatS}
-\begin{split}
-    \mathbb{P} (S \neq \hat{S}) &= \mathbb{P} ( \exists i \in \mathbb{N} : \eta (A_i) \geq 2 ) \leq \sum_{i=1}^\infty \mathbb{P} ( \eta (A_i) \geq 2 ) \\
-    & \leq \sum_{i=1}^\infty  \lambda_d (A_i)^2 = \varepsilon^2 \sum_{i=1}^\infty \frac{1}{k^2},
-\end{split}
-\end{align}
-so that $\mathbb{P} (S \neq \hat{S}) \to 0$, as $\varepsilon \to 0$. Moreover, for every random variable $N$ we have
-\begin{align} \label{Kineq}
-     d_K (S,N) \leq \mathbb{P} (S \neq \hat{S}) + d_K (\hat{S},N) .
-\end{align}
+where we denote
+$${\operatorname{dom}'} f := \left\{( x_1, \ldots, x_k) : \left( x_1, \ldots, x_k, (W_{x_i,x_j})_{i,j =1,\ldots, k, i \neq j} \right) \in  \operatorname{dom} f\right\} . $$
+As before note that $\xi$ is not induced by a Poisson process. Therefore we define
+$$ \hat{\xi}:= \frac{1}{k!}\sum_{(\hat{x}_1, \ldots, \hat{x}_k) \in \hat{\eta}^k_{\neq} \cap  \operatorname{dom} f} \delta_{f \left( {x}_1, \ldots, {x}_k, (\hat{W}_{\hat{x}_i,\hat{x}_j}) \right)} =:  \sum_{(\hat{x}_1, \ldots, \hat{x}_k) \in \hat{\eta}^k_{\neq}\cap  \operatorname{dom} f} \delta_{\hat{f} ( \hat{x}_1, \ldots, \hat{x}_k )},$$
+which on the other hand is induced by a Poisson process. Note that the intensity measure of $\xi$ is given by
+\begin{align*}
+    L(A) & = \mathbb{E}[\xi(A)] = \frac{1}{k!} \mathbb{E}\left[ \sum_{(x_1, \ldots, x_k) \in \eta^k_{\neq}} \mathbf{1}_{\{ f(x_1, \ldots, x_k, (W_{x_i,x_j})_{i,j =1,\ldots, k, i \neq j}) \in A\}}\right] \\
+    & = \frac{1}{k!}  \int_{\operatorname{dom} f}  \mathbf{1}_{\{ f(x_1, \ldots, x_k, w) \in A\}} K^k(d(x_1, \ldots, x_k)) d\mathbb{Q}^{\frac{k (k-1)}{2}} (dw),
+\end{align*}
+and the one of $\hat{\xi}$ is given by
+\begin{align*}
+    &\hat{L}(A)  = \mathbb{E}[\hat{\xi(A)}] = \frac{1}{k!} \mathbb{E}\left[ \sum_{(\hat{x}_1, \ldots, \hat{x}_k) \in \eta^k_{\neq}} \mathbf{1}_{\{ \hat{f}(\hat{x}_1, \ldots, \hat{x}_k) \in A\}}\right] \\
+    & = \frac{1}{k!}  \int_{\operatorname{dom} f}  \mathbf{1}_{\{  \hat{f}(\hat{x}_1, \ldots, \hat{x}_k) \in A\}} \hat{K}^k(d(\hat{x}_1, \ldots, \hat{x}_k)) \\
+    &  = \frac{1}{k!}  \int_{\operatorname{dom} f} \mathbf{1}_{\{  ( {x}_1, \ldots, {x}_k ) \in \Delta_{k} \} }  \mathbf{1}_{\{  \hat{f}(\hat{x}_1, \ldots, \hat{x}_k) \in A\}} \hat{K}^k(d(\hat{x}_1, \ldots, \hat{x}_k)) \\
+    & \quad +  \frac{1}{k!}  \int_{\operatorname{dom} f} \mathbf{1}_{\{  ( {x}_1, \ldots, {x}_k ) \notin \Delta_{k} \} }  \mathbf{1}_{\{  \hat{f}(\hat{x}_1, \ldots, \hat{x}_k) \in A\}} \hat{K}^k(d(\hat{x}_1, \ldots, \hat{x}_k))
+    =: \operatorname{I} +  \operatorname{II} .
+\end{align*}
+
+Then we have
+$$ \operatorname{I}  \mathrel{\mathop{\to}\limits_{\varepsilon \downarrow 0}} 0
+$$
+and
+
+\begin{align*}
+     \operatorname{II}  & = \frac{1}{k!}  \int_{\operatorname{dom} f} \mathbf{1}_{\{  ( {x}_1, \ldots, {x}_k ) \notin \Delta_{k} \} }  \mathbf{1}_{\{  {f}({x}_1, \ldots, {x}_k, w) \in A\}} {K}^k(d({x}_1, \ldots, {x}_k))d\mathbb{Q}^{\frac{k (k-1)}{2}} (dw) \\
+     &  \mathrel{\mathop{\to}\limits_{\varepsilon \downarrow 0}}\frac{1}{k!}  \int_{\operatorname{dom} f}   \mathbf{1}_{\{  {f}({x}_1, \ldots, {x}_k, w) \in A\}} {K}^k(d({x}_1, \ldots, {x}_k))d\mathbb{Q}^{\frac{k (k-1)}{2}} (dw) ,
+\end{align*}
+both uniformly in $A$, if the intensity measure $K \otimes \mathbb{Q}$ is finite (we set $t=1$ above). Therefore, using \cite[Theorem 3.1]{dst} we obtain the following functional version of Theorem \ref{P1}.
+
+\begin{theorem} \label{P2}
+    Let $\xi$ be the point process given in \eqref{originalPproc}. Let $\zeta$ be a Poisson process with finite intensity measure $M$. Assume either that
+    \begin{itemize}
+        \item[(i)] the intensity measure $K \otimes \mathbb{Q}$ is finite
+    \end{itemize}
+    or
+    \begin{itemize}
+        \item[(ii)] $\mathbb{P} (\exists r_0>0 \,: \, \hat{\eta}( \mathbb{R}^d \times \cdot) = \hat{\eta}( (B(0,r) \times \cdot) \, \forall r \geq r_0 ) = 1$.
+    \end{itemize}
+    Then it holds
+    \begin{align*}
+        d_{KR}({\xi}, \zeta) \leq d_{TV}(L,M) + \frac{2^{k+1}}{k!} \, r(\operatorname{dom} f),
+    \end{align*}
+for
+\begin{align*}
+  &  r(\operatorname{dom} f) := \max_{1 \leq \ell \leq k-1} 
+\int \int_{X^\ell}  
+\int_{X^{k - \ell}}\int_{X^{k - \ell}} \mathbf{1}\big(  ( {x}_1, \ldots, {x}_k , w ) \in \operatorname{dom} f  \big)  \\
+&  \times \mathbf{1}\big( ( {x}_1, \ldots, {x}_\ell, {x}'_{\ell+1} \ldots, {x}'_{k}, w ) \in \operatorname{dom} f \big){K}^{k - \ell}(d({x}_{\ell+1}, \ldots, {x}_k)) \\
+&  \times  {K}^{k - \ell}(d({x}'_{\ell+1}, \ldots, {x}'_k)) {K}^\ell(d({x}_1, \ldots, {x}_\ell)) d\mathbb{Q}^{\frac{(2k - \ell) (2k -\ell-1)}{2}} (dw) .
+\end{align*}
+  
+\end{theorem}
 
 
-Based on the latter observations, the following approximations could be studied:
 
-\begin{itemize}
-    \item Poisson process approximation, see \cite{dst}
-    \item Quantitative Normal approximation (Wasserstein, Kolmogorov distance), see \cite{reitznerschulte,schulte,eichelsbacher}
-    \item Poisson approximation, see \cite{pianoforte}
-    \item Moderate deviations and concentration inequalities, see \cite{schulte2, bonnet}
-    \item Approximation by $\alpha$-stable distributions
-\end{itemize}
 
-\section{Poisson approximation}
+
+
+
+
+\subsection{Poisson approximation}
 
 We want to employ \cite[Theorem 7.1]{dst} in order to bound
 $$d_W (\hat{S},Z) $$
@@ -184,83 +263,51 @@ for
   
 \end{theorem}
 
-\section{Poisson process approximation}
 
-Now we consider the functional analogue of the previous section. Define for a symmetric and measurable function $f\colon \operatorname{dom} f \to Y$ ($Y$ is some general space) the process
-\begin{align}\label{originalPproc}
-     \xi:= \frac{1}{k!}\sum_{(x_1, \ldots, x_k) \in \eta^k_{\neq}\cap  {\operatorname{dom}'} f} \delta_{f \left( x_1, \ldots, x_k, (W_{x_i,x_j})_{i,j =1,\ldots, k, i \neq j} \right)} ,
- \end{align}
-where we denote
-$${\operatorname{dom}'} f := \left\{( x_1, \ldots, x_k) : \left( x_1, \ldots, x_k, (W_{x_i,x_j})_{i,j =1,\ldots, k, i \neq j} \right) \in  \operatorname{dom} f\right\} . $$
-As before note that $\xi$ is not induced by a Poisson process. Therefore we define
-$$ \hat{\xi}:= \frac{1}{k!}\sum_{(\hat{x}_1, \ldots, \hat{x}_k) \in \hat{\eta}^k_{\neq} \cap  \operatorname{dom} f} \delta_{f \left( {x}_1, \ldots, {x}_k, (\hat{W}_{\hat{x}_i,\hat{x}_j}) \right)} =:  \sum_{(\hat{x}_1, \ldots, \hat{x}_k) \in \hat{\eta}^k_{\neq}\cap  \operatorname{dom} f} \delta_{\hat{f} ( \hat{x}_1, \ldots, \hat{x}_k )},$$
-which on the other hand is induced by a Poisson process. Note that the intensity measure of $\xi$ is given by
+
+
+\subsection{Compound Poisson approximation}
+
+As another consequence of Theorem \ref{P2} we get the analogue of \cite[Theorem 7.4]{dst}. Consider the family of U-statistics
+
 \begin{align*}
-    L(A) & = \mathbb{E}[\xi(A)] = \frac{1}{k!} \mathbb{E}\left[ \sum_{(x_1, \ldots, x_k) \in \eta^k_{\neq}} \mathbf{1}_{\{ f(x_1, \ldots, x_k, (W_{x_i,x_j})_{i,j =1,\ldots, k, i \neq j}) \in A\}}\right] \\
-    & = \frac{1}{k!}  \int_{\operatorname{dom} f}  \mathbf{1}_{\{ f(x_1, \ldots, x_k, w) \in A\}} K^k(d(x_1, \ldots, x_k)) d\mathbb{Q}^{\frac{k (k-1)}{2}} (dw),
+S_t := \frac{1}{k!} \sum_{(x_1, \ldots, x_k) \in \eta_{t,\neq}^k} h_t(x_1, \ldots, x_k, (W_{x_i,x_j})_{i,j =1,\ldots, k, i \neq j}), \quad t \ge 1,
 \end{align*}
-and the one of $\hat{\xi}$ is given by
+for a symmetric function $h_t$. Then define
+
 \begin{align*}
-    &\hat{L}(A)  = \mathbb{E}[\hat{\xi(A)}] = \frac{1}{k!} \mathbb{E}\left[ \sum_{(\hat{x}_1, \ldots, \hat{x}_k) \in \eta^k_{\neq}} \mathbf{1}_{\{ \hat{f}(\hat{x}_1, \ldots, \hat{x}_k) \in A\}}\right] \\
-    & = \frac{1}{k!}  \int_{\operatorname{dom} f}  \mathbf{1}_{\{  \hat{f}(\hat{x}_1, \ldots, \hat{x}_k) \in A\}} \hat{K}^k(d(\hat{x}_1, \ldots, \hat{x}_k)) \\
-    &  = \frac{1}{k!}  \int_{\operatorname{dom} f} \mathbf{1}_{\{  ( {x}_1, \ldots, {x}_k ) \in \Delta_{k} \} }  \mathbf{1}_{\{  \hat{f}(\hat{x}_1, \ldots, \hat{x}_k) \in A\}} \hat{K}^k(d(\hat{x}_1, \ldots, \hat{x}_k)) \\
-    & \quad +  \frac{1}{k!}  \int_{\operatorname{dom} f} \mathbf{1}_{\{  ( {x}_1, \ldots, {x}_k ) \notin \Delta_{k} \} }  \mathbf{1}_{\{  \hat{f}(\hat{x}_1, \ldots, \hat{x}_k) \in A\}} \hat{K}^k(d(\hat{x}_1, \ldots, \hat{x}_k))
-    =: \operatorname{I} +  \operatorname{II} .
+L_t(A) := \frac{1}{k!} \, \mathbb{E} \sum_{(x_1, \ldots, x_k) \in \eta_{t, \neq}^k} 
+\mathbf{1}\left( h_t(x_1, \ldots, x_k, (W_{x_i,x_j})_{i,j =1,\ldots, k, i \neq j}) \in t^{-\gamma} A \setminus \{0\} \right),
 \end{align*}
+for $A \in \mathcal{B}(\mathbb{R})$. We get the following result.
 
-Then we have
-$$ \operatorname{I}  \mathrel{\mathop{\to}\limits_{\varepsilon \downarrow 0}} 0
-$$
-and
-
+\begin{theorem}\label{compound}
+Let \( \zeta \) be a Poisson process on \( \mathbb{R} \) with a finite intensity measure \( M \), let
+\[
+Z := \sum_{x \in \zeta} x,
+\]
+and let \( \gamma \in \mathbb{R} \). Then, for \( t \ge 1 \),
 \begin{align*}
-     \operatorname{II}  & = \frac{1}{k!}  \int_{\operatorname{dom} f} \mathbf{1}_{\{  ( {x}_1, \ldots, {x}_k ) \notin \Delta_{k} \} }  \mathbf{1}_{\{  {f}({x}_1, \ldots, {x}_k, w) \in A\}} {K}^k(d({x}_1, \ldots, {x}_k))d\mathbb{Q}^{\frac{k (k-1)}{2}} (dw) \\
-     &  \mathrel{\mathop{\to}\limits_{\varepsilon \downarrow 0}}\frac{1}{k!}  \int_{\operatorname{dom} f}   \mathbf{1}_{\{  {f}({x}_1, \ldots, {x}_k, w) \in A\}} {K}^k(d({x}_1, \ldots, {x}_k))d\mathbb{Q}^{\frac{k (k-1)}{2}} (dw) ,
+d_{\mathrm{TV}}(t^{\gamma} S_t, Z) \le d_{\mathrm{TV}}(L_t, M) + \frac{2^{k+1}}{k!} \, r_t,
 \end{align*}
-both uniformly in $A$, if the intensity measure $K \otimes \mathbb{Q}$ is finite (we set $t=1$ above). Therefore, using \cite[Theorem 3.1]{dst} we obtain the following functional version of Theorem \ref{P1}.
-
-\begin{theorem} \label{P2}
-    Let $\xi$ be the point process given in \eqref{originalPproc}. Let $\zeta$ be a Poisson process with finite intensity measure $M$. Assume either that
-    \begin{itemize}
-        \item[(i)] the intensity measure $K \otimes \mathbb{Q}$ is finite
-    \end{itemize}
-    or
-    \begin{itemize}
-        \item[(ii)] $\mathbb{P} (\exists r_0>0 \,: \, \hat{\eta}( \mathbb{R}^d \times \cdot) = \hat{\eta}( (B(0,r) \times \cdot) \, \forall r \geq r_0 ) = 1$.
-    \end{itemize}
-    Then it holds
-    \begin{align*}
-        d_{KR}({\xi}, \zeta) \leq d_{TV}(L,M) + \frac{2^{k+1}}{k!} \, r(\operatorname{dom} f),
-    \end{align*}
-for
+with
 \begin{align*}
-  &  r(\operatorname{dom} f) := \max_{1 \leq \ell \leq k-1} 
+  &  r_t(A) := \max_{1 \leq \ell \leq k-1} 
 \int \int_{X^\ell}  
-\int_{X^{k - \ell}}\int_{X^{k - \ell}} \mathbf{1}\big(  ( {x}_1, \ldots, {x}_k , w ) \in \operatorname{dom} f  \big)  \\
-&  \times \mathbf{1}\big( ( {x}_1, \ldots, {x}_\ell, {x}'_{\ell+1} \ldots, {x}'_{k}, w ) \in \operatorname{dom} f \big){K}^{k - \ell}(d({x}_{\ell+1}, \ldots, {x}_k)) \\
-&  \times  {K}^{k - \ell}(d({x}'_{\ell+1}, \ldots, {x}'_k)) {K}^\ell(d({x}_1, \ldots, {x}_\ell)) d\mathbb{Q}^{\frac{(2k - \ell) (2k -\ell-1)}{2}} (dw) .
+\int_{X^{k - \ell}}\int_{X^{k - \ell}} \\
+& \, \mathbf{1}\big(  h_t( {x}_1, \ldots, {x}_k , w ) \neq 0  \big) \mathbf{1}\big( h_t( {x}_1, \ldots, {x}_\ell, {x}'_{\ell+1} \ldots, {x}'_{k}, w ) \neq 0 \big) \\
+&\,{K}^{k - \ell}(d({x}_{\ell+1}, \ldots, {x}_k))   {K}^{k - \ell}(d({x}'_{\ell+1}, \ldots, {x}'_k)) {K}^\ell(d({x}_1, \ldots, {x}_\ell)) d\mathbb{Q}^{\frac{(2k - \ell) (2k -\ell-1)}{2}} (dw) .
 \end{align*}
-  
 \end{theorem}
 
 
-\section{Applications}
-
-The following examples can be studied:
-\begin{itemize}
-    \item subgraph counts (CLT, MDPs, concentration, stable limits)
-    \item edge-length functionals (CLT, MDP, stable limits), i.e.
-    $$\frac{1}{2} \sum_{(z_1, z_2) \in \eta^2_{\neq} \cap B^2(0, \rho)} \mathbf{1}\{ z_1 \leftrightarrow z_2 \} \| z_1- z_2 \|^\tau, \quad \tau \in \mathbb{R}$$
-    \item long edges (Poisson approximation), i.e.
-    $$\frac{1}{2} \sum_{(z_1, z_2) \in \eta^2_{\neq} \cap B^2(0, \rho)} \mathbf{1}\{ z_1 \leftrightarrow z_2 \}  \mathbf{1}\{ \|z_1 - z_2\| \geq c_\rho \} $$
-\end{itemize}
-
-One conjecture is that the point process
-$$ \frac{1}{2} \sum_{(z_1, z_2) \in \eta^2_{\neq} \cap B^2(0, \rho)} \delta_{\|z_1 - z_2\| - b_\rho}$$
-converges in distribution to a Poisson point process, for a suitably chosen sequence $b_\rho$.
 
 
-\section{Approximation by $\alpha$-stable random variables}
+
+
+
+
+\subsection{Approximation by $\alpha$-stable distribution}
 
 Fix $\alpha \in (0, 1)$ and $\gamma \in \mathbb{R}$. The goal is to make use of a functional limit theorem for the point processes
 \begin{align*}
@@ -304,100 +351,24 @@ g(t) := \inf_{a > 0} \max\left\{ a^{1/2 - 1/(2\alpha)},\; g_1(a,t),\; g_2(a,t),\
 \]
 \end{theorem}
 
-\section{Compound Poisson approximation}
-
-As another consequence of Theorem \ref{P2} we get the analogue of \cite[Theorem 7.4]{dst}. Consider the family of U-statistics
-
-\begin{align*}
-S_t := \frac{1}{k!} \sum_{(x_1, \ldots, x_k) \in \eta_{t,\neq}^k} h_t(x_1, \ldots, x_k, (W_{x_i,x_j})_{i,j =1,\ldots, k, i \neq j}), \quad t \ge 1,
-\end{align*}
-for a symmetric function $h_t$. Then define
-
-\begin{align*}
-L_t(A) := \frac{1}{k!} \, \mathbb{E} \sum_{(x_1, \ldots, x_k) \in \eta_{t, \neq}^k} 
-\mathbf{1}\left( h_t(x_1, \ldots, x_k, (W_{x_i,x_j})_{i,j =1,\ldots, k, i \neq j}) \in t^{-\gamma} A \setminus \{0\} \right),
-\end{align*}
-for $A \in \mathcal{B}(\mathbb{R})$. We get the following result.
-
-\begin{theorem}\label{compound}
-Let \( \zeta \) be a Poisson process on \( \mathbb{R} \) with a finite intensity measure \( M \), let
-\[
-Z := \sum_{x \in \zeta} x,
-\]
-and let \( \gamma \in \mathbb{R} \). Then, for \( t \ge 1 \),
-\begin{align*}
-d_{\mathrm{TV}}(t^{\gamma} S_t, Z) \le d_{\mathrm{TV}}(L_t, M) + \frac{2^{k+1}}{k!} \, r_t,
-\end{align*}
-with
-\begin{align*}
-  &  r_t(A) := \max_{1 \leq \ell \leq k-1} 
-\int \int_{X^\ell}  
-\int_{X^{k - \ell}}\int_{X^{k - \ell}} \\
-& \, \mathbf{1}\big(  h_t( {x}_1, \ldots, {x}_k , w ) \neq 0  \big) \mathbf{1}\big( h_t( {x}_1, \ldots, {x}_\ell, {x}'_{\ell+1} \ldots, {x}'_{k}, w ) \neq 0 \big) \\
-&\,{K}^{k - \ell}(d({x}_{\ell+1}, \ldots, {x}_k))   {K}^{k - \ell}(d({x}'_{\ell+1}, \ldots, {x}'_k)) {K}^\ell(d({x}_1, \ldots, {x}_\ell)) d\mathbb{Q}^{\frac{(2k - \ell) (2k -\ell-1)}{2}} (dw) .
-\end{align*}
-\end{theorem}
-
-\section{Power-weighted edge-lengths}
-
-Consider the statistics
-
-$$L_\rho (\tau):=\frac{1}{2} \sum_{(z_1, z_2) \in \eta^2_{\neq} \cap B^2(0, \rho)} \mathbf{1}\{ z_1 \leftrightarrow z_2 \} \| z_1- z_2 \|^\tau, \quad \tau \in \mathbb{R}.$$
-
-Proceeding as in \cite[Theorem 3.1]{reitznerschultethaele} gives the following formula for its expectation structure. Recall that $g$ denotes the connection function. We can assume that $g$ is only radially dependent, and denote its radial part by $\bar{g}$.
-
-\begin{lemma} \label{lem:expectedlength}
-    It holds
-    $$ \mathbb{E}[L_\rho (\tau)]= \frac{1}{2} \int_0^\infty \bar{g} (r) r^{\tau + d -1} \int_{\mathbb{S}^{d-1}
-} f_\rho (r u) du dr,$$
-where
-$$f_\rho (ru) = \lambda_d \left( B(0,\rho) \cap (B(0,\rho) + ru) \right)$$
-and $du$ stands for the infinitesimal element of the spherical Lebesgue measure. Moreover, it holds
-\begin{align*}
-    & \frac{1}{2} d \kappa_d \lambda_d(B(0,\rho)) \int_0^\infty \bar{g} (r) r^{\tau + d -1} dr -\kappa_{d-1} S(B(0,\rho)) \int_0^\infty \bar{g} (r) r^{\tau + d -1} dr\\
-    & \leq \mathbb{E}[L_\rho (\tau)] \leq \frac{1}{2} d \kappa_d \lambda_d(B(0,\rho)) \int_0^\infty \bar{g} (r) r^{\tau + d -1} dr,
-\end{align*}
-where $\kappa_d$ denotes the volume of the $d$-dimensional unit ball and $S(B(0,\rho))$ denotes the surface area of the ball  $B(0,\rho)$.
-\end{lemma}
-
-Note that Lemma \ref{lem:expectedlength} shows that the expectation of power-weighted edge-lengths is finite if and only if
-$$\int_0^\infty \bar{g} (r) r^{\tau + d -1} dr< \infty.$$
-If we assume that $\bar{g}$ has polynomial decay $\bar{g}(r) \sim r^{-\alpha}$, $r \to \infty$, for some exponent $\alpha$, this translates to $\alpha>\tau +d$.
-
-Next we give a formula for the variance.
 
 
-\begin{lemma} \label{lem:varlength}
-    Assume that
-    $$\int_0^\infty \bar{g} (r) r^{\tau + d -1} dr< \infty.$$
-    Then $L_\rho (\tau)$ also has finite variance given by
-    \begin{align}\label{varformula}
-    \begin{split}
-        & \operatorname{Var}[L_\rho (\tau)] = \frac{1}{2} \int_{B(0,\rho)}\int_{B(0,\rho)} g(x-y) \| y-x \|^{2\tau} dx  \\
-        & \quad + \int_{B(0,\rho)}\int_{B(0,\rho)} g(x_1-y) \| y-x_1 \|^\tau dx_1 \int_{B(0,\rho)} g(x_2-y)  \| y-x_2 \|^\tau dx_2 dy.
-    \end{split} 
-    \end{align}
-Moreover, if $\bar{g}$ has polynomial decay $\bar{g}(r) \sim r^{-\alpha}$, $r \to \infty$, for some exponent $\alpha$, there is a constant $C \in (0, \infty)$ independent of $\rho$ such that
-$$ \frac{1}{C} \rho^{2d+2\tau - \alpha} \leq \operatorname{Var}[L_\rho (\tau)] \leq C\rho^{2d+2\tau }.$$
-\end{lemma}
 
-\begin{proof}
-    Under the assumption of finite expectations, the formula in \eqref{varformula} can be proven by proceeding as in the proof of \cite[Theorem 3.3]{reitznerschultethaele}. Based on this formula, we now calculate the order of the variance. Using a substitution for the first term on the right-hand side of \eqref{varformula} and the assumption on $\bar{g}$ we have
-    \begin{align*}
-        &\int_{B(0,\rho)}\int_{B(0,\rho)} g(x-y) \| y-x \|^{2\tau} dx dy\\
-        & = \rho^{2d+2\tau} \int_{B(0,1)}\int_{B(0,1)} \bar{g}( \rho\|x-y\| ) \| y-x \|^{2\tau} dxdy \\
-        & \geq  \rho^{2d+2\tau} \int_{B(0,1)}\int_{B(0,1)} \mathbf{1}{(\|x-y\| \geq \delta)} \bar{g}( \rho\|x-y\| ) \| y-x \|^{2\tau} dxdy\\
-        & \sim \rho^{2d+2\tau-\alpha} \int_{B(0,1)}\int_{B(0,1)} \mathbf{1}{(\|x-y\| \geq \delta)} \|x-y\|^{-\alpha}  \| y-x \|^{2\tau} dxdy .
-    \end{align*}
-    Now the assertion follows by observing that
-    \begin{align*}
-         \int_{B(0,\rho)}\int_{B(0,\rho)} g(x_1-y) \| y-x_1 \|^\tau dx_1 \int_{B(0,\rho)} g(x_2-y)  \| y-x_2 \|^\tau dx_2 dy \leq C \rho^{2d+2\tau }.
-    \end{align*}
-\end{proof}
 
-From the statements in Lemma \ref{lem:varlength} we observe that the variance asymptotics is not finite if $\alpha < 2d+2\tau$.
 
-\section{$U$-statistics of edge-marked Poisson processes}
+\section{Limit theorems for RCM}
+The following examples can be studied:
+\begin{itemize}
+    \item subgraph counts (CLT, MDPs, concentration, stable limits)
+    \item edge-length functionals (CLT, MDP, stable limits), i.e.
+    $$\frac{1}{2} \sum_{(z_1, z_2) \in \eta^2_{\neq} \cap B^2(0, \rho)} \mathbf{1}\{ z_1 \leftrightarrow z_2 \} \| z_1- z_2 \|^\tau, \quad \tau \in \mathbb{R}$$
+    \item long edges (Poisson approximation), i.e.
+    $$\frac{1}{2} \sum_{(z_1, z_2) \in \eta^2_{\neq} \cap B^2(0, \rho)} \mathbf{1}\{ z_1 \leftrightarrow z_2 \}  \mathbf{1}\{ \|z_1 - z_2\| \geq c_\rho \} $$
+\end{itemize}
+\subsection{subgraph count}
+\subsection{edge-length functionals}
+\section{Approximation results}
+\subsection{Construction of the random connection model}
 
 Let $(\mathbb{X},\mathcal{X})$ be a measurable space and let $\eta$ be a Poisson process on $\mathbb{X}$ with a $\sigma$-finite non-atomic intensity measure $\lambda$. We assume that $\eta$ can be almost surely written as 
 $$
@@ -528,12 +499,10 @@ $$
 $$
 Combining the two limits proves the statement.
 \end{proof}
-
-
-\section{Normal approximation}
+For the proof of Theorem~\ref{normalapp1}, we prepare ourselves with the following results.
 We first recall the following estimates from \cite[Theorem~4.7]{reitznerschulte} and \cite[Theorem~4.2]{schulte} after adapting a few of notation. 
 
-Let $\overline{\Pi}_{\ge2}(i,i,j,j)$ be the collection of all partitions $\pi$ of 
+Let $\widetilde{\Pi}_{\ge2}(i,i,j,j)$ be the collection of all partitions $\pi$ of 
 $$x_1^{(1)},\dots,x_i^{(1)},x_1^{(2)},\dots,x_i^{(2)},x_1^{(3)},\dots,x_j^{(3)},x_1^{(4)},\dots,x_j^{(4)},$$
 such that 
 \begin{itemize}
@@ -546,7 +515,7 @@ Let $g_1,g_2:X^i\to\R$ and $g_3,g_4:X^j\to\R$, the tensor product $g_1\otimes g_
 &&(g_1\otimes g_2\otimes g_3\otimes g_4)(x_1^{(1)},\dots,x_j^{(4)})\\
 &=&g_1(x_1^{(1)},\dots,x_{i}^{(1)})g_2(x_1^{(2)},\dots,x_{i}^{(2)})g_3(x_1^{(3)},\dots,x_{j}^{(3)})g_4(x_1^{(4)},\dots,x_{j}^{(4)}).
 \end{eqnarray*}
-For $\pi\in\overline{\Pi}_{\ge2}(i,i,j,j)$, denote $|\pi|$ the number of blocks in $\pi$, and the function $(g_1\otimes g_2\otimes g_3\otimes g_4)_\pi:X^{|\pi|}\to\R$ is defined by replacing all variables in the same block of $\pi$ by a new common variable.
+For $\pi\in\widetilde{\Pi}_{\ge2}(i,i,j,j)$, denote $|\pi|$ the number of blocks in $\pi$, and the function $(g_1\otimes g_2\otimes g_3\otimes g_4)_\pi:X^{|\pi|}\to\R$ is defined by replacing all variables in the same block of $\pi$ by a new common variable.
 \begin{prop}\label{normalU-1}
 Let $F\in L^2(\mathbb{P}_\eta)$ be an absolutely convergent $U$-statistics of order $k$ with variance $\Var F>0$ and let $N$ be a standard Gaussian random variable. Then 
 \begin{eqnarray}
@@ -555,7 +524,7 @@ d_K\left(\frac{F-\E F}{\sqrt{\Var F}},N\right)&\le&19k^5\sum_{i,j=1}^k\frac{\sqr
 \end{eqnarray}
 where 
 \begin{equation}
-    M_{ij}(f):=\sum_{\pi\in\overline{\Pi}_{\ge2}(i,i,j,j)}\int_{X^{|\pi|}}(\overline{f}_i\otimes\overline{f}_i\otimes\overline{f}_j\otimes\overline{f}_j)_{\pi}\mathrm{d}\mu^{|\pi|},
+    M_{ij}(f):=\sum_{\pi\in\widetilde{\Pi}_{\ge2}(i,i,j,j)}\int_{X^{|\pi|}}(\overline{f}_i\otimes\overline{f}_i\otimes\overline{f}_j\otimes\overline{f}_j)_{\pi}\mathrm{d}\mu^{|\pi|},
 \end{equation}
 and 
 \begin{equation}
@@ -563,6 +532,23 @@ and
 \end{equation}
 for $i=1,\dots,k$ and $f_i=0$ for $i>k$.
 \end{prop}
+%Using \cite[Lemma~6.2]{last2}
+We prepare the proof of Theorem~\ref{normalapp1} with the following lemmas.
+\begin{lemma}
+    Let $f: \mathbb{X}^k\times \mathbb{M}^{k\times k}_{\neq}\to\mathbb{R}$ be a measurable function satisfying that $\supp(f)\subseteq B^k\times\mathbb{M}^{k\times k}_{\ne}$ with $\lambda(B)<\infty$ and $\|f\|_{\infty}<\infty$.  
+    \begin{enumerate}
+        \item[1)] For $p>0$, we have $\E\left[\left|S-\widehat{S}^{(n)}\right|^p\right]\to0$, as $n\to\infty$.
+        \item[2)] For $\ell\in\N$, we have 
+       \begin{equation} \lim_{n\to\infty}\E\left[(\widehat{S}^{(n)})^{\ell}\right]\to\E\left[S^{\ell}\right],
+       \end{equation}
+       and 
+       \begin{eqnarray}
+        \E[S^{\ell}]=\sum_{\pi\in\Pi([\ell]\times[k])}\int_{\mathbb{X}^{|\pi|}}\int_{\mathbb{M}^{|\pi|\times|\pi|}_{\ne}}(f^{\otimes\ell})_{\pi}(\bm{x},\bm{u})\mathbb{Q}^{|\pi|\times|\pi|}_{\ne}(\mathrm{d}\bm{u})\lambda^{|\pi|}(\mathrm{d}\bm{x})
+       \end{eqnarray}
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+\end{proof}
 \begin{lemma}\label{2moments}
    Let $f: \mathbb{X}^k\times \mathbb{M}^{k\times k}_{\neq}\to\mathbb{R}$ be a measurable function 
 % satisfying $\supp(f)\subset B\times\mathbb{M}^{k\times k}_{\neq}$ with some bounded set $B\in \mathcal{X}^k$
@@ -643,28 +629,12 @@ as $n\to\infty$. Therefore, combining \eqref{L2in1}, \eqref{L2in2} and \eqref{L2
     \lim_{n\to\infty}\E\left|\widehat{S}^{(n)}-S\right|^2=0.
 \end{equation}
 \end{proof}
-\begin{theorem}
-Let $f: \mathbb{X}^k\times \mathbb{M}^{k\times k}_{\neq}\to\mathbb{R}$ be a bounded measurable function 
-% satisfying $\supp(f)\subset B\times\mathbb{M}^{k\times k}_{\neq}$ with some bounded set $B\in \mathcal{X}^k$
-and 
-$$S=\sum_{(x_1,\hdots,x_k)\in\eta^k_{\neq}} f(x_1,\hdots,x_k, (M_{x_i,x_j})_{i,j\in[k], i\neq j}).$$ 
-Suppose that $\E\left(\overline{S}^2\right)<\infty$ with $\overline{S}$ given in \eqref{def-integ1}.
-Then, we have
-\begin{eqnarray}
-d_W\left(\frac{S-\E S}{\sqrt{\Var S}},N\right)&\le&2k^{7/2}\sum_{1\le i\le j\le k}\frac{\sqrt{M_{ij}(f)}}{\Var S},\label{norbound-1}\\
-d_K\left(\frac{S-\E S}{\sqrt{\Var S}},N\right)&\le&19k^5\sum_{i,j=1}^k\frac{\sqrt{M_{ij}(f)}}{\Var S},\label{norbound-2}
-\end{eqnarray}
-where 
-\begin{eqnarray*}
-    M_{ij}(f)&:=&\sum_{\pi\in\overline{\Pi}_{\ge2}(i,i,j,j)}\int_{\mathbb{X}^{|\pi|}} \int_{\mathbb{M}^{|\pi|\times |\pi|}_{\neq}} \left(\overline{f}_i\otimes\overline{f}_i\otimes\overline{f}_j\otimes\overline{f}_j\right)_{\pi}(\bm{x},\bm{u}) \, \mathbb{Q}_{\neq}^{|\pi|\times |\pi|}(d\bm{u}) \, \lambda^{|\pi|}(d\bm{x}),
-\end{eqnarray*}
-with $\bm{x}=(x_1,\hdots,x_{|\pi|})$, $\bm{u}=(u_{\imath,\jmath})_{1\le\imath\ne\jmath\ne|\pi|}$ and 
-\begin{eqnarray*}
-    &&\overline{f}_{\ell}(x_1,\dots,x_{\ell},(u_{\imath,\jmath})_{1\le\imath\ne\jmath\le\ell})\\
-    &:=&\int_{\mathbb{X}^{k-\ell}}\int_{\mathbb{M}^{k(k-1)-\ell(\ell-1)}}\left\vert f(x_1,\dots,x_{\ell},y_1,\dots,y_{k-\ell},(u_{\imath,\jmath})_{1\le\imath\ne\jmath\le k})\right\vert\mathbb{Q}^{k(k-1)-\ell(\ell-1)}(d\bm{v})\lambda^{k-\ell}(d\bm{y})
-\end{eqnarray*}
-with $\bm{v}=\left((u_{\imath,\jmath})_{1\le\imath\ne\jmath\ne|\pi|}{\substack{\ell<\imath\le k,\jmath\in[k]\\\imath\ne\jmath}},(u_{\imath,\jmath})_{\imath\in[\ell],\ell<\jmath\le k}\right)$ and $\bm{y}=(y_1,\dots,y_{k-\ell})$ for $\ell=1,\dots,k$. 
-\end{theorem}
+
+
+
+\section{Proofs}
+\subsection{Proof of Theorem~\ref{normalapp1}}
+
 \begin{proof}
 By triangle inequality and \eqref{diff1}
 \begin{eqnarray}
@@ -687,7 +657,7 @@ Thus, we can apply the results from Proposition~\ref{normalU-1}. It gives, from 
 \begin{eqnarray}
 d_K\left(\frac{S-\E S}{\sqrt{\Var S}},N\right)&\le& 19k^5\sum_{i,j=1}^k\frac{\sqrt{M_{ij}(f^{(n)})}}{\Var(\widehat{S}^{(n)})}+2\varepsilon_n^2 \sum_{\ell=1}^\infty \frac{1}{\ell^2}.\label{inequa-2}
 \end{eqnarray}
-By virtue of Lemma~\ref{lma1}, we have, for each $\pi\in\overline{\Pi}_{\ge2}(i,i,j,j)$, 
+By virtue of Lemma~\ref{lma1}, we have, for each $\pi\in\widetilde{\Pi}_{\ge2}(i,i,j,j)$, 
 \begin{eqnarray*}
 &&\lim_{n\to\infty}\int_{\widehat{\mathbb{X}}^{|\pi|}}\left(\overline{f^{(n)}}_i\otimes\overline{f^{(n)}}_i\otimes\overline{f^{(n)}}_j\otimes\overline{f^{(n)}}_j\right)_{\pi}\mathrm{d}\widehat{\lambda}^{|\pi|}\\
 &=&\int_{\mathbb{X}^{|\pi|}} \int_{\mathbb{M}^{|\pi|\times |\pi|}_{\neq}} \left(\overline{f}_i\otimes\overline{f}_i\otimes\overline{f}_j\otimes\overline{f}_j\right)_{\pi}(x_1,\hdots,x_{|\pi|}, u) \, \mathbb{Q}_{\neq}^{|\pi|\times |\pi|}(du) \, \lambda^{|\pi|}(d(x_1,\hdots,x_{|\pi|})),
@@ -706,6 +676,123 @@ By the definition of the Wasserstein distance and some straightforward computati
 \end{eqnarray*}
 Because of the convergence of $(\widehat{S}^{(n)})_{n\in\mathbb{N}}$ to $S$ in $L^2(\IP)$ as stated in Lemma~\ref{2moments}, the right side vanishes for $n\to\infty$, and we obtain \eqref{norbound-1}.
 \end{proof}
+
+
+
+
+
+
+\section{miscellanea}
+
+Using the above notation, define
+ \begin{align}\label{originalUstat}
+     S_t:= \frac{1}{k!}\sum_{(x_1, \ldots, x_k) \in \eta^k_{\neq}} f_t \Big( x_1, \ldots, x_k, (W_{x_i,x_j})_{i,j =1,\ldots, k, i \neq j} \Big) ,
+ \end{align}
+where $f_t$, $t \geq 1$, is a measurable function and the sum is taken over all $k$-tuples of pairwise distinct points. Note that $S$ is not a Poisson $U$-statistics. Now consider the following. For two points $\hat{x}=(x,\mathbf{u}=(u_{i,l})_{i,l\in\mathbb{N}})$ and $\hat{y}=(y,\mathbf{v}=(v_{i,l})_{i,l\in\mathbb{N}})$ in $\hat{\eta}$ such that $x\leq y$ and $y\in A_i$ define $\hat{W}_{\hat{x},\hat{y}} := u_{i,1}$, and
+$$ \hat{S}_t:= \frac{1}{k!}\sum_{(\hat{x}_1, \ldots, \hat{x}_k) \in \hat{\eta}^k_{\neq}} f_t \Big( {x}_1, \ldots, {x}_k, (\hat{W}_{\hat{x}_i,\hat{x}_j}) \Big) =:  \sum_{(\hat{x}_1, \ldots, \hat{x}_k) \in \hat{\eta}^k_{\neq}} \hat{f}_t ( \hat{x}_1, \ldots, \hat{x}_k ),$$
+which on the other hand is a Poisson U-statistics. Now, choose the partition $\{A_i\}_{i\in\mathbb{N}}$ such that $\lambda_d (A_i) = \frac{\varepsilon}{i}$ for every $i \in \mathbb{N}$, where $\varepsilon>0$ is a given (later chosen to be sufficiently small) number. Then we have
+\begin{align}\label{ShatS}
+\begin{split}
+    \mathbb{P} (S \neq \hat{S}) &= \mathbb{P} ( \exists i \in \mathbb{N} : \eta (A_i) \geq 2 ) \leq \sum_{i=1}^\infty \mathbb{P} ( \eta (A_i) \geq 2 ) \\
+    & \leq \sum_{i=1}^\infty  \lambda_d (A_i)^2 = \varepsilon^2 \sum_{i=1}^\infty \frac{1}{k^2},
+\end{split}
+\end{align}
+so that $\mathbb{P} (S \neq \hat{S}) \to 0$, as $\varepsilon \to 0$. Moreover, for every random variable $N$ we have
+\begin{align} \label{Kineq}
+     d_K (S,N) \leq \mathbb{P} (S \neq \hat{S}) + d_K (\hat{S},N) .
+\end{align}
+
+
+Based on the latter observations, the following approximations could be studied:
+
+\begin{itemize}
+    \item Poisson process approximation, see \cite{dst}
+    \item Quantitative Normal approximation (Wasserstein, Kolmogorov distance), see \cite{reitznerschulte,schulte,eichelsbacher}
+    \item Poisson approximation, see \cite{pianoforte}
+    \item Moderate deviations and concentration inequalities, see \cite{schulte2, bonnet}
+    \item Approximation by $\alpha$-stable distributions
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+One conjecture is that the point process
+$$ \frac{1}{2} \sum_{(z_1, z_2) \in \eta^2_{\neq} \cap B^2(0, \rho)} \delta_{\|z_1 - z_2\| - b_\rho}$$
+converges in distribution to a Poisson point process, for a suitably chosen sequence $b_\rho$.
+
+
+
+\subsection{Power-weighted edge-lengths}
+
+Consider the statistics
+
+$$L_\rho (\tau):=\frac{1}{2} \sum_{(z_1, z_2) \in \eta^2_{\neq} \cap B^2(0, \rho)} \mathbf{1}\{ z_1 \leftrightarrow z_2 \} \| z_1- z_2 \|^\tau, \quad \tau \in \mathbb{R}.$$
+
+Proceeding as in \cite[Theorem 3.1]{reitznerschultethaele} gives the following formula for its expectation structure. Recall that $g$ denotes the connection function. We can assume that $g$ is only radially dependent, and denote its radial part by $\bar{g}$.
+
+\begin{lemma} \label{lem:expectedlength}
+    It holds
+    $$ \mathbb{E}[L_\rho (\tau)]= \frac{1}{2} \int_0^\infty \bar{g} (r) r^{\tau + d -1} \int_{\mathbb{S}^{d-1}
+} f_\rho (r u) du dr,$$
+where
+$$f_\rho (ru) = \lambda_d \left( B(0,\rho) \cap (B(0,\rho) + ru) \right)$$
+and $du$ stands for the infinitesimal element of the spherical Lebesgue measure. Moreover, it holds
+\begin{align*}
+    & \frac{1}{2} d \kappa_d \lambda_d(B(0,\rho)) \int_0^\infty \bar{g} (r) r^{\tau + d -1} dr -\kappa_{d-1} S(B(0,\rho)) \int_0^\infty \bar{g} (r) r^{\tau + d -1} dr\\
+    & \leq \mathbb{E}[L_\rho (\tau)] \leq \frac{1}{2} d \kappa_d \lambda_d(B(0,\rho)) \int_0^\infty \bar{g} (r) r^{\tau + d -1} dr,
+\end{align*}
+where $\kappa_d$ denotes the volume of the $d$-dimensional unit ball and $S(B(0,\rho))$ denotes the surface area of the ball  $B(0,\rho)$.
+\end{lemma}
+
+Note that Lemma \ref{lem:expectedlength} shows that the expectation of power-weighted edge-lengths is finite if and only if
+$$\int_0^\infty \bar{g} (r) r^{\tau + d -1} dr< \infty.$$
+If we assume that $\bar{g}$ has polynomial decay $\bar{g}(r) \sim r^{-\alpha}$, $r \to \infty$, for some exponent $\alpha$, this translates to $\alpha>\tau +d$.
+
+Next we give a formula for the variance.
+
+
+\begin{lemma} \label{lem:varlength}
+    Assume that
+    $$\int_0^\infty \bar{g} (r) r^{\tau + d -1} dr< \infty.$$
+    Then $L_\rho (\tau)$ also has finite variance given by
+    \begin{align}\label{varformula}
+    \begin{split}
+        & \operatorname{Var}[L_\rho (\tau)] = \frac{1}{2} \int_{B(0,\rho)}\int_{B(0,\rho)} g(x-y) \| y-x \|^{2\tau} dx  \\
+        & \quad + \int_{B(0,\rho)}\int_{B(0,\rho)} g(x_1-y) \| y-x_1 \|^\tau dx_1 \int_{B(0,\rho)} g(x_2-y)  \| y-x_2 \|^\tau dx_2 dy.
+    \end{split} 
+    \end{align}
+Moreover, if $\bar{g}$ has polynomial decay $\bar{g}(r) \sim r^{-\alpha}$, $r \to \infty$, for some exponent $\alpha$, there is a constant $C \in (0, \infty)$ independent of $\rho$ such that
+$$ \frac{1}{C} \rho^{2d+2\tau - \alpha} \leq \operatorname{Var}[L_\rho (\tau)] \leq C\rho^{2d+2\tau }.$$
+\end{lemma}
+
+\begin{proof}
+    Under the assumption of finite expectations, the formula in \eqref{varformula} can be proven by proceeding as in the proof of \cite[Theorem 3.3]{reitznerschultethaele}. Based on this formula, we now calculate the order of the variance. Using a substitution for the first term on the right-hand side of \eqref{varformula} and the assumption on $\bar{g}$ we have
+    \begin{align*}
+        &\int_{B(0,\rho)}\int_{B(0,\rho)} g(x-y) \| y-x \|^{2\tau} dx dy\\
+        & = \rho^{2d+2\tau} \int_{B(0,1)}\int_{B(0,1)} \bar{g}( \rho\|x-y\| ) \| y-x \|^{2\tau} dxdy \\
+        & \geq  \rho^{2d+2\tau} \int_{B(0,1)}\int_{B(0,1)} \mathbf{1}{(\|x-y\| \geq \delta)} \bar{g}( \rho\|x-y\| ) \| y-x \|^{2\tau} dxdy\\
+        & \sim \rho^{2d+2\tau-\alpha} \int_{B(0,1)}\int_{B(0,1)} \mathbf{1}{(\|x-y\| \geq \delta)} \|x-y\|^{-\alpha}  \| y-x \|^{2\tau} dxdy .
+    \end{align*}
+    Now the assertion follows by observing that
+    \begin{align*}
+         \int_{B(0,\rho)}\int_{B(0,\rho)} g(x_1-y) \| y-x_1 \|^\tau dx_1 \int_{B(0,\rho)} g(x_2-y)  \| y-x_2 \|^\tau dx_2 dy \leq C \rho^{2d+2\tau }.
+    \end{align*}
+\end{proof}
+
+From the statements in Lemma \ref{lem:varlength} we observe that the variance asymptotics is not finite if $\alpha < 2d+2\tau$.
+
+
+
 \bibliographystyle{apalike}
 \bibliography{lit}
 
