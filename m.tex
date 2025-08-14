@@ -4,6 +4,7 @@
 \usepackage{amsmath,amssymb,amsthm,bm}
 \usepackage{hyperref}
 \usepackage{enumitem}
+\usepackage{color}
 
 \title{Functional approximation for $U$-statistics in the random connection model}
 %\author{}
@@ -32,6 +33,7 @@
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\Var}{\mathrm{Var}}
 \newcommand{\supp}{\mathrm{Supp}}
+\newcommand{\cum}{\mathrm{Cum}}
 
 
 
@@ -55,20 +57,11 @@ Any two distinct points $x,y\in\eta$ are connected by an edge with probability $
 
 Counting statistics on RCM gains vastly attention in recent years, including isolated vertices count \cite{Penrose2}, component count \cite{Last_Nestmann_Schulte} and subgraph counts in \cite{can2022}, \cite{LiuPrivault},
 with various approaches being proposed to analyze the structure and asymptotic properties of these random graphs. In this note, we focus on various approximation results for counting statistics in RCM by incorporating the random connection model into the framework of Poisson $U$-statistics, see \cite{reitznerschulte}, \cite{last4}, and \cite{schulte} for more details.
+% \subsection{$U$-statistics of RCM}
+% \section{Preliminaries}
 
-\section{Preliminaries}
+\textcolor{red}{Introduce Poisson U-statistics}
 
-\subsection{Poisson $U$-statistics}
-
-\subsection{Partitions}
-For any $n\in\N$, we denote $[n]:=\{1,\dots,n\}$.
-Let $t\in\N$ and $q_1,\dots,q_t\in\N$. We define $N_0:=0$, $N_\ell:=\sum_{i=1}^\ell q_i$ and $N:=N_t$. Set $J_\ell:=\{N_{\ell-1}+1,\dots,N_\ell\}$, for $\ell=1,\dots,t.$ A partition $\sigma$ of $[N]$ is a collection $\{B_1,\dots,B_s\}$ of $1\le s\le N$ pairwise disjoint non-empty sets $B_i\subseteq [N]$ called blocks, such that $B_1\cup\cdots\cup B_s=[N]$. The number $s$ of blocks in $\sigma$ is denoted by $|\sigma|$. By $\Pi(q_1,\dots,q_t)$ we denote the set of all partitions $\sigma$ such that $|B\cap J_\ell|\le1$ for all $\ell\in[s]$ and $B\in\sigma$.
-
-Every partition $\sigma\in\Pi(q_1,\dots,q_t)$ induces a partition $\sigma^*$ of $[t]$ in the following way: $i,j\in[t]$ are in the same block of $\sigma^*$ whenever there exists a block $B\in\sigma$ such that $|B\cap J_i|=|B\cap J_j|=1$. Let $\widetilde{\Pi}(q_1,\dots,q_t)$ be the collection of all partitions $\sigma\in\Pi(q_1,\dots,q_t)$ such that $|\sigma^*|=1$. Note partitions in $\Pi(q_1,\dots,q_t)$ and $\widetilde{\Pi}(q_1,\dots,q_t)$ are known as non-flat and connected non-flat respectively, see \cite[Chapter~4]{peccati2011}. By $\Pi_{\ge2}(q_1,\dots,q_t)$ and $\widetilde{\Pi}_{\ge2}(q_1,\dots,q_t)$, we denote the sets of all $\sigma\in\Pi(q_1,\dots,q_t)$ and $\sigma\in\widetilde{\Pi}(q_1,\dots,q_t)$ such that $|B|\ge2$ for every $B\in\sigma$. In the case $q_1=\dots=q_t=q$, we write $\Pi^t(q)$, $\widetilde{\Pi}^t(q)$, $\Pi^t_{\ge2}(q)$ and $\widetilde{\Pi}^t_{\ge2}(q)$ instead of $\Pi(q_1,\dots,q_t)$, $\widetilde{\Pi}(q_1,\dots,q_t)$, $\Pi_{\ge2}(q_1,\dots,q_t)$ and $\widetilde{\Pi}_{\ge2}(q_1,\dots,q_t)$ respectively.
-
-Let $(S,\mathcal{S})$ be an arbitrary measurable space. For functions $f^{(\ell)}:S^{q_\ell}\to\R$, $\ell\in[t]$, we define their tensor product $\otimes_{\ell=1}^tf^{(\ell)}:S^N\to\R$ by 
-$$\otimes_{\ell=1}^tf^{(\ell)}(x_1,\dots,x_N):=\prod_{\ell=1}^tf^{(\ell)}(x_{N_{\ell-1}+1},\dots,x_{N_{\ell}}).$$
-For each $\sigma\in\Pi(q_1,\dots,q_t)$, the function $(\otimes_{\ell=1}^tf^{(\ell)})_\sigma:S^{|\sigma|}$ is obtained by replacing all variables that belong to the same block in $\sigma$ by a new common variable.
 
 
 \section{Distributional approximation of $U$-statistics of edge-marked Poisson processes}
@@ -77,14 +70,100 @@ For each $\sigma\in\Pi(q_1,\dots,q_t)$, the function $(\otimes_{\ell=1}^tf^{(\el
 
 \subsection{Edge-marked Poisson processes}
 
-For a function $f:\mathbb{X}^k\times\mathbb{M}_{\neq}^{k\times k}\to\mathbb{R}$ with $k\in\mathbb{N}$ we have
-\begin{equation}\label{eqn:generalised_Mecke_U-statistics}
-\E\sum_{(x_1,\hdots,x_k)\eta_{\neq}^k} f(x_1,\hdots,x_k,(M_{i,j})_{i,j\in[k],i\neq j}) = \int_{\mathbb{X}^k}\int_{\mathbb{M}^{(k\times k)}_{\neq}} f(x_1,\hdots,x_k) \, \mathbb{Q}_{\neq}^{k\times k}(d\mathbf{u}) \, \lambda^k(d(x_1,\hdots,x_k))
+Although we are mostly interested in the Random Connection Model, we derive general results for certain functionals and point processes constructed from so-called edge-marked Poisson processes. The idea of an edge-marked Poisson process is to take a Poisson process and to assign an independent and identically distributed mark to every pair of vertices. The random connection model can be seen as such an edge-marked Poisson process. We take the Poisson process of the vertices and assign to each pair of vertices $x$ and $y$ an independent random variable $U_{x,y}$ that is uniformly distributed on $[0,1]$. Then we connect $x$ and $y$ by an edge if and only if $U_{x,y}\leq \varphi(x,y)$, where $\varphi$ is the connection function.
+
+In the following, we introduce edge-marked Poisson processes on general measurable space. To this end let $(\mathbb{X},\mathcal{X})$ be a measurable space and let $\lambda$ be a $\sigma$-finite non-atomic measure on $\mathbb{X}$. For $\mathbb{X}$ and $\lambda$ we always assume that for each $n\in\mathbb{N}$ there exists a partition $(A_\ell^{(n)})_{\ell\in\mathbb{N}}$ of $\mathbb{X}$ such that the following conditions are satisfied:
+\begin{itemize}
+\item For $x\in\mathbb{X}$ and $n\in\mathbb{N}$ let $A^{(n)}(x)$ be the unique $A^{(n)}_\ell$ such that $x\in A^{(n)}_\ell$. Then,
+\begin{equation}\label{eqn:monotonicity_partition}
+A^{(n)}(x)\subseteq A^{(m)}(x)
 \end{equation}
-if the integral on the right-hand side is absolutely integrable.
+for all $x\in\mathbb{X}$ and $m,n\in\mathbb{N}$ with $m\leq n$.
+\item There exists a sequence $(\varepsilon_n)_{n\in\mathbb{N}}$ such that
+\begin{equation}\label{eqn:size_partition}
+\lambda(A_\ell^{(n)}) \leq \frac{\varepsilon_n}{\ell}
+\end{equation}
+for all $\ell,n\in\mathbb{N}$ and $\lim_{n\to\infty}\varepsilon_n=0$.
+\item There exists a measurable function $\operatorname{dist}:\mathbb{X}\times \mathbb{X}\to[0,\infty)$ such that 
+\begin{equation}\label{eqn:uniqueness_distances}
+\lambda^3\left(\left\{(x,y,z)\in \mathbb{X}\times A^{(n)}_\ell\times A_\ell^{(n)}: \operatorname{dist}(x,y)=\operatorname{dist}(x,z)\right\}\right)=0
+\end{equation}
+for all $\ell,n\in\mathbb{N}$.
+\end{itemize}
+
+Let us briefly discuss choices of $\mathbb{X}$ and $\lambda$ that are relevant for studying the random connection model. For the stationary random connection model with weights one chooses $\mathbb{X}=\mathbb{R}^d$ and $\lambda=\gamma\lambda_d$, where $\lambda_d$ is the $d$-dimensional Lebesgue measure and $\gamma>0$ is an intensity parameter. For the case of the random connection model with weights we let $\mathbb{X}=\mathbb{R}^d\times [0,\infty)$ and $\lambda=\gamma\lambda_d\otimes \mathbb{W}$ with $\gamma$ and $\lambda_d$ as before and the weight distribution $\mathbb{W}$. In case one is only interested in the random connection model in some observation window $K$ one replaces $\mathbb{R}^d$ by $K$ and the Lebesgue measure by the restriction of the Lebesgue measure.  
+
+Let $(\mathbb{X},\mathcal{X})$ be a measurable space and let $\eta$ be a Poisson process on $\mathbb{X}$ with a $\sigma$-finite non-atomic intensity measure $\lambda$. We assume that $\eta$ can be almost surely written as 
+$$
+\eta=\sum_{i\in I} \delta_{X_i}
+$$
+with random elements $(X_i)_{i\in I}$ on $\mathbb{X}$ and a random index set $I\subseteq\mathbb{N}$, where $\delta_x$ denotes the Dirac measure concentrated on $x$. 
+
+Moreover, let $(\mathbb{M},\mathcal{M})$ be a measurable space with a probability measure $\mathbb{Q}$. Let $(M_{i,j})_{i,j\in\mathbb{N},i\neq j}$ be a family of independent random elements on $\mathbb{M}$ distributed according to $\mathbb{Q}$. Now we assign the mark $M_{i,j}$ to the pair $(X_i,X_j)$ for $i,j\in I$ with $i\neq j$. For $y,z\in\eta$ with $y\neq z$ we denote by $M_{y,z}$ the mark of the pair $(y,z)$. Note that the pairs $(y,z)$ and $(z,y)$ have different marks.
+
+
+
+\subsection{$U$-statistics and moment formulae}
+For $k\in\mathbb{N}$ we use the short hand notation $[k]:=\{1,\hdots,k\}$ and define
+$$
+\mathbb{M}^{k\times k}_{\neq}:=\{(u_{i,j})_{i,j\in[k],i\neq j}: u_{i,j}\in \mathbb{M} \text{ for } i,j\in[k],i\neq j\}.
+$$
+Moreover let $\eta^k_{\neq}$ be the set of all $k$-tuples of distinct points of $\eta$.
+
+
+
+For $f: \mathbb{X}^k\times \mathbb{M}^{k\times k}_{\neq}\to\mathbb{R}$ with $k\in\mathbb{N}$ we are interested in random variables of the following form:
+\begin{equation}\label{def:ustat}
+S=\sum_{(x_1,\hdots,x_k)\in\eta^k_{\neq}} f(x_1,\hdots,x_k, (M_{x_i,x_j})_{i,j\in[k], i\neq j}).
+\end{equation}
+We also denote 
+\begin{equation}\label{def-integ1}
+    \overline{S}:=\sum_{(x_1,\hdots,x_k)\in\eta^k_{\neq}} \left|f(x_1,\hdots,x_k, (M_{x_i,x_j})_{i,j\in[k], i\neq j})\right|.
+\end{equation}
+\begin{prop}
+    % Let $f: \mathbb{X}^k\times \mathbb{M}^{k\times k}_{\neq}\to\mathbb{R}$ with $k\in\mathbb{N}$ be a measurable function. 
+    \begin{enumerate}
+    \item[]
+    \item[a)]
+    Suppose $\E(\overline{S})<\infty$, then we have 
+\begin{equation}\label{eqn:generalised_Mecke_U-statistics}
+\E S = \int_{\mathbb{X}^k}\int_{\mathbb{M}^{k\times k}_{\neq}} f(x_1,\hdots,x_k,\mathbf{u}) \, \mathbb{Q}_{\neq}^{k\times k}(d\mathbf{u}) \, \lambda^k(d(x_1,\hdots,x_k)).
+\end{equation}
+\item[b)] Suppose $\E(\overline{S}^2)<\infty$, we have 
+\begin{align}\label{eqn:variance}
+\Var S =\sum_{\ell=1}^k{k\choose \ell}^2\ell! &\int_{\mathbb{X}^{2k-\ell}}\int_{\mathbb{M}^{(2k-\ell)\times (2k-\ell)}_{\neq}} f(x_1,\hdots,x_k,(u_{i,j})_{i,j\in[k],i\ne j}) \nonumber\\
+&f(x_1,\dots,x_{\ell},x_{k+1},\dots,x_{2k-\ell},(u_{i,j})_{i,j\in[\ell]\cup\{k+1,\dots,2k-\ell\},i\ne j}) )\\
+&\mathbb{Q}_{\neq}^{(2k-\ell)\times (2k-\ell)}(d\mathbf{u}) \, \lambda^{2k-\ell}(d(x_1,\hdots,x_{2k-\ell})).\nonumber
+\end{align}
+\end{enumerate}
+\end{prop}
+For higher moments, we need a few more notation about partitions. 
+% For any $n\in\N$, we denote $[n]:=\{1,\dots,n\}$.
+Let $t\in\N$ and $q_1,\dots,q_t\in\N$. We define $N_0:=0$, $N_\ell:=\sum_{i=1}^\ell q_i$ and $N:=N_t$. Set $J_\ell:=\{N_{\ell-1}+1,\dots,N_\ell\}$, for $\ell=1,\dots,t.$ A partition $\sigma$ of $[N]$ is a collection $\{B_1,\dots,B_s\}$ of $1\le s\le N$ pairwise disjoint non-empty sets $B_i\subseteq [N]$ called blocks, such that $B_1\cup\cdots\cup B_s=[N]$. The number $s$ of blocks in $\sigma$ is denoted by $|\sigma|$. By $\Pi(q_1,\dots,q_t)$ we denote the set of all partitions $\sigma$ such that $|B\cap J_\ell|\le1$ for all $\ell\in[s]$ and $B\in\sigma$.
+
+Every partition $\sigma\in\Pi(q_1,\dots,q_t)$ induces a partition $\sigma^*$ of $[t]$ in the following way: $i,j\in[t]$ are in the same block of $\sigma^*$ whenever there exists a block $B\in\sigma$ such that $|B\cap J_i|=|B\cap J_j|=1$. Let $\widetilde{\Pi}(q_1,\dots,q_t)$ be the collection of all partitions $\sigma\in\Pi(q_1,\dots,q_t)$ such that $|\sigma^*|=1$. Note partitions in $\Pi(q_1,\dots,q_t)$ and $\widetilde{\Pi}(q_1,\dots,q_t)$ are known as non-flat and connected non-flat respectively, see \cite[Chapter~4]{peccati2011}. 
+We denote $\overline{\Pi}(q_1,\dots,q_t)$ as the collection of all partitions $\sigma\in\Pi(q_1,\dots,q_t)$ such that for each $\ell\in[t]$ there exists a block $B\in\sigma$ with $|B|\ge2$ and $B\cap J_\ell\ne\emptyset$.
+By $\Pi_{\ge2}(q_1,\dots,q_t)$ and $\widetilde{\Pi}_{\ge2}(q_1,\dots,q_t)$, we denote the sets of all $\sigma\in\Pi(q_1,\dots,q_t)$ and $\sigma\in\widetilde{\Pi}(q_1,\dots,q_t)$ such that $|B|\ge2$ for every $B\in\sigma$. In the case $q_1=\dots=q_t=q$, we write $\Pi^t(q)$, $\widetilde{\Pi}^t(q)$, $\Pi^t_{\ge2}(q)$, $\widetilde{\Pi}^t_{\ge2}(q)$ and $\overline{\Pi}^t(q)$ instead of $\Pi(q_1,\dots,q_t)$, $\widetilde{\Pi}(q_1,\dots,q_t)$, $\Pi_{\ge2}(q_1,\dots,q_t)$, $\widetilde{\Pi}_{\ge2}(q_1,\dots,q_t)$ and $\overline{\Pi}(q_1,\dots,q_t)$ respectively.
+
+Let $(S,\mathcal{S})$ be an arbitrary measurable space. For functions $f^{(\ell)}:S^{q_\ell}\to\R$, $\ell\in[t]$, we define their tensor product $\otimes_{\ell=1}^tf^{(\ell)}:S^N\to\R$ by 
+$$\otimes_{\ell=1}^tf^{(\ell)}(x_1,\dots,x_N):=\prod_{\ell=1}^tf^{(\ell)}(x_{N_{\ell-1}+1},\dots,x_{N_{\ell}}).$$
+For each $\sigma\in\Pi(q_1,\dots,q_t)$, the function $(\otimes_{\ell=1}^tf^{(\ell)})_\sigma:S^{|\sigma|}$ is obtained by replacing all variables that belong to the same block in $\sigma$ by a new common variable.
+\begin{prop}
+    Suppose that $\E\left(\overline{S}^{\ell}\right)<\infty$ for some $\ell\in\N$, then 
+    \begin{eqnarray}
+\E[S^{\ell}]&=&\sum_{\pi\in\Pi^\ell(k)}\int_{\mathbb{X}^{|\pi|}}\int_{\mathbb{M}^{|\pi|\times|\pi|}_{\ne}}(f^{\otimes\ell})_{\pi}(\bm{x},\bm{u})\mathbb{Q}^{|\pi|\times|\pi|}_{\ne}(\mathrm{d}\bm{u})\lambda^{|\pi|}(\mathrm{d}\bm{x}),\\
+\E[(S-\E S)^{\ell}]&=&\sum_{\pi\in\overline{\Pi}^\ell(k)}\int_{\mathbb{X}^{|\pi|}}\int_{\mathbb{M}^{|\pi|\times|\pi|}_{\ne}}(f^{\otimes\ell})_{\pi}(\bm{x},\bm{u})\mathbb{Q}^{|\pi|\times|\pi|}_{\ne}(\mathrm{d}\bm{u})\lambda^{|\pi|}(\mathrm{d}\bm{x}),\\
+\cum_\ell(S)&=&\sum_{\pi\in\widetilde{\Pi}^\ell(k)}\int_{\mathbb{X}^{|\pi|}}\int_{\mathbb{M}^{|\pi|\times|\pi|}_{\ne}}(f^{\otimes\ell})_{\pi}(\bm{x},\bm{u})\mathbb{Q}^{|\pi|\times|\pi|}_{\ne}(\mathrm{d}\bm{u})\lambda^{|\pi|}(\mathrm{d}\bm{x}).
+\end{eqnarray}
+\end{prop}
+% For a function $f:\mathbb{X}^k\times\mathbb{M}_{\neq}^{k\times k}\to\mathbb{R}$ with $k\in\mathbb{N}$ we have
+% \begin{equation}\label{eqn:generalised_Mecke_U-statistics}
+% \E\sum_{(x_1,\hdots,x_k)\in\eta_{\neq}^k} f(x_1,\hdots,x_k,(M_{i,j})_{i,j\in[k],i\neq j}) = \int_{\mathbb{X}^k}\int_{\mathbb{M}^{k\times k}_{\neq}} f(x_1,\hdots,x_k,\mathbf{u}) \, \mathbb{Q}_{\neq}^{k\times k}(d\mathbf{u}) \, \lambda^k(d(x_1,\hdots,x_k))
+% \end{equation}
+% if the integral on the right-hand side is absolutely integrable.
 
 \subsection{Normal approximation}
-
+% For $\pi\in\Pi^\ell(k)$, we define 
 \begin{theorem}\label{normalapp1}
 Let $f: \mathbb{X}^k\times \mathbb{M}^{k\times k}_{\neq}\to\mathbb{R}$ be a measurable function 
 % satisfying $\supp(f)\subset B\times\mathbb{M}^{k\times k}_{\neq}$ with some bounded set $B\in \mathcal{X}^k$
@@ -97,15 +176,15 @@ d_W\left(\frac{S-\E S}{\sqrt{\Var S}},N\right)&\le&2k^{7/2}\sum_{1\le i\le j\le 
 d_K\left(\frac{S-\E S}{\sqrt{\Var S}},N\right)&\le&19k^5\sum_{i,j=1}^k\frac{\sqrt{M_{ij}(f)}}{\Var S},\label{norbound-2}
 \end{eqnarray}
 where 
+% \begin{eqnarray*}
+%     M_{ij}(f)&:=&\sum_{\pi\in\widetilde{\Pi}_{\ge2}(i,i,j,j)}\int_{\mathbb{X}^{|\pi|}} \int_{\mathbb{M}^{|\pi|\times |\pi|}_{\neq}} \left(\overline{f}_i\otimes\overline{f}_i\otimes\overline{f}_j\otimes\overline{f}_j\right)_{\pi}(\bm{x},\bm{u}) \, \mathbb{Q}_{\neq}^{|\pi|\times |\pi|}(\mathrm{d}\bm{u}) \, \lambda^{|\pi|}(\mathrm{d}\bm{x}),
+% \end{eqnarray*}
 \begin{eqnarray*}
-    M_{ij}(f)&:=&\sum_{\pi\in\widetilde{\Pi}_{\ge2}(i,i,j,j)}\int_{\mathbb{X}^{|\pi|}} \int_{\mathbb{M}^{|\pi|\times |\pi|}_{\neq}} \left(\overline{f}_i\otimes\overline{f}_i\otimes\overline{f}_j\otimes\overline{f}_j\right)_{\pi}(\bm{x},\bm{u}) \, \mathbb{Q}_{\neq}^{|\pi|\times |\pi|}(\mathrm{d}\bm{u}) \, \lambda^{|\pi|}(\mathrm{d}\bm{x}),
+    M_{ij}(f)&:=&\sum_{\substack{\pi\in\widetilde{\Pi}^4(k)\\s_1(\pi)=s_2(\pi)=k-i\\s_3(\pi)=s_4(\pi)=k-j}}\int_{\mathbb{X}^{|\pi|}} \int_{\mathbb{M}^{|\pi|\times |\pi|}_{\neq}} \left(|f|^{\otimes 4}\right)_{\pi}(\bm{x},\bm{u}) \, \mathbb{Q}_{\neq}^{|\pi|\times |\pi|}(\mathrm{d}\bm{u}) \, \lambda^{|\pi|}(\mathrm{d}\bm{x}),
 \end{eqnarray*}
-with $\bm{x}=(x_1,\hdots,x_{|\pi|})$, $\bm{u}=(u_{\imath,\jmath})_{1\le\imath\ne\jmath\ne|\pi|}$ and 
-\begin{eqnarray*}
-    &&\overline{f}_{\ell}(x_1,\dots,x_{\ell},(u_{\imath,\jmath})_{1\le\imath\ne\jmath\le\ell})\\
-    &:=&\int_{\mathbb{X}^{k-\ell}}\int_{\mathbb{M}^{k(k-1)-\ell(\ell-1)}}\left\vert f(x_1,\dots,x_{\ell},y_1,\dots,y_{k-\ell},(u_{\imath,\jmath})_{1\le\imath\ne\jmath\le k})\right\vert\mathbb{Q}^{k(k-1)-\ell(\ell-1)}(\mathrm{d}\bm{v})\lambda^{k-\ell}(\mathrm{d}\bm{y})
-\end{eqnarray*}
-with $\bm{v}=\left((u_{\imath,\jmath})_{1\le\imath\ne\jmath\ne|\pi|}{\substack{\ell<\imath\le k,\jmath\in[k]\\\imath\ne\jmath}},(u_{\imath,\jmath})_{\imath\in[\ell],\ell<\jmath\le k}\right)$ and $\bm{y}=(y_1,\dots,y_{k-\ell})$ for $\ell=1,\dots,k$. 
+with %$\bm{x}=(x_1,\hdots,x_{|\pi|})$, $\bm{u}=(u_{\imath,\jmath})_{1\le\imath\ne\jmath\le|\pi|}$, and 
+$$s_i(\pi):=|\{B_j\in\pi:B_j\subseteq J_i\}|,$$
+for $i\in[4]$.
 \end{theorem}
 
 
@@ -113,15 +192,15 @@ with $\bm{v}=\left((u_{\imath,\jmath})_{1\le\imath\ne\jmath\ne|\pi|}{\substack{\
 
 For $k\in\mathbb{N}$ with $k\geq2$ and a locally compact second countable Hausdorff space $\mathbb{Y}$ with Borel $\sigma$-algebra $\mathcal{Y}$ we consider a measurable function $g: \operatorname{dom} g\to\mathbb{Y}$ with $\operatorname{dom} g\subseteq \mathbb{X}^k\times \mathbb{M}^{k\times k}_{\neq}$. Moreover, we define
 $$
-{\operatorname{dom}'} g := \left\{( x_1, \ldots, x_k) : \left( x_1, \ldots, x_k, (W_{x_i,x_j})_{i,j =1,\ldots, k, i \neq j} \right) \in  \operatorname{dom} g\right\}.
+{\operatorname{dom}'} g := \left\{( x_1, \ldots, x_k) : \left( x_1, \ldots, x_k, (W_{x_i,x_j})_{i,j\in[k], i \neq j} \right) \in  \operatorname{dom} g\right\}.
 $$
 In the following, we consider the point process
 \begin{equation}\label{definition_xi}
-\xi:= \frac{1}{k!}\sum_{(x_1, \ldots, x_k) \in \eta^k_{\neq}\cap  {\operatorname{dom}'} g}  \delta_{g \left( x_1, \ldots, x_k, (W_{x_i,x_j})_{i,j =1,\ldots, k, i \neq j} \right)}.
+\xi:= \frac{1}{k!}\sum_{(x_1, \ldots, x_k) \in \eta^k_{\neq}\cap  {\operatorname{dom}'} g}  \delta_{g \left( x_1, \ldots, x_k, (W_{x_i,x_j})_{i,j\in[k], i \neq j} \right)}.
 \end{equation}
 The intensity measure $\mathbf{L}$ of $\xi$ is given by
 $$
-\mathbf{L}(A):= \frac{1}{k!} \int_{\operatorname{dom} g} \mathbf{1}\{ g(x_1,\hdots,x_k,\mathbf{u})\in A \} \, \lambda^k\otimes \mathbb{Q}_{\neq}^{k\times k}(d (x_1,\hdots,x_k,\mathbf{u})) 
+\mathbf{L}(A):= \frac{1}{k!} \int_{\operatorname{dom} g} \mathbf{1}\{ g(x_1,\hdots,x_k,\mathbf{u})\in A \} \, \lambda^k\otimes \mathbb{Q}_{\neq}^{k\times k}(\mathrm{d} (x_1,\hdots,x_k,\mathbf{u})) 
 $$
 for $A\in\mathcal{Y}$.
 
@@ -143,7 +222,7 @@ where
 
 
 
-\subsection{Poisson process approximation (old)}
+\iffalse\subsection{Poisson process approximation (old)}
 Now we consider the functional analogue of the previous section. Define for a symmetric and measurable function $f\colon \operatorname{dom} f \to Y$ ($Y$ is some general space) the process
 \begin{align}\label{originalPproc}
      \xi:= \frac{1}{k!}\sum_{(x_1, \ldots, x_k) \in \eta^k_{\neq}\cap  {\operatorname{dom}'} f} \delta_{f \left( x_1, \ldots, x_k, (W_{x_i,x_j})_{i,j =1,\ldots, k, i \neq j} \right)} ,
@@ -203,7 +282,7 @@ for
 
 
 
-
+\fi
 
 
 
@@ -413,6 +492,7 @@ The following examples can be studied:
 \section{Approximation results}\label{sec:approximation}
 \subsection{Construction of the random connection model}
 
+\iffalse
 Let $(\mathbb{X},\mathcal{X})$ be a measurable space and let $\eta$ be a Poisson process on $\mathbb{X}$ with a $\sigma$-finite non-atomic intensity measure $\lambda$. We assume that $\eta$ can be almost surely written as 
 $$
 \eta=\sum_{i\in I} \delta_{X_i}
@@ -435,7 +515,10 @@ We also denote
 \begin{equation}\label{def-integ1}
     \overline{S}:=\sum_{(x_1,\hdots,x_k)\in\eta^k_{\neq}} \left|f(x_1,\hdots,x_k, (M_{x_i,x_j})_{i,j\in[k], i\neq j})\right|.
 \end{equation}
-Next we construct a random variable with the same distribution as $S$ that is a function of an underlying Poisson process on a larger space. For this we assume that for each $n\in\mathbb{N}$ there exists a partition $(A_\ell^{(n)})_{\ell\in\mathbb{N}}$ of $\mathbb{X}$ such that the following conditions are satisfied:
+\fi
+Next we construct a random variable with the same distribution as $S$ that is a function of an underlying Poisson process on a larger space. 
+\iffalse
+For this we assume that for each $n\in\mathbb{N}$ there exists a partition $(A_\ell^{(n)})_{\ell\in\mathbb{N}}$ of $\mathbb{X}$ such that the following conditions are satisfied:
 \begin{itemize}
 \item For $x\in\mathbb{X}$ and $n\in\mathbb{N}$ let $A^{(n)}(x)$ be the unique $A^{(n)}_\ell$ such that $x\in A^{(n)}_\ell$. Then,
 \begin{equation}\label{eqn:monotonicity_partition}
@@ -453,6 +536,7 @@ for all $\ell,n\in\mathbb{N}$ and $\lim_{n\to\infty}\varepsilon_n=0$.
 \end{equation}
 for all $\ell,n\in\mathbb{N}$.
 \end{itemize}
+\fi
 
 We define $\widehat{\mathbb{X}}:=\mathbb{X}\times \mathbb{M}^{\mathbb{N}\times\mathbb{M}}$ and $\widehat{\lambda}:=\lambda\otimes \mathbb{Q}^{\mathbb{N}\times\mathbb{N}}$. Let $\widehat{\eta}$ be a Poisson process on $\widehat{\mathbb{X}}$ with intensity measure $\widehat{\lambda}$.
 
@@ -649,7 +733,8 @@ and
 \end{enumerate}
 \end{lemma}
 \begin{proof}
-Because $\lambda$ is $\sigma$-finite, there exists a sequence of measurable sets $(B_m)_{m\in\mathbb{N}}$ such that for each $m\in\mathbb{N}$, $\lambda(B_m)<\infty$ and $ B_m\uparrow\mathbb{X}$ as $m\to\infty$. Take $f_m:\mathbb{X}^k\times \mathbb{M}^{k\times k}_{\neq}\to\mathbb{R}$ defined by 
+Because $\lambda$ is $\sigma$-finite, 
+there exists an increasing sequence of measurable sets $(B_m)_{m\in\mathbb{N}}$ such that $\lambda(B_m)<\infty$ for each $m\in\mathbb{N}$ and $ \cup_{m=1}^\infty B_m=\mathbb{X}$. Take $f_m:\mathbb{X}^k\times \mathbb{M}^{k\times k}_{\neq}\to\mathbb{R}$ defined by 
 \begin{equation*}
 f_m(x_1,\hdots,x_k, (u_{i,j})_{i,j\in[k], i\neq j}):=f(x_1,\hdots,x_k, (u_{i,j})_{i,j\in[k], i\neq j})\mathbf{1}_{\{(x_1,\hdots,x_k)\in B_m\}}\mathbf{1}_{\{|f|\le m\}}.
 \end{equation*}
@@ -691,6 +776,7 @@ Moreover, using Lemma~\ref{lem:limits_S_n}, we have
 \begin{proof}[Proof of Theorem \ref{normalapp1}]
 
 \begin{enumerate}
+\item[]
 \item[1)] Assume $\supp(f)\subseteq B^k\times\mathbb{M}^{k\times k}_{\ne}$ with some measurable set $B$ satisfying $\lambda(B)$ and $\|f\|_{\infty}<\infty$. 
 For $\widehat{S}^{(n)}$ given in \eqref{Ustat1}, applying Proposition~\ref{normalU-1}, it shows 
 \begin{eqnarray}
@@ -835,11 +921,11 @@ d_{TV}(\mathbf{L}_m,\mathbf{L}) \leq \E[\xi(\mathbb{Y})] - \E[\xi_m(\mathbb{Y})]
 $$
 Together with the triangle inequality, the latter leads to
 $$
-d_{TV}(\mathbf{L}_m,\mathbf{M}) \leq d_{TV}(\mathbf{L}_m,\mathbf{L}) + d_{TV}(\mathbf{L},\mathbf{M}) \leq d_{TV}(\mathbf{L},\mathbf{M})  +  \E[\xi(\mathbb{Y})] - \E[\xi_m(\mathbb{Y})] 
+d_{TV}(\mathbf{L}_m,\mathbf{M}) \leq d_{TV}(\mathbf{L}_m,\mathbf{L}) + d_{TV}(\mathbf{L},\mathbf{M}) \leq d_{TV}(\mathbf{L},\mathbf{M})  +  \E[\xi(\mathbb{Y})] - \E[\xi_m(\mathbb{Y})] ,
 $$
 so that
 $$
-d_{KR}(\xi,\zeta) \leq d_{TV}(\mathbf{L},\mathbf{M})  + 2 (\E[\xi(\mathbb{Y})] - \E[\xi_m(\mathbb{Y})]) + 2(\E\xi_m(\mathbb{Y})^2 - (\E\xi_m(\mathbb{Y}))^2 - \E\xi_m(\mathbb{Y}) )
+d_{KR}(\xi,\zeta) \leq d_{TV}(\mathbf{L},\mathbf{M})  + 2 (\E[\xi(\mathbb{Y})] - \E[\xi_m(\mathbb{Y})]) + 2(\E\xi_m(\mathbb{Y})^2 - (\E\xi_m(\mathbb{Y}))^2 - \E\xi_m(\mathbb{Y}) ).
 $$
 Since, by the dominated convergence theorem, $\E\xi_m(\mathbb{Y})^2\to \E\xi(\mathbb{Y})^2$ and $\E\xi_m(\mathbb{Y})\to \E\xi(\mathbb{Y})$ as $m\to\infty$, we obtain
 $$
@@ -970,7 +1056,13 @@ From the statements in Lemma \ref{lem:varlength} we observe that the variance as
 \item \cite{Hirsch_Lachieze-Rey_Takashi_Owada}: Normal approximation for subgraph counts in the age-dependent random connection model
 
 \end{itemize}
-
+\section{To-Do-List}
+\begin{itemize}
+\item Change the definition of set partitions (without $q_1,\dots,q_t$, also remove $\ge2$)
+\item introduce Poisson $U$-statistics 
+\item Concentration inequality and moderate deviation 
+\item Poisson approximation, compound Poisson approximation and $\alpha$-stable approximation
+\end{itemize}
 
 \bibliographystyle{apalike}
 \bibliography{lit}
