@@ -137,24 +137,25 @@ We also denote
 \end{align}
 \end{enumerate}
 \end{prop}
-For higher moments, we need a few more notation about partitions. 
+For higher moments, we need a few more notation about partitions. Let $A$ be a non-empty set. A partition $\sigma$ of $A$ is a collection $\{B_1,\dots,B_s\}$ of pairwise disjoint non-empty subsets $B_i\subseteq A$, called blocks, such that $B_1\cup\cdots\cup B_s=A$. The number $s$ of blocks in $\sigma$ is denoted by $|\sigma|$.
 % For any $n\in\N$, we denote $[n]:=\{1,\dots,n\}$.
-Let $t\in\N$ and $q_1,\dots,q_t\in\N$. We define $N_0:=0$, $N_\ell:=\sum_{i=1}^\ell q_i$ and $N:=N_t$. Set $J_\ell:=\{N_{\ell-1}+1,\dots,N_\ell\}$, for $\ell=1,\dots,t.$ A partition $\sigma$ of $[N]$ is a collection $\{B_1,\dots,B_s\}$ of $1\le s\le N$ pairwise disjoint non-empty sets $B_i\subseteq [N]$ called blocks, such that $B_1\cup\cdots\cup B_s=[N]$. The number $s$ of blocks in $\sigma$ is denoted by $|\sigma|$. By $\Pi(q_1,\dots,q_t)$ we denote the set of all partitions $\sigma$ such that $|B\cap J_\ell|\le1$ for all $\ell\in[s]$ and $B\in\sigma$.
+Let $t\in\N$ and $q\in\N$. Set $J_\ell:=\{(\ell-1)q+1,\dots,\ell q\}$, for $\ell=1,\dots,t.$ By $\Pi^t(q)$ we denote the set of all partitions $\sigma$ such that $|B\cap J_\ell|\le1$ for all $\ell\in[t]$ and $B\in\sigma$.
 
-Every partition $\sigma\in\Pi(q_1,\dots,q_t)$ induces a partition $\sigma^*$ of $[t]$ in the following way: $i,j\in[t]$ are in the same block of $\sigma^*$ whenever there exists a block $B\in\sigma$ such that $|B\cap J_i|=|B\cap J_j|=1$. Let $\widetilde{\Pi}(q_1,\dots,q_t)$ be the collection of all partitions $\sigma\in\Pi(q_1,\dots,q_t)$ such that $|\sigma^*|=1$. Note partitions in $\Pi(q_1,\dots,q_t)$ and $\widetilde{\Pi}(q_1,\dots,q_t)$ are known as non-flat and connected non-flat respectively, see \cite[Chapter~4]{peccati2011}. 
-We denote $\overline{\Pi}(q_1,\dots,q_t)$ as the collection of all partitions $\sigma\in\Pi(q_1,\dots,q_t)$ such that for each $\ell\in[t]$ there exists a block $B\in\sigma$ with $|B|\ge2$ and $B\cap J_\ell\ne\emptyset$.
-By $\Pi_{\ge2}(q_1,\dots,q_t)$ and $\widetilde{\Pi}_{\ge2}(q_1,\dots,q_t)$, we denote the sets of all $\sigma\in\Pi(q_1,\dots,q_t)$ and $\sigma\in\widetilde{\Pi}(q_1,\dots,q_t)$ such that $|B|\ge2$ for every $B\in\sigma$. In the case $q_1=\dots=q_t=q$, we write $\Pi^t(q)$, $\widetilde{\Pi}^t(q)$, $\Pi^t_{\ge2}(q)$, $\widetilde{\Pi}^t_{\ge2}(q)$ and $\overline{\Pi}^t(q)$ instead of $\Pi(q_1,\dots,q_t)$, $\widetilde{\Pi}(q_1,\dots,q_t)$, $\Pi_{\ge2}(q_1,\dots,q_t)$, $\widetilde{\Pi}_{\ge2}(q_1,\dots,q_t)$ and $\overline{\Pi}(q_1,\dots,q_t)$ respectively.
+Every partition $\sigma\in\Pi^t(q)$ induces a partition $\sigma^*$ of $[t]$ in the following way: $i,j\in[t]$ are in the same block of $\sigma^*$ whenever there exists a block $B\in\sigma$ such that $|B\cap J_i|=|B\cap J_j|=1$. Let $\widetilde{\Pi}^t(q)$ be the collection of all partitions $\sigma\in\Pi^t(q)$ such that $|\sigma^*|=1$. Note partitions in $\Pi^t(q)$ and $\widetilde{\Pi}^t(q)$ are known as non-flat and connected non-flat respectively, see \cite[Chapter~4]{peccati2011}. 
+We denote $\overline{\Pi}^t(q)$ as the collection of all partitions $\sigma\in\Pi^t(q)$ such that for each $\ell\in[t]$ there exists a block $B\in\sigma$ with $|B|\ge2$ and $B\cap J_\ell\ne\emptyset$.
+%By $\Pi_{\ge2}(q_1,\dots,q_t)$ and $\widetilde{\Pi}_{\ge2}(q_1,\dots,q_t)$, we denote the sets of all $\sigma\in\Pi(q_1,\dots,q_t)$ and $\sigma\in\widetilde{\Pi}(q_1,\dots,q_t)$ such that $|B|\ge2$ for every $B\in\sigma$. In the case $q_1=\dots=q_t=q$, we write $\Pi^t(q)$, $\widetilde{\Pi}^t(q)$, $\Pi^t_{\ge2}(q)$, $\widetilde{\Pi}^t_{\ge2}(q)$ and $\overline{\Pi}^t(q)$ instead of $\Pi(q_1,\dots,q_t)$, $\widetilde{\Pi}(q_1,\dots,q_t)$, $\Pi_{\ge2}(q_1,\dots,q_t)$, $\widetilde{\Pi}_{\ge2}(q_1,\dots,q_t)$ and $\overline{\Pi}(q_1,\dots,q_t)$ respectively.
 
-Let $(S,\mathcal{S})$ be an arbitrary measurable space. For functions $f^{(\ell)}:S^{q_\ell}\to\R$, $\ell\in[t]$, we define their tensor product $\otimes_{\ell=1}^tf^{(\ell)}:S^N\to\R$ by 
-$$\otimes_{\ell=1}^tf^{(\ell)}(x_1,\dots,x_N):=\prod_{\ell=1}^tf^{(\ell)}(x_{N_{\ell-1}+1},\dots,x_{N_{\ell}}).$$
-For each $\sigma\in\Pi(q_1,\dots,q_t)$, the function $(\otimes_{\ell=1}^tf^{(\ell)})_\sigma:S^{|\sigma|}$ is obtained by replacing all variables that belong to the same block in $\sigma$ by a new common variable.
-\begin{prop}
+Let $(S,\mathcal{S})$ be an arbitrary measurable space. For functions $f^{(\ell)}:S^{q}\to\R$, $\ell\in[t]$, we define their tensor product $\otimes_{\ell=1}^tf^{(\ell)}:S^{tq}\to\R$ by 
+$$\otimes_{\ell=1}^tf^{(\ell)}(x_1,\dots,x_{tq}):=\prod_{\ell=1}^tf^{(\ell)}(x_{(\ell-1)q+1},\dots,x_{\ell q}).$$
+For each $\sigma\in\Pi^t(q)$, the function $(\otimes_{\ell=1}^tf^{(\ell)})_\sigma:S^{|\sigma|}$ is obtained by replacing all variables that belong to the same block in $\sigma$ by a new common variable.
+\begin{prop}\label{prop:moments}
     Suppose that $\E\left(\overline{S}^{\ell}\right)<\infty$ for some $\ell\in\N$, then 
     \begin{eqnarray}
-\E[S^{\ell}]&=&\sum_{\pi\in\Pi^\ell(k)}\int_{\mathbb{X}^{|\pi|}}\int_{\mathbb{M}^{|\pi|\times|\pi|}_{\ne}}(f^{\otimes\ell})_{\pi}(\bm{x},\bm{u})\mathbb{Q}^{|\pi|\times|\pi|}_{\ne}(\mathrm{d}\bm{u})\lambda^{|\pi|}(\mathrm{d}\bm{x}),\\
-\E[(S-\E S)^{\ell}]&=&\sum_{\pi\in\overline{\Pi}^\ell(k)}\int_{\mathbb{X}^{|\pi|}}\int_{\mathbb{M}^{|\pi|\times|\pi|}_{\ne}}(f^{\otimes\ell})_{\pi}(\bm{x},\bm{u})\mathbb{Q}^{|\pi|\times|\pi|}_{\ne}(\mathrm{d}\bm{u})\lambda^{|\pi|}(\mathrm{d}\bm{x}),\\
-\cum_\ell(S)&=&\sum_{\pi\in\widetilde{\Pi}^\ell(k)}\int_{\mathbb{X}^{|\pi|}}\int_{\mathbb{M}^{|\pi|\times|\pi|}_{\ne}}(f^{\otimes\ell})_{\pi}(\bm{x},\bm{u})\mathbb{Q}^{|\pi|\times|\pi|}_{\ne}(\mathrm{d}\bm{u})\lambda^{|\pi|}(\mathrm{d}\bm{x}).
+\E[S^{\ell}]&=&\sum_{\pi\in\Pi^\ell(k)}\int_{\mathbb{X}^{|\pi|}}\int_{\mathbb{M}^{|\pi|\times|\pi|}_{\ne}}(f^{\otimes\ell})_{\pi}(\bm{x},\bm{u})\mathbb{Q}^{|\pi|\times|\pi|}_{\ne}(\mathrm{d}\bm{u})\lambda^{|\pi|}(\mathrm{d}\bm{x}),\label{momeq-1}\\
+\E[(S-\E S)^{\ell}]&=&\sum_{\pi\in\overline{\Pi}^\ell(k)}\int_{\mathbb{X}^{|\pi|}}\int_{\mathbb{M}^{|\pi|\times|\pi|}_{\ne}}(f^{\otimes\ell})_{\pi}(\bm{x},\bm{u})\mathbb{Q}^{|\pi|\times|\pi|}_{\ne}(\mathrm{d}\bm{u})\lambda^{|\pi|}(\mathrm{d}\bm{x}),\label{momeq-2}\\
+\cum_\ell(S)&=&\sum_{\pi\in\widetilde{\Pi}^\ell(k)}\int_{\mathbb{X}^{|\pi|}}\int_{\mathbb{M}^{|\pi|\times|\pi|}_{\ne}}(f^{\otimes\ell})_{\pi}(\bm{x},\bm{u})\mathbb{Q}^{|\pi|\times|\pi|}_{\ne}(\mathrm{d}\bm{u})\lambda^{|\pi|}(\mathrm{d}\bm{x}),\label{momeq-3}
 \end{eqnarray}
+where $\cum_\ell(S)$ stands for the $\ell$-th cumulant of $S$.
 \end{prop}
 % For a function $f:\mathbb{X}^k\times\mathbb{M}_{\neq}^{k\times k}\to\mathbb{R}$ with $k\in\mathbb{N}$ we have
 % \begin{equation}\label{eqn:generalised_Mecke_U-statistics}
@@ -707,8 +708,12 @@ For $\ell\in\N$, $\lim_{n\to0}\E\left[\left|S-\widehat{S}^{(n)}\right|^{\ell}\ri
 \begin{eqnarray*}
 \E\left[(\widehat{S}^{(n)})^{\ell}\right]&=&\E\left[\left(\sum_{(\hat{x}_1,\hdots,\hat{x}_k)\in\widehat{\eta}^k_{\neq}} f(x_1,\hdots,x_k, \tilde{m}^{(n)}(\hat{x}_1,\hdots,\hat{x}_k))\right)^{\ell}\right]\\
 &=&\E\left[\sum_{\pi\in\Pi^\ell(k)}\sum_{(\hat{x}_1,\dots,\hat{x}_{|\pi|})\in\hat{\eta}^{|\pi|}_{\ne}}(f^{\otimes\ell})_{\pi}(x_1,\dots,x_{|\pi|},\tilde{m}^{(n)}(\hat{x}_1,\hdots,\hat{x}_{|\pi|}))\right]\\
-&=&\sum_{\pi\in\Pi^\ell(k)}\int_{\widehat{\mathbb{X}}^{|\pi|}\backslash\widehat{\Delta}_{|\pi|}^{(n)}} (f^{\otimes\ell})_{\pi}(x_1,\dots,x_{|\pi|},\tilde{m}^{(n)}(\hat{x}_1,\hdots,\hat{x}_{|\pi|})) \, \widehat{\lambda}^{|\pi|}(\mathrm{d}(\hat{x}_1,\hdots,\hat{x}_{|\pi|}) )\\
-&=&\sum_{\pi\in\Pi^\ell(k)}\int_{\mathbb{X}^{|\pi|}\backslash\Delta_{|\pi|}^{(n)}} \int_{\mathbb{M}^{|\pi|\times |\pi|}_{\neq}} (f^{\otimes\ell})_{\pi}(x_1,\dots,x_{|\pi|},u) \, \mathbb{Q}_{\neq}^{|\pi|\times |\pi|}(\mathrm{d}u) \, \lambda^{|\pi|}(\mathrm{d}(x_1,\hdots,x_{|\pi|})).
+&=&\sum_{\pi\in\Pi^\ell(k)}\left[\int_{\widehat{\mathbb{X}}^{|\pi|}\backslash\widehat{\Delta}_{|\pi|}^{(n)}} (f^{\otimes\ell})_{\pi}(x_1,\dots,x_{|\pi|},\tilde{m}^{(n)}(\hat{x}_1,\hdots,\hat{x}_{|\pi|})) \, \widehat{\lambda}^{|\pi|}(\mathrm{d}(\hat{x}_1,\hdots,\hat{x}_{|\pi|}) )\right.\\
+&&\left.\ \ \ \ \ +\int_{\widehat{\Delta}_{|\pi|}^{(n)}}(f^{\otimes\ell})_{\pi}(x_1,\dots,x_{|\pi|},\tilde{m}^{(n)}(\hat{x}_1,\hdots,\hat{x}_{|\pi|})) \, \widehat{\lambda}^{|\pi|}(\mathrm{d}(\hat{x}_1,\hdots,\hat{x}_{|\pi|}) )
+\right]\\
+&=&\sum_{\pi\in\Pi^\ell(k)}\left[\int_{\mathbb{X}^{|\pi|}\backslash\Delta_{|\pi|}^{(n)}} \int_{\mathbb{M}^{|\pi|\times |\pi|}_{\neq}} (f^{\otimes\ell})_{\pi}(x_1,\dots,x_{|\pi|},u) \, \mathbb{Q}_{\neq}^{|\pi|\times |\pi|}(\mathrm{d}u) \, \lambda^{|\pi|}(\mathrm{d}(x_1,\hdots,x_{|\pi|}))\right.\\
+&&\left.\ \ \ \ \ +\int_{\widehat{\Delta}_{|\pi|}^{(n)}}(f^{\otimes\ell})_{\pi}(x_1,\dots,x_{|\pi|},\tilde{m}^{(n)}(\hat{x}_1,\hdots,\hat{x}_{|\pi|})) \, \widehat{\lambda}^{|\pi|}(\mathrm{d}(\hat{x}_1,\hdots,\hat{x}_{|\pi|}) )
+\right].
 \end{eqnarray*}
 Then, by Lemma~\ref{lma1}, we can see that 
 \begin{eqnarray*}
@@ -768,8 +773,34 @@ Moreover, using Lemma~\ref{lem:limits_S_n}, we have
 \E[S^\ell]=\lim_{m\to\infty}\E[(S_m)^\ell]=\sum_{\pi\in\Pi^\ell(k)}\int_{\mathbb{X}^{|\pi|}}\int_{\mathbb{M}^{|\pi|\times|\pi|}_{\ne}}(f^{\otimes\ell})_{\pi}(\bm{x},\bm{u})\mathbb{Q}^{|\pi|\times|\pi|}_{\ne}(\mathrm{d}\bm{u})\lambda^{|\pi|}(\mathrm{d}\bm{x}).
 \end{equation}
 \end{proof}
-
-
+\begin{proof}[Proof of Proposition~\ref{prop:moments}]
+\eqref{momeq-1} has already been provided in Lemma~\ref{lem:limits_S_n2}. 
+%\eqref{momeq-2} and \eqref{momeq-3} are straightforward from \cite[Theorem~3.7]{schulte2}.
+\begin{enumerate}
+\item[1)]First, suppose that $f$ satisfies $\supp(f)\subseteq B^k\times\mathbb{M}^{k\times k}_{\ne}$ with $\lambda(B)<\infty$ and $\|f\|_{\infty}<\infty$. 
+Then, by \cite[Theorem~3.7]{schulte2}, we have 
+\begin{eqnarray*}
+\E\left[(\widehat{S}^{(n)}-\E\widehat{S}^{(n)})^{\ell}\right]=\sum_{\pi\in\overline{\Pi}^\ell(k)}\int_{\widehat{\mathbb{X}}^{|\pi|}}(f^{\otimes \ell})_{\pi}(x_1,\dots,x_{|\pi|},\tilde{m}^{(n)}(\hat{x}_1,\dots,\hat{x}_{|\pi|}))\hat{\lambda}^{|\pi|}(\mathrm{d}\bm{\hat{x}}).
+\end{eqnarray*}
+By Lemma~\ref{lem:limits_S_n} and Lemma~\ref{lma1}, we have
+\begin{eqnarray*}
+\E\left[(S-\E S)^{\ell}\right]&=&\lim_{n\to\infty}\E\left[(\widehat{S}^{(n)}-\E\widehat{S}^{(n)})^{\ell}\right]\\
+&=&\lim_{n\to\infty}\sum_{\pi\in\overline{\Pi}^\ell(k)}\int_{\widehat{\mathbb{X}}^{|\pi|}}(f^{\otimes \ell})_{\pi}(x_1,\dots,x_{|\pi|},\tilde{m}^{(n)}(\hat{x}_1,\dots,\hat{x}_{|\pi|}))\hat{\lambda}^{|\pi|}(\mathrm{d}\bm{\hat{x}})\\
+&=&\sum_{\pi\in\overline{\Pi}^\ell(k)}\int_{\mathbb{X}^{|\pi|}}\int_{\mathbb{M}^{|\pi|\times|\pi|}_{\ne}}(f^{\otimes\ell})_{\pi}(\bm{x},\bm{u})\mathbb{Q}^{|\pi|\times|\pi|}_{\ne}(\mathrm{d}\bm{u})\lambda^{|\pi|}(\mathrm{d}\bm{x}).
+\end{eqnarray*}
+\item[2)]For general $f$ satisfying $\E\left(\overline{S}^\ell\right)<\infty$, let $f_m:\mathbb{X}^k\times \mathbb{M}^{k\times k}_{\neq}\to\mathbb{R}$ be defined by 
+\begin{equation*}
+f_m(x_1,\hdots,x_k, (u_{i,j})_{i,j\in[k], i\neq j}):=f(x_1,\hdots,x_k, (u_{i,j})_{i,j\in[k], i\neq j})\mathbf{1}_{\{(x_1,\hdots,x_k)\in B_m\}}\mathbf{1}_{\{|f|\le m\}},
+\end{equation*}
+where $(B_m)_{m\in\mathbb{N}}$ is an increasing sequence of measurable sets such that $\lambda(B_m)<\infty$ for each $m\in\mathbb{N}$ and $ \cup_{m=1}^\infty B_m=\mathbb{X}$. Let $S_m$ be defined by replacing $f$ with $f_m$ in \eqref{def:ustat}. Because $|f_m|\le |f|$ and $f_m\to f$, by Lemma~\ref{lem:limits_S_n2} and dominated convergence theorem, we have 
+\begin{eqnarray*}
+    \E\left[(S-\E S)^{\ell}\right]&=&\lim_{m\to\infty}\E\left[(S_m-\E S_m)^{\ell}\right]\\
+    &=&\lim_{m\to\infty}\sum_{\pi\in\overline{\Pi}^\ell(k)}\int_{\mathbb{X}^{|\pi|}}\int_{\mathbb{M}^{|\pi|\times|\pi|}_{\ne}}(f_m^{\otimes\ell})_{\pi}(\bm{x},\bm{u})\mathbb{Q}^{|\pi|\times|\pi|}_{\ne}(\mathrm{d}\bm{u})\lambda^{|\pi|}(\mathrm{d}\bm{x})\\
+    &=&\sum_{\pi\in\overline{\Pi}^\ell(k)}\int_{\mathbb{X}^{|\pi|}}\int_{\mathbb{M}^{|\pi|\times|\pi|}_{\ne}}(f^{\otimes\ell})_{\pi}(\bm{x},\bm{u})\mathbb{Q}^{|\pi|\times|\pi|}_{\ne}(\mathrm{d}\bm{u})\lambda^{|\pi|}(\mathrm{d}\bm{x}).
+\end{eqnarray*}
+\end{enumerate}
+We complete the proof of \eqref{momeq-2}. The cumulant identities \eqref{momeq-3} can be shown in a similar way.   
+\end{proof}
 \section{Proofs}
 \subsection{Proof of Theorem~\ref{normalapp1}}
 
@@ -1058,7 +1089,7 @@ From the statements in Lemma \ref{lem:varlength} we observe that the variance as
 \end{itemize}
 \section{To-Do-List}
 \begin{itemize}
-\item Change the definition of set partitions (without $q_1,\dots,q_t$, also remove $\ge2$)
+\item moment identities to central moment identities and cumulant identities
 \item introduce Poisson $U$-statistics 
 \item Concentration inequality and moderate deviation 
 \item Poisson approximation, compound Poisson approximation and $\alpha$-stable approximation
