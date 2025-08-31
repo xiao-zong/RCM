@@ -6,7 +6,7 @@
 \usepackage{enumitem}
 \usepackage{color}
 
-\title{Functional approximation for $U$-statistics in the random connection model}
+\title{$U$-statistics of the random connection model and edge-marked Poisson processes}
 %\author{}
 % \date{October 2024}
 \def\parsedate #1:20#2#3#4#5#6#7#8\empty{20#2#3-#4#5-#6#7}
@@ -64,26 +64,26 @@ with various approaches being proposed to analyze the structure and asymptotic p
 
 
 
-\section{Distributional approximation of $U$-statistics of edge-marked Poisson processes}
+\section{$U$-statistics of edge-marked Poisson processes}
 
 
 
 \subsection{Edge-marked Poisson processes}
 
-Although we are mostly interested in the Random Connection Model, we derive general results for certain functionals and point processes constructed from so-called edge-marked Poisson processes. The idea of an edge-marked Poisson process is to take a Poisson process and to assign an independent and identically distributed mark to every pair of vertices. The random connection model can be seen as such an edge-marked Poisson process. We take the Poisson process of the vertices and assign to each pair of vertices $x$ and $y$ an independent random variable $U_{x,y}$ that is uniformly distributed on $[0,1]$. Then we connect $x$ and $y$ by an edge if and only if $U_{x,y}\leq \varphi(x,y)$, where $\varphi$ is the connection function.
+Although we are mostly interested in the Random Connection Model, we derive general results for certain functionals and point processes constructed from so-called edge-marked Poisson processes. The idea of an edge-marked Poisson process is to take a Poisson process and to assign an independent and identically distributed mark to every pair of points. The random connection model can be seen as such an edge-marked Poisson process. We take the Poisson process of the vertices and assign to each pair of vertices $x$ and $y$ an independent random variable $U_{x,y}$ that is uniformly distributed on $[0,1]$. Then we connect $x$ and $y$ by an edge if and only if $U_{x,y}\leq \varphi(x,y)$, where $\varphi$ is the connection function.
 
-In the following, we introduce edge-marked Poisson processes on general measurable space. To this end let $(\mathbb{X},\mathcal{X})$ be a measurable space and let $\lambda$ be a $\sigma$-finite non-atomic measure on $\mathbb{X}$. For $\mathbb{X}$ and $\lambda$ we always assume that for each $n\in\mathbb{N}$ there exists a partition $(A_\ell^{(n)})_{\ell\in\mathbb{N}}$ of $\mathbb{X}$ such that the following conditions are satisfied:
+In the following, we introduce edge-marked Poisson processes on a general measurable space. To this end let $(\mathbb{X},\mathcal{X})$ be a measurable space and let $\lambda$ be a $\sigma$-finite non-atomic measure on $\mathbb{X}$. For $\mathbb{X}$ and $\lambda$ we always assume that for each $n\in\mathbb{N}$ there exists a partition $(A_\ell^{(n)})_{\ell\in\mathbb{N}}$ of $\mathbb{X}$, i.e., $A^{(n)}_{\ell_1}\cap A^{(n)}_{\ell_2}=\emptyset$ for distinct $\ell_1,\ell_2\in\mathbb{N}$ and $\bigcup_{\ell=1}^\infty A^{(n)}_\ell=\mathbb{X}$, such that the following conditions are satisfied:
 \begin{itemize}
 \item For $x\in\mathbb{X}$ and $n\in\mathbb{N}$ let $A^{(n)}(x)$ be the unique $A^{(n)}_\ell$ such that $x\in A^{(n)}_\ell$. Then,
 \begin{equation}\label{eqn:monotonicity_partition}
 A^{(n)}(x)\subseteq A^{(m)}(x)
 \end{equation}
 for all $x\in\mathbb{X}$ and $m,n\in\mathbb{N}$ with $m\leq n$.
-\item There exists a sequence $(\varepsilon_n)_{n\in\mathbb{N}}$ such that
+\item There exists a sequence $(\varepsilon_n)_{n\in\mathbb{N}}$ such that $\lim_{n\to\infty}\varepsilon_n=0$ and
 \begin{equation}\label{eqn:size_partition}
 \lambda(A_\ell^{(n)}) \leq \frac{\varepsilon_n}{\ell}
 \end{equation}
-for all $\ell,n\in\mathbb{N}$ and $\lim_{n\to\infty}\varepsilon_n=0$.
+for all $\ell,n\in\mathbb{N}$.
 \item There exists a measurable function $\operatorname{dist}:\mathbb{X}\times \mathbb{X}\to[0,\infty)$ such that 
 \begin{equation}\label{eqn:uniqueness_distances}
 \lambda^3\left(\left\{(x,y,z)\in \mathbb{X}\times A^{(n)}_\ell\times A_\ell^{(n)}: \operatorname{dist}(x,y)=\operatorname{dist}(x,z)\right\}\right)=0
@@ -91,9 +91,9 @@ for all $\ell,n\in\mathbb{N}$ and $\lim_{n\to\infty}\varepsilon_n=0$.
 for all $\ell,n\in\mathbb{N}$.
 \end{itemize}
 
-Let us briefly discuss choices of $\mathbb{X}$ and $\lambda$ that are relevant for studying the random connection model. For the stationary random connection model with weights one chooses $\mathbb{X}=\mathbb{R}^d$ and $\lambda=\gamma\lambda_d$, where $\lambda_d$ is the $d$-dimensional Lebesgue measure and $\gamma>0$ is an intensity parameter. For the case of the random connection model with weights we let $\mathbb{X}=\mathbb{R}^d\times [0,\infty)$ and $\lambda=\gamma\lambda_d\otimes \mathbb{W}$ with $\gamma$ and $\lambda_d$ as before and the weight distribution $\mathbb{W}$. In case one is only interested in the random connection model in some observation window $K$ one replaces $\mathbb{R}^d$ by $K$ and the Lebesgue measure by the restriction of the Lebesgue measure.  
+Let us briefly discuss choices of $\mathbb{X}$ and $\lambda$ that are relevant for studying the random connection model. For the stationary random connection model without weights one chooses $\mathbb{X}=\mathbb{R}^d$ and $\lambda=\gamma\lambda_d$, where $\lambda_d$ is the $d$-dimensional Lebesgue measure and $\gamma>0$ is an intensity parameter. For the case of the random connection model with weights we let $\mathbb{X}=\mathbb{R}^d\times [0,\infty)$ and $\lambda=\gamma\lambda_d\otimes \mathbb{W}$ with $\gamma$ and $\lambda_d$ as before and the weight distribution $\mathbb{W}$. In case one is only interested in the random connection model in some observation window $K$ one replaces $\mathbb{R}^d$ by $K$ and the Lebesgue measure by the restriction of the Lebesgue measure.  
 
-Let $(\mathbb{X},\mathcal{X})$ be a measurable space and let $\eta$ be a Poisson process on $\mathbb{X}$ with a $\sigma$-finite non-atomic intensity measure $\lambda$. We assume that $\eta$ can be almost surely written as 
+Let $(\mathbb{X},\mathcal{X})$ be a measurable space and let $\eta$ be a Poisson process on $\mathbb{X}$ with the $\sigma$-finite non-atomic intensity measure $\lambda$. We assume that $\eta$ can be almost surely written as 
 $$
 \eta=\sum_{i\in I} \delta_{X_i}
 $$
@@ -129,7 +129,7 @@ We also denote
 \begin{equation}\label{eqn:generalised_Mecke_U-statistics}
 \E S = \int_{\mathbb{X}^k}\int_{\mathbb{M}^{k\times k}_{\neq}} f(x_1,\hdots,x_k,\mathbf{u}) \, \mathbb{Q}_{\neq}^{k\times k}(d\mathbf{u}) \, \lambda^k(d(x_1,\hdots,x_k)).
 \end{equation}
-\item[b)] Suppose $\E(\overline{S}^2)<\infty$, we have 
+\item[b)] Suppose $\E\left(\overline{S}^2\right)<\infty$, we have 
 \begin{align}\label{eqn:variance}
 \Var S =\sum_{\ell=1}^k{k\choose \ell}^2\ell! &\int_{\mathbb{X}^{2k-\ell}}\int_{\mathbb{M}^{(2k-\ell)\times (2k-\ell)}_{\neq}} f(x_1,\hdots,x_k,(u_{i,j})_{i,j\in[k],i\ne j}) \nonumber\\
 &f(x_1,\dots,x_{\ell},x_{k+1},\dots,x_{2k-\ell},(u_{i,j})_{i,j\in[\ell]\cup\{k+1,\dots,2k-\ell\},i\ne j}) )\\
@@ -141,13 +141,13 @@ For higher moments, we need a few more notation about partitions. Let $A$ be a n
 % For any $n\in\N$, we denote $[n]:=\{1,\dots,n\}$.
 Let $t\in\N$ and $q\in\N$. Set $J_\ell:=\{(\ell-1)q+1,\dots,\ell q\}$, for $\ell=1,\dots,t.$ By $\Pi^t(q)$ we denote the set of all partitions $\sigma$ such that $|B\cap J_\ell|\le1$ for all $\ell\in[t]$ and $B\in\sigma$.
 
-Every partition $\sigma\in\Pi^t(q)$ induces a partition $\sigma^*$ of $[t]$ in the following way: $i,j\in[t]$ are in the same block of $\sigma^*$ whenever there exists a block $B\in\sigma$ such that $|B\cap J_i|=|B\cap J_j|=1$. Let $\widetilde{\Pi}^t(q)$ be the collection of all partitions $\sigma\in\Pi^t(q)$ such that $|\sigma^*|=1$. Note partitions in $\Pi^t(q)$ and $\widetilde{\Pi}^t(q)$ are known as non-flat and connected non-flat respectively, see \cite[Chapter~4]{peccati2011}. 
-We denote $\overline{\Pi}^t(q)$ as the collection of all partitions $\sigma\in\Pi^t(q)$ such that for each $\ell\in[t]$ there exists a block $B\in\sigma$ with $|B|\ge2$ and $B\cap J_\ell\ne\emptyset$.
+Every partition $\sigma\in\Pi^t(q)$ induces a partition $\sigma^*$ of $[t]$ in the following way: $i,j\in[t]$ are in the same block of $\sigma^*$ whenever there exists a block $B\in\sigma$ such that $|B\cap J_i|=|B\cap J_j|=1$. Let $\widetilde{\Pi}^t(q)$ be the collection of all partitions $\sigma\in\Pi^t(q)$ such that $|\sigma^*|=1$. Note that partitions in $\Pi^t(q)$ and $\widetilde{\Pi}^t(q)$ are known as non-flat and connected non-flat respectively, see \cite[Chapter~4]{peccati2011}. 
+We denote by $\overline{\Pi}^t(q)$ the collection of all partitions $\sigma\in\Pi^t(q)$ such that for each $\ell\in[t]$ there exists a block $B\in\sigma$ with $|B|\ge2$ and $B\cap J_\ell\ne\emptyset$.
 %By $\Pi_{\ge2}(q_1,\dots,q_t)$ and $\widetilde{\Pi}_{\ge2}(q_1,\dots,q_t)$, we denote the sets of all $\sigma\in\Pi(q_1,\dots,q_t)$ and $\sigma\in\widetilde{\Pi}(q_1,\dots,q_t)$ such that $|B|\ge2$ for every $B\in\sigma$. In the case $q_1=\dots=q_t=q$, we write $\Pi^t(q)$, $\widetilde{\Pi}^t(q)$, $\Pi^t_{\ge2}(q)$, $\widetilde{\Pi}^t_{\ge2}(q)$ and $\overline{\Pi}^t(q)$ instead of $\Pi(q_1,\dots,q_t)$, $\widetilde{\Pi}(q_1,\dots,q_t)$, $\Pi_{\ge2}(q_1,\dots,q_t)$, $\widetilde{\Pi}_{\ge2}(q_1,\dots,q_t)$ and $\overline{\Pi}(q_1,\dots,q_t)$ respectively.
 
 Let $(S,\mathcal{S})$ be an arbitrary measurable space. For functions $f^{(\ell)}:S^{q}\to\R$, $\ell\in[t]$, we define their tensor product $\otimes_{\ell=1}^tf^{(\ell)}:S^{tq}\to\R$ by 
 $$\otimes_{\ell=1}^tf^{(\ell)}(x_1,\dots,x_{tq}):=\prod_{\ell=1}^tf^{(\ell)}(x_{(\ell-1)q+1},\dots,x_{\ell q}).$$
-For each $\sigma\in\Pi^t(q)$, the function $(\otimes_{\ell=1}^tf^{(\ell)})_\sigma:S^{|\sigma|}$ is obtained by replacing all variables that belong to the same block in $\sigma$ by a new common variable.
+For each $\sigma\in\Pi^t(q)$, the function $(\otimes_{\ell=1}^tf^{(\ell)})_\sigma:S^{|\sigma|}\to\mathbb{R}$ is obtained by replacing all variables that belong to the same block in $\sigma$ by a new common variable.
 \begin{prop}\label{prop:moments}
     Suppose that $\E\left(\overline{S}^{\ell}\right)<\infty$ for some $\ell\in\N$, then 
     \begin{eqnarray}
@@ -193,11 +193,11 @@ for $i\in[4]$.
 
 For $k\in\mathbb{N}$ with $k\geq2$ and a locally compact second countable Hausdorff space $\mathbb{Y}$ with Borel $\sigma$-algebra $\mathcal{Y}$ we consider a measurable function $g: \operatorname{dom} g\to\mathbb{Y}$ with $\operatorname{dom} g\subseteq \mathbb{X}^k\times \mathbb{M}^{k\times k}_{\neq}$. Moreover, we define
 $$
-{\operatorname{dom}'} g := \left\{( x_1, \ldots, x_k) : \left( x_1, \ldots, x_k, (W_{x_i,x_j})_{i,j\in[k], i \neq j} \right) \in  \operatorname{dom} g\right\}.
+{\operatorname{dom}'} g := \left\{( x_1, \ldots, x_k)\in\mathbb{X}^k : \text{ there exists a } \mathbf{u}\in\mathbb{M}^{k\times k}_{\neq} \text{ such that } \left( x_1, \ldots, x_k, \mathbf{u} \right) \in  \operatorname{dom} g\right\}.
 $$
 In the following, we consider the point process
 \begin{equation}\label{definition_xi}
-\xi:= \frac{1}{k!}\sum_{(x_1, \ldots, x_k) \in \eta^k_{\neq}\cap  {\operatorname{dom}'} g}  \delta_{g \left( x_1, \ldots, x_k, (W_{x_i,x_j})_{i,j\in[k], i \neq j} \right)}.
+\xi:= \frac{1}{k!}\sum_{(x_1, \ldots, x_k) \in \eta^k_{\neq}\cap  {\operatorname{dom}'} g}  \delta_{g \left( x_1, \ldots, x_k, (M_{x_i,x_j})_{i,j\in[k], i \neq j} \right)}.
 \end{equation}
 The intensity measure $\mathbf{L}$ of $\xi$ is given by
 $$
@@ -216,11 +216,115 @@ where
   &  r(\operatorname{dom} g) := \max_{1 \leq \ell \leq k-1} 
 \int_{\mathbb{X}^{2k-\ell}} \int_{\mathbb{M}^{(2k-\ell)\times (2k-\ell)}_{\neq}}  
 \mathbf{1}\big\{ ( {x}_1, \ldots, {x}_k , (\mathbf{u}_{i,j})_{i,j\in[k],i\neq j} ) \in \operatorname{dom} g  \big\}  \\
-&  \hspace{3cm} \times \mathbf{1}\big\{ ( {x}_1, \ldots, {x}_\ell, {x}_{k+1} \ldots, {x}_{2k-\ell}, (\mathbf{u}_{i,j})_{i,j\in [\ell]\cup\{k+1,\hdots,2k-\ell\}, i\neq j} ) \in \operatorname{dom} g \big\} \\
+&  \hspace{3cm} \times \mathbf{1}\big\{ ( {x}_1, \ldots, {x}_\ell, {x}_{k+1}, \ldots, {x}_{2k-\ell}, (\mathbf{u}_{i,j})_{i,j\in [\ell]\cup\{k+1,\hdots,2k-\ell\}, i\neq j} ) \in \operatorname{dom} g \big\} \\
 & \hspace{3cm} \times  \mathbb{Q}^{(2k-\ell)\times(2k-\ell)}_{\neq} (d\mathbf{u}) \, \lambda^{2k-\ell}(d(x_1,\hdots,x_{2k-\ell})).
 \end{align*}  
 \end{theorem}
 
+Next we provide some corollaries of Theorem \ref{Poisson_process_approximation}. For $g: \operatorname{dom} g \to\mathbb{Y}$ as above and $B\in\mathcal{Y}$ we define the $U$-statistic
+$$
+T:=\frac{1}{k!}\sum_{(x_1,\hdots,x_k)\in\eta^k_{\neq}\cap \operatorname{dom}'g} \mathbf{1}\{g(x_1,\hdots,x_k,(M_{x_i,x_j})_{i,j\in[k],i\neq j})\in B\}.
+$$
+
+\begin{cor}
+Assume that $\mathbb{E}[T^2]<\infty$ and let $Z$ be a Poisson distributed random variable with parameter $a\in[0,\infty)$. Then,
+\begin{align*}
+d_{\operatorname{Wass}}(T,Z) & \leq |\mathbb{E}[T]-a| + 2 ( \mathbb{E}[T^2]- \mathbb{E}[T] -(\mathbb{E}[T])^2 ) \\
+& \leq |\mathbb{E}[T]-a| + \frac{2^{k+1}}{k!} r(B)
+\end{align*}
+with
+\begin{align*}
+  &  r(B) := \max_{1 \leq \ell \leq k-1} 
+\int_{\mathbb{X}^{2k-\ell}} \int_{\mathbb{M}^{(2k-\ell)\times (2k-\ell)}_{\neq}}  
+\mathbf{1}\big\{ g({x}_1, \ldots, {x}_k , (\mathbf{u}_{i,j})_{i,j\in[k],i\neq j} ) \in B \big\}  \\
+&  \hspace{3cm} \times \mathbf{1}\big\{ g({x}_1, \ldots, {x}_\ell, {x}_{k+1}, \ldots, {x}_{2k-\ell}, (\mathbf{u}_{i,j})_{i,j\in [\ell]\cup\{k+1,\hdots,2k-\ell\}, i\neq j} ) \in B \big\} \\
+& \hspace{3cm} \times  \mathbb{Q}^{(2k-\ell)\times(2k-\ell)}_{\neq} (d\mathbf{u}) \, \lambda^{2k-\ell}(d(x_1,\hdots,x_{2k-\ell})).
+\end{align*}  
+\end{cor}
+
+\begin{proof}
+The statement follows from Theorem \ref{Poisson_process_approximation} exactly as Theorem 7.1 follows from Theorem 3.1 in \cite{dst}.
+\end{proof}
+
+Let $g: \mathbb{X}^k\times\mathbb{M}^{k\times k}\to\mathbb{R}$ be a measurable function. Define the $U$-statistic
+\begin{equation}\label{definition_U}
+U := \frac{1}{k!}\sum_{(x_1,\hdots,x_k)\in\eta^k_{\neq}\cap \operatorname{dom}'g} g(x_1,\hdots,x_k,(M_{x_i,x_j})_{i,j\in[k],i\neq j}). 
+\end{equation}
+Moreover, let
+\begin{align*}
+\mathbf{L}(A) := \frac{1}{k!} \, \mathbb{E} \sum_{(x_1, \ldots, x_k) \in \eta_{\neq}^k} 
+\mathbf{1}\left( g(x_1, \ldots, x_k, (M_{x_i,x_j})_{i,j\in[k], i \neq j}) \in A \setminus \{0\} \right)
+\end{align*}
+for $A \in \mathcal{B}(\mathbb{R})$. We get the following result.
+
+\begin{cor}\label{compound}
+For a Poisson process  \( \zeta \) on \( \mathbb{R} \) with a finite intensity measure \( \mathbf{M} \) let
+\[
+Y := \sum_{x \in \zeta} x.
+\]
+Then,
+\begin{align*}
+d_{\mathrm{TV}}(U, Y) \le d_{\mathrm{TV}}(\mathbf{L}, \mathbf{M}) + \frac{2^{k+1}}{k!} \, r_0
+\end{align*}
+with
+\begin{align*}
+  &  r_0 := \max_{1 \leq \ell \leq k-1} 
+\int_{\mathbb{X}^{2k-\ell}} \int_{\mathbb{M}^{(2k-\ell)\times (2k-\ell)}_{\neq}}  
+\mathbf{1}\big\{ g({x}_1, \ldots, {x}_k , (\mathbf{u}_{i,j})_{i,j\in[k],i\neq j} )\neq 0 \big\}  \\
+&  \hspace{3cm} \times \mathbf{1}\big\{ g({x}_1, \ldots, {x}_\ell, {x}_{k+1}, \ldots, {x}_{2k-\ell}, (\mathbf{u}_{i,j})_{i,j\in [\ell]\cup\{k+1,\hdots,2k-\ell\}, i\neq j} ) \neq 0 \big\} \\
+& \hspace{3cm} \times  \mathbb{Q}^{(2k-\ell)\times(2k-\ell)}_{\neq} (d\mathbf{u}) \, \lambda^{2k-\ell}(d(x_1,\hdots,x_{2k-\ell})).
+\end{align*}
+\end{cor}
+
+\begin{proof}
+The assertion can be deduced from Theorem \ref{Poisson_process_approximation} as Theorem 7.4 is derived from Theorem 3.1 in \cite{dst}.
+\end{proof}
+
+Next we compare the distribution of the random variable $U$ introduced in \eqref{definition_U} with an $\alpha$-stable distribution. To this end we fix $\alpha\in(0,1)$ and let
+$$
+g_\alpha (u) := \mathbf{1}\{ u\neq 0 \} \operatorname{sign}(g(u)) g(u)^{-\alpha}
+$$
+for $u\in\mathbb{R}$, where $\operatorname{sign}(u) = \mathbf{1}(u \ge 0) - \mathbf{1}(u < 0)$.
+We define
+\begin{align*}
+\mathbf{L}^{(\alpha)}(A) & := \frac{1}{k!} \, \mathbb{E} \sum_{(x_1, \ldots, x_k) \in \eta_{\neq}^k}  \mathbf{1}\{ g_\alpha(x_1, \ldots, x_k, (M_{x_i,x_j})_{i,j\in[k], i \neq j})\in A\setminus\{0\} \}
+\end{align*}
+for $A \in \mathcal{B}(\mathbb{R})$.
+
+\begin{cor}\label{approximation_alpha-stable}
+Let \( \alpha \in (0, 1) \), and let \( \mathbf{M} \) be either the Lebesgue measure on \( \mathbb{R} \) or its restriction to \( (0,\infty)) \). Define
+\[
+Y := \sum_{x \in \zeta} \operatorname{sign}(x) |x|^{-1/\alpha},
+\]
+where \( \zeta \) is a Poisson process with intensity measure \( \mathbf{M}\). Assume that there exist functions \( g_1, g_2, g_3 \colon (0,\infty) \to (0,\infty) \) such that, for every \( a > 0 \),
+\begin{align*}
+d_{\mathrm{TV}}(\mathbf{L}|_{[-a,a]}, \mathbf{M}|_{[-a,a]}) &\le g_1(a),
+\end{align*}
+\begin{align*}
+&\max_{1 \leq \ell \leq k-1} 
+\int_{\mathbb{X}^{2k-\ell}} \int_{\mathbb{M}^{(2k-\ell)\times (2k-\ell)}_{\neq}}  
+\mathbf{1}\big\{ g_\alpha({x}_1, \ldots, {x}_k , (\mathbf{u}_{i,j})_{i,j\in[k],i\neq j} )\in A\setminus\{0\} \big\}  \\
+&  \hspace{3cm} \times \mathbf{1}\big\{ g_\alpha({x}_1, \ldots, {x}_\ell, {x}_{k+1}, \ldots, {x}_{2k-\ell}, (\mathbf{u}_{i,j})_{i,j\in [\ell]\cup\{k+1,\hdots,2k-\ell\}, i\neq j} ) \in A\setminus\{0\} \big\} \\
+& \hspace{3cm} \times  \mathbb{Q}^{(2k-\ell)\times(2k-\ell)}_{\neq} (d\mathbf{u}) \, \lambda^{2k-\ell}(d(x_1,\hdots,x_{2k-\ell}))\\
+&\le g_2(a),
+\end{align*}
+\begin{align*}
+& \frac{1}{k!} \, \mathbb{E} \sum_{(x_1, \ldots, x_k) \in \eta^k_{\neq}} \mathbf{1}\{|g(x_1, \ldots, x_k,(M_{x_i,x_j})_{i,j\in[k], i \neq j})| < a^{-1/\alpha}\} |g(x_1, \ldots, x_k,(M_{x_i,x_j})_{i,j \in[k], i \neq j})| \\
+&\le g_3(a).
+\end{align*}
+Then there exists a constant \( C > 0 \), depending only on \( \alpha \) and \( k \), such that
+\[
+d_{\operatorname{Kol}}(U, Y) \le C b,
+\]
+where
+\[
+b := \inf_{a > 0} \max\left\{ a^{1/2 - 1/(2\alpha)},\; g_1(a),\; g_2(a),\; \sqrt{g_3(a)} \right\}.
+\]
+\end{cor}
+
+\begin{proof}
+The proof is analogously to the derivation of Theorem 7.8 from Theorem 3.1 in \cite{dst}. 
+\end{proof}
 
 
 \iffalse\subsection{Poisson process approximation (old)}
@@ -257,7 +361,7 @@ and
 \end{align*}
 both uniformly in $A$, if the intensity measure $K \otimes \mathbb{Q}$ is finite (we set $t=1$ above). Therefore, using \cite[Theorem 3.1]{dst} we obtain the following functional version of Theorem \ref{P1}.
 
-\begin{theorem} \label{P2}
+\begin{theorem} \label{PPA}
     Let $\xi$ be the point process given in \eqref{originalPproc}. Let $\zeta$ be a Poisson process with finite intensity measure $M$. Assume either that
     \begin{itemize}
         \item[(i)] the intensity measure $K \otimes \mathbb{Q}$ is finite
@@ -283,16 +387,16 @@ for
 
 
 
-\fi
 
 
 
 
-\subsection{Poisson approximation}
+\subsubsection{Poisson approximation}
 
-We want to employ \cite[Theorem 7.1]{dst} in order to bound
-$$d_W (\hat{S},Z) $$
-for a Poisson distributed random variable $Z$ with mean $\lambda$. By the latter theorem, we have
+We can employ Theorem~\ref{Poisson_process_approximation} %\cite[Theorem 7.1]{dst} 
+in order to bound
+$$d_W (\hat{S}_t,Z) $$
+for a Poisson distributed random variable $Z$ with mean $\lambda\in[0,\infty)$. By the latter theorem, we have
 
 \[
 d_W(\hat{S}, Z) \leq \left| \mathbb{E}[\hat{S}] - \lambda \right| + \frac{2^{k+1}}{k!} \, r_t(B)
@@ -388,9 +492,9 @@ for
 
 
 
-\subsection{Compound Poisson approximation}
+\subsubsection{Compound Poisson approximation}
 
-As another consequence of Theorem \ref{P2} we get the analogue of \cite[Theorem 7.4]{dst}. Consider the family of U-statistics
+As another consequence of Theorem \ref{Poisson_process_approximation} we get the analogue of \cite[Theorem 7.4]{dst}. Consider the family of U-statistics
 
 \begin{align*}
 S_t := \frac{1}{k!} \sum_{(x_1, \ldots, x_k) \in \eta_{t,\neq}^k} h_t(x_1, \ldots, x_k, (W_{x_i,x_j})_{i,j =1,\ldots, k, i \neq j}), \quad t \ge 1,
@@ -429,7 +533,7 @@ with
 
 
 
-\subsection{Approximation by $\alpha$-stable distribution}
+\subsubsection{Approximation by $\alpha$-stable distribution}
 
 Fix $\alpha \in (0, 1)$ and $\gamma \in \mathbb{R}$. The goal is to make use of a functional limit theorem for the point processes
 \begin{align*}
@@ -437,7 +541,7 @@ Fix $\alpha \in (0, 1)$ and $\gamma \in \mathbb{R}$. The goal is to make use of 
 \mathbf{1}(h_t(x_1, \ldots, x_k,(W_{x_i,x_j})_{i,j =1,\ldots, k, i \neq j}) \ne 0) \\
 &\quad \delta_{\operatorname{sign}(h_t(x_1, \ldots, x_k,(W_{x_i,x_j})_{i,j =1,\ldots, k, i \neq j})) t^\gamma |h_t(x_1, \ldots, x_k,(W_{x_i,x_j})_{i,j =1,\ldots, k, i \neq j})|^{-\alpha}},
 \end{align*}
- $t \ge 1$, on $\mathbb{R}$, with $\operatorname{sign}(a) = \mathbf{1}(a \ge 0) - \mathbf{1}(a < 0)$. In fact, having established Theorem \ref{P2} the following application follows from the proof of \cite[Theorem 7.8]{dst}. In the following we denote by $L_t$ the intensity measure of $t^\gamma \cdot \xi_t$, and
+ $t \ge 1$, on $\mathbb{R}$, with $\operatorname{sign}(a) = \mathbf{1}(a \ge 0) - \mathbf{1}(a < 0)$. In fact, having established Theorem~\ref{Poisson_process_approximation} the following application follows from the proof of \cite[Theorem 7.8]{dst}. In the following we denote by $L_t$ the intensity measure of $t^\gamma \cdot \xi_t$, and
 
 \begin{align*}
   &  r_t(A) := \max_{1 \leq \ell \leq k-1} 
@@ -473,12 +577,13 @@ g(t) := \inf_{a > 0} \max\left\{ a^{1/2 - 1/(2\alpha)},\; g_1(a,t),\; g_2(a,t),\
 \]
 \end{theorem}
 
+\fi
 
-
-
+\subsection{Moderate deviations and concentration inequalities}
 
 
 \section{Limit theorems for RCM}
+In this section, we consider the RCM 
 The following examples can be studied:
 \begin{itemize}
     \item subgraph counts (CLT, MDPs, concentration, stable limits)
@@ -1089,13 +1194,39 @@ From the statements in Lemma \ref{lem:varlength} we observe that the variance as
 \end{itemize}
 \section{To-Do-List}
 \begin{itemize}
-\item moment identities to central moment identities and cumulant identities
+\item List of notation
+\begin{enumerate}
+\item vertex set $\eta$ (stationary intensity measure $\gamma\cdot\lambda_d$, $\gamma>0$) 
+\item window $\Gamma_s:=s^{1/d}\Gamma_0$ with $\Gamma_0$ such that $\lambda_d(\Gamma_0)=1$, maybe $\Gamma_0$ compact and convex
+\item $\eta_s:=\eta\cap {\Gamma_s}$
+\item (unweighed) RCM with connection function $\varphi$ (translation-invariant)
+$$\int_{\mathbb{R}^d}\varphi(z)\mathrm{d}z<\infty,$$
+$\varphi(x,y)=\varphi(x-y)=\varphi(y-x)$ (more general than $\varphi(x,y)=\varphi(\|x-y\|)$)
+moment assumption hopefully sufficient for normal approximation of subgraph counts, stronger moment assumptions for edge-length functionals, for example
+$$\int_{\mathbb{R}^d}\varphi(z) \|z\|^{4\tau} \mathrm{d}z<\infty.$$
+$\tau$ for edge-length functionals.
+\item weighted RCM $(\eta,\varphi,W)$, $\mathbb{W}$ for the distribution of mark $W$, $W_x$ for the weight of $x\in\eta$, 
+$$\IP(W>t)=\ell(t)t^{-\alpha},$$
+with $\ell$ being a slowly varying function, special form of $\varphi$,
+$$
+\varphi(x,y,W_x,W_y)= \phi(\kappa(W_x,W_y)/\|x-y\|)
+$$
+checking the existing notations in the literature. 
+Subgraph counting could require assumptions like
+$$
+\mathbb{E}[\kappa(W_1,W_2)^{\beta_G}]<\infty
+$$
+with $\beta_G$ depending on the considered subgraph $G$
+\end{enumerate}
+
+\item application for hub-to-hub edges of weighted RCM (power law weights): counts of edges and sums of edges lengths   
+\item Poisson approximation (modifications needed), compound Poisson approximation and $\alpha$-stable approximation
+\item Concentration inequality and moderate deviation (last)
 \item introduce Poisson $U$-statistics 
-\item Concentration inequality and moderate deviation 
-\item Poisson approximation, compound Poisson approximation and $\alpha$-stable approximation
 \end{itemize}
 
 \bibliographystyle{apalike}
 \bibliography{lit}
 
 \end{document}
+
