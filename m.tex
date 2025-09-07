@@ -40,11 +40,11 @@
 
 \begin{document}
 
-\maketitle
+%\maketitle
 
 \section{Introduction}
 
-% Consider the following random graph $(V,E)$: the vertex set is given by $V=\eta$, where $\eta=\{X_n: n \in \mathbb{N} \}$ is (a realization of) a homogeneous Poisson point process with unit intensity in $\mathbb{R}^d$. Given the set of vertices $V$ we construct the set of (undirected) edges as follows. Let $g\colon \mathbb{R}^d \to [0,1]$ be a measurable function satisfying $g(x) = g(-x)$ for all $x\in\mathbb{R}^d$ and
+% Consider the following random graph $(V,E)$: the vertex set is given by $V=\eta$, where $\eta=\{X_n: n \in \mathbb{N} \}$ is (a realization of) a homogeneous Poisson point process with unit intensity in $\mathbb{R}ƒ^d$. Given the set of vertices $V$ we construct the set of (undirected) edges as follows. Let $g\colon \mathbb{R}^d \to [0,1]$ be a measurable function satisfying $g(x) = g(-x)$ for all $x\in\mathbb{R}^d$ and
 % \begin{equation} \label{g1}
 %  0< \int_{\mathbb{R}^d} g(x) dx < \infty.
 % \end{equation}
@@ -55,7 +55,7 @@ Let $\eta$ be a homogeneous Poisson point process with unit intensity in $\mathb
 \end{equation}
 Any two distinct points $x,y\in\eta$ are connected by an edge with probability $g(x-y)$, independently of all other edges. The resulting random graph is known as a random connection model (RCM) with connection function $g$, see \cite{meesterroy} for more details.
 
-Counting statistics on RCM gains vastly attention in recent years, including isolated vertices count \cite{Penrose2}, component count \cite{Last_Nestmann_Schulte} and subgraph counts in \cite{can2022}, \cite{LiuPrivault},
+Counting statistics on RCM gains vastly attention in recent years, including isolated vertices counts \cite{Penrose2}, component counts \cite{Last_Nestmann_Schulte} and subgraph counts in \cite{can2022, LiuPrivault},
 with various approaches being proposed to analyze the structure and asymptotic properties of these random graphs. In this note, we focus on various approximation results for counting statistics in RCM by incorporating the random connection model into the framework of Poisson $U$-statistics, see \cite{reitznerschulte}, \cite{last4}, and \cite{schulte} for more details.
 % \subsection{$U$-statistics of RCM}
 % \section{Preliminaries}
@@ -70,7 +70,7 @@ with various approaches being proposed to analyze the structure and asymptotic p
 
 \subsection{Edge-marked Poisson processes}
 
-Although we are mostly interested in the Random Connection Model, we derive general results for certain functionals and point processes constructed from so-called edge-marked Poisson processes. The idea of an edge-marked Poisson process is to take a Poisson process and to assign an independent and identically distributed mark to every pair of points. The random connection model can be seen as such an edge-marked Poisson process. We take the Poisson process of the vertices and assign to each pair of vertices $x$ and $y$ an independent random variable $U_{x,y}$ that is uniformly distributed on $[0,1]$. Then we connect $x$ and $y$ by an edge if and only if $U_{x,y}\leq \varphi(x,y)$, where $\varphi$ is the connection function.
+Although we are mostly interested in the random connection model, we derive general results for certain functionals and point processes constructed from so-called edge-marked Poisson processes. The idea of an edge-marked Poisson process is to take a Poisson process and to assign i.i.d.\ marks to all pairs of points. The random connection model can be derived from such an edge-marked Poisson process in the following way. We take the Poisson process of the vertices and equip each pair of vertices $x$ and $y$ with an independent random variable $U_{x,y}$ that is uniformly distributed on $[0,1]$. Then we connect $x$ and $y$ by an edge if and only if $U_{x,y}\leq \varphi(x,y)$, where $\varphi$ is the connection function.
 
 In the following, we introduce edge-marked Poisson processes on a general measurable space. To this end let $(\mathbb{X},\mathcal{X})$ be a measurable space and let $\lambda$ be a $\sigma$-finite non-atomic measure on $\mathbb{X}$. For $\mathbb{X}$ and $\lambda$ we always assume that for each $n\in\mathbb{N}$ there exists a partition $(A_\ell^{(n)})_{\ell\in\mathbb{N}}$ of $\mathbb{X}$, i.e., $A^{(n)}_{\ell_1}\cap A^{(n)}_{\ell_2}=\emptyset$ for distinct $\ell_1,\ell_2\in\mathbb{N}$ and $\bigcup_{\ell=1}^\infty A^{(n)}_\ell=\mathbb{X}$, such that the following conditions are satisfied:
 \begin{itemize}
@@ -91,9 +91,9 @@ for all $\ell,n\in\mathbb{N}$.
 for all $\ell,n\in\mathbb{N}$.
 \end{itemize}
 
-Let us briefly discuss choices of $\mathbb{X}$ and $\lambda$ that are relevant for studying the random connection model. For the stationary random connection model without weights one chooses $\mathbb{X}=\mathbb{R}^d$ and $\lambda=\gamma\lambda_d$, where $\lambda_d$ is the $d$-dimensional Lebesgue measure and $\gamma>0$ is an intensity parameter. For the case of the random connection model with weights we let $\mathbb{X}=\mathbb{R}^d\times [0,\infty)$ and $\lambda=\gamma\lambda_d\otimes \mathbb{W}$ with $\gamma$ and $\lambda_d$ as before and the weight distribution $\mathbb{W}$. In case one is only interested in the random connection model in some observation window $K$ one replaces $\mathbb{R}^d$ by $K$ and the Lebesgue measure by the restriction of the Lebesgue measure.  
+Let us briefly discuss choices of $\mathbb{X}$ and $\lambda$ that are relevant for studying the random connection model. For the stationary random connection model without weights one chooses $\mathbb{X}=\mathbb{R}^d$ and $\lambda=\gamma\lambda_d$, where $\lambda_d$ is the $d$-dimensional Lebesgue measure and $\gamma>0$ is an intensity parameter. For the case of stationary weighted random connection models we let $\mathbb{X}=\mathbb{R}^d\times [0,\infty)$ and $\lambda=\gamma\lambda_d\otimes \mathbb{W}$ with $\gamma$ and $\lambda_d$ as before and the weight distribution $\mathbb{W}$. In case one is only interested in the random connection model in some observation window $K$, one replaces $\mathbb{R}^d$ by $K$ and the Lebesgue measure by the restriction of the Lebesgue measure to $K$.  
 
-Let $(\mathbb{X},\mathcal{X})$ be a measurable space and let $\eta$ be a Poisson process on $\mathbb{X}$ with the $\sigma$-finite non-atomic intensity measure $\lambda$. We assume that $\eta$ can be almost surely written as 
+Let $\eta$ be a Poisson process on $\mathbb{X}$ with the $\sigma$-finite non-atomic intensity measure $\lambda$. We assume that $\eta$ can be almost surely written as 
 $$
 \eta=\sum_{i\in I} \delta_{X_i}
 $$
@@ -127,21 +127,21 @@ We also denote
     \item[a)]
     Suppose $\E(\overline{S})<\infty$, then we have 
 \begin{equation}\label{eqn:generalised_Mecke_U-statistics}
-\E S = \int_{\mathbb{X}^k}\int_{\mathbb{M}^{k\times k}_{\neq}} f(x_1,\hdots,x_k,\mathbf{u}) \, \mathbb{Q}_{\neq}^{k\times k}(d\mathbf{u}) \, \lambda^k(d(x_1,\hdots,x_k)).
+\E S = \int_{\mathbb{X}^k}\int_{\mathbb{M}^{k\times k}_{\neq}} f(x_1,\hdots,x_k,\mathbf{u}) \, \mathbb{Q}_{\neq}^{k\times k}(\mathrm{d}\mathbf{u}) \, \lambda^k(\mathrm{d}(x_1,\hdots,x_k)).
 \end{equation}
 \item[b)] Suppose $\E\left(\overline{S}^2\right)<\infty$, we have 
 \begin{align}\label{eqn:variance}
 \Var S =\sum_{\ell=1}^k{k\choose \ell}^2\ell! &\int_{\mathbb{X}^{2k-\ell}}\int_{\mathbb{M}^{(2k-\ell)\times (2k-\ell)}_{\neq}} f(x_1,\hdots,x_k,(u_{i,j})_{i,j\in[k],i\ne j}) \nonumber\\
 &f(x_1,\dots,x_{\ell},x_{k+1},\dots,x_{2k-\ell},(u_{i,j})_{i,j\in[\ell]\cup\{k+1,\dots,2k-\ell\},i\ne j}) )\\
-&\mathbb{Q}_{\neq}^{(2k-\ell)\times (2k-\ell)}(d\mathbf{u}) \, \lambda^{2k-\ell}(d(x_1,\hdots,x_{2k-\ell})).\nonumber
+&\mathbb{Q}_{\neq}^{(2k-\ell)\times (2k-\ell)}(\mathrm{d}\mathbf{u}) \, \lambda^{2k-\ell}(\mathrm{d}(x_1,\hdots,x_{2k-\ell})).\nonumber
 \end{align}
 \end{enumerate}
 \end{prop}
 For higher moments, we need a few more notation about partitions. Let $A$ be a non-empty set. A partition $\sigma$ of $A$ is a collection $\{B_1,\dots,B_s\}$ of pairwise disjoint non-empty subsets $B_i\subseteq A$, called blocks, such that $B_1\cup\cdots\cup B_s=A$. The number $s$ of blocks in $\sigma$ is denoted by $|\sigma|$.
 % For any $n\in\N$, we denote $[n]:=\{1,\dots,n\}$.
-Let $t\in\N$ and $q\in\N$. Set $J_\ell:=\{(\ell-1)q+1,\dots,\ell q\}$, for $\ell=1,\dots,t.$ By $\Pi^t(q)$ we denote the set of all partitions $\sigma$ such that $|B\cap J_\ell|\le1$ for all $\ell\in[t]$ and $B\in\sigma$.
+Let $t\in\N$ and $q\in\N$. Set $J_\ell:=\{(\ell-1)q+1,\dots,\ell q\}$, for $\ell=1,\dots,t.$ By $\Pi^t(q)$ we denote the set of all partitions $\sigma$ of $[tq]$ such that $|B\cap J_\ell|\le1$ for all $\ell\in[t]$ and $B\in\sigma$.
 
-Every partition $\sigma\in\Pi^t(q)$ induces a partition $\sigma^*$ of $[t]$ in the following way: $i,j\in[t]$ are in the same block of $\sigma^*$ whenever there exists a block $B\in\sigma$ such that $|B\cap J_i|=|B\cap J_j|=1$. Let $\widetilde{\Pi}^t(q)$ be the collection of all partitions $\sigma\in\Pi^t(q)$ such that $|\sigma^*|=1$. Note that partitions in $\Pi^t(q)$ and $\widetilde{\Pi}^t(q)$ are known as non-flat and connected non-flat respectively, see \cite[Chapter~4]{peccati2011}. 
+Every partition $\sigma\in\Pi^t(q)$ induces a partition $\sigma^*$ of $[t]$ in the following way: $i,j\in[t]$ are in the same block of $\sigma^*$ whenever there exists a block $B\in\sigma$ such that $|B\cap J_i|=|B\cap J_j|=1$. Let $\widetilde{\Pi}^t(q)$ be the collection of all partitions $\sigma\in\Pi^t(q)$ such that $|\sigma^*|=1$. Note that partitions in $\Pi^t(q)$ and $\widetilde{\Pi}^t(q)$ are known as non-flat and connected non-flat, respectively, see \cite[Chapter~4]{peccati2011}. 
 We denote by $\overline{\Pi}^t(q)$ the collection of all partitions $\sigma\in\Pi^t(q)$ such that for each $\ell\in[t]$ there exists a block $B\in\sigma$ with $|B|\ge2$ and $B\cap J_\ell\ne\emptyset$.
 %By $\Pi_{\ge2}(q_1,\dots,q_t)$ and $\widetilde{\Pi}_{\ge2}(q_1,\dots,q_t)$, we denote the sets of all $\sigma\in\Pi(q_1,\dots,q_t)$ and $\sigma\in\widetilde{\Pi}(q_1,\dots,q_t)$ such that $|B|\ge2$ for every $B\in\sigma$. In the case $q_1=\dots=q_t=q$, we write $\Pi^t(q)$, $\widetilde{\Pi}^t(q)$, $\Pi^t_{\ge2}(q)$, $\widetilde{\Pi}^t_{\ge2}(q)$ and $\overline{\Pi}^t(q)$ instead of $\Pi(q_1,\dots,q_t)$, $\widetilde{\Pi}(q_1,\dots,q_t)$, $\Pi_{\ge2}(q_1,\dots,q_t)$, $\widetilde{\Pi}_{\ge2}(q_1,\dots,q_t)$ and $\overline{\Pi}(q_1,\dots,q_t)$ respectively.
 
@@ -170,7 +170,7 @@ Let $f: \mathbb{X}^k\times \mathbb{M}^{k\times k}_{\neq}\to\mathbb{R}$ be a meas
 % satisfying $\supp(f)\subset B\times\mathbb{M}^{k\times k}_{\neq}$ with some bounded set $B\in \mathcal{X}^k$
 and 
 $$S=\sum_{(x_1,\hdots,x_k)\in\eta^k_{\neq}} f(x_1,\hdots,x_k, (M_{x_i,x_j})_{i,j\in[k], i\neq j}).$$ 
-Suppose that $\E\left(\overline{S}^2\right)<\infty$ with $\overline{S}$ given in \eqref{def-integ1}.
+Suppose that $\E\left(\overline{S}^2\right)<\infty$ with $\overline{S}$ given in \eqref{def-integ1}. Let $N$ denote a standard normal random variable.
 Then, we have
 \begin{eqnarray}
 d_W\left(\frac{S-\E S}{\sqrt{\Var S}},N\right)&\le&2k^{7/2}\sum_{1\le i\le j\le k}\frac{\sqrt{M_{ij}(f)}}{\Var S},\label{norbound-1}\\
@@ -181,11 +181,11 @@ where
 %     M_{ij}(f)&:=&\sum_{\pi\in\widetilde{\Pi}_{\ge2}(i,i,j,j)}\int_{\mathbb{X}^{|\pi|}} \int_{\mathbb{M}^{|\pi|\times |\pi|}_{\neq}} \left(\overline{f}_i\otimes\overline{f}_i\otimes\overline{f}_j\otimes\overline{f}_j\right)_{\pi}(\bm{x},\bm{u}) \, \mathbb{Q}_{\neq}^{|\pi|\times |\pi|}(\mathrm{d}\bm{u}) \, \lambda^{|\pi|}(\mathrm{d}\bm{x}),
 % \end{eqnarray*}
 \begin{eqnarray*}
-    M_{ij}(f)&:=&\sum_{\substack{\pi\in\widetilde{\Pi}^4(k)\\s_1(\pi)=s_2(\pi)=k-i\\s_3(\pi)=s_4(\pi)=k-j}}\int_{\mathbb{X}^{|\pi|}} \int_{\mathbb{M}^{|\pi|\times |\pi|}_{\neq}} \left(|f|^{\otimes 4}\right)_{\pi}(\bm{x},\bm{u}) \, \mathbb{Q}_{\neq}^{|\pi|\times |\pi|}(\mathrm{d}\bm{u}) \, \lambda^{|\pi|}(\mathrm{d}\bm{x}),
+    M_{ij}(f)&:=&\sum_{\substack{\pi\in\widetilde{\Pi}^4(k)\\s_1(\pi)=s_2(\pi)=k-i\\s_3(\pi)=s_4(\pi)=k-j}}\int_{\mathbb{X}^{|\pi|}} \int_{\mathbb{M}^{|\pi|\times |\pi|}_{\neq}} \left(|f|^{\otimes 4}\right)_{\pi}(\bm{x},\bm{u}) \, \mathbb{Q}_{\neq}^{|\pi|\times |\pi|}(\mathrm{d}\bm{u}) \, \lambda^{|\pi|}(\mathrm{d}\bm{x})
 \end{eqnarray*}
-with %$\bm{x}=(x_1,\hdots,x_{|\pi|})$, $\bm{u}=(u_{\imath,\jmath})_{1\le\imath\ne\jmath\le|\pi|}$, and 
-$$s_i(\pi):=|\{B_j\in\pi:B_j\subseteq J_i\}|,$$
-for $i\in[4]$.
+for $i,j\in[k]$ with %$\bm{x}=(x_1,\hdots,x_{|\pi|})$, $\bm{u}=(u_{\imath,\jmath})_{1\le\imath\ne\jmath\le|\pi|}$, and 
+$$s_u(\pi):=|\{B\in\pi:B\subseteq J_u\}|$$
+for $u\in[4]$ and $\pi\in\Pi^4(k)$.
 \end{theorem}
 
 
@@ -215,9 +215,9 @@ where
 \begin{align*}
   &  r(\operatorname{dom} g) := \max_{1 \leq \ell \leq k-1} 
 \int_{\mathbb{X}^{2k-\ell}} \int_{\mathbb{M}^{(2k-\ell)\times (2k-\ell)}_{\neq}}  
-\mathbf{1}\big\{ ( {x}_1, \ldots, {x}_k , (\mathbf{u}_{i,j})_{i,j\in[k],i\neq j} ) \in \operatorname{dom} g  \big\}  \\
-&  \hspace{3cm} \times \mathbf{1}\big\{ ( {x}_1, \ldots, {x}_\ell, {x}_{k+1}, \ldots, {x}_{2k-\ell}, (\mathbf{u}_{i,j})_{i,j\in [\ell]\cup\{k+1,\hdots,2k-\ell\}, i\neq j} ) \in \operatorname{dom} g \big\} \\
-& \hspace{3cm} \times  \mathbb{Q}^{(2k-\ell)\times(2k-\ell)}_{\neq} (d\mathbf{u}) \, \lambda^{2k-\ell}(d(x_1,\hdots,x_{2k-\ell})).
+\mathbf{1}\big\{ ( {x}_1, \ldots, {x}_k , (u_{i,j})_{i,j\in[k],i\neq j} ) \in \operatorname{dom} g  \big\}  \\
+&  \hspace{3cm} \times \mathbf{1}\big\{ ( {x}_1, \ldots, {x}_\ell, {x}_{k+1}, \ldots, {x}_{2k-\ell}, (u_{i,j})_{i,j\in [\ell]\cup\{k+1,\hdots,2k-\ell\}, i\neq j} ) \in \operatorname{dom} g \big\} \\
+& \hspace{3cm} \times  \mathbb{Q}^{(2k-\ell)\times(2k-\ell)}_{\neq} (\mathrm{d}\mathbf{u}) \, \lambda^{2k-\ell}(\mathrm{d}(x_1,\hdots,x_{2k-\ell})).
 \end{align*}  
 \end{theorem}
 
@@ -236,9 +236,9 @@ with
 \begin{align*}
   &  r(B) := \max_{1 \leq \ell \leq k-1} 
 \int_{\mathbb{X}^{2k-\ell}} \int_{\mathbb{M}^{(2k-\ell)\times (2k-\ell)}_{\neq}}  
-\mathbf{1}\big\{ g({x}_1, \ldots, {x}_k , (\mathbf{u}_{i,j})_{i,j\in[k],i\neq j} ) \in B \big\}  \\
-&  \hspace{3cm} \times \mathbf{1}\big\{ g({x}_1, \ldots, {x}_\ell, {x}_{k+1}, \ldots, {x}_{2k-\ell}, (\mathbf{u}_{i,j})_{i,j\in [\ell]\cup\{k+1,\hdots,2k-\ell\}, i\neq j} ) \in B \big\} \\
-& \hspace{3cm} \times  \mathbb{Q}^{(2k-\ell)\times(2k-\ell)}_{\neq} (d\mathbf{u}) \, \lambda^{2k-\ell}(d(x_1,\hdots,x_{2k-\ell})).
+\mathbf{1}\big\{ g({x}_1, \ldots, {x}_k , (u_{i,j})_{i,j\in[k],i\neq j} ) \in B \big\}  \\
+&  \hspace{3cm} \times \mathbf{1}\big\{ g({x}_1, \ldots, {x}_\ell, {x}_{k+1}, \ldots, {x}_{2k-\ell}, (u_{i,j})_{i,j\in [\ell]\cup\{k+1,\hdots,2k-\ell\}, i\neq j} ) \in B \big\} \\
+& \hspace{3cm} \times  \mathbb{Q}^{(2k-\ell)\times(2k-\ell)}_{\neq} (\mathrm{d}\mathbf{u}) \, \lambda^{2k-\ell}(\mathrm{d}(x_1,\hdots,x_{2k-\ell})).
 \end{align*}  
 \end{cor}
 
@@ -270,9 +270,9 @@ with
 \begin{align*}
   &  r_0 := \max_{1 \leq \ell \leq k-1} 
 \int_{\mathbb{X}^{2k-\ell}} \int_{\mathbb{M}^{(2k-\ell)\times (2k-\ell)}_{\neq}}  
-\mathbf{1}\big\{ g({x}_1, \ldots, {x}_k , (\mathbf{u}_{i,j})_{i,j\in[k],i\neq j} )\neq 0 \big\}  \\
-&  \hspace{3cm} \times \mathbf{1}\big\{ g({x}_1, \ldots, {x}_\ell, {x}_{k+1}, \ldots, {x}_{2k-\ell}, (\mathbf{u}_{i,j})_{i,j\in [\ell]\cup\{k+1,\hdots,2k-\ell\}, i\neq j} ) \neq 0 \big\} \\
-& \hspace{3cm} \times  \mathbb{Q}^{(2k-\ell)\times(2k-\ell)}_{\neq} (d\mathbf{u}) \, \lambda^{2k-\ell}(d(x_1,\hdots,x_{2k-\ell})).
+\mathbf{1}\big\{ g({x}_1, \ldots, {x}_k , (u_{i,j})_{i,j\in[k],i\neq j} )\neq 0 \big\}  \\
+&  \hspace{3cm} \times \mathbf{1}\big\{ g({x}_1, \ldots, {x}_\ell, {x}_{k+1}, \ldots, {x}_{2k-\ell}, (u_{i,j})_{i,j\in [\ell]\cup\{k+1,\hdots,2k-\ell\}, i\neq j} ) \neq 0 \big\} \\
+& \hspace{3cm} \times  \mathbb{Q}^{(2k-\ell)\times(2k-\ell)}_{\neq} (\mathrm{d}\mathbf{u}) \, \lambda^{2k-\ell}(\mathrm{d}(x_1,\hdots,x_{2k-\ell})).
 \end{align*}
 \end{cor}
 
@@ -284,7 +284,7 @@ Next we compare the distribution of the random variable $U$ introduced in \eqref
 $$
 g_\alpha (u) := \mathbf{1}\{ u\neq 0 \} \operatorname{sign}(g(u)) g(u)^{-\alpha}
 $$
-for $u\in\mathbb{R}$, where $\operatorname{sign}(u) = \mathbf{1}(u \ge 0) - \mathbf{1}(u < 0)$.
+for $u\in\mathbb{R}$, where $\operatorname{sign}(u) = \mathbf{1}\{u \ge 0\} - \mathbf{1}\{u < 0\}$.
 We define
 \begin{align*}
 \mathbf{L}^{(\alpha)}(A) & := \frac{1}{k!} \, \mathbb{E} \sum_{(x_1, \ldots, x_k) \in \eta_{\neq}^k}  \mathbf{1}\{ g_\alpha(x_1, \ldots, x_k, (M_{x_i,x_j})_{i,j\in[k], i \neq j})\in A\setminus\{0\} \}
@@ -292,20 +292,20 @@ We define
 for $A \in \mathcal{B}(\mathbb{R})$.
 
 \begin{cor}\label{approximation_alpha-stable}
-Let \( \alpha \in (0, 1) \), and let \( \mathbf{M} \) be either the Lebesgue measure on \( \mathbb{R} \) or its restriction to \( (0,\infty)) \). Define
+Let \( \alpha \in (0, 1) \), and let \( \mathbf{M} \) be either the Lebesgue measure on \( \mathbb{R} \) or its restriction to \( (0,\infty) \). Define
 \[
 Y := \sum_{x \in \zeta} \operatorname{sign}(x) |x|^{-1/\alpha},
 \]
-where \( \zeta \) is a Poisson process with intensity measure \( \mathbf{M}\). Assume that there exist functions \( g_1, g_2, g_3 \colon (0,\infty) \to (0,\infty) \) such that, for every \( a > 0 \),
+where \( \zeta \) is a Poisson process with intensity measure \( \mathbf{M}\). Assume that there exist functions \( g_1, g_2, g_3 \colon (0,\infty) \to [0,\infty) \) such that, for every \( a > 0 \),
 \begin{align*}
 d_{\mathrm{TV}}(\mathbf{L}|_{[-a,a]}, \mathbf{M}|_{[-a,a]}) &\le g_1(a),
 \end{align*}
 \begin{align*}
 &\max_{1 \leq \ell \leq k-1} 
 \int_{\mathbb{X}^{2k-\ell}} \int_{\mathbb{M}^{(2k-\ell)\times (2k-\ell)}_{\neq}}  
-\mathbf{1}\big\{ g_\alpha({x}_1, \ldots, {x}_k , (\mathbf{u}_{i,j})_{i,j\in[k],i\neq j} )\in A\setminus\{0\} \big\}  \\
-&  \hspace{3cm} \times \mathbf{1}\big\{ g_\alpha({x}_1, \ldots, {x}_\ell, {x}_{k+1}, \ldots, {x}_{2k-\ell}, (\mathbf{u}_{i,j})_{i,j\in [\ell]\cup\{k+1,\hdots,2k-\ell\}, i\neq j} ) \in A\setminus\{0\} \big\} \\
-& \hspace{3cm} \times  \mathbb{Q}^{(2k-\ell)\times(2k-\ell)}_{\neq} (d\mathbf{u}) \, \lambda^{2k-\ell}(d(x_1,\hdots,x_{2k-\ell}))\\
+\mathbf{1}\big\{ g_\alpha({x}_1, \ldots, {x}_k , (u_{i,j})_{i,j\in[k],i\neq j} )\in A\setminus\{0\} \big\}  \\
+&  \hspace{3cm} \times \mathbf{1}\big\{ g_\alpha({x}_1, \ldots, {x}_\ell, {x}_{k+1}, \ldots, {x}_{2k-\ell}, (u_{i,j})_{i,j\in [\ell]\cup\{k+1,\hdots,2k-\ell\}, i\neq j} ) \in A\setminus\{0\} \big\} \\
+& \hspace{3cm} \times  \mathbb{Q}^{(2k-\ell)\times(2k-\ell)}_{\neq} (\mathrm{d}\mathbf{u}) \, \lambda^{2k-\ell}(\mathrm{d}(x_1,\hdots,x_{2k-\ell}))\\
 &\le g_2(a),
 \end{align*}
 \begin{align*}
@@ -591,8 +591,51 @@ The following examples can be studied:
     $$\frac{1}{2} \sum_{(z_1, z_2) \in \eta^2_{\neq} \cap B^2(0, \rho)} \mathbf{1}\{ z_1 \leftrightarrow z_2 \} \| z_1- z_2 \|^\tau, \quad \tau \in \mathbb{R}$$
     \item long edges (Poisson approximation), i.e.
     $$\frac{1}{2} \sum_{(z_1, z_2) \in \eta^2_{\neq} \cap B^2(0, \rho)} \mathbf{1}\{ z_1 \leftrightarrow z_2 \}  \mathbf{1}\{ \|z_1 - z_2\| \geq c_\rho \} $$
+    \item Hub-to-hub edges
+    $$
+    \frac{1}{2}\sum_{(x_1,x_2)\in\eta^2_{\neq}} \mathbf{1}(x_1\leftrightarrow x_2, W_{x_1},W_{x_2}\geq t)
+    $$
 \end{itemize}
+
+
+
+Let $\eta$ be a stationary Poisson process on $\mathbb{R}^d$, with intensity measure $\gamma\cdot \lambda_d$, $\gamma>0$ and $\lambda_d$ is the Lebesgue measure on $\mathbb{R}^d$. 
+Let $\Gamma_0\subseteq\mathbb{R}^d$ be a compact convex set with $\lambda_d(\Gamma_0)=1$, and denote $\Gamma_s:=s^{1/d}\Gamma_0$. 
+
+For any $r\ge2$, and $\{x_1,\dots,x_r\}\subseteq\mathbb{R}^d$, we denote the RCM on $\{x_1,\dots,x_r\}$ with connection function $\varphi$ as $\mathbb{G}(\{x_1,\dots,x_r\},\varphi)$,
+and the weighted random connection model (WRCM) on $\{x_1,\dots,x_r\}$ with connection function $\varphi$ and weight distribution $W$ as $\mathbb{G}(\{x_1,\dots,x_r\},\varphi,W)$.
+In particular, the Poisson RCM base on the underlying Possion process $\eta$ is denoted as $\mathbb{G}(\eta,\varphi)$, and WRCM $\mathbb{G}(\eta,\varphi,W)$. 
+
+
 \subsection{subgraph count}
+%Let $\eta$ be a stationary Poisson process on $\mathbb{R}^d$, with intensity measure $\gamma\cdot \lambda_d$, $\gamma>0$ and $\lambda_d$ is the Lebesgue measure on $\mathbb{R}^d$. 
+%Let $\Gamma_0\subseteq\mathbb{R}^d$ be a compact convex set with $\lambda_d(\Gamma_0)=1$, and denote $\Gamma_s:=s^{1/d}\Gamma_0$. 
+%For any $r\ge2$, and $\{x_1,\dots,x_r\}\subseteq\mathbb{R}^d$, we denote the RCM on $\{x_1,\dots,x_r\}$ with connection function $\varphi$ as $\mathbb{G}(\{x_1,\dots,x_r\},\varphi)$. In particular, the Poisson RCM base on the underlying Possion process $\eta$ is denoted as $\mathbb{G}(\eta,\varphi)$.  
+Let $G$ be a fixed connected graph with $k$ vertices, $k\ge2$. 
+We consider the subgraph count statistics 
+\begin{equation}
+	N_G^{\subset}:=\frac1{k!}\sum_{(x_1,\dots,x_k)\in\eta^k_{\ne}\cap\Gamma_s}\mathbf{1}(H\subseteq ;H\simeq G)
+\end{equation}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \subsection{edge-length functionals}
 
 \section{Approximation results}\label{sec:approximation}
@@ -644,7 +687,7 @@ for all $\ell,n\in\mathbb{N}$.
 \end{itemize}
 \fi
 
-We define $\widehat{\mathbb{X}}:=\mathbb{X}\times \mathbb{M}^{\mathbb{N}\times\mathbb{M}}$ and $\widehat{\lambda}:=\lambda\otimes \mathbb{Q}^{\mathbb{N}\times\mathbb{N}}$. Let $\widehat{\eta}$ be a Poisson process on $\widehat{\mathbb{X}}$ with intensity measure $\widehat{\lambda}$.
+We define $\widehat{\mathbb{X}}:=\mathbb{X}\times \mathbb{M}^{\mathbb{N}\times\mathbb{N}}$ and $\widehat{\lambda}:=\lambda\otimes \mathbb{Q}^{\mathbb{N}\times\mathbb{N}}$. Let $\widehat{\eta}$ be a Poisson process on $\widehat{\mathbb{X}}$ with intensity measure $\widehat{\lambda}$.
 
 Let $n\in\mathbb{N}$ and let $(x,(u_{i,j})_{i,j\in\mathbb{N}})$ and $(y,(v_{i,j})_{i,j\in\mathbb{N}})$ be distinct points of $\widehat{\eta}$. Suppose that $y\in A^{(n)}_\ell$ for some $\ell\in\mathbb{N}$. Now we order the points of $\widehat{\eta}$ whose projections to $\mathbb{X}$ are in $A^{(n)}_\ell$ according to the distances of their projections to $\mathbb{X}$ to $x$ with respect to the distance function $\operatorname{dist}$. Note that the assumption \eqref{eqn:uniqueness_distances} ensures that this ordering is almost surely unique. If $y$ is the $k$-th closest point to $x$ in $A^{(n)}_\ell$, then we define 
 \begin{equation}
@@ -706,8 +749,8 @@ $$
 $$
 Then,
 \begin{align*}
-& \lim_{n\to\infty} \int_{\widehat{\mathbb{X}}^m} h(x_1,\hdots,x_m, \tilde{m}^{(n)}(\hat{x}_1,\hdots,\hat{x}_m)) \, \widehat{\lambda}^m(d(\hat{x}_1,\hdots,\hat{x}_m) ) \\
-& = \int_{\mathbb{X}^m} \int_{\mathbb{M}^{m\times m}_{\neq}} h(x_1,\hdots,x_m, u) \, \mathbb{Q}_{\neq}^{m\times m}(du) \, \lambda^m(d(x_1,\hdots,x_m)).
+& \lim_{n\to\infty} \int_{\widehat{\mathbb{X}}^m} h(x_1,\hdots,x_m, \tilde{m}^{(n)}(\hat{x}_1,\hdots,\hat{x}_m)) \, \widehat{\lambda}^m(\mathrm{d}(\hat{x}_1,\hdots,\hat{x}_m) ) \\
+& = \int_{\mathbb{X}^m} \int_{\mathbb{M}^{m\times m}_{\neq}} h(x_1,\hdots,x_m, u) \, \mathbb{Q}_{\neq}^{m\times m}(\mathrm{d}u) \, \lambda^m(\mathrm{d}(x_1,\hdots,x_m)).
 \end{align*}
 \end{lemma}
 
@@ -722,8 +765,8 @@ $$
 $$
 For $(\hat{x}_1,\hdots,\hat{x}_m)\in\widehat{\mathbb{X}}^m\backslash\widehat{\Delta}_m^{(n)}$, $\tilde{m}^{(n)}$ assigns different marks to each pair $(i,j)$ with $i,j\in[m]$ and $i\neq j$ so that
 \begin{align*}
-& \int_{\widehat{\mathbb{X}}^m\backslash\widehat{\Delta}_m^{(n)}} h(x_1,\hdots,x_m, \tilde{m}^{(n)}(\hat{x}_1,\hdots,\hat{x}_m)) \, \widehat{\lambda}^m(d(\hat{x}_1,\hdots,\hat{x}_m) ) \\
-& = \int_{\mathbb{X}^m\backslash\Delta_m^{(n)}} \int_{\mathbb{M}^{m\times m}_{\neq}} h(x_1,\hdots,x_m, u) \, \mathbb{Q}_{\neq}^{m\times m}(du) \, \lambda^m(d(x_1,\hdots,x_m)).
+& \int_{\widehat{\mathbb{X}}^m\backslash\widehat{\Delta}_m^{(n)}} h(x_1,\hdots,x_m, \tilde{m}^{(n)}(\hat{x}_1,\hdots,\hat{x}_m)) \, \widehat{\lambda}^m(\mathrm{d}(\hat{x}_1,\hdots,\hat{x}_m) ) \\
+& = \int_{\mathbb{X}^m\backslash\Delta_m^{(n)}} \int_{\mathbb{M}^{m\times m}_{\neq}} h(x_1,\hdots,x_m, u) \, \mathbb{Q}_{\neq}^{m\times m}(\mathrm{d}u) \, \lambda^m(\mathrm{d}(x_1,\hdots,x_m)).
 \end{align*}
 It follows from \eqref{eqn:monotonicity_partition} and \eqref{eqn:size_partition} that
 $$
@@ -735,12 +778,12 @@ $$
 $$
 Due to the boundedness of $h$ and the assumptions on its support we can apply the dominated convergence theorem and obtain
 \begin{align*}
-& \lim_{n\to\infty}\int_{\widehat{\mathbb{X}}^m\backslash\widehat{\Delta}_m^{(n)}} h(x_1,\hdots,x_m, \tilde{m}^{(n)}(\hat{x}_1,\hdots,\hat{x}_m)) \, \widehat{\lambda}^m(d(\hat{x}_1,\hdots,\hat{x}_m) ) \\
-& = \lim_{n\to\infty}\int_{\mathbb{X}^m\backslash\Delta_m^{(n)}} \int_{\mathbb{M}^{m\times m}_{\neq}} h(x_1,\hdots,x_m, u) \, \mathbb{Q}_{\neq}^{m\times m}(du) \, \lambda^m(d(x_1,\hdots,x_m)) \\ & = \int_{\mathbb{X}^m} \int_{\mathbb{M}^{m\times m}_{\neq}} h(x_1,\hdots,x_m, u) \, \mathbb{Q}_{\neq}^{m\times m}(du) \, \lambda^m(d(x_1,\hdots,x_m))
+& \lim_{n\to\infty}\int_{\widehat{\mathbb{X}}^m\backslash\widehat{\Delta}_m^{(n)}} h(x_1,\hdots,x_m, \tilde{m}^{(n)}(\hat{x}_1,\hdots,\hat{x}_m)) \, \widehat{\lambda}^m(\mathrm{d}(\hat{x}_1,\hdots,\hat{x}_m) ) \\
+& = \lim_{n\to\infty}\int_{\mathbb{X}^m\backslash\Delta_m^{(n)}} \int_{\mathbb{M}^{m\times m}_{\neq}} h(x_1,\hdots,x_m, u) \, \mathbb{Q}_{\neq}^{m\times m}(\mathrm{d}u) \, \lambda^m(\mathrm{d}(x_1,\hdots,x_m)) \\ & = \int_{\mathbb{X}^m} \int_{\mathbb{M}^{m\times m}_{\neq}} h(x_1,\hdots,x_m, u) \, \mathbb{Q}_{\neq}^{m\times m}(\mathrm{d}u) \, \lambda^m(\mathrm{d}(x_1,\hdots,x_m))
 \end{align*}
 and
 $$
-\lim_{n\to\infty} \int_{ \widehat{\Delta}^{(n)}_m} h(x_1,\hdots,x_m, \tilde{m}^{(n)}(\hat{x}_1,\hdots,\hat{x}_m)) \, \widehat{\lambda}^m(d(\hat{x}_1,\hdots,\hat{x}_m) )=0.
+\lim_{n\to\infty} \int_{ \widehat{\Delta}^{(n)}_m} h(x_1,\hdots,x_m, \tilde{m}^{(n)}(\hat{x}_1,\hdots,\hat{x}_m)) \, \widehat{\lambda}^m(\mathrm{d}(\hat{x}_1,\hdots,\hat{x}_m) )=0.
 $$
 Combining the two limits proves the statement.
 \end{proof}
@@ -1071,57 +1114,44 @@ which completes the proof.
 \end{proof}
 
 
-\section{miscellanea}
+\section{Power-weighted edge-lengths}
 
-Using the above notation, define
- \begin{align}\label{originalUstat}
-     S_t:= \frac{1}{k!}\sum_{(x_1, \ldots, x_k) \in \eta^k_{\neq}} f_t \Big( x_1, \ldots, x_k, (W_{x_i,x_j})_{i,j =1,\ldots, k, i \neq j} \Big) ,
- \end{align}
-where $f_t$, $t \geq 1$, is a measurable function and the sum is taken over all $k$-tuples of pairwise distinct points. Note that $S$ is not a Poisson $U$-statistics. Now consider the following. For two points $\hat{x}=(x,\mathbf{u}=(u_{i,l})_{i,l\in\mathbb{N}})$ and $\hat{y}=(y,\mathbf{v}=(v_{i,l})_{i,l\in\mathbb{N}})$ in $\hat{\eta}$ such that $x\leq y$ and $y\in A_i$ define $\hat{W}_{\hat{x},\hat{y}} := u_{i,1}$, and
-$$ \hat{S}_t:= \frac{1}{k!}\sum_{(\hat{x}_1, \ldots, \hat{x}_k) \in \hat{\eta}^k_{\neq}} f_t \Big( {x}_1, \ldots, {x}_k, (\hat{W}_{\hat{x}_i,\hat{x}_j}) \Big) =:  \sum_{(\hat{x}_1, \ldots, \hat{x}_k) \in \hat{\eta}^k_{\neq}} \hat{f}_t ( \hat{x}_1, \ldots, \hat{x}_k ),$$
-which on the other hand is a Poisson U-statistics. Now, choose the partition $\{A_i\}_{i\in\mathbb{N}}$ such that $\lambda_d (A_i) = \frac{\varepsilon}{i}$ for every $i \in \mathbb{N}$, where $\varepsilon>0$ is a given (later chosen to be sufficiently small) number. Then we have
-\begin{align}\label{ShatS}
-\begin{split}
-    \mathbb{P} (S \neq \hat{S}) &= \mathbb{P} ( \exists i \in \mathbb{N} : \eta (A_i) \geq 2 ) \leq \sum_{i=1}^\infty \mathbb{P} ( \eta (A_i) \geq 2 ) \\
-    & \leq \sum_{i=1}^\infty  \lambda_d (A_i)^2 = \varepsilon^2 \sum_{i=1}^\infty \frac{1}{k^2},
-\end{split}
-\end{align}
-so that $\mathbb{P} (S \neq \hat{S}) \to 0$, as $\varepsilon \to 0$. Moreover, for every random variable $N$ we have
-\begin{align} \label{Kineq}
-     d_K (S,N) \leq \mathbb{P} (S \neq \hat{S}) + d_K (\hat{S},N) .
-\end{align}
-
-
-Based on the latter observations, the following approximations could be studied:
-
-\begin{itemize}
-    \item Poisson process approximation, see \cite{dst}
-    \item Quantitative Normal approximation (Wasserstein, Kolmogorov distance), see \cite{reitznerschulte,schulte,eichelsbacher}
-    \item Poisson approximation, see \cite{pianoforte}
-    \item Moderate deviations and concentration inequalities, see \cite{schulte2, bonnet}
-    \item Approximation by $\alpha$-stable distributions
-\end{itemize}
+%Using the above notation, define
+% \begin{align}\label{originalUstat}
+ %    S_t:= \frac{1}{k!}\sum_{(x_1, \ldots, x_k) \in \eta^k_{\neq}} f_t \Big( x_1, \ldots, x_k, (W_{x_i,x_j})_{i,j =1,\ldots, k, i \neq j} \Big) ,
+% \end{align}
+%where $f_t$, $t \geq 1$, is a measurable function and the sum is taken over all $k$-tuples of pairwise distinct points. Note that $S$ is not a Poisson $U$-statistics. Now consider the following. For two points $\hat{x}=(x,\mathbf{u}=(u_{i,l})_{i,l\in\mathbb{N}})$ and $\hat{y}=(y,\mathbf{v}=(v_{i,l})_{i,l\in\mathbb{N}})$ in $\hat{\eta}$ such that $x\leq y$ and $y\in A_i$ define $\hat{W}_{\hat{x},\hat{y}} := u_{i,1}$, and
+%$$ \hat{S}_t:= \frac{1}{k!}\sum_{(\hat{x}_1, \ldots, \hat{x}_k) \in \hat{\eta}^k_{\neq}} f_t \Big( {x}_1, \ldots, {x}_k, (\hat{W}_{\hat{x}_i,\hat{x}_j}) \Big) =:  \sum_{(\hat{x}_1, \ldots, \hat{x}_k) \in \hat{\eta}^k_{\neq}} \hat{f}_t ( \hat{x}_1, \ldots, \hat{x}_k ),$$
+%which on the other hand is a Poisson U-statistics. Now, choose the partition $\{A_i\}_{i\in\mathbb{N}}$ such that $\lambda_d (A_i) = \frac{\varepsilon}{i}$ for every $i \in \mathbb{N}$, where $\varepsilon>0$ is a given (later chosen to be sufficiently small) number. Then we have
+%\begin{align}\label{ShatS}
+%\begin{split}
+%    \mathbb{P} (S \neq \hat{S}) &= \mathbb{P} ( \exists i \in \mathbb{N} : \eta (A_i) \geq 2 ) \leq \sum_{i=1}^\infty \mathbb{P} ( \eta (A_i) \geq 2 ) \\
+ %   & \leq \sum_{i=1}^\infty  \lambda_d (A_i)^2 = \varepsilon^2 \sum_{i=1}^\infty \frac{1}{k^2},
+%\end{split}
+%\end{align}
+%so that $\mathbb{P} (S \neq \hat{S}) \to 0$, as $\varepsilon \to 0$. Moreover, for every random variable $N$ we have
+%\begin{align} \label{Kineq}
+ %    d_K (S,N) \leq \mathbb{P} (S \neq \hat{S}) + d_K (\hat{S},N) .
+%\end{align}
 
 
+%Based on the latter observations, the following approximations could be studied:
 
+%\begin{itemize}
+  %  \item Poisson process approximation, see \cite{dst}
+ %   \item Quantitative Normal approximation (Wasserstein, Kolmogorov distance), %see \cite{reitznerschulte,schulte,eichelsbacher}
+ %   \item Poisson approximation, see \cite{pianoforte}
+ %   \item Moderate deviations and concentration inequalities, see \cite{schulte2, bonnet}
+%    \item Approximation by $\alpha$-stable distributions
+%\end{itemize}
 
-
-
+%One conjecture is that the point process
+%$$ \frac{1}{2} \sum_{(z_1, z_2) \in \eta^2_{\neq} \cap B^2(0, \rho)} \delta_{\|%z_1 - z_2\| - b_\rho}$$
+%converges in distribution to a Poisson point process, for a suitably chosen sequence $b_\rho$.
 
 
 
-
-
-
-
-
-One conjecture is that the point process
-$$ \frac{1}{2} \sum_{(z_1, z_2) \in \eta^2_{\neq} \cap B^2(0, \rho)} \delta_{\|z_1 - z_2\| - b_\rho}$$
-converges in distribution to a Poisson point process, for a suitably chosen sequence $b_\rho$.
-
-
-
-\subsection{Power-weighted edge-lengths}
+\subsection{Expectation and variance asymptotics}
 
 Consider the statistics
 
@@ -1130,55 +1160,105 @@ $$L_\rho (\tau):=\frac{1}{2} \sum_{(z_1, z_2) \in \eta^2_{\neq} \cap B^2(0, \rho
 Proceeding as in \cite[Theorem 3.1]{reitznerschultethaele} gives the following formula for its expectation structure. Recall that $g$ denotes the connection function. We can assume that $g$ is only radially dependent, and denote its radial part by $\bar{g}$.
 
 \begin{lemma} \label{lem:expectedlength}
-    It holds
+    Assume that $\tau > -d$. It holds
     $$ \mathbb{E}[L_\rho (\tau)]= \frac{1}{2} \int_0^\infty \bar{g} (r) r^{\tau + d -1} \int_{\mathbb{S}^{d-1}
-} f_\rho (r u) du dr,$$
+} f_\rho (r u) \mathrm{d}u \mathrm{d}r,$$
 where
 $$f_\rho (ru) = \lambda_d \left( B(0,\rho) \cap (B(0,\rho) + ru) \right)$$
-and $du$ stands for the infinitesimal element of the spherical Lebesgue measure. Moreover, it holds
+and $\mathrm{d}u$ stands for the infinitesimal element of the spherical Lebesgue measure. Moreover, it holds
 \begin{align*}
-    & \frac{1}{2} d \kappa_d \lambda_d(B(0,\rho)) \int_0^\infty \bar{g} (r) r^{\tau + d -1} dr -\kappa_{d-1} S(B(0,\rho)) \int_0^\infty \bar{g} (r) r^{\tau + d -1} dr\\
-    & \leq \mathbb{E}[L_\rho (\tau)] \leq \frac{1}{2} d \kappa_d \lambda_d(B(0,\rho)) \int_0^\infty \bar{g} (r) r^{\tau + d -1} dr,
+    & \frac{1}{2} d \kappa_d \lambda_d(B(0,\rho)) \int_0^{2\rho} \bar{g} (r) r^{\tau + d -1} \mathrm{d}r -\kappa_{d-1} S(B(0,\rho)) \int_0^{2\rho} \bar{g} (r) r^{\tau + d } \mathrm{d}r\\
+    & \leq \mathbb{E}[L_\rho (\tau)] \leq \frac{1}{2} d \kappa_d \lambda_d(B(0,\rho)) \int_0^{2\rho} \bar{g} (r) r^{\tau + d -1} \mathrm{d}r,
 \end{align*}
 where $\kappa_d$ denotes the volume of the $d$-dimensional unit ball and $S(B(0,\rho))$ denotes the surface area of the ball  $B(0,\rho)$.
 \end{lemma}
 
-Note that Lemma \ref{lem:expectedlength} shows that the expectation of power-weighted edge-lengths is finite if and only if
-$$\int_0^\infty \bar{g} (r) r^{\tau + d -1} dr< \infty.$$
-If we assume that $\bar{g}$ has polynomial decay $\bar{g}(r) \sim r^{-\alpha}$, $r \to \infty$, for some exponent $\alpha$, this translates to $\alpha>\tau +d$.
+Note that Lemma \ref{lem:expectedlength} shows that the asymptotics of the expectation of power-weighted edge-lengths depends on whether the integral
+$$\int_0^\infty \bar{g} (r) r^{\tau + d -1} \mathrm{d} r $$
+is finite or not. If we assume that $\bar{g}$ has polynomial decay $\bar{g}(r) \sim r^{-\alpha}$, $r \to \infty$, for some exponent $\alpha$, this translates to whether $\alpha>\tau +d$ or $\alpha\leq\tau +d$.
 
 Next we give a formula for the variance.
 
 
 \begin{lemma} \label{lem:varlength}
-    Assume that
-    $$\int_0^\infty \bar{g} (r) r^{\tau + d -1} dr< \infty.$$
-    Then $L_\rho (\tau)$ also has finite variance given by
+    Let $\tau > -d$. Then $L_\rho (\tau)$ has finite variance given by
     \begin{align}\label{varformula}
     \begin{split}
-        & \operatorname{Var}[L_\rho (\tau)] = \frac{1}{2} \int_{B(0,\rho)}\int_{B(0,\rho)} g(x-y) \| y-x \|^{2\tau} dx  \\
-        & \quad + \int_{B(0,\rho)}\int_{B(0,\rho)} g(x_1-y) \| y-x_1 \|^\tau dx_1 \int_{B(0,\rho)} g(x_2-y)  \| y-x_2 \|^\tau dx_2 dy.
+        & \operatorname{Var}[L_\rho (\tau)] = \frac{1}{2} \int_{B(0,\rho)}\int_{B(0,\rho)} g(x-y) \| y-x \|^{2\tau} \mathrm{d}x \mathrm{d}y  \\
+        & \quad + \int_{B(0,\rho)}\int_{B(0,\rho)} g(x_1-y) \| y-x_1 \|^\tau \mathrm{d} x_1 \int_{B(0,\rho)} g(x_2-y)  \| y-x_2 \|^\tau \mathrm{d} x_2 \mathrm{d} y.
     \end{split} 
     \end{align}
 Moreover, if $\bar{g}$ has polynomial decay $\bar{g}(r) \sim r^{-\alpha}$, $r \to \infty$, for some exponent $\alpha$, there is a constant $C \in (0, \infty)$ independent of $\rho$ such that
-$$ \frac{1}{C} \rho^{2d+2\tau - \alpha} \leq \operatorname{Var}[L_\rho (\tau)] \leq C\rho^{2d+2\tau }.$$
+$$ \frac{1}{C} \rho^d \left( \frac{1}{C} + \rho^{2\tau + d -\alpha} \right) \leq \operatorname{Var}[L_\rho (\tau)] \leq C\rho^d\left( {C} + \rho^{2\tau + d -\alpha} \right), \quad \text{ if } \alpha \neq d+2\tau,$$
+and
+$$ \frac{1}{C}  \rho^d \left( \frac{1}{C} + \log \rho \right) \leq \operatorname{Var}[L_\rho (\tau)] \leq  C\rho^d ( C +\log \rho), \quad \text{ if } \alpha = d+2\tau.$$
 \end{lemma}
 
 \begin{proof}
-    Under the assumption of finite expectations, the formula in \eqref{varformula} can be proven by proceeding as in the proof of \cite[Theorem 3.3]{reitznerschultethaele}. Based on this formula, we now calculate the order of the variance. Using a substitution for the first term on the right-hand side of \eqref{varformula} and the assumption on $\bar{g}$ we have
-    \begin{align*}
-        &\int_{B(0,\rho)}\int_{B(0,\rho)} g(x-y) \| y-x \|^{2\tau} dx dy\\
-        & = \rho^{2d+2\tau} \int_{B(0,1)}\int_{B(0,1)} \bar{g}( \rho\|x-y\| ) \| y-x \|^{2\tau} dxdy \\
-        & \geq  \rho^{2d+2\tau} \int_{B(0,1)}\int_{B(0,1)} \mathbf{1}{(\|x-y\| \geq \delta)} \bar{g}( \rho\|x-y\| ) \| y-x \|^{2\tau} dxdy\\
-        & \sim \rho^{2d+2\tau-\alpha} \int_{B(0,1)}\int_{B(0,1)} \mathbf{1}{(\|x-y\| \geq \delta)} \|x-y\|^{-\alpha}  \| y-x \|^{2\tau} dxdy .
-    \end{align*}
-    Now the assertion follows by observing that
-    \begin{align*}
-         \int_{B(0,\rho)}\int_{B(0,\rho)} g(x_1-y) \| y-x_1 \|^\tau dx_1 \int_{B(0,\rho)} g(x_2-y)  \| y-x_2 \|^\tau dx_2 dy \leq C \rho^{2d+2\tau }.
-    \end{align*}
+    The formula in \eqref{varformula} can be proven by proceeding as in the proof of \cite[Theorem 3.3]{reitznerschultethaele}. Based on this formula, we now calculate the order of the variance. Concerning the first term on the right-hand side of \eqref{varformula} we have
+    
+\begin{align*}
+I(\rho) 
+  &= \int_{B(0,\rho)} \int_{B(0,\rho)} 
+       g(x-y)\,\|y-x\|^{2\tau}\, \mathrm{d}x\, \mathrm{d}y \\[0.5em]
+  &= \int_{B(0,\rho)} \int_{\mathbb{R}^d} 
+       g(z)\,\|z\|^{2\tau}\, \mathbf{1}_{\{y+z \in B(0,\rho)\}}\, \mathrm{d}z\, \mathrm{d}y \\[0.5em]
+  &= \int_{\mathbb{R}^d} g(z)\,\|z\|^{2\tau}\,
+       \mathrm{Vol}\big(B(0,\rho)\cap (B(0,\rho)+z)\big)\, \mathrm{d}z \\[0.5em]
+  &= \int_{0}^{\infty}\int_{\mathbb{S}^{d-1}} 
+       \bar{g}(r)\,r^{2\tau+d-1}\,
+       \mathrm{Vol}\!\big(B(0,\rho)\cap (B(0,\rho)+ru)\big)\,
+        \mathrm{d}u\, \mathrm{d}r \\
+  &= \int_{0}^{2\rho}\int_{\mathbb{S}^{d-1}} 
+       \bar{g}(r)\,r^{2\tau+d-1}\,
+       \mathrm{Vol}\!\big(B(0,\rho)\cap (B(0,\rho)+ru)\big)\,
+        \mathrm{d}u\, \mathrm{d}r.
+\end{align*}
+with
+\begin{align*}
+   d \kappa_d \lambda_d(B(0,\rho))  -\kappa_{d-1} S(B(0,\rho)) r\leq \int_{\mathbb{S}^{d-1}} 
+       \mathrm{Vol}\!\big(B(0,\rho)\cap (B(0,\rho)+ru)\big)\,
+        \mathrm{d}u \leq d \kappa_d \lambda_d(B(0,\rho)) 
+\end{align*}
+so that another necessary condition for finiteness of the variance asymptotics is
+$$\int_0^\infty \bar{g} (r) r^{2\tau + d -1} \mathrm{d} r< \infty$$ 
+and moreover the asymptotics of $I(\rho)$, as $\rho \to \infty$, is
+$$ C_1 \rho^d (C_1 + \rho^{2\tau + d -\alpha} )\leq I(\rho) \leq C_2 \rho^d (C_2 + \rho^{2\tau + d -\alpha} ) $$
+for some constants $C_1, C_2>0$, if $\alpha \neq 2\tau +d$, and
+$$ C_1 \rho^d (C_1 + \log \rho )\leq I(\rho) \leq C_2 \rho^d (C_2 + \log \rho ) $$
+if $\alpha = 2\tau +d$.
+
+Similarly, considering the second term on the right-hand side of \eqref{varformula} we obtain
+\begin{align*}
+J(\rho) 
+  &= \int_{B(0,\rho)}\!
+     \Bigg(\int_{B(0,\rho)} g(x_1-y)\,\|y-x_1\|^{\tau}\,\mathrm{d}x_1\Bigg)
+     \Bigg(\int_{B(0,\rho)} g(x_2-y)\,\|y-x_2\|^{\tau}\,\mathrm{d}x_2\Bigg)
+     \mathrm{d}y \\[0.4em]
+  &= \int_{B(0,\rho)}\!
+     \int_{\mathbb{R}^d}\!\int_{\mathbb{R}^d}
+        g(z_1)g(z_2)\,\|z_1\|^{\tau}\|z_2\|^{\tau}\,
+        \mathbf{1}_{\{y+z_1\in B(0,\rho)\}}\,
+        \mathbf{1}_{\{y+z_2\in B(0,\rho)\}}\,
+        \mathrm{d}z_1\,\mathrm{d}z_2\,\mathrm{d}y \\[0.4em]
+  &= \int_{\mathbb{R}^d}\!\int_{\mathbb{R}^d}
+        g(z_1)g(z_2)\,\|z_1\|^{\tau}\|z_2\|^{\tau}\,
+        \mathrm{Vol}\!\big(B(0,\rho)\cap(B(0,\rho)+z_1)\cap(B(0,\rho)+z_2)\big)\,
+        \mathrm{d}z_1\,\mathrm{d}z_2 \\[0.6em]
+  &= \int_{0}^{2\rho}\!\!\int_{0}^{2\rho}
+     \int_{\mathbb{S}^{d-1}}\!\int_{\mathbb{S}^{d-1}}
+        g(r_1)g(r_2)\,r_1^{\tau}r_2^{\tau}\,
+      \mathrm{Vol}\!\big(B(0,\rho)\cap(B(0,\rho)+r u_1)\cap(B(0,\rho)+r u_2)\big)\,
+        \mathrm{d}u_1\,\mathrm{d}u_2\,
+        \mathrm{d}r_1\,\mathrm{d}r_2 
+\end{align*}
+with the asymptotic bound
+$$ \frac{1}{C} \rho^d\leq \mathrm{Vol}\!\big(B(0,\rho)\cap(B(0,\rho)+r u_1)\cap(B(0,\rho)+r u_2)\big) \leq {C} \rho^d ,$$
+so that the assertion follows easily.
+    
 \end{proof}
 
-From the statements in Lemma \ref{lem:varlength} we observe that the variance asymptotics is not finite if $\alpha < 2d+2\tau$.
+From the statements in Lemma \ref{lem:varlength} we observe that the variance asymptotics is not finite.
 
 \section{Related work on the RCM}
 
@@ -1205,7 +1285,11 @@ $\varphi(x,y)=\varphi(x-y)=\varphi(y-x)$ (more general than $\varphi(x,y)=\varph
 moment assumption hopefully sufficient for normal approximation of subgraph counts, stronger moment assumptions for edge-length functionals, for example
 $$\int_{\mathbb{R}^d}\varphi(z) \|z\|^{4\tau} \mathrm{d}z<\infty.$$
 $\tau$ for edge-length functionals.
-\item weighted RCM $(\eta,\varphi,W)$, $\mathbb{W}$ for the distribution of mark $W$, $W_x$ for the weight of $x\in\eta$, 
+\item Weighted random connection model
+$$
+\int_{\mathbb{R}^d} \int_{[0,\infty)^2} \varphi(z,w_1,w_2) \mathbb{W}^2(d(w_1,w_2)) \, dz <\infty.
+$$
+\item Parametric weighted RCM $(\eta,\varphi,W)$, $\mathbb{W}$ for the distribution of mark $W$, $W_x$ for the weight of $x\in\eta$, 
 $$\IP(W>t)=\ell(t)t^{-\alpha},$$
 with $\ell$ being a slowly varying function, special form of $\varphi$,
 $$
@@ -1226,7 +1310,7 @@ with $\beta_G$ depending on the considered subgraph $G$
 \end{itemize}
 
 \bibliographystyle{apalike}
+%\bibliographystyle{plain}
 \bibliography{lit}
 
 \end{document}
-
