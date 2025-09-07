@@ -602,20 +602,22 @@ The following examples can be studied:
 Let $\eta$ be a stationary Poisson process on $\mathbb{R}^d$, with intensity measure $\gamma\cdot \lambda_d$, $\gamma>0$ and $\lambda_d$ is the Lebesgue measure on $\mathbb{R}^d$. 
 Let $\Gamma_0\subseteq\mathbb{R}^d$ be a compact convex set with $\lambda_d(\Gamma_0)=1$, and denote $\Gamma_s:=s^{1/d}\Gamma_0$. 
 
-For any $r\ge2$, and $\{x_1,\dots,x_r\}\subseteq\mathbb{R}^d$, we denote the RCM on $\{x_1,\dots,x_r\}$ with connection function $\varphi$ as $\mathbb{G}(\{x_1,\dots,x_r\},\varphi)$,
-and the weighted random connection model (WRCM) on $\{x_1,\dots,x_r\}$ with connection function $\varphi$ and weight distribution $W$ as $\mathbb{G}(\{x_1,\dots,x_r\},\varphi,W)$.
-In particular, the Poisson RCM base on the underlying Possion process $\eta$ is denoted as $\mathbb{G}(\eta,\varphi)$, and WRCM $\mathbb{G}(\eta,\varphi,W)$. 
+For any $r\ge2$, and $\{x_1,\dots,x_r\}\subseteq\mathbb{R}^d$, we denote the RCM on $\{x_1,\dots,x_r\}$ with connection function $\varphi$ as $\mathbb{G}_{\varphi}(\{x_1,\dots,x_r\})$,
+and the weighted random connection model (WRCM) on $\{x_1,\dots,x_r\}$ with connection function $\varphi$ and weight distribution $W$ as $\mathbb{G}_{\varphi}(\{x_1,\dots,x_r\},W)$.
+In particular, the Poisson RCM base on the underlying Possion process $\eta$ is denoted as $\mathbb{G}_{\varphi}(\eta)$, and the Poisson WRCM on $\eta$ as $\mathbb{G}_{\varphi}(\eta,W)$. 
 
 
 \subsection{subgraph count}
 %Let $\eta$ be a stationary Poisson process on $\mathbb{R}^d$, with intensity measure $\gamma\cdot \lambda_d$, $\gamma>0$ and $\lambda_d$ is the Lebesgue measure on $\mathbb{R}^d$. 
 %Let $\Gamma_0\subseteq\mathbb{R}^d$ be a compact convex set with $\lambda_d(\Gamma_0)=1$, and denote $\Gamma_s:=s^{1/d}\Gamma_0$. 
 %For any $r\ge2$, and $\{x_1,\dots,x_r\}\subseteq\mathbb{R}^d$, we denote the RCM on $\{x_1,\dots,x_r\}$ with connection function $\varphi$ as $\mathbb{G}(\{x_1,\dots,x_r\},\varphi)$. In particular, the Poisson RCM base on the underlying Possion process $\eta$ is denoted as $\mathbb{G}(\eta,\varphi)$.  
-Let $G$ be a fixed connected graph with $k$ vertices, $k\ge2$. 
-We consider the subgraph count statistics 
-\begin{equation}
-	N_G^{\subset}:=\frac1{k!}\sum_{(x_1,\dots,x_k)\in\eta^k_{\ne}\cap\Gamma_s}\mathbf{1}(H\subseteq ;H\simeq G)
-\end{equation}
+Let $G=(V_G,E_G)$ be a fixed connected graph of order $k$, $k\ge2$, with vertex set $V_G$ and edge set $E_G$. 
+For any two graphs $G_1$ and $G_2$, we denote $G_1\simeq G_2$ when $G_1$ is isomorphic to $G_2$.
+We consider the injective subgraph count and the induced subgraph count on $\mathbb{G}_{\varphi}(\eta\cap\Gamma_s)$ that is isomorphic to graph $G$, denoted as
+\begin{align}
+	N_G^{\subset}&:=\frac1{k!}\sum_{(x_1,\dots,x_k)\in\eta^k_{\ne}\cap\Gamma_s}\mathbf{1}(H\subseteq \mathbb{G}_{\varphi}(\{x_1,\dots,x_k\});H\simeq G),\\
+	N_G^{=}&:=\frac1{k!}\sum_{(x_1,\dots,x_k)\in\eta^k_{\ne}\cap\Gamma_s}\mathbf{1}(\mathbb{G}_{\varphi}(\{x_1,\dots,x_k\})\simeq G).
+\end{align}
 
 
 
