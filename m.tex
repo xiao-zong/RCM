@@ -23,7 +23,7 @@
 \newtheorem{ass}[theorem]{Assumption}
 \newtheorem{example}[theorem]{Example}
 \newtheorem{conj}[theorem]{Conjecture}
-
+\numberwithin{equation}{section}
 \theoremstyle{remark}
 \newtheorem{remark}[theorem]{Remark}
 
@@ -129,7 +129,7 @@ We also denote
 \begin{equation}\label{eqn:generalised_Mecke_U-statistics}
 \E S = \int_{\mathbb{X}^k}\int_{\mathbb{M}^{k\times k}_{\neq}} f(x_1,\hdots,x_k,\mathbf{u}) \, \mathbb{Q}_{\neq}^{k\times k}(\mathrm{d}\mathbf{u}) \, \lambda^k(\mathrm{d}(x_1,\hdots,x_k)).
 \end{equation}
-\item[b)] Suppose $\E\left(\overline{S}^2\right)<\infty$, we have 
+\item[b)] \textcolor{red}{Suppose $\E\left(\overline{S}^2\right)<\infty$, then we have} 
 \begin{align}\label{eqn:variance}
 \Var S =\sum_{\ell=1}^k{k\choose \ell}^2\ell! &\int_{\mathbb{X}^{2k-\ell}}\int_{\mathbb{M}^{(2k-\ell)\times (2k-\ell)}_{\neq}} f(x_1,\hdots,x_k,(u_{i,j})_{i,j\in[k],i\ne j}) \nonumber\\
 &f(x_1,\dots,x_{\ell},x_{k+1},\dots,x_{2k-\ell},(u_{i,j})_{i,j\in[\ell]\cup\{k+1,\dots,2k-\ell\},i\ne j}) )\\
@@ -139,15 +139,22 @@ We also denote
 \end{prop}
 For higher moments, we need a few more notation about partitions. Let $A$ be a non-empty set. A partition $\sigma$ of $A$ is a collection $\{B_1,\dots,B_s\}$ of pairwise disjoint non-empty subsets $B_i\subseteq A$, called blocks, such that $B_1\cup\cdots\cup B_s=A$. The number $s$ of blocks in $\sigma$ is denoted by $|\sigma|$.
 % For any $n\in\N$, we denote $[n]:=\{1,\dots,n\}$.
-Let $t\in\N$ and $q\in\N$. Set $J_\ell:=\{(\ell-1)q+1,\dots,\ell q\}$, for $\ell=1,\dots,t.$ By $\Pi^t(q)$ we denote the set of all partitions $\sigma$ of $[tq]$ such that $|B\cap J_\ell|\le1$ for all $\ell\in[t]$ and $B\in\sigma$.
+Let $t\in\N$ and $q\in\N$. Set $J_\ell:=\{(\ell,1),(\ell,2),\dots,(\ell,q)\}$, for $\ell=1,\dots,t.$ By $\Pi^t(q)$ we denote the set of all partitions $\sigma$ of $[t]\times[q]$ such that $|B\cap J_\ell|\le1$ for all $\ell\in[t]$ and $B\in\sigma$.
 
 Every partition $\sigma\in\Pi^t(q)$ induces a partition $\sigma^*$ of $[t]$ in the following way: $i,j\in[t]$ are in the same block of $\sigma^*$ whenever there exists a block $B\in\sigma$ such that $|B\cap J_i|=|B\cap J_j|=1$. Let $\widetilde{\Pi}^t(q)$ be the collection of all partitions $\sigma\in\Pi^t(q)$ such that $|\sigma^*|=1$. Note that partitions in $\Pi^t(q)$ and $\widetilde{\Pi}^t(q)$ are known as non-flat and connected non-flat, respectively, see \cite[Chapter~4]{peccati2011}. 
 We denote by $\overline{\Pi}^t(q)$ the collection of all partitions $\sigma\in\Pi^t(q)$ such that for each $\ell\in[t]$ there exists a block $B\in\sigma$ with $|B|\ge2$ and $B\cap J_\ell\ne\emptyset$.
 %By $\Pi_{\ge2}(q_1,\dots,q_t)$ and $\widetilde{\Pi}_{\ge2}(q_1,\dots,q_t)$, we denote the sets of all $\sigma\in\Pi(q_1,\dots,q_t)$ and $\sigma\in\widetilde{\Pi}(q_1,\dots,q_t)$ such that $|B|\ge2$ for every $B\in\sigma$. In the case $q_1=\dots=q_t=q$, we write $\Pi^t(q)$, $\widetilde{\Pi}^t(q)$, $\Pi^t_{\ge2}(q)$, $\widetilde{\Pi}^t_{\ge2}(q)$ and $\overline{\Pi}^t(q)$ instead of $\Pi(q_1,\dots,q_t)$, $\widetilde{\Pi}(q_1,\dots,q_t)$, $\Pi_{\ge2}(q_1,\dots,q_t)$, $\widetilde{\Pi}_{\ge2}(q_1,\dots,q_t)$ and $\overline{\Pi}(q_1,\dots,q_t)$ respectively.
 
-Let $(S,\mathcal{S})$ be an arbitrary measurable space. For functions $f^{(\ell)}:S^{q}\to\R$, $\ell\in[t]$, we define their tensor product $\otimes_{\ell=1}^tf^{(\ell)}:S^{tq}\to\R$ by 
+\textcolor{blue}{Let $(S,\mathcal{S})$ be an arbitrary measurable space. For functions $f^{(\ell)}:S^{q}\to\R$, $\ell\in[t]$, we define their tensor product $\otimes_{\ell=1}^tf^{(\ell)}:S^{tq}\to\R$ by 
 $$\otimes_{\ell=1}^tf^{(\ell)}(x_1,\dots,x_{tq}):=\prod_{\ell=1}^tf^{(\ell)}(x_{(\ell-1)q+1},\dots,x_{\ell q}).$$
-For each $\sigma\in\Pi^t(q)$, the function $(\otimes_{\ell=1}^tf^{(\ell)})_\sigma:S^{|\sigma|}\to\mathbb{R}$ is obtained by replacing all variables that belong to the same block in $\sigma$ by a new common variable.
+For each $\sigma\in\Pi^t(q)$, the function $(\otimes_{\ell=1}^tf^{(\ell)})_\sigma:S^{|\sigma|}\to\mathbb{R}$ is obtained by replacing all variables that belong to the same block in $\sigma$ by a new common variable.}
+%not needed anymore.
+For any $f: \mathbb{X}^k\times \mathbb{M}^{k\times k}_{\neq}\to\mathbb{R}$ with $k\in\mathbb{N}$, and each $\sigma=\{b_1,\dots,b_{|\sigma|}\}\in\Pi^t(k)$, we denote $(f^{\otimes t})_{\pi}:\mathbb{X}^{|\sigma|}\times \mathbb{M}^{|\sigma|\times |\sigma|}_{\neq}\to\mathbb{R}$ as 
+\begin{align}
+  (f^{\otimes t})_{\pi}(x_1,\dots,x_{|\pi|},(u_{i,j})_{i,j\in[|\sigma|],i\ne j}):=\prod_{\ell=1}^t f(x^{(\ell)}_1,\dots,x^{(\ell)}_k,(u^{(\ell)}_{i,j})_{i,j\in[k],i\ne j}),
+\end{align}
+with $x^{(\ell)}_{t}:=x_i$ if $(\ell,t)\in b_i$, and $u^{(\ell)}_{t,s}:=u_{i,j}$ if $(\ell,t)\in b_i$ and $(\ell,s)\in b_j$.
+
 \begin{prop}\label{prop:moments}
     Suppose that $\E\left(\overline{S}^{\ell}\right)<\infty$ for some $\ell\in\N$, then 
     \begin{eqnarray}
@@ -608,20 +615,30 @@ In particular, the Poisson RCM base on the underlying Possion process $\eta$ is 
 
 
 \subsection{subgraph count}
-%Let $\eta$ be a stationary Poisson process on $\mathbb{R}^d$, with intensity measure $\gamma\cdot \lambda_d$, $\gamma>0$ and $\lambda_d$ is the Lebesgue measure on $\mathbb{R}^d$. 
-%Let $\Gamma_0\subseteq\mathbb{R}^d$ be a compact convex set with $\lambda_d(\Gamma_0)=1$, and denote $\Gamma_s:=s^{1/d}\Gamma_0$. 
-%For any $r\ge2$, and $\{x_1,\dots,x_r\}\subseteq\mathbb{R}^d$, we denote the RCM on $\{x_1,\dots,x_r\}$ with connection function $\varphi$ as $\mathbb{G}(\{x_1,\dots,x_r\},\varphi)$. In particular, the Poisson RCM base on the underlying Possion process $\eta$ is denoted as $\mathbb{G}(\eta,\varphi)$.  
 Let $G=(V_G,E_G)$ be a fixed connected graph of order $k$, $k\ge2$, with vertex set $V_G$ and edge set $E_G$. 
-For any two graphs $G_1$ and $G_2$, we denote $G_1\simeq G_2$ when $G_1$ is isomorphic to $G_2$.
+For any two graphs $G_1$ and $G_2$, we denote $G_1\simeq G_2$ when $G_1$ is isomorphic to $G_2$. Denote $|\mathrm{Aut}(G)|$ as the number of automorphism of $G$. 
+
 We consider the injective subgraph count and the induced subgraph count on $\mathbb{G}_{\varphi}(\eta\cap\Gamma_s)$ that is isomorphic to graph $G$, denoted as
 \begin{align}
-	N_G^{\subset}&:=\frac1{k!}\sum_{(x_1,\dots,x_k)\in\eta^k_{\ne}\cap\Gamma_s}\mathbf{1}(H\subseteq \mathbb{G}_{\varphi}(\{x_1,\dots,x_k\});H\simeq G),\\
-	N_G^{=}&:=\frac1{k!}\sum_{(x_1,\dots,x_k)\in\eta^k_{\ne}\cap\Gamma_s}\mathbf{1}(\mathbb{G}_{\varphi}(\{x_1,\dots,x_k\})\simeq G).
+	N_G^{\subset}&:=\frac1{|\mathrm{Aut}(G)|}\sum_{(x_1,\dots,x_k)\in\eta^k_{\ne}\cap\Gamma_s}\prod_{\{i,j\}\in E_G}\mathbf{1}\{x_i\leftrightarrow x_j\},\label{def:subgraph-count1}\\
+	N_G^{=}&:=\frac1{|\mathrm{Aut}(G)|}\sum_{(x_1,\dots,x_k)\in\eta^k_{\ne}\cap\Gamma_s}\prod_{\{i,j\}\in E_G}
+    \mathbf{1}\{x_i\leftrightarrow x_j\}\prod_{\{\imath,\jmath\}\notin E_G}\mathbf{1}\{x_{\imath}\nleftrightarrow x_{\jmath}\}.\label{def:subgraph-count2}
 \end{align}
-
-
-
-
+Define $f^{\subset}_G:(\R^d)^k\times [0,1]^{k(k-1)/2}\to\{0,1\}$ as 
+\begin{equation}
+	f^{\subset}_G(x_1,\dots,x_k,\mathbf{u}):=\frac1{|\mathrm{Aut}(G)|}\prod_{\{i,j\}\in E_G}\mathbf{1}\{u_{i,j}\le\varphi(x_i-x_j)\},
+\end{equation}
+with $\mathbf{u}=(u_{i,j})_{1\le i<j\le k}$ and $u_{i,j}:=u_{j,i}$ if $i>j$. 
+Similarly, we define 
+$f^{=}_G:(\R^d)^k\times [0,1]^{k(k-1)/2}\to\{0,1\}$ as 
+\begin{equation}
+	f^{\subset}_G(x_1,\dots,x_k,\mathbf{u}):=\frac1{|\mathrm{Aut}(G)|}\prod_{\{i,j\}\in E_G}\mathbf{1}\{u_{i,j}\le\varphi(x_i-x_j)\}\prod_{\{\imath,\jmath\}\notin E_G}\mathbf{1}\{u_{\imath,\jmath}>\varphi(x_{\imath}-x_{\jmath})\}.
+\end{equation}
+Let $\mathbb{Q}$ be the uniform distribution on $[0,1]$. With \eqref{momeq-3}, we have 
+\begin{align}
+	\Var(N_G^{\subset})&=
+	\sum_{\pi\in\widetilde{\Pi}^2(k)}\int_{\Gamma_s^{|\pi|}}\int_{[0,1]^{|\pi|\times|\pi|}_{\ne}}(f^{\subset}_G\otimes f^{\subset}_G)_{\pi}(\bm{x},\bm{u})\mathbb{Q}^{|\pi|\times|\pi|}_{\ne}(\mathrm{d}\bm{u})\gamma^{|\pi|}\mathrm{d}\bm{x}
+\end{align}
 
 
 
