@@ -49,18 +49,18 @@
 %  0< \int_{\mathbb{R}^d} g(x) dx < \infty.
 % \end{equation}
 % For every $x,y \in V$ the (undirected) edge connecting $x$ and $y$ is present with probability $g(x-y)$, independently of all the other edges. We will use the notation $x\leftrightarrow y$ if there is an (undirected) edge $\{x,y\} \in E$.
-Let $\eta$ be a homogeneous Poisson point process with unit intensity in $\mathbb{R}^d$. Let $g\colon \mathbb{R}^d \to [0,1]$ be a measurable function satisfying $g(x) = g(-x)$ for all $x\in\mathbb{R}^d$ and
+Let $\eta$ be a homogeneous Poisson point process with intensity $\gamma>0$ in $\mathbb{R}^d$. Let $\varphi\colon \mathbb{R}^d \to [0,1]$ be a measurable function satisfying $\varphi(x) = \varphi(-x)$ for all $x\in\mathbb{R}^d$ and
 \begin{equation} \label{g1}
- 0< \int_{\mathbb{R}^d} g(x) \mathrm{d}x < \infty.
+ 0< \int_{\mathbb{R}^d} \varphi(x) \mathrm{d}x < \infty.
 \end{equation}
-Any two distinct points $x,y\in\eta$ are connected by an edge with probability $g(x-y)$, independently of all other edges. The resulting random graph is known as a random connection model (RCM) with connection function $g$, see \cite{meesterroy} for more details.
+Any two distinct points $x,y\in\eta$ are connected by an edge with probability $\varphi(x-y)$, independently of all other edges. The resulting random graph is known as a random connection model (RCM) with connection function $g$, see \cite{meesterroy} for more details.
 
 Counting statistics on RCM gains vastly attention in recent years, including isolated vertices counts \cite{Penrose2}, component counts \cite{Last_Nestmann_Schulte} and subgraph counts in \cite{can2022, LiuPrivault},
 with various approaches being proposed to analyze the structure and asymptotic properties of these random graphs. In this note, we focus on various approximation results for counting statistics in RCM by incorporating the random connection model into the framework of Poisson $U$-statistics, see \cite{reitznerschulte}, \cite{last4}, and \cite{schulte} for more details.
 % \subsection{$U$-statistics of RCM}
 % \section{Preliminaries}
 
-\textcolor{red}{Introduce Poisson U-statistics}
+\textcolor{red}{Introduce Poisson $U$-statistics}
 
 
 
@@ -68,7 +68,7 @@ with various approaches being proposed to analyze the structure and asymptotic p
 
 
 
-\subsection{Edge-marked Poisson processes}
+\subsection{Edge-marked Poisson processes}\label{subsec:edge-marked_PP}
 
 Although we are mostly interested in the random connection model, we derive general results for certain functionals and point processes constructed from so-called edge-marked Poisson processes. The idea of an edge-marked Poisson process is to take a Poisson process and to assign i.i.d.\ marks to all pairs of points. The random connection model can be derived from such an edge-marked Poisson process in the following way. We take the Poisson process of the vertices and equip each pair of vertices $x$ and $y$ with an independent random variable $U_{x,y}$ that is uniformly distributed on $[0,1]$. Then we connect $x$ and $y$ by an edge if and only if $U_{x,y}\leq \varphi(x,y)$, where $\varphi$ is the connection function.
 
@@ -108,19 +108,32 @@ For $k\in\mathbb{N}$ we use the short hand notation $[k]:=\{1,\hdots,k\}$ and de
 $$
 \mathbb{M}^{k\times k}_{\neq}:=\{(u_{i,j})_{i,j\in[k],i\neq j}: u_{i,j}\in \mathbb{M} \text{ for } i,j\in[k],i\neq j\}.
 $$
-Moreover let $\eta^k_{\neq}$ be the set of all $k$-tuples of distinct points of $\eta$.
+In the following, we often denote the entries of $\mathbf{u}\in \mathbb{M}^{k\times k}_{\neq}$ by $(u_{i,j})_{i,j\in[k],i\neq j}$. Moreover let $\eta^k_{\neq}$ be the set of all $k$-tuples of distinct points of $\eta$.
 
 
 
-For $f: \mathbb{X}^k\times \mathbb{M}^{k\times k}_{\neq}\to\mathbb{R}$ with $k\in\mathbb{N}$ we are interested in random variables of the following form:
+For a measurable function $f: \mathbb{X}^k\times \mathbb{M}^{k\times k}_{\neq}\to\mathbb{R}$ with $k\in\mathbb{N}$ we are interested in random variables of the following form
 \begin{equation}\label{def:ustat}
-S=\sum_{(x_1,\hdots,x_k)\in\eta^k_{\neq}} f(x_1,\hdots,x_k, (M_{x_i,x_j})_{i,j\in[k], i\neq j}).
+S=\sum_{(x_1,\hdots,x_k)\in\eta^k_{\neq}} f(x_1,\hdots,x_k, (M_{x_i,x_j})_{i,j\in[k], i\neq j}),
 \end{equation}
-We also denote 
+which we call $U$-statistics of the edge-marked Poisson process. Since we sum also over all permutations of a fixed $k$-tuple of points, we can assume without loss of generality that $f$ is symmetric, i.e., 
+$$
+f(x_1,\hdots,x_k, (u_{i,j})_{i,j\in[k],i\neq j})=f(x_{\pi(1)},\hdots,x_{\pi(k)}, (u_{\pi(i),\pi(j)})_{i,j\in[k],i\neq j})
+$$
+for all $x_1,\hdots,x_k\in\mathbb{X}^k$, $\mathbf{u}\in\mathbb{M}^{k\times k}_{\neq}$ and all permutations $\pi:[k]\to[k]$. Indeed, the value of $S$ does not change if we replace $f$ by its symmetrisation
+$$
+\widetilde{f}(x_1,\hdots,x_k, (u_{i,j})_{i,j\in[k],i\neq j}):=\frac{1}{k!}\sum_{\pi\in \mathrm{P}([k])}f(x_{\pi(1)},\hdots,x_{\pi(k)}, (u_{\pi(i),\pi(j)})_{i,j\in[k],i\neq j})
+$$
+for $x_1,\hdots,x_k\in\mathbb{X}^k$ and $\mathbf{u}\in\mathbb{M}^{k\times k}_{\neq}$, where $\mathrm{P}([k])$ is the set of all permutations of $[k]$.
+We often formulate assumptions on terms of the $U$-statistic
 \begin{equation}\label{def-integ1}
     \overline{S}:=\sum_{(x_1,\hdots,x_k)\in\eta^k_{\neq}} \left|f(x_1,\hdots,x_k, (M_{x_i,x_j})_{i,j\in[k], i\neq j})\right|.
 \end{equation}
-\begin{prop}
+Note that $S=\overline{S}$ if $f$ is non-negative.
+
+We start with formulae for expectations and variances of $U$-statistics of edge-marked Poisson processes. From now on we always assume that the function $f$ is symmetric as discussed above.
+
+\begin{prop}\label{prop:expectation_variance}
     % Let $f: \mathbb{X}^k\times \mathbb{M}^{k\times k}_{\neq}\to\mathbb{R}$ with $k\in\mathbb{N}$ be a measurable function. 
     \begin{enumerate}
     \item[]
@@ -149,7 +162,7 @@ We denote by $\overline{\Pi}^t(q)$ the collection of all partitions $\sigma\in\P
 $$\otimes_{\ell=1}^tf^{(\ell)}(x_1,\dots,x_{tq}):=\prod_{\ell=1}^tf^{(\ell)}(x_{(\ell-1)q+1},\dots,x_{\ell q}).$$
 For each $\sigma\in\Pi^t(q)$, the function $(\otimes_{\ell=1}^tf^{(\ell)})_\sigma:S^{|\sigma|}\to\mathbb{R}$ is obtained by replacing all variables that belong to the same block in $\sigma$ by a new common variable.}
 %not needed anymore.
-For any $f: \mathbb{X}^k\times \mathbb{M}^{k\times k}_{\neq}\to\mathbb{R}$ with $k\in\mathbb{N}$, and each $\sigma=\{b_1,\dots,b_{|\sigma|}\}\in\Pi^t(k)$, we denote $(f^{\otimes t})_{\pi}:\mathbb{X}^{|\sigma|}\times \mathbb{M}^{|\sigma|\times |\sigma|}_{\neq}\to\mathbb{R}$ as 
+For any $f: \mathbb{X}^k\times \mathbb{M}^{k\times k}_{\neq}\to\mathbb{R}$ with $k\in\mathbb{N}$, and for each $\sigma=\{b_1,\dots,b_{|\sigma|}\}\in\Pi^t(k)$, we denote $(f^{\otimes t})_{\pi}:\mathbb{X}^{|\sigma|}\times \mathbb{M}^{|\sigma|\times |\sigma|}_{\neq}\to\mathbb{R}$ as 
 \begin{align}
   (f^{\otimes t})_{\pi}(x_1,\dots,x_{|\pi|},(u_{i,j})_{i,j\in[|\sigma|],i\ne j}):=\prod_{\ell=1}^t f(x^{(\ell)}_1,\dots,x^{(\ell)}_k,(u^{(\ell)}_{i,j})_{i,j\in[k],i\ne j}),
 \end{align}
@@ -198,7 +211,7 @@ for $u\in[4]$ and $\pi\in\Pi^4(k)$.
 
 \subsection{Poisson process approximation}
 
-For $k\in\mathbb{N}$ with $k\geq2$ and a locally compact second countable Hausdorff space $\mathbb{Y}$ with Borel $\sigma$-algebra $\mathcal{Y}$ we consider a measurable function $g: \operatorname{dom} g\to\mathbb{Y}$ with $\operatorname{dom} g\subseteq \mathbb{X}^k\times \mathbb{M}^{k\times k}_{\neq}$. Moreover, we define
+For $k\in\mathbb{N}$ with $k\geq2$ and a locally compact second countable Hausdorff space $\mathbb{Y}$ with Borel $\sigma$-algebra $\mathcal{Y}$ we consider a measurable symmetric function $g: \operatorname{dom} g\to\mathbb{Y}$ such that $\operatorname{dom} g\subseteq \mathbb{X}^k\times \mathbb{M}^{k\times k}_{\neq}$ is also measurable. Moreover, we define
 $$
 {\operatorname{dom}'} g := \left\{( x_1, \ldots, x_k)\in\mathbb{X}^k : \text{ there exists a } \mathbf{u}\in\mathbb{M}^{k\times k}_{\neq} \text{ such that } \left( x_1, \ldots, x_k, \mathbf{u} \right) \in  \operatorname{dom} g\right\}.
 $$
@@ -208,15 +221,15 @@ In the following, we consider the point process
 \end{equation}
 The intensity measure $\mathbf{L}$ of $\xi$ is given by
 $$
-\mathbf{L}(A):= \frac{1}{k!} \int_{\operatorname{dom} g} \mathbf{1}\{ g(x_1,\hdots,x_k,\mathbf{u})\in A \} \, \lambda^k\otimes \mathbb{Q}_{\neq}^{k\times k}(\mathrm{d} (x_1,\hdots,x_k,\mathbf{u})) 
+\mathbf{L}(A):= \mathbb{E} \xi(A) =\frac{1}{k!} \int_{\operatorname{dom} g} \mathbf{1}\{ g(x_1,\hdots,x_k,\mathbf{u})\in A \} \, \lambda^k\otimes \mathbb{Q}_{\neq}^{k\times k}(\mathrm{d} (x_1,\hdots,x_k,\mathbf{u})) 
 $$
 for $A\in\mathcal{Y}$.
 
 \begin{theorem} \label{Poisson_process_approximation}
 Let $\xi$ be the point process given in \eqref{definition_xi} and assume that $\E \xi(\mathbb{Y})^2<\infty$. Let $\zeta$ be a Poisson process with finite intensity measure $\mathbf{M}$. Then,
     \begin{align*}
-        d_{KR}({\xi}, \zeta) & \leq d_{TV}(\mathbf{L},\mathbf{M}) + 2 \big( \E \xi(\mathbb{Y})^2 - (\E \xi(\mathbb{Y}))^2 - \E \xi(\mathbb{Y}) \big) \\
-        & \leq d_{TV}(\mathbf{L},\mathbf{M}) + \frac{2^{k+1}}{k!} \, r(\operatorname{dom} g),
+        \mathrm{d}_{KR}({\xi}, \zeta) & \leq \mathrm{d}_{\mathrm{TV}}(\mathbf{L},\mathbf{M}) + 2 \big( \E \xi(\mathbb{Y})^2 - (\E \xi(\mathbb{Y}))^2 - \E \xi(\mathbb{Y}) \big) \\
+        & \leq \mathrm{d}_{\mathrm{TV}}(\mathbf{L},\mathbf{M}) + \frac{2^{k+1}}{k!} \, r(\operatorname{dom} g),
     \end{align*}
 where
 \begin{align*}
@@ -253,16 +266,16 @@ with
 The statement follows from Theorem \ref{Poisson_process_approximation} exactly as Theorem 7.1 follows from Theorem 3.1 in \cite{dst}.
 \end{proof}
 
-Let $g: \mathbb{X}^k\times\mathbb{M}^{k\times k}\to\mathbb{R}$ be a measurable function. Define the $U$-statistic
+Let $g: \mathbb{X}^k\times\mathbb{M}^{k\times k}_{\neq}\to\mathbb{R}$ be a measurable symmetric function. Define the $U$-statistic
 \begin{equation}\label{definition_U}
-U := \frac{1}{k!}\sum_{(x_1,\hdots,x_k)\in\eta^k_{\neq}\cap \operatorname{dom}'g} g(x_1,\hdots,x_k,(M_{x_i,x_j})_{i,j\in[k],i\neq j}). 
+U := \frac{1}{k!}\sum_{(x_1,\hdots,x_k)\in\eta^k_{\neq}} g(x_1,\hdots,x_k,(M_{x_i,x_j})_{i,j\in[k],i\neq j}). 
 \end{equation}
 Moreover, let
 \begin{align*}
 \mathbf{L}(A) := \frac{1}{k!} \, \mathbb{E} \sum_{(x_1, \ldots, x_k) \in \eta_{\neq}^k} 
-\mathbf{1}\left( g(x_1, \ldots, x_k, (M_{x_i,x_j})_{i,j\in[k], i \neq j}) \in A \setminus \{0\} \right)
+\mathbf{1}\left\{ g(x_1, \ldots, x_k, (M_{x_i,x_j})_{i,j\in[k], i \neq j}) \in A \setminus \{0\} \right\}
 \end{align*}
-for $A \in \mathcal{B}(\mathbb{R})$. We get the following result.
+for $A \in \mathcal{B}(\mathbb{R})$, where the second equality follows from Proposition \ref{prop:expectation_variance}. We get the following result.
 
 \begin{cor}\label{compound}
 For a Poisson process  \( \zeta \) on \( \mathbb{R} \) with a finite intensity measure \( \mathbf{M} \) let
@@ -616,14 +629,26 @@ In particular, the Poisson RCM base on the underlying Possion process $\eta$ is 
 
 \subsection{subgraph count}
 Let $G=(V_G,E_G)$ be a fixed connected graph of order $k$, $k\ge2$, with vertex set $V_G$ and edge set $E_G$. 
-For any two graphs $G_1$ and $G_2$, we denote $G_1\simeq G_2$ when $G_1$ is isomorphic to $G_2$. Denote $|\mathrm{Aut}(G)|$ as the number of automorphism of $G$. 
+%For any two graphs $G_1$ and $G_2$, we denote $G_1\simeq G_2$ when $G_1$ is isomorphic to $G_2$. 
+Denote $|\mathrm{Aut}(G)|$ as the number of automorphism of $G$. 
 
-We consider the injective subgraph count and the induced subgraph count on $\mathbb{G}_{\varphi}(\eta\cap\Gamma_s)$ that is isomorphic to graph $G$, denoted as
+\begin{prop}
+  Let $N_G^{\subset}$ and $N_G^{=}$ be the injective and induced subgraph count on 
+ $\mathbb{G}_{\varphi}(\eta\cap\Gamma_s)$ that is isomorphic to graph $G$, defined as
 \begin{align}
 	N_G^{\subset}&:=\frac1{|\mathrm{Aut}(G)|}\sum_{(x_1,\dots,x_k)\in\eta^k_{\ne}\cap\Gamma_s}\prod_{\{i,j\}\in E_G}\mathbf{1}\{x_i\leftrightarrow x_j\},\label{def:subgraph-count1}\\
 	N_G^{=}&:=\frac1{|\mathrm{Aut}(G)|}\sum_{(x_1,\dots,x_k)\in\eta^k_{\ne}\cap\Gamma_s}\prod_{\{i,j\}\in E_G}
     \mathbf{1}\{x_i\leftrightarrow x_j\}\prod_{\{\imath,\jmath\}\notin E_G}\mathbf{1}\{x_{\imath}\nleftrightarrow x_{\jmath}\}.\label{def:subgraph-count2}
 \end{align}
+Then there exists a constant $C$ only depending on $\varphi$ and $k$ such that 
+\begin{equation}
+	d_W\left(\frac{N_G^{(i)}-\mathbb{E} N_G^{(i)}}{\sqrt{\Var N_G^{(i)}}},N\right)\le d_{K}\left(\frac{N_G^{(i)}-\mathbb{E} N_G^{(i)}}{\sqrt{\Var N_G^{(i)}}},N\right)\le\frac{C}{\sqrt{s}}, 
+\end{equation}
+with $i\in\{\subseteq,=\}$. 
+\end{prop}
+\begin{proof}
+
+Let $\mathbb{Q}$ be the uniform distribution on $[0,1]$. 
 Define $f^{\subset}_G:(\R^d)^k\times [0,1]^{k(k-1)/2}\to\{0,1\}$ as 
 \begin{equation}
 	f^{\subset}_G(x_1,\dots,x_k,\mathbf{u}):=\frac1{|\mathrm{Aut}(G)|}\prod_{\{i,j\}\in E_G}\mathbf{1}\{u_{i,j}\le\varphi(x_i-x_j)\},
@@ -632,15 +657,28 @@ with $\mathbf{u}=(u_{i,j})_{1\le i<j\le k}$ and $u_{i,j}:=u_{j,i}$ if $i>j$.
 Similarly, we define 
 $f^{=}_G:(\R^d)^k\times [0,1]^{k(k-1)/2}\to\{0,1\}$ as 
 \begin{equation}
-	f^{\subset}_G(x_1,\dots,x_k,\mathbf{u}):=\frac1{|\mathrm{Aut}(G)|}\prod_{\{i,j\}\in E_G}\mathbf{1}\{u_{i,j}\le\varphi(x_i-x_j)\}\prod_{\{\imath,\jmath\}\notin E_G}\mathbf{1}\{u_{\imath,\jmath}>\varphi(x_{\imath}-x_{\jmath})\}.
+	f^{=}_G(x_1,\dots,x_k,\mathbf{u}):=\frac1{|\mathrm{Aut}(G)|}\prod_{\{i,j\}\in E_G}\mathbf{1}\{u_{i,j}\le\varphi(x_i-x_j)\}\prod_{\{\imath,\jmath\}\notin E_G}\mathbf{1}\{u_{\imath,\jmath}>\varphi(x_{\imath}-x_{\jmath})\}.
 \end{equation}
-Let $\mathbb{Q}$ be the uniform distribution on $[0,1]$. With \eqref{momeq-3}, we have 
+Because $f^{\subset}_G$ and $f^{=}_G$ are both non-negative and bounded by $\frac1{|\mathrm{Aut}(G)|}$, 
+with \eqref{momeq-3}, we have 
 \begin{align}
-	\Var(N_G^{\subset})&=
-	\sum_{\pi\in\widetilde{\Pi}^2(k)}\int_{\Gamma_s^{|\pi|}}\int_{[0,1]^{|\pi|\times|\pi|}_{\ne}}(f^{\subset}_G\otimes f^{\subset}_G)_{\pi}(\bm{x},\bm{u})\mathbb{Q}^{|\pi|\times|\pi|}_{\ne}(\mathrm{d}\bm{u})\gamma^{|\pi|}\mathrm{d}\bm{x}
+	\Var(N_G^{(i)})&=
+	\sum_{\pi\in\widetilde{\Pi}^2(k)}\int_{\Gamma_s^{|\pi|}}\int_{[0,1]^{|\pi|(|\pi|-1)/2}}(f^{(i)}_G\otimes f^{(i)}_G)_{\pi}(\bm{x},\bm{u})\mathrm{d}\bm{u}\gamma^{|\pi|}\mathrm{d}\bm{x},
+\end{align}
+and there exists contants $c$, $C$, only depending on $\varphi$ and $k$ such that 
+\begin{equation}\label{varbound1}
+	c\gamma^{2k-1}s^{2k-1}\le \Var(N_G^{(i)})\le C\gamma^{2k-1}s^{2k-1}.
+\end{equation}
+Moreover, we have 
+\begin{equation}\label{mom-bound1}
+	\max_{1\le i,j\le k}M_{i,j}(f^{(i)}_G)\le \tilde{C}\gamma^{1+4(k-1)}s^{1+4(k-1)}.
+\end{equation}
+Substituting $\eta$ in Theorem~\ref{normalapp1} with $\eta\cap\Gamma_s$, and $f$ with $f_G^{\subset}$ (rep. $f_G^{=}$), and collecting \eqref{varbound1}, \eqref{mom-bound1} we obtain that
+\begin{align}
+	d_K\left(\frac{N_G^{(i)}-\mathbb{E} N_G^{(i)}}{\sqrt{\Var N_G^{(i)}}},N\right)&\le 19k^5\sum_{i,j=1}^k\frac{\sqrt{\tilde{C}\gamma^{1+4(k-1)}s^{1+4(k-1)}}}{c\gamma^{2k-1}s^{2k-1}}\le \frac{C}{\sqrt{s}}. 
 \end{align}
 
-
+\end{proof}
 
 
 
@@ -658,7 +696,7 @@ Let $\mathbb{Q}$ be the uniform distribution on $[0,1]$. With \eqref{momeq-3}, w
 \subsection{edge-length functionals}
 
 \section{Approximation results}\label{sec:approximation}
-\subsection{Construction of the random connection model}
+\subsection{Construction of edge-marked Poisson processes}
 
 \iffalse
 Let $(\mathbb{X},\mathcal{X})$ be a measurable space and let $\eta$ be a Poisson process on $\mathbb{X}$ with a $\sigma$-finite non-atomic intensity measure $\lambda$. We assume that $\eta$ can be almost surely written as 
@@ -714,15 +752,16 @@ Let $n\in\mathbb{N}$ and let $(x,(u_{i,j})_{i,j\in\mathbb{N}})$ and $(y,(v_{i,j}
 \end{equation}
 Let $\eta_{\mathbb{X}}$ be the projection of $\widehat{\eta}$ to $\mathbb{X}$ and denote the projection of $\hat{x}\in\widehat{\mathbb{X}}$ to $\mathbb{X}$ by $x$. Then, we have
 $$
-(\eta_{\mathbb{X}}, (\widetilde{M}^{(n)}_{x,y})_{x,y\in\eta_{\mathbb{X}}, x\ne y}) \overset{d}{=} (\eta, (M_{x,y})_{x,y\in\eta,x\neq y}).
+(\eta_{\mathbb{X}}, (\widetilde{M}^{(n)}_{x,y})_{x,y\in\eta_{\mathbb{X}}, x\ne y}) \overset{d}{=} (\eta, (M_{x,y})_{x,y\in\eta,x\neq y}),
 $$
-In particular,
+where $\eta$ and $(M_{x,y})_{x,y\in\eta,x\neq y}$ are the Poisson process and the marks introduced in Subsection \ref{subsec:edge-marked_PP}.
+This implies that
 \begin{equation}
-\widetilde{S}^{(n)} = \sum_{(x_1,\hdots,x_k)\in(\eta_{\mathbb{X}})^k_{\neq}} f(x_1,\hdots,x_k, (\widetilde{M}^{(n)}_{x_i,x_j})_{i,j\in[k],i\neq j}) %= \sum_{(\hat{x}_1,\hdots,\hat{x}_k)\in\widehat{\eta}^k_{\neq}} f(x_1,\hdots,x_k, (\widetilde{M}^{(n)}_{x_i,x_j})_{i,j\in[k],i\neq j})
+\widetilde{S}^{(n)} := \sum_{(x_1,\hdots,x_k)\in(\eta_{\mathbb{X}})^k_{\neq}} f(x_1,\hdots,x_k, (\widetilde{M}^{(n)}_{x_i,x_j})_{i,j\in[k],i\neq j}) %= \sum_{(\hat{x}_1,\hdots,\hat{x}_k)\in\widehat{\eta}^k_{\neq}} f(x_1,\hdots,x_k, (\widetilde{M}^{(n)}_{x_i,x_j})_{i,j\in[k],i\neq j})
 \end{equation}
 and
 $$
-\widetilde{\xi}^{(n)} = \sum_{(x_1,\hdots,x_k)\in(\eta_{\mathbb{X}})^k_{\neq}} \mathbf{1}((x_1,\hdots,x_k, (\widetilde{M}^{(n)}_{x_i,x_j})_{i,j\in[k],i\neq j})\in\operatorname{dom} g) \delta_{g(x_1,\hdots,x_k, (\widetilde{M}^{(n)}_{x_i,x_j})_{i,j\in[k],i\neq j})}
+\widetilde{\xi}^{(n)} := \frac{1}{k!} \sum_{(x_1,\hdots,x_k)\in(\eta_{\mathbb{X}})^k_{\neq}} \mathbf{1}((x_1,\hdots,x_k, (\widetilde{M}^{(n)}_{x_i,x_j})_{i,j\in[k],i\neq j})\in\operatorname{dom} g) \delta_{g(x_1,\hdots,x_k, (\widetilde{M}^{(n)}_{x_i,x_j})_{i,j\in[k],i\neq j})}
 $$
 have the same distributions as $S$ and $\xi$.
 
@@ -730,7 +769,7 @@ For $n\in\mathbb{N}$ and any distinct points $\hat{x}=(x,(u_{i,j})_{i,j\in\mathb
 \begin{equation}
 \widehat{M}^{(n)}_{x,y}:=u_{\ell,1},~~~~~\mbox{if}~~~ y\in A^{(n)}_\ell. 
 \end{equation}
-Note that $\widehat{M}^{(n)}_{x,y}=u_{\ell,1}$, in contrast to $\widetilde{M}^{(n)}_{x,y}$, only depends $\hat{x}$ and $\hat{y}$. Thus, for each $n\in\mathbb{N}$ there exists a function $\tilde{m}^{(n)}:\widehat{\mathbb{X}}^k\to\mathbb{M}^{k\times k}_{\neq}$ such that
+Note that $\widehat{M}^{(n)}_{x,y}$, in contrast to $\widetilde{M}^{(n)}_{x,y}$, only depends $\hat{x}$ and $\hat{y}$. Thus, for each $n\in\mathbb{N}$ there exists a function $\tilde{m}^{(n)}:\widehat{\mathbb{X}}^k\to\mathbb{M}^{k\times k}_{\neq}$ such that
 for all $(\hat{x}_1,\hdots,\hat{x}_k)\in\widehat{\eta}^k_{\neq}$,
 $$
  \tilde{m}^{(n)}(\hat{x}_1,\hdots,\hat{x}_k)=(\widehat{M}^{(n)}_{x_i,x_j})_{i,j\in[k],i\neq j}.
@@ -741,11 +780,11 @@ $$
 $$
 Next we define
 \begin{equation}\label{Ustat1}
-\widehat{S}^{(n)} = \sum_{(\hat{x}_1,\hdots,\hat{x}_k)\in\widehat{\eta}^k_{\neq}} f(x_1,\hdots,x_k, \tilde{m}^{(n)}(\hat{x}_1,\hdots,\hat{x}_k))
+\widehat{S}^{(n)} := \sum_{(\hat{x}_1,\hdots,\hat{x}_k)\in\widehat{\eta}^k_{\neq}} f(x_1,\hdots,x_k, \tilde{m}^{(n)}(\hat{x}_1,\hdots,\hat{x}_k))
 \end{equation}
 and
 \begin{equation}\label{xi_hat_n}
-\widehat{\xi}^{(n)} = \sum_{(\hat{x}_1,\hdots,\hat{x}_k)\in\widehat{\eta}^k_{\neq}} \mathbf{1}\{ (x_1,\hdots,x_k, \tilde{m}^{(n)}(\hat{x}_1,\hdots,\hat{x}_k))\in\operatorname{dom} f \} \delta_{g(x_1,\hdots,x_k, \tilde{m}^{(n)}(\hat{x}_1,\hdots,\hat{x}_k))}.
+\widehat{\xi}^{(n)} := \frac{1}{k!} \sum_{(\hat{x}_1,\hdots,\hat{x}_k)\in\widehat{\eta}^k_{\neq}} \mathbf{1}\{ (x_1,\hdots,x_k, \tilde{m}^{(n)}(\hat{x}_1,\hdots,\hat{x}_k))\in\operatorname{dom} f \} \delta_{g(x_1,\hdots,x_k, \tilde{m}^{(n)}(\hat{x}_1,\hdots,\hat{x}_k))}.
 \end{equation}
 Note that $\widehat{S}^{(n)}$ is a Poisson $U$-statistic of order $k$ as each summand only depends on the $k$ distinct points $\hat{x}_1,\hdots,\hat{x}_k$. Similarly a point of $\widehat{\xi}^{(n)}$ depends only on $k$ distinct points $\hat{x}_1,\hdots,\hat{x}_k$. 
 
