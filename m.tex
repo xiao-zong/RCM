@@ -6,7 +6,7 @@
 \usepackage{enumitem}
 \usepackage{color}
 
-\title{$U$-statistics of the random connection model and edge-marked Poisson processes}
+\title{$U$--statistics and point processes of the random connection model and edge--marked Poisson processes}
 %\author{}
 % \date{October 2024}
 \def\parsedate #1:20#2#3#4#5#6#7#8\empty{20#2#3-#4#5-#6#7}
@@ -40,7 +40,7 @@
 
 \begin{document}
 
-%\maketitle
+\maketitle
 
 \section{Introduction}
 
@@ -53,7 +53,7 @@ Let $\eta$ be a homogeneous Poisson point process with intensity $\gamma>0$ in $
 \begin{equation} \label{g1}
  0< \int_{\mathbb{R}^d} \varphi(x) \mathrm{d}x < \infty.
 \end{equation}
-Any two distinct points $x,y\in\eta$ are connected by an edge with probability $\varphi(x-y)$, independently of all other edges. The resulting random graph is known as a random connection model (RCM) with connection function $g$, see \cite{meesterroy} for more details.
+Any two distinct points $x,y\in\eta$ are connected by an edge with probability $\varphi(x-y)$, independently of all other edges. The resulting random graph is known as a random connection model (RCM) with connection function $g$, see \cite{meesterroy} for more details, and see \cite{deijfen2013scale,deprez2019scale} for the extension to models with vertex weights.
 
 Counting statistics on RCM gains vastly attention in recent years, including isolated vertices counts \cite{Penrose2}, component counts \cite{Last_Nestmann_Schulte} and subgraph counts in \cite{can2022, LiuPrivault},
 with various approaches being proposed to analyze the structure and asymptotic properties of these random graphs. In this note, we focus on various approximation results for counting statistics in RCM by incorporating the random connection model into the framework of Poisson $U$-statistics, see \cite{reitznerschulte}, \cite{last4}, and \cite{schulte} for more details.
@@ -782,11 +782,11 @@ $$
 $$
 with $x_1:=0$. By the monotone convergence theorem there exists an $r_0\in(0,\infty)$ such that
 $$
-\underline{c}:=\inf_{x_1\in\Gamma_0}\int_{(B^d(x_1,r_0))^{k-1}} \prod_{\{i,j\}\in E_G}\varphi(x_i-x_j)\prod_{\{\imath,\jmath\}\notin E_G}(1-\varphi(x_{\imath}-x_{\jmath}))\mathrm{d}(x_2,\dots,x_k)>0.
+\underline{c}:=\inf_{x_1\in\Gamma_0}\int_{(B(x_1,r_0))^{k-1}} \prod_{\{i,j\}\in E_G}\varphi(x_i-x_j)\prod_{\{\imath,\jmath\}\notin E_G}(1-\varphi(x_{\imath}-x_{\jmath}))\mathrm{d}(x_2,\dots,x_k)>0.
 $$
 Since $\Gamma_0$ is compact and convex and $\lambda_d(\Gamma_0)=1$, there exists an $s_0\geq 1$ such that
 $$
-\lambda_d(\{ y\in\Gamma_s: B^d(y,r_0)\subseteq\Gamma_s \})\geq \frac{s}{2},
+\lambda_d(\{ y\in\Gamma_s: B(y,r_0)\subseteq\Gamma_s \})\geq \frac{s}{2},
 $$
 for all $s\ge s_0$.
 Therefore, following from \eqref{graphvar0}, we have
@@ -795,7 +795,7 @@ Therefore, following from \eqref{graphvar0}, we have
 	&\ge\sum_{\pi\in\widetilde{\Pi}^2(k)}\int_{\Gamma_s^{|\pi|}}\int_{[0,1]^{|\pi|(|\pi|-1)/2}}(f^{=}_G\otimes f^{=}_G)_{\pi}(\bm{x},\bm{u})\mathrm{d}\bm{u}\gamma^{|\pi|}\mathrm{d}\bm{x}\nonumber\\
 	&\ge\int_{(\Gamma_s)^{k}}\int_{[0,1]^{k(k-1)/2}}f^{=}_G(\bm{x},\bm{u})\mathrm{d}\bm{u}\gamma^{k}\mathrm{d}\bm{x}\nonumber\\
 	&=\frac{1}{|\mathrm{Aut}(G)|}\int_{(\Gamma_s)^k}\prod_{\{i,j\}\in E_G}\varphi(x_i-x_j)\prod_{\{\imath,\jmath\}\notin E_G}(1-\varphi(x_{\imath}-x_{\jmath}))\gamma^k\mathrm{d}\bm{x}\nonumber\\
-	&\ge\frac{\gamma^k}{|\mathrm{Aut}(G)|}\int_{\Gamma_s}\mathrm{d}x_1\int_{(\Gamma_s\cap B^d(x_1,r_0))^{k-1}}\prod_{\{i,j\}\in E_G}\varphi(x_i-x_j)\prod_{\{\imath,\jmath\}\notin E_G}(1-\varphi(x_{\imath}-x_{\jmath}))\mathrm{d}(x_2,\dots,x_k)\nonumber\\
+	&\ge\frac{\gamma^k}{|\mathrm{Aut}(G)|}\int_{\Gamma_s}\mathrm{d}x_1\int_{(\Gamma_s\cap B(x_1,r_0))^{k-1}}\prod_{\{i,j\}\in E_G}\varphi(x_i-x_j)\prod_{\{\imath,\jmath\}\notin E_G}(1-\varphi(x_{\imath}-x_{\jmath}))\mathrm{d}(x_2,\dots,x_k)\nonumber\\
 	&\ge\frac{\underline{c}\gamma^k}{2|\mathrm{Aut}(G)|}s,\label{graphvar3}
 \end{align} 
 whenever $s\ge s_0$. 
@@ -1430,7 +1430,17 @@ which completes the proof.
 
 Consider the statistics
 
-$$L_\rho (\tau):=\frac{1}{2} \sum_{(z_1, z_2) \in \eta^2_{\neq} \cap B^2(0, \rho)} \mathbf{1}\{ z_1 \leftrightarrow z_2 \} \| z_1- z_2 \|^\tau, \quad \tau \in \mathbb{R}.$$
+$$L_\rho (\tau):=\frac{1}{2} \sum_{(z_1, z_2) \in \eta^2_{\neq} \cap B(0, \rho)^2} \mathbf{1}\{ z_1 \leftrightarrow z_2 \} \| z_1- z_2 \|^\tau, \quad \tau \in \mathbb{R}.$$
+
+For $a>0$ define
+$$
+L_{\rho,a} (\tau):=\frac{1}{2} \sum_{(z_1, z_2) \in \eta^2_{\neq} \cap B(0, \rho)^2} \mathbf{1}\{ z_1 \leftrightarrow z_2, \|z_1-z_2\|\leq a \} \| z_1- z_2 \|^\tau.
+$$
+Show that
+$$
+\frac{\mathbb{E}[(L_{\rho,a} (\tau)-L_{\rho} (\tau))^2]}{\rho^d} \leq c a^{-...}
+$$
+
 
 Proceeding as in \cite[Theorem 3.1]{reitznerschultethaele} gives the following formula for its expectation structure. Recall that $\varphi$ denotes the connection function. We can assume that $\varphi$ is only radially dependent, and denote its radial part by $\bar{\varphi}$.
 
@@ -1598,6 +1608,8 @@ Combining \eqref{cltedgelengthsm11}, \eqref{cltedgelengthsm12}, \eqref{cltedgele
 \end{align*}
 \end{remark}
 
+
+
 \section{Related work on the RCM}
 
 \begin{itemize}
@@ -1608,6 +1620,8 @@ Combining \eqref{cltedgelengthsm11}, \eqref{cltedgelengthsm12}, \eqref{cltedgele
 \item \cite{Heerten_Hirsch_Otto}: Cumulant bounds for subgraph counts
 
 \item \cite{Hirsch_Lachieze-Rey_Takashi_Owada}: Normal approximation for subgraph counts in the age-dependent random connection model
+
+\item \cite{rs2,rs3,scs}: Extreme value limits for maximum edge-lengths
 
 \end{itemize}
 \section{To-Do-List}
