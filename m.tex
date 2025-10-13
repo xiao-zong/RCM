@@ -126,7 +126,7 @@ $$
 $$
 with random elements $(X_i)_{i\in I}$ on $\mathbb{X}$ and a random index set $I\subseteq\mathbb{N}$, where $\delta_x$ denotes the Dirac measure concentrated on $x$. 
 
-Moreover, let $(\mathbb{M},\mathcal{M})$ be a measurable space with a probability measure $\mathbb{Q}$. Let $(M_{i,j})_{i,j\in\mathbb{N},i\neq j}$ be a family of independent random elements on $\mathbb{M}$ distributed according to $\mathbb{Q}$. Now we assign the mark $M_{i,j}$ to the pair $(X_i,X_j)$ for $i,j\in I$ with $i\neq j$. For $y,z\in\eta$ with $y\neq z$ we denote by $M_{y,z}$ the mark of the pair $(y,z)$. Note that the pairs $(y,z)$ and $(z,y)$ have different marks.
+Moreover, let $(\mathbb{M},\mathcal{M})$ be a measurable space with a probability measure $\mathbb{Q}$. Let $(\mathcal{M}_{i,j})_{i,j\in\mathbb{N},i\neq j}$ be a family of independent random elements on $\mathbb{M}$ distributed according to $\mathbb{Q}$. Now we assign the mark $\mathcal{M}_{i,j}$ to the pair $(X_i,X_j)$ for $i,j\in I$ with $i\neq j$. For $y,z\in\eta$ with $y\neq z$ we denote by $\mathcal{M}_{y,z}$ the mark of the pair $(y,z)$. Note that the pairs $(y,z)$ and $(z,y)$ have different marks.
 
 
 
@@ -141,7 +141,7 @@ In the following, we often denote the entries of $\mathbf{u}\in \mathbb{M}^{k\ti
 
 For a measurable function $f: \mathbb{X}^k\times \mathbb{M}^{k\times k}_{\neq}\to\mathbb{R}$ with $k\in\mathbb{N}$ we are interested in random variables of the following form
 \begin{equation}\label{def:ustat}
-S=\sum_{(x_1,\hdots,x_k)\in\eta^k_{\neq}} f(x_1,\hdots,x_k, (M_{x_i,x_j})_{i,j\in[k], i\neq j}),
+	S=\sum_{(x_1,\hdots,x_k)\in\eta^k_{\neq}} f(x_1,\hdots,x_k, (\mathcal{M}_{x_i,x_j})_{i,j\in[k], i\neq j}),
 \end{equation}
 which we call $U$-statistics of the edge-marked Poisson process. Since we sum also over all permutations of a fixed $k$-tuple of points, we can assume without loss of generality that $f$ is symmetric, i.e., 
 $$
@@ -154,7 +154,7 @@ $$
 for $x_1,\hdots,x_k\in\mathbb{X}^k$ and $\mathbf{u}\in\mathbb{M}^{k\times k}_{\neq}$, where $\mathrm{P}([k])$ is the set of all permutations of $[k]$.
 We often formulate assumptions on terms of the $U$-statistic
 \begin{equation}\label{def-integ1}
-    \overline{S}:=\sum_{(x_1,\hdots,x_k)\in\eta^k_{\neq}} \left|f(x_1,\hdots,x_k, (M_{x_i,x_j})_{i,j\in[k], i\neq j})\right|.
+	\overline{S}:=\sum_{(x_1,\hdots,x_k)\in\eta^k_{\neq}} \left|f(x_1,\hdots,x_k, (\mathcal{M}_{x_i,x_j})_{i,j\in[k], i\neq j})\right|.
 \end{equation}
 Note that $S=\overline{S}$ if $f$ is non-negative.
 
@@ -218,7 +218,7 @@ where $\cum_\ell(S)$ stands for the $\ell$-th cumulant of $S$.
 Let $f: \mathbb{X}^k\times \mathbb{M}^{k\times k}_{\neq}\to\mathbb{R}$ be a measurable function 
 % satisfying $\supp(f)\subset B\times\mathbb{M}^{k\times k}_{\neq}$ with some bounded set $B\in \mathcal{X}^k$
 and 
-$$S:=\sum_{(x_1,\hdots,x_k)\in\eta^k_{\neq}} f(x_1,\hdots,x_k, (M_{x_i,x_j})_{i,j\in[k], i\neq j}).$$ 
+$$S:=\sum_{(x_1,\hdots,x_k)\in\eta^k_{\neq}} f(x_1,\hdots,x_k, (\mathcal{M}_{x_i,x_j})_{i,j\in[k], i\neq j}).$$ 
 Suppose that $\E\left(\overline{S}^2\right)<\infty$ with $\overline{S}$ given in \eqref{def-integ1}. Let $N$ denote a standard normal random variable.
 Then, we have
 \begin{eqnarray}
@@ -289,7 +289,7 @@ $$
 $$
 In the following, we consider the point process
 \begin{equation}\label{definition_xi}
-\xi:= \frac{1}{k!}\sum_{(x_1, \ldots, x_k) \in \eta^k_{\neq}\cap  {\operatorname{dom}'} g}  \delta_{g \left( x_1, \ldots, x_k, (M_{x_i,x_j})_{i,j\in[k], i \neq j} \right)}.
+	\xi:= \frac{1}{k!}\sum_{(x_1, \ldots, x_k) \in \eta^k_{\neq}\cap  {\operatorname{dom}'} g}  \delta_{g \left( x_1, \ldots, x_k, (\mathcal{M}_{x_i,x_j})_{i,j\in[k], i \neq j} \right)}.
 \end{equation}
 The intensity measure $\mathbf{L}$ of $\xi$ is given by
 $$
@@ -315,13 +315,13 @@ where
 
 Next we provide some corollaries of Theorem \ref{Poisson_process_approximation}. For $g: \operatorname{dom} g \to\mathbb{Y}$ as above and $B\in\mathcal{Y}$ we define the $U$-statistic
 $$
-T:=\frac{1}{k!}\sum_{(x_1,\hdots,x_k)\in\eta^k_{\neq}\cap \operatorname{dom}'g} \mathbf{1}\{g(x_1,\hdots,x_k,(M_{x_i,x_j})_{i,j\in[k],i\neq j})\in B\}.
+T:=\frac{1}{k!}\sum_{(x_1,\hdots,x_k)\in\eta^k_{\neq}\cap \operatorname{dom}'g} \mathbf{1}\{g(x_1,\hdots,x_k,(\mathcal{M}_{x_i,x_j})_{i,j\in[k],i\neq j})\in B\}.
 $$
 
 \begin{cor}\label{cor:Poisson_approximation}
 Assume that $\mathbb{E}[T^2]<\infty$ and let $Z$ be a Poisson distributed random variable with parameter $a\in[0,\infty)$. Then,
 \begin{align*}
-d_{\operatorname{Wass}}(T,Z) & \leq |\mathbb{E}[T]-a| + 2 ( \mathbb{E}[T^2]- \mathbb{E}[T] -(\mathbb{E}[T])^2 ) \\
+	\mathrm{d}_{\rm Wass}(T,Z) & \leq |\mathbb{E}[T]-a| + 2 ( \mathbb{E}[T^2]- \mathbb{E}[T] -(\mathbb{E}[T])^2 ) \\
 & \leq |\mathbb{E}[T]-a| + \frac{2^{k+1}}{k!} r(B)
 \end{align*}
 with
@@ -340,12 +340,12 @@ The statement follows from Theorem \ref{Poisson_process_approximation} exactly a
 
 Let $g: \mathbb{X}^k\times\mathbb{M}^{k\times k}_{\neq}\to\mathbb{R}$ be a measurable symmetric function. Define the $U$-statistic
 \begin{equation}\label{definition_U}
-U := \frac{1}{k!}\sum_{(x_1,\hdots,x_k)\in\eta^k_{\neq}} g(x_1,\hdots,x_k,(M_{x_i,x_j})_{i,j\in[k],i\neq j}). 
+	U := \frac{1}{k!}\sum_{(x_1,\hdots,x_k)\in\eta^k_{\neq}} g(x_1,\hdots,x_k,(\mathcal{M}_{x_i,x_j})_{i,j\in[k],i\neq j}). 
 \end{equation}
 Moreover, let
 \begin{align*}
 \mathbf{L}(A) := \frac{1}{k!} \, \mathbb{E} \sum_{(x_1, \ldots, x_k) \in \eta_{\neq}^k} 
-\mathbf{1}\left\{ g(x_1, \ldots, x_k, (M_{x_i,x_j})_{i,j\in[k], i \neq j}) \in A \setminus \{0\} \right\}
+\mathbf{1}\left\{ g(x_1, \ldots, x_k, (\mathcal{M}_{x_i,x_j})_{i,j\in[k], i \neq j}) \in A \setminus \{0\} \right\}
 \end{align*}
 for $A \in \mathcal{B}(\mathbb{R})$, where the second equality follows from Proposition \ref{prop:expectation_variance}. We get the following result.
 
@@ -379,7 +379,7 @@ $$
 for $\mathbf{x}_m\in \mathbb{X}^k\times\mathbb{M}^{k\times k}_{\neq}$, where $\operatorname{sign}(u) = \mathbf{1}\{u \ge 0\} - \mathbf{1}\{u < 0\}$ for $u\in\mathbb{R}$.
 We define
 \begin{align*}
-\mathbf{L}^{(\alpha)}(A) & := \frac{1}{k!} \, \mathbb{E} \sum_{(x_1, \ldots, x_k) \in \eta_{\neq}^k} \mathbf{1}\{ g(\mathbf{x}_m)\neq 0 \}  \mathbf{1}\{ g_\alpha(x_1, \ldots, x_k, (M_{x_i,x_j})_{i,j\in[k], i \neq j})\in A \}
+	\mathbf{L}^{(\alpha)}(A) & := \frac{1}{k!} \, \mathbb{E} \sum_{(x_1, \ldots, x_k) \in \eta_{\neq}^k} \mathbf{1}\{ g(\mathbf{x}_m)\neq 0 \}  \mathbf{1}\{ g_\alpha(x_1, \ldots, x_k, (\mathcal{M}_{x_i,x_j})_{i,j\in[k], i \neq j})\in A \}
 \end{align*}
 for $A \in \mathcal{B}(\mathbb{R})$.
 
@@ -402,7 +402,7 @@ where \( \zeta \) is a Poisson process with intensity measure \( \mathbf{M}\). A
 &\le g_2(a),
 \end{align*}
 \begin{align*}
-& \frac{1}{k!} \, \mathbb{E} \sum_{(x_1, \ldots, x_k) \in \eta^k_{\neq}} \mathbf{1}\{|g(x_1, \ldots, x_k,(M_{x_i,x_j})_{i,j\in[k], i \neq j})| < a^{-1/\alpha}\} |g(x_1, \ldots, x_k,(M_{x_i,x_j})_{i,j \in[k], i \neq j})| \\
+& \frac{1}{k!} \, \mathbb{E} \sum_{(x_1, \ldots, x_k) \in \eta^k_{\neq}} \mathbf{1}\{|g(x_1, \ldots, x_k,(\mathcal{M}_{x_i,x_j})_{i,j\in[k], i \neq j})| < a^{-1/\alpha}\} |g(x_1, \ldots, x_k,(\mathcal{M}_{x_i,x_j})_{i,j \in[k], i \neq j})| \\
 &\le g_3(a).
 \end{align*}
 Then there exists a constant \( C > 0 \), depending only on \( \alpha \) and \( k \), such that
@@ -699,12 +699,24 @@ For any $r\ge2$, and $\{x_1,\dots,x_r\}\subseteq\mathbb{R}^d$, we denote the RCM
 and the weighted random connection model (WRCM) on $\{x_1,\dots,x_r\}$ with connection function $\varphi$ and weight distribution $W$ as $\mathbb{G}_{\varphi}(\{x_1,\dots,x_r\},W)$.
 In particular, the Poisson RCM base on the underlying Possion process $\eta$ is denoted as $\mathbb{G}_{\varphi}(\eta)$, and the Poisson WRCM on $\eta$ as $\mathbb{G}_{\varphi}(\eta,W)$. 
 
+On the unweighted RCM $\mathbb{G}_{\varphi}(\eta)$, for any $x\ne y\in\eta$, the probability of connecting $x,y$ with an independent edge is 
+$$
+\mathbb{P}(x\leftrightarrow y)=\varphi(x-y).
+$$
+Therefore, taking $\mathbb{M}=[0,1]$, and $\mathbb{Q}$ to be the uniform distribution on $\mathbb{M}$, we have
+\begin{equation*}
+	\mathbf{1}(x\leftrightarrow y)\overset{d}{=}\mathbf{1}(\mathcal{M}_{x_i,x_j}\le\varphi(x_i-x_j)).
+\end{equation*}
+%the functional we're interested in \eqref{def:ustat} now becomes 
+%\begin{equation*}
+%	S=\sum_{(x_1,\dots,x_k)\in\eta^k_{\ne}}f\big(x_1,\dots,x_k,\left(\mathbf{1}(\mathcal{M}_{x_i,x_j}\le\varphi(x_i,x_j))_{i,j\in[k],i\ne j}\right)\big).
+%\end{equation*}
 
 \subsection{subgraph count}
 Let $G=(V_G,E_G)$ be a fixed connected graph of order $k$, $k\ge2$, with vertex set $V_G$ and edge set $E_G$. 
 %For any two graphs $G_1$ and $G_2$, we denote $G_1\simeq G_2$ when $G_1$ is isomorphic to $G_2$. 
 Denote $|\mathrm{Aut}(G)|$ as the number of automorphism of $G$. 
-To ensure normal approximation, we need following minimal condition for the connection function $\varphi$.
+To ensure normal approximation, we need the following minimal condition for the connection function $\varphi$.
 \begin{ass}\label{graph-ass1}
 	Let $G$ be a connected graph with $k\ge2$ vertices.
 \begin{enumerate}
@@ -718,8 +730,8 @@ To ensure normal approximation, we need following minimal condition for the conn
 \end{equation}
 \end{enumerate}
 \end{ass}
-\begin{prop}
-Let $G$ be a connected graph with $k\ge$ vertices.
+\begin{prop}\label{propgraph}
+Let $G$ be a connected graph with $k\ge2$ vertices.
 Denote by $N_G^{\subset}$ and $N_G^{=}$ the non-induced subgraph count and induced subgraph counts, respectively, of copies of $G$ in 
 $\mathbb{G}_{\varphi}(\eta\cap\Gamma_s)$, defined by
 \begin{align}
@@ -733,9 +745,15 @@ If Assumption~\ref{graph-ass1}-i) holds, then there exist constants $C,s_0>0$, d
 \end{equation}
 Moreover, if Assumption~\ref{graph-ass1}-ii) holds, the same bound applies to the induced subgraph count $N_G^{=}$.
 \end{prop}
-\begin{proof}
-
-Let $\mathbb{Q}$ be the uniform distribution on $[0,1]$. 
+Before proving Proposition~\ref{propgraph}, we first show that as a direct consequence of Proposition~\ref{prop:moments}, the growth of cumulants of subgraph counts is well controlled. 
+\begin{corollary}
+	For any $\ell\in\mathbb{N}$ and $I\in\{=,\subset\}$, we have,
+\begin{equation}
+	\cum_\ell(N_G^{I})\le \frac{1}{|\mathrm{Aut}(G)|^\ell}\left[\left(\gamma \int_{\mathbb{R}^d}\varphi(z)\mathrm{d}z\right)\vee1\right]^{\ell(k-1)+1}k^{k\ell}(\ell!)^k s.
+\end{equation}
+ 
+\end{corollary}
+\begin{proof}Let $\mathbb{Q}$ be the uniform distribution on $[0,1]$. 
 Define $f^{\subset}_G:(\R^d)^k\times [0,1]^{k(k-1)/2}\to\{0,1\}$ as 
 \begin{equation}
 	f^{\subset}_G(x_1,\dots,x_k,\mathbf{u}):=\frac1{|\mathrm{Aut}(G)|}\prod_{\{i,j\}\in E_G}\mathbf{1}\{u_{i,j}\le\varphi(x_i-x_j)\},
@@ -746,31 +764,67 @@ $f^{=}_G:(\R^d)^k\times [0,1]^{k(k-1)/2}\to\{0,1\}$ as
 \begin{equation}
 	f^{=}_G(x_1,\dots,x_k,\mathbf{u}):=\frac1{|\mathrm{Aut}(G)|}\prod_{\{i,j\}\in E_G}\mathbf{1}\{u_{i,j}\le\varphi(x_i-x_j)\}\prod_{\{\imath,\jmath\}\notin E_G}\mathbf{1}\{u_{\imath,\jmath}>\varphi(x_{\imath}-x_{\jmath})\}.
 \end{equation}
-Because $f^{\subset}_G$ and $f^{=}_G$ are both non-negative and bounded by $\frac1{|\mathrm{Aut}(G)|}$, 
-with \eqref{momeq-3}, we have, for $i\in\{\subset,=\}$, 
-\begin{align}
-&\Var(N_G^{(i)})\nonumber\\
-&=\sum_{\pi\in\widetilde{\Pi}^2(k)}\int_{\Gamma_s^{|\pi|}}\int_{[0,1]^{|\pi|(|\pi|-1)/2}}(f^{(i)}_G\otimes f^{(i)}_G)_{\pi}(\bm{x},\bm{u})\mathrm{d}\bm{u}\gamma^{|\pi|}\mathrm{d}\bm{x}\label{graphvar0}\\
-&\le\frac{1}{|\mathrm{Aut}(G)|^2}\sum_{\pi\in\widetilde{\Pi}^2(k)}\int_{\Gamma_s^{|\pi|}}\left(\prod_{\{i,j\}\in E_G}\varphi(x_i^{(1)}-x_j^{(1)})\prod_{\{i,j\}\in E_G}\varphi(x_i^{(2)}-x_j^{(2)})\right)_{\pi}(\bm{x})\gamma^{|\pi|}\mathrm{d}\bm{x}.\label{graphvar1}%\nonumber\\
-%	&=\frac{\gamma^{|\pi|}}{|\mathrm{Aut}(G)|^2}\sum_{\pi\in\widetilde{\Pi}^2(k)}\int_{(\mathbb{R}^d)^{|\pi|}}\mathbf{1}(x_1,\dots,x_{|\pi|}\in\Gamma_s)\left(\prod_{\{i,j\}\in E_G}\varphi(x_i^{(1)}-x_j^{(1)})\prod_{\{i,j\}\in E_G}\varphi(x_i^{(2)}-x_j^{(2)})\right)_{\pi}(\bm{x})\mathrm{d}\bm{x}\nonumber
-\end{align}
+	Because of \eqref{momeq-3}, it is necessary to show that for each $\pi\in\widetilde{\Pi}^\ell(k)$
+	\begin{equation}\label{intgrand-1}
+		\int_{\Gamma_s^{|\pi|}}\int_{[0,1]^{|\pi|\times|\pi|}_{\ne}}((f^{(i)}_G)^{\otimes\ell})_{\pi}(\bm{x},\bm{u})\mathrm{d}\bm{u}\lambda_d^{|\pi|}(\mathrm{d}\bm{x})\le C s
+\end{equation}
 For $n\in\mathbb{N}$, we use the abbreviation $\mathbf{I}_n:=\{(i,j)\in[n]^2:i<j\}$ and denote 
 \begin{equation*}
 	\mathcal{I}_n:=\{T\subset\mathbf{I}_n:|T|=n-1~\mbox{and the graph $([n],T)$ is connected}\}.
 \end{equation*}
-Because graph $G$ is connected, for any $\pi\in\widetilde{\Pi}^2(k)$, the graph with vertex set $\{x_i^{(1)},x_i^{(2)}:i\in[k]\}_{\pi}$ and edge set 
-$$\left\{\{x^{(1)}_i,x^{(1)}_j\},\{x^{(2)}_i,x^{(2)}_j\}:\{i,j\}\in E_G\right\}_{\pi}$$
-is a connected graph with $|\pi|$ vertices, denoted by $(G^{\otimes 2})_{|\pi|}$.
-Consequently, there exists a spanning tree of $(G^{\otimes 2})_{|\pi|}$, which is isomorphic to a tree $I_{|\pi|}\in\mathcal{I}_{|\pi|}$.
-Therefore, we have, from \eqref{graphvar1}
+Because graph $G$ is connected, for any $\pi\in\widetilde{\Pi}^2(\ell)$, the graph with vertex set 
+$$
+\left\{x_i^{(1)},x_i^{(2)},\dots,x_i^{(\ell)}:i\in[k]\right\}_{\pi},
+$$
+and edge set 
+$$
+\left\{\{x^{(1)}_i,x^{(1)}_j\},\{x^{(2)}_i,x^{(2)}_j\},\dots, \{x^{(\ell)}_i,x^{(\ell)}_j\}:\{i,j\}\in E_G\right\}_{\pi}
+$$
+is a connected graph with $|\pi|$ vertices, denoted by $(G^{\otimes \ell})_{|\pi|}$.
+Consequently, there exists a spanning tree of $(G^{\otimes \ell})_{|\pi|}$, which is isomorphic to a tree $I_{|\pi|}\in\mathcal{I}_{|\pi|}$.
+Therefore, the integral in \eqref{intgrand-1} is bounded by 
 \begin{align}
-\Var(N_G^{(i)})
-&\le\frac{1}{|\mathrm{Aut}(G)|^2}\sum_{\pi\in\widetilde{\Pi}^2(k)}\int_{\Gamma_s^{|\pi|}}\left(\prod_{(i,j)\in I_{|\pi|}}\varphi(x_i-x_j)\right)(\bm{x})\gamma^{|\pi|}\mathrm{d}\bm{x}\nonumber\\
-&=\frac{1}{|\mathrm{Aut}(G)|^2}\sum_{\pi\in\widetilde{\Pi}^2(k)}\int_{(\mathbb{R}^d)^{r}}\mathbf{1}(x_1,\dots,x_{|\pi|}\in\Gamma_s)\left(\prod_{(i,j)\in I_{|\pi|}}\varphi(x_i-x_j)\right)(\bm{x})\gamma^{|\pi|}\mathrm{d}\bm{x}\nonumber\\
-&\le\frac{1}{|\mathrm{Aut}(G)|^2}\sum_{\pi\in\widetilde{\Pi}^2(k)}\int_{(\mathbb{R}^d)^{r}}\mathbf{1}(x_1\in\Gamma_s)\left(\prod_{(i,j)\in I_{|\pi|}}\varphi(x_i-x_j)\right)(\bm{x})\gamma^{|\pi|}\mathrm{d}\bm{x}\nonumber\\
-&=\frac{1}{|\mathrm{Aut}(G)|^2}\sum_{\pi\in\widetilde{\Pi}^2(k)}\mathrm{Vol}(\Gamma_s)\left(\int_{\mathbb{R}^d}\varphi(z)\mathrm{d}z\right)^{|\pi|-1}\gamma^{|\pi|},\label{graphvar2}
+	&\int_{\Gamma_s^{|\pi|}}\int_{[0,1]^{|\pi|\times|\pi|}_{\ne}}((f^{(i)}_G)^{\otimes\ell})_{\pi}(\bm{x},\bm{u})\mathrm{d}\bm{u}\lambda_d^{|\pi|}(\mathrm{d}\bm{x})\nonumber\\
+	&\le\frac1{|\mathrm{Aut}(G)|^\ell}\int_{(\mathbb{R}^d)^{|\pi|}}\mathbf{1}(x_1,\dots,x_{|\pi|}\in\Gamma_s)\left(\prod_{r=1}^\ell\prod_{\{i,j\}\in E_G}\varphi\left(x_i^{(r)}-x_j^{(r)}\right)\right)_{\pi}\gamma^{|\pi|}\mathrm{d}\bm{x}\nonumber\\
+	&\le\frac1{|\mathrm{Aut}(G)|^\ell}\int_{(\mathbb{R}^d)^{|\pi|}}\mathbf{1}(x_1\in\Gamma_s)\left(\prod_{r=1}^\ell\prod_{\{i,j\}\in E_G}\varphi\left(x_i^{(r)}-x_j^{(r)}\right)\right)_{\pi}\gamma^{|\pi|}\mathrm{d}\bm{x}\nonumber\\
+	&\le\frac1{|\mathrm{Aut}(G)|^\ell}\int_{(\mathbb{R}^d)^{|\pi|}}\mathbf{1}(x_1\in\Gamma_s)\prod_{\{i,j\}\in I_{|\pi|}}\varphi\left(x_i^{(r)}-x_j^{(r)}\right)_{\pi}\gamma^{|\pi|}\mathrm{d}\bm{x}\nonumber\\
+&=\frac{1}{|\mathrm{Aut}(G)|^\ell}\mathrm{Vol}(\Gamma_s)\left(\int_{\mathbb{R}^d}\varphi(z)\mathrm{d}z\right)^{|\pi|-1}\gamma^{|\pi|},\label{intgrand-2}
 \end{align}
-where the last equation is obtained by integrating successively begining with the variables, except $x_1$, whose indices are leaves of the tree $I_{|\pi|}$.
+where the last equation is obtained by integrating successively beginning with the variables, except $x_1$, whose indices are leaves of the tree $I_{|\pi|}$.
+Because $|\pi|\le \ell(k-1)+1$ for all $\pi\in\widetilde{\Pi}^\ell(k)$, combining \eqref{intgrand-2} with cumulant identities in \eqref{momeq-3}, we have 
+\begin{align}
+    	\cum_\ell(N_G^{I})&\le \sum_{\pi\in\widetilde{\Pi}^\ell(k)}\frac{1}{|\mathrm{Aut}(G)|^\ell}\mathrm{Vol}(\Gamma_s)\left(\int_{\mathbb{R}^d}\varphi(z)\mathrm{d}z\right)^{|\pi|-1}\gamma^{|\pi|}\nonumber\\
+        &\le \frac{1}{|\mathrm{Aut}(G)|^\ell}\left[\left(\gamma \int_{\mathbb{R}^d}\varphi(z)\mathrm{d}z\right)\vee1\right]^{\ell(k-1)+1}\left|\widetilde{\Pi}^\ell(k)\right|s\nonumber\\
+        &\le \frac{1}{|\mathrm{Aut}(G)|^\ell}\left[\left(\gamma \int_{\mathbb{R}^d}\varphi(z)\mathrm{d}z\right)\vee1\right]^{\ell(k-1)+1}k^{k\ell}(\ell!)^ks,
+\end{align}
+where the last inequality comes from \cite[Proposition~6.1]{schulte2}. 
+\end{proof}
+\begin{proof}[Proof of Proposition~\ref{propgraph}]
+% Because $f^{\subset}_G$ and $f^{=}_G$ are both non-negative and bounded by $\frac1{|\mathrm{Aut}(G)|}$, 
+% with \eqref{momeq-3}, we have, for $i\in\{\subset,=\}$, 
+% \begin{align}
+% &\Var(N_G^{(i)})\nonumber\\
+% &=\sum_{\pi\in\widetilde{\Pi}^2(k)}\int_{\Gamma_s^{|\pi|}}\int_{[0,1]^{|\pi|(|\pi|-1)/2}}(f^{(i)}_G\otimes f^{(i)}_G)_{\pi}(\bm{x},\bm{u})\mathrm{d}\bm{u}\gamma^{|\pi|}\mathrm{d}\bm{x}\label{graphvar0}\\
+% &\le\frac{1}{|\mathrm{Aut}(G)|^2}\sum_{\pi\in\widetilde{\Pi}^2(k)}\int_{\Gamma_s^{|\pi|}}\left(\prod_{\{i,j\}\in E_G}\varphi(x_i^{(1)}-x_j^{(1)})\prod_{\{i,j\}\in E_G}\varphi(x_i^{(2)}-x_j^{(2)})\right)_{\pi}(\bm{x})\gamma^{|\pi|}\mathrm{d}\bm{x}.\label{graphvar1}%\nonumber\\
+% %	&=\frac{\gamma^{|\pi|}}{|\mathrm{Aut}(G)|^2}\sum_{\pi\in\widetilde{\Pi}^2(k)}\int_{(\mathbb{R}^d)^{|\pi|}}\mathbf{1}(x_1,\dots,x_{|\pi|}\in\Gamma_s)\left(\prod_{\{i,j\}\in E_G}\varphi(x_i^{(1)}-x_j^{(1)})\prod_{\{i,j\}\in E_G}\varphi(x_i^{(2)}-x_j^{(2)})\right)_{\pi}(\bm{x})\mathrm{d}\bm{x}\nonumber
+% \end{align}
+% For $n\in\mathbb{N}$, we use the abbreviation $\mathbf{I}_n:=\{(i,j)\in[n]^2:i<j\}$ and denote 
+% \begin{equation*}
+% 	\mathcal{I}_n:=\{T\subset\mathbf{I}_n:|T|=n-1~\mbox{and the graph $([n],T)$ is connected}\}.
+% \end{equation*}
+% Because graph $G$ is connected, for any $\pi\in\widetilde{\Pi}^2(k)$, the graph with vertex set $\{x_i^{(1)},x_i^{(2)}:i\in[k]\}_{\pi}$ and edge set 
+% $$\left\{\{x^{(1)}_i,x^{(1)}_j\},\{x^{(2)}_i,x^{(2)}_j\}:\{i,j\}\in E_G\right\}_{\pi}$$
+% is a connected graph with $|\pi|$ vertices, denoted by $(G^{\otimes 2})_{|\pi|}$.
+% Consequently, there exists a spanning tree of $(G^{\otimes 2})_{|\pi|}$, which is isomorphic to a tree $I_{|\pi|}\in\mathcal{I}_{|\pi|}$.
+% Therefore, we have, from \eqref{graphvar1}
+% \begin{align}
+% \Var(N_G^{(i)})
+% &\le\frac{1}{|\mathrm{Aut}(G)|^2}\sum_{\pi\in\widetilde{\Pi}^2(k)}\int_{\Gamma_s^{|\pi|}}\left(\prod_{(i,j)\in I_{|\pi|}}\varphi(x_i-x_j)\right)(\bm{x})\gamma^{|\pi|}\mathrm{d}\bm{x}\nonumber\\
+% &=\frac{1}{|\mathrm{Aut}(G)|^2}\sum_{\pi\in\widetilde{\Pi}^2(k)}\int_{(\mathbb{R}^d)^{r}}\mathbf{1}(x_1,\dots,x_{|\pi|}\in\Gamma_s)\left(\prod_{(i,j)\in I_{|\pi|}}\varphi(x_i-x_j)\right)(\bm{x})\gamma^{|\pi|}\mathrm{d}\bm{x}\nonumber\\
+% &\le\frac{1}{|\mathrm{Aut}(G)|^2}\sum_{\pi\in\widetilde{\Pi}^2(k)}\int_{(\mathbb{R}^d)^{r}}\mathbf{1}(x_1\in\Gamma_s)\left(\prod_{(i,j)\in I_{|\pi|}}\varphi(x_i-x_j)\right)(\bm{x})\gamma^{|\pi|}\mathrm{d}\bm{x}\nonumber\\
+% &=\frac{1}{|\mathrm{Aut}(G)|^2}\sum_{\pi\in\widetilde{\Pi}^2(k)}\mathrm{Vol}(\Gamma_s)\left(\int_{\mathbb{R}^d}\varphi(z)\mathrm{d}z\right)^{|\pi|-1}\gamma^{|\pi|},\label{graphvar2}
+% \end{align}
+% where the last equation is obtained by integrating successively begining with the variables, except $x_1$, whose indices are leaves of the tree $I_{|\pi|}$.
 
 When Assumption~\ref{graph-ass1}-i) holds, it immediately implies that 
 \begin{equation*}
@@ -789,42 +843,31 @@ $$
 \lambda_d(\{ y\in\Gamma_s: B(y,r_0)\subseteq\Gamma_s \})\geq \frac{s}{2},
 $$
 for all $s\ge s_0$.
-Therefore, following from \eqref{graphvar0}, we have
+Therefore, following from \eqref{momeq-3}, we have
 \begin{align}
-	\Var(N_G^{=})
-	&\ge\sum_{\pi\in\widetilde{\Pi}^2(k)}\int_{\Gamma_s^{|\pi|}}\int_{[0,1]^{|\pi|(|\pi|-1)/2}}(f^{=}_G\otimes f^{=}_G)_{\pi}(\bm{x},\bm{u})\mathrm{d}\bm{u}\gamma^{|\pi|}\mathrm{d}\bm{x}\nonumber\\
+\Var(N_G^{=})
+&=\sum_{\pi\in\widetilde{\Pi}^2(k)}\int_{\Gamma_s^{|\pi|}}\int_{[0,1]^{|\pi|(|\pi|-1)/2}}(f^{=}_G\otimes f^{=}_G)_{\pi}(\bm{x},\bm{u})\mathrm{d}\bm{u}\gamma^{|\pi|}\mathrm{d}\bm{x}\nonumber\\
 	&\ge\int_{(\Gamma_s)^{k}}\int_{[0,1]^{k(k-1)/2}}f^{=}_G(\bm{x},\bm{u})\mathrm{d}\bm{u}\gamma^{k}\mathrm{d}\bm{x}\nonumber\\
 	&=\frac{1}{|\mathrm{Aut}(G)|}\int_{(\Gamma_s)^k}\prod_{\{i,j\}\in E_G}\varphi(x_i-x_j)\prod_{\{\imath,\jmath\}\notin E_G}(1-\varphi(x_{\imath}-x_{\jmath}))\gamma^k\mathrm{d}\bm{x}\nonumber\\
 	&\ge\frac{\gamma^k}{|\mathrm{Aut}(G)|}\int_{\Gamma_s}\mathrm{d}x_1\int_{(\Gamma_s\cap B(x_1,r_0))^{k-1}}\prod_{\{i,j\}\in E_G}\varphi(x_i-x_j)\prod_{\{\imath,\jmath\}\notin E_G}(1-\varphi(x_{\imath}-x_{\jmath}))\mathrm{d}(x_2,\dots,x_k)\nonumber\\
 	&\ge\frac{\underline{c}\gamma^k}{2|\mathrm{Aut}(G)|}s,\label{graphvar3}
 \end{align} 
 whenever $s\ge s_0$. 
-Therefore, by collecting \eqref{graphvar2} and \eqref{graphvar3}, we can show that 
-there exists contants $\underline{c}$, $C$, only depending on $\varphi$, $k$ and $G$ such that 
-\begin{equation}\label{varbound1}
-	\frac{\underline{c}\gamma^{k}}{2|\mathrm{Aut}(G)|}s\le \Var(N_G^{=})\le C' s.
-\end{equation}
-Moreover, similar to \eqref{graphvar2} we also have 
+%Therefore, by collecting \eqref{graphvar2} and \eqref{graphvar3}, we can show that 
+%there exists contants $\underline{c}$, $C$, only depending on $\varphi$, $k$ and $G$ such that 
+%\begin{equation}\label{varbound1}
+%	\frac{\underline{c}\gamma^{k}}{2|\mathrm{Aut}(G)|}s\le \Var(N_G^{=})\le C' s.
+%\end{equation}
+On the other hand, using the estimates in \eqref{intgrand-2} with $\ell=4$, we have
 \begin{equation}\label{mom-bound1}
-	\max_{1\le i,j\le k}M_{i,j}(f^{(i)}_G)\le \tilde{C}s.
+	\max_{1\le i,j\le k}M_{i,j}(f^{=}_G)\le \tilde{C}s.
 \end{equation}
-Substituting $\eta$ in Theorem~\ref{normalapp1} with $\eta\cap\Gamma_s$, and $f$ with $f_G^{=}$, and collecting \eqref{varbound1}, \eqref{mom-bound1} we obtain that
+Substituting $\eta$ in Theorem~\ref{normalapp1} with $\eta\cap\Gamma_s$, and $f$ with $f_G^{=}$, and collecting \eqref{graphvar3}, \eqref{mom-bound1} we obtain that
 \begin{align}
 	\mathrm{d}_{\mathrm{K}}\left(\frac{N_G^{=}-\mathbb{E} N_G^{=}}{\sqrt{\Var N_G^{=}}},N\right)&\le 19k^5\sum_{i,j=1}^k\frac{\sqrt{\tilde{C}s}}{\underline{c}\gamma^{k}s/(2|\mathrm{Aut}(G)|)}\le \frac{C}{\sqrt{s}}. 
 \end{align}
 The non-induced case can be treated analogously and is therefore omitted. This completes the proof.
 \end{proof}
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -965,35 +1008,35 @@ We define $\widehat{\mathbb{X}}:=\mathbb{X}\times \mathbb{M}^{\mathbb{N}\times\m
 
 Let $n\in\mathbb{N}$ and let $(x,(u_{i,j})_{i,j\in\mathbb{N}})$ and $(y,(v_{i,j})_{i,j\in\mathbb{N}})$ be distinct points of $\widehat{\eta}$. Suppose that $y\in A^{(n)}_\ell$ for some $\ell\in\mathbb{N}$. Now we order the points of $\widehat{\eta}$ whose projections to $\mathbb{X}$ are in $A^{(n)}_\ell$ according to the distances of their projections to $\mathbb{X}$ to $x$ with respect to the distance function $\operatorname{dist}$. Note that the assumption \eqref{eqn:uniqueness_distances} ensures that this ordering is almost surely unique. If $y$ is the $k$-th closest point to $x$ in $A^{(n)}_\ell$, then we define 
 \begin{equation}
-\widetilde{M}^{(n)}_{x,y}:=u_{\ell,k}.
+	\widetilde{\mathcal{M}}^{(n)}_{x,y}:=u_{\ell,k}.
 \end{equation}
 Let $\eta_{\mathbb{X}}$ be the projection of $\widehat{\eta}$ to $\mathbb{X}$ and denote the projection of $\hat{x}\in\widehat{\mathbb{X}}$ to $\mathbb{X}$ by $x$. Then, we have
 $$
-(\eta_{\mathbb{X}}, (\widetilde{M}^{(n)}_{x,y})_{x,y\in\eta_{\mathbb{X}}, x\ne y}) \overset{d}{=} (\eta, (M_{x,y})_{x,y\in\eta,x\neq y}),
+(\eta_{\mathbb{X}}, (\widetilde{\mathcal{M}}^{(n)}_{x,y})_{x,y\in\eta_{\mathbb{X}}, x\ne y}) \overset{d}{=} (\eta, (\mathcal{M}_{x,y})_{x,y\in\eta,x\neq y}),
 $$
-where $\eta$ and $(M_{x,y})_{x,y\in\eta,x\neq y}$ are the Poisson process and the marks introduced in Subsection \ref{subsec:edge-marked_PP}.
+where $\eta$ and $(\mathcal{M}_{x,y})_{x,y\in\eta,x\neq y}$ are the Poisson process and the marks introduced in Subsection \ref{subsec:edge-marked_PP}.
 This implies that
 \begin{equation}
-\widetilde{S}^{(n)} := \sum_{(x_1,\hdots,x_k)\in(\eta_{\mathbb{X}})^k_{\neq}} f(x_1,\hdots,x_k, (\widetilde{M}^{(n)}_{x_i,x_j})_{i,j\in[k],i\neq j}) %= \sum_{(\hat{x}_1,\hdots,\hat{x}_k)\in\widehat{\eta}^k_{\neq}} f(x_1,\hdots,x_k, (\widetilde{M}^{(n)}_{x_i,x_j})_{i,j\in[k],i\neq j})
+	\widetilde{S}^{(n)} := \sum_{(x_1,\hdots,x_k)\in(\eta_{\mathbb{X}})^k_{\neq}} f(x_1,\hdots,x_k, (\widetilde{\mathcal{M}}^{(n)}_{x_i,x_j})_{i,j\in[k],i\neq j}) %= \sum_{(\hat{x}_1,\hdots,\hat{x}_k)\in\widehat{\eta}^k_{\neq}} f(x_1,\hdots,x_k, (\widetilde{M}^{(n)}_{x_i,x_j})_{i,j\in[k],i\neq j})
 \end{equation}
 and
 $$
-\widetilde{\xi}^{(n)} := \frac{1}{k!} \sum_{(x_1,\hdots,x_k)\in(\eta_{\mathbb{X}})^k_{\neq}} \mathbf{1}((x_1,\hdots,x_k, (\widetilde{M}^{(n)}_{x_i,x_j})_{i,j\in[k],i\neq j})\in\operatorname{dom} g) \delta_{g(x_1,\hdots,x_k, (\widetilde{M}^{(n)}_{x_i,x_j})_{i,j\in[k],i\neq j})}
+\widetilde{\xi}^{(n)} := \frac{1}{k!} \sum_{(x_1,\hdots,x_k)\in(\eta_{\mathbb{X}})^k_{\neq}} \mathbf{1}((x_1,\hdots,x_k, (\widetilde{\mathcal{M}}^{(n)}_{x_i,x_j})_{i,j\in[k],i\neq j})\in\operatorname{dom} g) \delta_{g(x_1,\hdots,x_k, (\widetilde{M}^{(n)}_{x_i,x_j})_{i,j\in[k],i\neq j})}
 $$
 have the same distributions as $S$ and $\xi$.
 
 For $n\in\mathbb{N}$ and any distinct points $\hat{x}=(x,(u_{i,j})_{i,j\in\mathbb{N}})$ and $\hat{y}=(y,(v_{i,j})_{i,j\in\mathbb{N}})$ of $\widehat{\eta}$, we define 
 \begin{equation}
-\widehat{M}^{(n)}_{x,y}:=u_{\ell,1},~~~~~\mbox{if}~~~ y\in A^{(n)}_\ell. 
+	\widehat{\mathcal{M}}^{(n)}_{x,y}:=u_{\ell,1},~~~~~\mbox{if}~~~ y\in A^{(n)}_\ell. 
 \end{equation}
-Note that $\widehat{M}^{(n)}_{x,y}$, in contrast to $\widetilde{M}^{(n)}_{x,y}$, only depends $\hat{x}$ and $\hat{y}$. Thus, for each $n\in\mathbb{N}$ there exists a function $\tilde{m}^{(n)}:\widehat{\mathbb{X}}^k\to\mathbb{M}^{k\times k}_{\neq}$ such that
+Note that $\widehat{\mathcal{M}}^{(n)}_{x,y}$, in contrast to $\widetilde{\mathcal{M}}^{(n)}_{x,y}$, only depends $\hat{x}$ and $\hat{y}$. Thus, for each $n\in\mathbb{N}$ there exists a function $\tilde{m}^{(n)}:\widehat{\mathbb{X}}^k\to\mathbb{M}^{k\times k}_{\neq}$ such that
 for all $(\hat{x}_1,\hdots,\hat{x}_k)\in\widehat{\eta}^k_{\neq}$,
 $$
- \tilde{m}^{(n)}(\hat{x}_1,\hdots,\hat{x}_k)=(\widehat{M}^{(n)}_{x_i,x_j})_{i,j\in[k],i\neq j}.
+\tilde{m}^{(n)}(\hat{x}_1,\hdots,\hat{x}_k)=(\widehat{\mathcal{M}}^{(n)}_{x_i,x_j})_{i,j\in[k],i\neq j}.
 $$
 To be more clear, let $\hat{x}_i=(x_i,(u^{i}_{\imath,j})_{\imath,j\in\mathbb{N}})$, $i\in[k]$, with $x_i\in A^{(n)}_{\ell_i}$ for some $\ell_i\in\mathbb{N}$, $i\in[k]$. It gives that  
 $$
- \tilde{m}^{(n)}(\hat{x}_1,\hdots,\hat{x}_k)=(\widehat{M}^{(n)}_{x_i,x_j})_{i,j\in[k],i\neq j}=(u^{i}_{\ell_j,1})_{i,j\in[k],i\neq j}.
+\tilde{m}^{(n)}(\hat{x}_1,\hdots,\hat{x}_k)=(\widehat{\mathcal{M}}^{(n)}_{x_i,x_j})_{i,j\in[k],i\neq j}=(u^{i}_{\ell_j,1})_{i,j\in[k],i\neq j}.
 $$
 Next we define
 \begin{equation}\label{Ustat1}
@@ -1005,7 +1048,7 @@ and
 \end{equation}
 Note that $\widehat{S}^{(n)}$ is a Poisson $U$-statistic of order $k$ as each summand only depends on the $k$ distinct points $\hat{x}_1,\hdots,\hat{x}_k$. Similarly a point of $\widehat{\xi}^{(n)}$ depends only on $k$ distinct points $\hat{x}_1,\hdots,\hat{x}_k$. 
 
-For $n\in\mathbb{N}$ observe that $\widetilde{M}^{(n)}_{x,y}=\widehat{M}^{(n)}_{x,y}$ if $\eta_{\mathbb{X}}(A^{(n)}_\ell)\leq 1$ for all $\ell\in\mathbb{N}$. As identical edge marks imply $\widetilde{S}^{(n)}=\widehat{S}^{(n)}$, we see that
+For $n\in\mathbb{N}$ observe that $\widetilde{\mathcal{M}}^{(n)}_{x,y}=\widehat{\mathcal{M}}^{(n)}_{x,y}$ if $\eta_{\mathbb{X}}(A^{(n)}_\ell)\leq 1$ for all $\ell\in\mathbb{N}$. As identical edge marks imply $\widetilde{S}^{(n)}=\widehat{S}^{(n)}$, we see that
 \begin{align}
 \mathbb{P}(\widetilde{S}^{(n)}\neq\widehat{S}^{(n)}) & \leq \mathbb{P}(\eta_{\mathbb{X}}(A^{(n)}_\ell)\geq 2 \text{ for some } \ell\in\mathbb{N})\nonumber \\
 & \leq \sum_{\ell=1}^\infty \mathbb{P}(\eta_{\mathbb{X}}(A^{(n)}_\ell)\geq 2) \leq \sum_{\ell=1}^\infty \lambda(A^{(n)}_\ell)^2 \leq \varepsilon_n^2 \sum_{\ell=1}^\infty \frac{1}{\ell^2}.\label{diff1}
@@ -1152,7 +1195,7 @@ Then, by Lemma~\ref{lma1}, we can see that
     \lim_{m\to\infty}\E\left[\left|S-S_m\right|^{\ell}\right]=0,
 \end{equation}
 with 
-$$S_m:=\sum_{(x_1,\hdots,x_k)\in\eta^k_{\neq}} f_m(x_1,\hdots,x_k, (M_{x_i,x_j})_{i,j\in[k], i\neq j}),$$
+$$S_m:=\sum_{(x_1,\hdots,x_k)\in\eta^k_{\neq}} f_m(x_1,\hdots,x_k, (\mathcal{M}_{x_i,x_j})_{i,j\in[k], i\neq j}),$$
 and 
 \begin{equation}
 \E[S^{\ell}]=\sum_{\pi\in\Pi^\ell(k)}\int_{\mathbb{X}^{|\pi|}}\int_{\mathbb{M}^{|\pi|\times|\pi|}_{\ne}}(f^{\otimes\ell})_{\pi}(\bm{x},\bm{u})\mathbb{Q}^{|\pi|\times|\pi|}_{\ne}(\mathrm{d}\bm{u})\lambda^{|\pi|}(\mathrm{d}\bm{x}).
@@ -1358,7 +1401,7 @@ which is the desired statement under the additional assumption on $\operatorname
 
 Next we consider the situation of general $g$. Since $\lambda$ is $\sigma$-finite, there exists an increasing sequence $(B_m)_{m\in\mathbb{N}}$ such that $\lambda(B_m)<\infty$ for all $m\in\mathbb{N}$ and $\bigcup_{m=1}^\infty B_m=\mathbb{X}$. For $m\in\mathbb{N}$ we define
 $$
-\xi_m=\frac{1}{k!}\sum_{(x_1,\hdots,x_k)\in\eta^k_{\neq}\cap \operatorname{dom}'g \cap B_m^k} \delta_{f(x_1,\hdots,x_k,(M_{i,j})_{i,j\in[k],i\neq j})}
+\xi_m=\frac{1}{k!}\sum_{(x_1,\hdots,x_k)\in\eta^k_{\neq}\cap \operatorname{dom}'g \cap B_m^k} \delta_{f(x_1,\hdots,x_k,(\mathcal{M}_{i,j})_{i,j\in[k],i\neq j})}
 $$
 and denote by $\mathbf{L}_m$ the intensity measure of $\xi_m$. From the triangle inequality and the first part of the proof we know that
 \begin{align*}
@@ -1424,7 +1467,16 @@ which completes the proof.
 %$$ \frac{1}{2} \sum_{(z_1, z_2) \in \eta^2_{\neq} \cap B^2(0, \rho)} \delta_{\|%z_1 - z_2\| - b_\rho}$$
 %converges in distribution to a Poisson point process, for a suitably chosen sequence $b_\rho$.
 
+Recall that $\varphi$ denotes the connection function. In this section we make the following assumption on $\varphi$.
 
+\begin{ass}\label{edgelength-ass1}
+	 The function $\varphi$ is only radially dependent. Its radial part is denoted by $\bar{\varphi}$, that has a polynomial decay with some exponent $\alpha \in (d, \infty)$, i.e. it holds
+     $$ \lim_{r\to\infty} \frac{\bar{\varphi}(r)}{r^{-\alpha}} =:C \in (0,\infty).$$
+\end{ass}
+
+Note that the condition $\alpha>d$ in Assumption \ref{edgelength-ass1} ensures that the (non-trivial) integrability property
+$$ 0 < \int_{\mathbb{R}^d} \varphi (x) \mathrm{d} x< \infty$$
+is satisfied.
 
 \subsection{Expectation and variance asymptotics}
 
@@ -1432,28 +1484,18 @@ Consider the statistics
 
 $$L_\rho (\tau):=\frac{1}{2} \sum_{(z_1, z_2) \in \eta^2_{\neq} \cap B(0, \rho)^2} \mathbf{1}\{ z_1 \leftrightarrow z_2 \} \| z_1- z_2 \|^\tau, \quad \tau \in \mathbb{R}.$$
 
-For $a>0$ define
-$$
-L_{\rho,a} (\tau):=\frac{1}{2} \sum_{(z_1, z_2) \in \eta^2_{\neq} \cap B(0, \rho)^2} \mathbf{1}\{ z_1 \leftrightarrow z_2, \|z_1-z_2\|\leq a \} \| z_1- z_2 \|^\tau.
-$$
-Show that
-$$
-\frac{\mathbb{E}[(L_{\rho,a} (\tau)-L_{\rho} (\tau))^2]}{\rho^d} \leq c a^{-...}
-$$
-
-
-Proceeding as in \cite[Theorem 3.1]{reitznerschultethaele} gives the following formula for its expectation structure. Recall that $\varphi$ denotes the connection function. We can assume that $\varphi$ is only radially dependent, and denote its radial part by $\bar{\varphi}$.
+Proceeding as in \cite[Theorem 3.1]{reitznerschultethaele} gives the following formula for its expectation structure. 
 
 \begin{lemma} \label{lem:expectedlength}
     Assume that $\tau > -d$. It holds
-    $$ \mathbb{E}[L_\rho (\tau)]= \frac{1}{2} \int_0^\infty \bar{\varphi} (r) r^{\tau + d -1} \int_{\mathbb{S}^{d-1}
+    $$ \mathbb{E}[L_\rho (\tau)]= \frac{\gamma^2}{2} \int_0^\infty \bar{\varphi} (r) r^{\tau + d -1} \int_{\mathbb{S}^{d-1}
 } f_\rho (r u) \mathrm{d}u \mathrm{d}r,$$
 where
 $$f_\rho (ru) := \lambda_d \left( B(0,\rho) \cap (B(0,\rho) + ru) \right)$$
 and $\mathrm{d}u$ stands for the infinitesimal element of the spherical Lebesgue measure. Moreover, it holds
 \begin{align*}
-    & \frac{1}{2} d \kappa_d \lambda_d(B(0,\rho)) \int_0^{2\rho} \bar{\varphi} (r) r^{\tau + d -1} \mathrm{d}r -\kappa_{d-1} \operatorname{surf}(B(0,\rho)) \int_0^{2\rho} \bar{\varphi} (r) r^{\tau + d } \mathrm{d}r\\
-    & \leq \mathbb{E}[L_\rho (\tau)] \leq \frac{1}{2} d \kappa_d \lambda_d(B(0,\rho)) \int_0^{2\rho} \bar{\varphi} (r) r^{\tau + d -1} \mathrm{d}r,
+    & \frac{\gamma^2}{2} d \kappa_d \lambda_d(B(0,\rho)) \int_0^{2\rho} \bar{\varphi} (r) r^{\tau + d -1} \mathrm{d}r -\gamma^2\kappa_{d-1} \operatorname{surf}(B(0,\rho)) \int_0^{2\rho} \bar{\varphi} (r) r^{\tau + d } \mathrm{d}r\\
+    & \leq \mathbb{E}[L_\rho (\tau)] \leq \frac{\gamma^2}{2} d \kappa_d \lambda_d(B(0,\rho)) \int_0^{2\rho} \bar{\varphi} (r) r^{\tau + d -1} \mathrm{d}r,
 \end{align*}
 where $\kappa_d$ denotes the volume of the $d$-dimensional unit ball and $\operatorname{surf}(B(0,\rho))$ denotes the surface area of the ball  $B(0,\rho)$.
 \end{lemma}
@@ -1464,13 +1506,14 @@ is finite or not. If we assume that $\bar{\varphi}$ has polynomial decay $\bar{\
 
 Next we give a formula for the variance.
 
+\textcolor{red}{Matthias: I think we need to assume always that $\tau>-d/2$. Otherwise the $I(\rho)$ in the proof can become infinite since the integrand can explode in the neighbourhood of $0$.}
 
 \begin{lemma} \label{lem:varlength}
     Let $\tau > -d$. Then $L_\rho (\tau)$ has finite variance given by
     \begin{align}\label{varformula}
     \begin{split}
-        & \operatorname{Var}[L_\rho (\tau)] = \frac{1}{2} \int_{B(0,\rho)}\int_{B(0,\rho)} \varphi(x-y) \| y-x \|^{2\tau} \mathrm{d}x \mathrm{d}y  \\
-        & \quad + \int_{B(0,\rho)}\int_{B(0,\rho)} \varphi(x_1-y) \| y-x_1 \|^\tau \mathrm{d} x_1 \int_{B(0,\rho)} \varphi(x_2-y)  \| y-x_2 \|^\tau \mathrm{d} x_2 \mathrm{d} y.
+        & \operatorname{Var}[L_\rho (\tau)] = \frac{\gamma^2}{2} \int_{B(0,\rho)}\int_{B(0,\rho)} \varphi(x-y) \| y-x \|^{2\tau} \mathrm{d}x \mathrm{d}y  \\
+        & \quad + \gamma^3\int_{B(0,\rho)}\int_{B(0,\rho)} \varphi(x_1-y) \| y-x_1 \|^\tau \mathrm{d} x_1 \int_{B(0,\rho)} \varphi(x_2-y)  \| y-x_2 \|^\tau \mathrm{d} x_2 \mathrm{d} y.
     \end{split} 
     \end{align}
 Moreover, if $\bar{\varphi}$ has polynomial decay $\bar{\varphi}(r) \sim r^{-\alpha}$, $r \to \infty$, for some exponent $\alpha$, there is a constant $C \in (0, \infty)$ independent of $\rho$ such that
@@ -1593,7 +1636,7 @@ M_{12}(f) \leq  c \rho^{d} .
 Using similar observations, one can see that
 \begin{align} \label{cltedgelengthsm13}
 \begin{split}
-& M_{13}(f) \\
+& M_{22}(f) \\
 &\leq (c + c \rho^{\tau + d -\alpha})^4 + (c + c \rho^{\tau + d -\alpha}) (c+c\rho^{2\tau+d-\alpha}) + c \rho^{d} (c + c \rho^{2\tau + d -\alpha})^2 + c \rho^{d} (c + c \rho^{4\tau + d -\alpha}).
 \end{split}
 \end{align}
@@ -1608,6 +1651,166 @@ Combining \eqref{cltedgelengthsm11}, \eqref{cltedgelengthsm12}, \eqref{cltedgele
 \end{align*}
 \end{remark}
 
+\subsubsection{Truncation}
+
+For $a>0$ define
+$$
+L_{\rho,a} (\tau):=\frac{1}{2} \sum_{(z_1, z_2) \in \eta^2_{\neq} \cap B(0, \rho)^2} \mathbf{1}\{ z_1 \leftrightarrow z_2, \|z_1-z_2\|\leq a \} \| z_1- z_2 \|^\tau.
+$$
+We aim to estimate
+$$
+\frac{\mathbb{E}[(L_{\rho,a} (\tau)-L_{\rho} (\tau))^2]}{\rho^d}. %\leq c a^{-...}
+$$
+By definition we have
+\begin{align*}
+L_{\rho,a}(\tau)-L_{\rho}(\tau)
+&= \frac{1}{2}\sum_{(z_1,z_2)\in\eta^2_{\neq}\cap B(0,\rho)^2}
+\mathbf{1}\{z_1\leftrightarrow z_2\}
+\|z_1-z_2\|^{\tau}
+\big(\mathbf{1}_{\{\|z_1-z_2\|\le a\}}-1\big) \\[0.4em]
+&= -\frac{1}{2}\sum_{(z_1,z_2)\in\eta^2_{\neq}\cap B(0,\rho)^2}
+\mathbf{1}\{z_1\leftrightarrow z_2,\ \|z_1-z_2\|>a\}\,
+\|z_1-z_2\|^{\tau},
+\end{align*}
+and
+\begin{align*}
+& (L_{\rho,a}(\tau)-L_{\rho}(\tau))^2\\
+& = \frac{1}{4}\!\!\sum_{(z_1,z_2),(z_3,z_4)\in\eta^2_{\neq}\cap B(0,\rho)^4}
+\!\!\!\!\mathbf{1}\{z_1\leftrightarrow z_2,\|z_1-z_2\|>a\}
+\mathbf{1}\{z_3\leftrightarrow z_4,\|z_3-z_4\|>a\}
+\|z_1-z_2\|^{\tau}\|z_3-z_4\|^{\tau},
+\end{align*}
+so that
+\begin{align*}
+\mathbb{E}\!\left[(L_{\rho,a}(\tau)-L_{\rho}(\tau))^2\right]
+&= C_1 I_a(\rho) + C_2 J_a(\rho),
+\end{align*}
+where, by Mecke’s formula,
+\begin{align*}
+I_a(\rho)
+&= \int_{B(0,\rho)}\!\!\int_{B(0,\rho)}
+\mathbf{1}_{\{\|x-y\|>a\}}\,
+\varphi(x-y)\,\|x-y\|^{2\tau}\,\mathrm{d}x\,\mathrm{d}y, \\[0.3em]
+J_a(\rho)
+&= \int_{B(0,\rho)}\!
+\Bigg(\int_{B(0,\rho)}
+\mathbf{1}_{\{\|x_1-y\|>a\}}\,
+\varphi(x_1-y)\,\|x_1-y\|^{\tau}\,\mathrm{d}x_1\Bigg)^{\!2}\mathrm{d}y.
+\end{align*}
+Assuming $\varphi(r)\sim C r^{-\alpha}$ with $\alpha>2\tau+d$, the tails are integrable and the same calculations as before show that
+\begin{align*}
+I_a(\rho),\,J_a(\rho)\;\leq \;c\rho^{d}\,a^{2\tau+d-\alpha},
+\end{align*}
+so that we have proven the following.
+
+\begin{lemma}\label{truncationlemma1}
+    There exists a constant $c \in (0,\infty)$ not depending on $a$ such that
+    $$\frac{\mathbb{E}[(L_{\rho,a} (\tau)-L_{\rho} (\tau))^2]}{\rho^d} \leq c a^{2\tau+d-\alpha} .$$
+\end{lemma}
+
+Next we prove that $L_{\rho,a} (\tau)$ satisfies a CLT for every $a>0$ and the regime $2\tau+d<\alpha$. The strategy is identical to the proof of Theorem \ref{CLT:sumsedgelengths}, with the key difference that the truncation will give us better (quantitative convergence) bounds.
+
+\begin{lemma}\label{lem:CLT_truncated}
+Let $\tau > -d$ and $a>0$. 
+Assume that $\bar{\varphi}$ has polynomial decay $\bar{\varphi}(r)\sim r^{-\alpha}$ as $r\to\infty$ with exponent $\alpha>2\tau+d$. 
+Then there exists a constant $C\in(0,\infty)$, independent of $\rho$, such that
+\begin{align*}
+\mathrm{d}_{\mathrm{Wass}}\!\left(
+\frac{L_{\rho,a}(\tau)-\E L_{\rho,a}(\tau)}{\sqrt{\Var L_{\rho,a}(\tau)}},
+N
+\right)
+&\le C\,\rho^{-d/2},\\[0.4em]
+\mathrm{d}_{\mathrm{K}}\!\left(
+\frac{L_{\rho,a}(\tau)-\E L_{\rho,a}(\tau)}{\sqrt{\Var L_{\rho,a}(\tau)}},
+N
+\right)
+&\le C\,\rho^{-d/2}.
+\end{align*}
+\end{lemma}
+
+\begin{proof}
+The proof follows the same steps as in Theorem~\ref{CLT:sumsedgelengths}, 
+with the additional indicator $\mathbf{1}_{\{\|x_1-x_2\|\le a\}}$ restricting all integrals to a bounded region. 
+For instance,
+\[
+M_{11}(f_a)
+= c \int_{B(0,\rho)}
+\!\left(
+\int_{B(-x_1,\rho)\cap B(0,a)} |u|^{\tau}\varphi(u)\,\mathrm{d}u
+\right)^{\!4}
+\mathrm{d}x_1
+\le C\,\rho^d,
+\]
+since $\int_{B(0,a)}|u|^{\tau}\varphi(u)\,\mathrm{d}u<\infty$.
+Analogous bounds hold for $M_{12}(f_a)$ and $M_{22}(f_a)$.
+Thus, all moment terms in Corollary~\ref{normalapp1k2} are of order $\rho^d$, 
+and by Lemma~\ref{lem:varlength} the variance satisfies $\Var[L_{\rho,a}(\tau)]\geq c\rho^d$.
+Applying Corollary~\ref{normalapp1k2} yields the stated bounds with rate $\rho^{-d/2}$.
+\end{proof}
+
+Thus, Lemma \ref{truncationlemma1} and Lemma \ref{lem:CLT_truncated} yield the following theorem, giving a CLT in the entire regime $\alpha>2\tau+d$ for $L_{\rho}(\tau)$.
+
+\begin{theorem}\label{thm:CLTedgelengths_full}
+Let $\tau > -d$ and assume that $\bar{\varphi}(r)\sim r^{-\alpha}$ as $r\to\infty$ with exponent $\alpha>2\tau+d$. 
+Then, as $\rho\to\infty$,
+\[
+\frac{L_{\rho}(\tau)-\E[L_{\rho}(\tau)]}{\sqrt{\Var[L_{\rho}(\tau)]}}
+\;\xrightarrow{d}\;
+N.
+\]
+\end{theorem}
+
+\subsection{Stable limit theorems}
+
+Here are some conjectured theorems based on preliminary computations:
+
+Define
+$$
+\xi_\rho^{(\tau)}:=\frac{1}{2}\sum_{(z_1,z_2)\in\eta^2_{\neq})\cap B(0,\rho)^2} \delta_{rho^{d/(d-\alpha)}\|z_1-z_2\|}.
+$$
+
+\begin{theorem}\label{thm:edge-length_process}
+Assume that $\bar{\varphi}(r)\sim r^{-\alpha}$ as $r\to\infty$. Let $\zeta$ be a homogeneous Poisson process on $(0,\infty)$ with intensity $??$ and let
+$$
+\zeta^{(\alpha)}:= \sum_{t\in\zeta} \delta_{t^{1/(d-\alpha)}}
+$$
+\begin{itemize}
+\item [a)] For each $a\in(0,\infty)$,
+$$
+{\rm d_{KR}}(\xi_\rho^{(\tau)}|_{[a,\infty)}, \zeta^{(\alpha)}|_{[a,\infty)}) \leq ???.
+$$
+\item [b)] Then,
+$$
+\xi_\rho^{(\tau)} \overset{d}{\longrightarrow} \zeta^{(\alpha)} \quad \text{as} \quad \rho\to\infty.
+$$
+\end{itemize}
+\end{theorem}
+
+\begin{theorem}
+Let the assumptions of Theorem \ref{thm:edge-length_process} prevail.
+\begin{itemize}
+\item [a)] If $(\alpha-d)/\tau\in(0,1)$,
+$$
+s^{d\tau/(d-\alpha)}L_\rho(\tau) \overset{d}{\longrightarrow} \sum_{t\in\zeta} t^{\tau/(d-\alpha)} \quad \text{as} \quad \rho\to\infty.
+$$
+\item [b)] If $(\alpha-d)/\tau\in(0,1)$,
+$$
+s^{d\tau/(d-\alpha)}(L_\rho(\tau) - \mathbb{E}[L_\rho(\tau)])  \overset{d}{\longrightarrow} \sum_{t\in\zeta} t^{\tau/(d-\alpha)} \quad \text{as} \quad \rho\to\infty,
+$$
+where
+$$
+S:=\lim_{n\to\infty} \sum_{t\in\zeta\cap[0,n]} t^{-1} - \ln n.
+$$
+\item [c)] If $(\alpha-d)/\tau\in(1,2)$,
+$$
+s^{d\tau/(d-\alpha)}(L_\rho(\tau) - \mathbb{E}[L_\rho(\tau)]) \overset{d}{\longrightarrow} \sum_{t\in\zeta} t^{\tau/(d-\alpha)} \quad \text{as} \quad \rho\to\infty,
+$$
+where
+$$
+S_\tau := \lim_{n\to\infty} \sum_{t\in\zeta\cap[0,n]} t^{\tau/(d-\alpha)} - \mathbb{E}\sum_{t\in\zeta\cap[0,\infty]} t^{\tau/(d-\alpha)}.
+$$
+\end{itemize}
+\end{theorem}
 
 
 \section{Related work on the RCM}
