@@ -730,7 +730,7 @@ To ensure normal approximation, we need the following minimal condition for the 
 \end{equation}
 \end{enumerate}
 \end{ass}
-\begin{prop}\label{propgraph}
+\begin{theorem}\label{propgraph}
 Let $G$ be a connected graph with $k\ge2$ vertices.
 Denote by $N_G^{\subset}$ and $N_G^{=}$ the non-induced subgraph count and induced subgraph counts, respectively, of copies of $G$ in 
 $\mathbb{G}_{\varphi}(\eta\cap\Gamma_s)$, defined by
@@ -744,15 +744,16 @@ If Assumption~\ref{graph-ass1}-i) holds, then there exist constants $C,s_0>0$, d
 	\mathrm{d}_{\mathrm{Wass}}\left(\frac{N_G^{\subset}-\mathbb{E} N_G^{\subset}}{\sqrt{\Var N_G^{\subset}}},N\right)\le \mathrm{d}_{\mathrm{K}}\left(\frac{N_G^{\subset}-\mathbb{E} N_G^{\subset}}{\sqrt{\Var N_G^{\subset}}},N\right)\le\frac{C}{\sqrt{s}}.
 \end{equation}
 Moreover, if Assumption~\ref{graph-ass1}-ii) holds, the same bound applies to the induced subgraph count $N_G^{=}$.
-\end{prop}
-Before proving Proposition~\ref{propgraph}, we first show that as a direct consequence of Proposition~\ref{prop:moments}, the growth of cumulants of subgraph counts is well controlled. 
-\begin{corollary}
+\end{theorem}
+Before proving Theorem~\ref{propgraph}, we first show that as a direct consequence of Proposition~\ref{prop:moments}, the growth of cumulants of subgraph counts is well controlled. 
+\begin{prop}
+    
+
 	For any $\ell\in\mathbb{N}$ and $I\in\{=,\subset\}$, we have,
 \begin{equation}
 	\cum_\ell(N_G^{I})\le \frac{1}{|\mathrm{Aut}(G)|^\ell}\left[\left(\gamma \int_{\mathbb{R}^d}\varphi(z)\mathrm{d}z\right)\vee1\right]^{\ell(k-1)+1}k^{k\ell}(\ell!)^k s.
 \end{equation}
- 
-\end{corollary}
+ \end{prop}
 \begin{proof}Let $\mathbb{Q}$ be the uniform distribution on $[0,1]$. 
 Define $f^{\subset}_G:(\R^d)^k\times [0,1]^{k(k-1)/2}\to\{0,1\}$ as 
 \begin{equation}
@@ -799,7 +800,7 @@ Because $|\pi|\le \ell(k-1)+1$ for all $\pi\in\widetilde{\Pi}^\ell(k)$, combinin
 \end{align}
 where the last inequality comes from \cite[Proposition~6.1]{schulte2}. 
 \end{proof}
-\begin{proof}[Proof of Proposition~\ref{propgraph}]
+\begin{proof}[Proof of Theorem~\ref{propgraph}]
 % Because $f^{\subset}_G$ and $f^{=}_G$ are both non-negative and bounded by $\frac1{|\mathrm{Aut}(G)|}$, 
 % with \eqref{momeq-3}, we have, for $i\in\{\subset,=\}$, 
 % \begin{align}
@@ -1623,6 +1624,13 @@ and therefore
 M_{11}(f) \leq  c\mathrm{Vol}\big(B(0,\rho)\big)\,\kappa^{4}
 \;=\; C\,\rho^{d}\qquad(\text{for some }C>0).
 \end{align}
+
+%Proposal Matthias:
+%$$
+%M_{11}(f) \leq \rho^d \max\{1,\rho^{\tau+d-\alpha}\}^4
+%$$
+
+
 Next we consider $M_{12}(f)$ in the statement of Corollary \ref{normalapp1k2}. The first term in the definition of this quantity is
 \begin{align*}
     & c \int_{B(0,\rho)^4}  \|x_1-x_2\|^{\tau}\,\varphi(x_1-x_2)  \|x_1-x_3\|^{\tau}\,\varphi(x_1-x_3) \|x_1-x_4\|^{2\tau}\,\varphi(x_1-x_4) \,\mathrm{d}x_1\cdots \mathrm{d}x_4 .
@@ -1640,6 +1648,17 @@ Using similar observations, one can see that
 &\leq (c + c \rho^{\tau + d -\alpha})^4 + (c + c \rho^{\tau + d -\alpha}) (c+c\rho^{2\tau+d-\alpha}) + c \rho^{d} (c + c \rho^{2\tau + d -\alpha})^2 + c \rho^{d} (c + c \rho^{4\tau + d -\alpha}).
 \end{split}
 \end{align}
+%Proposal Matthias for the first two terms
+%$$
+%\rho^d \max\{1,\rho^{\tau+d-\alpha}\}^2 \max\{1,\rho^{2\tau+d-\alpha}\} + \rho^d \max\{1,\rho^{\tau+d-\alpha}\} \max\{1,\rho^{2\tau+d-\alpha}\} 
+%$$
+%$$
+%\rho^d \max\{1,\rho^{\tau+d-\alpha}\}^2 \max\{1,\rho^{2\tau+d-\alpha}\} \leq \rho^d \max\{1,\rho^{2\tau+d-\alpha}\}^2 \leq  \rho^d \max\{1,\rho^{4\tau+d-\alpha}\}
+%$$
+%\begin{align*}
+%& \|x_1-x_2\|^\tau \|x_2-x_3\|^\tau \|x_3-x_4\|^\tau \|x_4-x_1\|^\tau \\
+%& \leq \|x_1-x_2\|^\tau \|x_2-x_3\|^\tau \|x_3-x_4\|^{2\tau} + \|x_1-x_2\|^\tau \|x_2-x_3\|^\tau \|x_4-x_1\|^{2\tau}
+%\end{align*}
 Combining \eqref{cltedgelengthsm11}, \eqref{cltedgelengthsm12}, \eqref{cltedgelengthsm13} with Lemma \ref{lem:varlength} and Corollary \ref{normalapp1k2} yields the statement of the theorem.
 \end{proof}
 
@@ -1766,7 +1785,7 @@ Here are some conjectured theorems based on preliminary computations:
 
 Define
 $$
-\xi_\rho^{(\tau)}:=\frac{1}{2}\sum_{(z_1,z_2)\in\eta^2_{\neq})\cap B(0,\rho)^2} \delta_{rho^{d/(d-\alpha)}\|z_1-z_2\|}.
+\xi_\rho^{(\tau)}:=\frac{1}{2}\sum_{(z_1,z_2)\in\eta^2_{\neq})\cap B(0,\rho)^2} \delta_{\rho^{d/(d-\alpha)}\|z_1-z_2\|}.
 $$
 
 \begin{theorem}\label{thm:edge-length_process}
@@ -1791,11 +1810,11 @@ Let the assumptions of Theorem \ref{thm:edge-length_process} prevail.
 \begin{itemize}
 \item [a)] If $(\alpha-d)/\tau\in(0,1)$,
 $$
-s^{d\tau/(d-\alpha)}L_\rho(\tau) \overset{d}{\longrightarrow} \sum_{t\in\zeta} t^{\tau/(d-\alpha)} \quad \text{as} \quad \rho\to\infty.
+\rho^{d\tau/(d-\alpha)}L_\rho(\tau) \overset{d}{\longrightarrow} \sum_{t\in\zeta} t^{\tau/(d-\alpha)} \quad \text{as} \quad \rho\to\infty.
 $$
-\item [b)] If $(\alpha-d)/\tau\in(0,1)$,
+\item [b)] If $(\alpha-d)/\tau=1$,
 $$
-s^{d\tau/(d-\alpha)}(L_\rho(\tau) - \mathbb{E}[L_\rho(\tau)])  \overset{d}{\longrightarrow} \sum_{t\in\zeta} t^{\tau/(d-\alpha)} \quad \text{as} \quad \rho\to\infty,
+\rho^{d\tau/(d-\alpha)}(L_\rho(\tau) - \mathbb{E}[L_\rho(\tau)])  \overset{d}{\longrightarrow} S \quad \text{as} \quad \rho\to\infty,
 $$
 where
 $$
@@ -1803,7 +1822,7 @@ S:=\lim_{n\to\infty} \sum_{t\in\zeta\cap[0,n]} t^{-1} - \ln n.
 $$
 \item [c)] If $(\alpha-d)/\tau\in(1,2)$,
 $$
-s^{d\tau/(d-\alpha)}(L_\rho(\tau) - \mathbb{E}[L_\rho(\tau)]) \overset{d}{\longrightarrow} \sum_{t\in\zeta} t^{\tau/(d-\alpha)} \quad \text{as} \quad \rho\to\infty,
+\rho^{d\tau/(d-\alpha)}(L_\rho(\tau) - \mathbb{E}[L_\rho(\tau)]) \overset{d}{\longrightarrow} S_\tau \quad \text{as} \quad \rho\to\infty,
 $$
 where
 $$
