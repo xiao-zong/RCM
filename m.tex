@@ -747,11 +747,14 @@ Moreover, if Assumption~\ref{graph-ass1}-ii) holds, the same bound applies to th
 \end{theorem}
 Before proving Theorem~\ref{propgraph}, we first show that as a direct consequence of Proposition~\ref{prop:moments}, the growth of cumulants of subgraph counts is well controlled. 
 \begin{prop}
-    
-
-	For any $\ell\in\mathbb{N}$ and $I\in\{=,\subset\}$, we have,
+For any $\ell\in\mathbb{N}$ and $i\in\{=,\subset\}$, we have, for each $\pi\in\widetilde{\Pi}^\ell(k)$
+\begin{equation}\label{intgrand-0}
+\int_{\Gamma_s^{|\pi|}}\int_{[0,1]^{|\pi|\times|\pi|}_{\ne}}((f^{(i)}_G)^{\otimes\ell})_{\pi}(\bm{x},\bm{u})\mathrm{d}\bm{u}\lambda_d^{|\pi|}(\mathrm{d}\bm{x})\le 
+\frac{1}{|\mathrm{Aut}(G)|^\ell}\mathrm{Vol}(\Gamma_s)\left(\int_{\mathbb{R}^d}\varphi(z)\mathrm{d}z\right)^{|\pi|-1}\gamma^{|\pi|}.
+\end{equation}
+Moreover, we have 
 \begin{equation}
-	\cum_\ell(N_G^{I})\le \frac{1}{|\mathrm{Aut}(G)|^\ell}\left[\left(\gamma \int_{\mathbb{R}^d}\varphi(z)\mathrm{d}z\right)\vee1\right]^{\ell(k-1)+1}k^{k\ell}(\ell!)^k s.
+	\cum_\ell(N_G^{(i)})\le \frac{1}{|\mathrm{Aut}(G)|^\ell}\left[\left(\gamma \int_{\mathbb{R}^d}\varphi(z)\mathrm{d}z\right)\vee1\right]^{\ell(k-1)+1}k^{k\ell}(\ell!)^k s.
 \end{equation}
  \end{prop}
 \begin{proof}Let $\mathbb{Q}$ be the uniform distribution on $[0,1]$. 
@@ -859,7 +862,7 @@ whenever $s\ge s_0$.
 %\begin{equation}\label{varbound1}
 %	\frac{\underline{c}\gamma^{k}}{2|\mathrm{Aut}(G)|}s\le \Var(N_G^{=})\le C' s.
 %\end{equation}
-On the other hand, using the estimates in \eqref{intgrand-2} with $\ell=4$, we have
+On the other hand, using the estimates in \eqref{intgrand-0} with $\ell=4$, we have
 \begin{equation}\label{mom-bound1}
 	\max_{1\le i,j\le k}M_{i,j}(f^{=}_G)\le \tilde{C}s.
 \end{equation}
