@@ -1847,9 +1847,21 @@ Thus, using these bounds in Corollary~\ref{normalapp1k2} we arrive at the follow
 In particular, if $\tau \in (0, \frac{d}{2}]$, a central limit theorem holds.
 \end{theorem}
 
+$$
+\overline{L}_s(\tau) = \frac{1}{2} \sum_{(x_1,x_2)\in\eta_{s,\neq}^2\cap\Gamma_s^2} \mathbf{1}\{ x_1\leftrightarrow x_2, \|x_1-x_2\|\leq s^{\frac{1}{2\tau}} \} \|x_1-x_2\|^\tau
+$$
 
+$$
+\mathbb{E}[L_s(\tau) - \overline{L}_s(\tau)] \sim s \int_{s^{\frac{1}{2\tau}}}^\infty r^{\tau} r^{-\alpha} r^{d-1} \, \, \mathrm{d}r \sim s (s^{\frac{1}{2\tau}})^{\tau-\alpha+d} =  s (s^{\frac{1}{2\tau}})^{-\tau}= \sqrt{s}
+$$
 
+$$
+\frac{\mathbb{E}[L_s(\tau) - \overline{L}_s(\tau)]}{\sqrt{\operatorname{Var} L_s(\tau)}} \sim \frac{\sqrt{s}}{\sqrt{s \log s}} = \frac{1}{\sqrt{\log s}}
+$$
 
+$$
+s \int_0^{s^{\frac{1}{2\tau}}} r^{4\tau} r^{-\alpha} r^{d-1} \, \mathrm{d} r \sim s (s^{\frac{1}{2\tau}})^{4\tau-\alpha+d} = s (s^{\frac{1}{2\tau}})^{2\tau} =s^2
+$$
 
 
 
@@ -1909,6 +1921,177 @@ $$
 \end{itemize}
 \end{theorem}
 
+\section{Point process convergence for edge lengths}
+
+Assume that there exist constants $l_{\bar{\varphi}}\in(0,\infty)$ and $\alpha\in(d,\infty)$ such that
+\begin{equation}\label{eqn:assumption_phi}
+\lim_{t\to\infty} t^{\alpha} \bar{\varphi}(t)=l_{\bar{\varphi}}.
+\end{equation}
+Together with the observation that $\bar{\varphi}$ is bounded by one, this yields the existence of a constant $C_{\bar{\varphi}}$ such that
+\begin{equation}\label{eqn:Upper_bound_bar_varphi}
+\bar{\varphi}(t) \leq \frac{C_{\bar{\varphi}}}{t^\alpha}
+\end{equation}
+for all $t\in(0,\infty)$. Moreover, we define
+$$
+c_{\bar{\varphi}} = \frac{\gamma^2 d \kappa_d l_{\bar{\varphi}}}{2(\alpha-d)}.
+$$
+
+In the following, we consider the point processes
+$$
+\tilde{\xi}_s = \frac{1}{2} \sum_{(x_1,x_2)\in\eta_{s,\neq}^2} \mathbf{1}\bigg\{x_1\leftrightarrow x_2, \frac{x_1+x_2}{2}\in\Gamma_s \bigg\} \delta_{s^{-\frac{1}{\alpha-d}}\|x_1-x_2\|}
+$$
+for $s\geq 1$.
+
+\begin{theorem}\label{thm:edge-length_process}
+Assume that \eqref{eqn:assumption_phi} is satisfied with $\alpha\in(d,\infty)$. Let $\zeta$ be a homogeneous Poisson process on $(0,\infty)$ with intensity $c_{\bar{\varphi}}$ and let
+$$
+\zeta^{(\alpha)}:= \sum_{t\in\zeta} \delta_{t^{-\frac{1}{\alpha-d}}}.
+$$
+\begin{itemize}
+\item [a)] For any $a\in(0,\infty)$,
+$$
+d_{\rm KR}(\tilde{\xi}_s|_{[a,\infty)},\zeta^{(\alpha)}|_{[a,\infty)}) \leq \int_a^\infty \big|s^{\frac{\alpha}{\alpha-d}}v^{\alpha} \bar{\varphi}(s^{\frac{1}{\alpha-d}}v) -l_{\bar{\varphi}}\big| \, v^{d-\alpha-1}\, \mathrm{d}v + \frac{\gamma^3 (d\kappa_d C_{\bar{\varphi}})^2}{(\alpha-d)^2 a^{2(\alpha-d)}} \frac{1}{s}.
+$$
+Moreover, the right-hand side vanishes as $s\to\infty$.
+\item [b)] One has
+$$
+\tilde{\xi}_s\overset{d}{\longrightarrow} \zeta^{(\alpha)}\quad \text{as} \quad s\to\infty.
+$$
+\end{itemize}
+\end{theorem}
+
+\begin{proof}
+Let $A\in\mathcal{B}(\mathbb{R})$ be such that $A\subset [a,\infty)$. For the intensity measure $\widetilde{\mathbf{L}}_s$ of $\tilde{\xi}_s$ we obtain
+\begin{align*}
+\mathbf{L}_s(A) & = \mathbb{E} \tilde{\xi}_s(A) = \frac{1}{2} \mathbb{E} \sum_{(x_1,x_2)\in\eta_{s,\neq}^2} \mathbf{1}\bigg\{ \frac{x_1+x_2}{2}\in\Gamma_s \bigg\} \mathbf{1}\{s^{-\frac{1}{\alpha-d}}\|x_1-x_2\| \in A\} \\
+& = \frac{\gamma^2}{2} \int_{(\mathbb{R}^d)^2} \mathbf{1}\bigg\{ \frac{x_1+x_2}{2} \in \Gamma_s\bigg\} \mathbf{1}\{s^{-\frac{1}{\alpha-d}}\|x_1-x_2\|\in A\} \bar{\varphi}(\|x_1-x_2\|) \, \mathrm{d}(x_1,x_2) \\
+& = \frac{\gamma^2}{2} \int_{(\mathbb{R}^d)^2} \mathbf{1}\{ z \in \Gamma_s\} \mathbf{1}\{s^{-\frac{1}{\alpha-d}}\|z\|\in A\} \bar{\varphi}(\|z\|) \, \mathrm{d}(y,z) \\
+& = \frac{\gamma^2 \lambda_d(\Gamma_s)}{2} \int_{\mathbb{R}^d} \mathbf{1}\{s^{-\frac{1}{\alpha-d}}\|z\|\in A\} \bar{\varphi}(\|z\|) \, \mathrm{d}z = \frac{\gamma^2 s}{2} d\kappa_d \int_0^\infty \mathbf{1}\{s^{-\frac{1}{\alpha-d}}u\in A\} \bar{\varphi}(u) u^{d-1} \, \mathrm{d}u \\
+& = \frac{d\kappa_d \gamma^2}{2} s^{1+\frac{d}{\alpha-d}} \int_0^\infty \mathbf{1}\{v\in A\} \bar{\varphi}(s^{\frac{1}{\alpha-d}}v) v^{d-1} \, \mathrm{d}v = \frac{d\kappa_d \gamma^2}{2} \int_A s^{\frac{\alpha}{\alpha-d}} \bar{\varphi}(s^{\frac{1}{\alpha-d}}v) v^{d-1} \, \mathrm{d}v.
+\end{align*}
+The intensity measure $\mathbf{L}$ of $\zeta^{(\alpha)}$ satisfies
+\begin{align*}
+\mathbf{L}(A) & = \mathbb{E} \sum_{t\in\zeta} \mathbf{1}\{t^{\frac{1}{d-\alpha}}\in A\} = c_{\bar{\varphi}} \int_0^\infty \mathbf{1}\{t^{\frac{1}{d-\alpha}}\in A\} \, \mathrm{d}t \\
+& = c_{\bar{\varphi}} (\alpha-d) \int_0^\infty \mathbf{1}\{v\in A\} v^{d-\alpha-1} \, \mathrm{d}v = \frac{\gamma^2 d \kappa_d }{2} \int_A l_{\bar{\varphi}}v^{d-\alpha-1} \, \mathrm{d}v.
+\end{align*}
+This implies
+$$
+|\mathbf{L}_s(A)-\mathbf{L}(A)| \leq  \frac{\gamma^2 d \kappa_d }{2} \int_A |s^{\frac{\alpha}{\alpha-d}} \bar{\varphi}(s^{\frac{1}{\alpha-d}}v) v^{d-1}-l_{\bar{\varphi}}v^{d-\alpha-1}| \, \mathrm{d}v
+$$
+so that
+\begin{align*}
+d_{\rm TV}(\mathbf{L}_s|_A, \mathbf{L}|_A) & \leq \int_a^\infty |s^{\frac{\alpha}{\alpha-d}} \bar{\varphi}(s^{\frac{1}{\alpha-d}}v) v^{d-1}-l_{\bar{\varphi}}v^{d-\alpha-1}| \, \mathrm{d}v \\
+& \leq \int_a^\infty \big|s^{\frac{\alpha}{\alpha-d}}v^{\alpha} \bar{\varphi}(s^{\frac{1}{\alpha-d}}v) -l_{\bar{\varphi}}\big| \, v^{d-\alpha-1}\, \mathrm{d}v.
+\end{align*}
+Moreover, we have
+\begin{align*}
+I_a & := \gamma^3 \int_{(\mathbb{R}^d)^3} \mathbf{1}\bigg\{ \frac{x_1+x_2}{2}, \frac{x_1+x_3}{2} \in \Gamma_s \bigg\} \mathbf{1}\{ \|x_1-x_2\|, \|x_1-x_3\| \geq a s^{\frac{1}{\alpha-d}}\} \\
+& \hspace{4cm} \times \bar{\varphi}(\|x_1-x_2\|) \bar{\varphi}(\|x_1-x_3\|) \, \mathrm{d}(x_1,x_2,x_3) \\
+& \le \gamma^3 \int_{(\mathbb{R}^d)^3} \mathbf{1}\bigg\{ \frac{x_1+x_2}{2} \in \Gamma_s \bigg\} \mathbf{1}\{ \|x_1-x_2\|, \|x_1-x_3\| \geq a s^{\frac{1}{\alpha-d}}\} \\
+& \hspace{4cm} \times \bar{\varphi}(\|x_1-x_2\|) \bar{\varphi}(\|x_1-x_3\|) \, \mathrm{d}(x_1,x_2,x_3) \\
+& \le \gamma^3 \int_{(\mathbb{R}^d)^3} \mathbf{1}\{ y \in \Gamma_s \} \mathbf{1}\{ \|z_1\|, \|z_2\| \geq a s^{\frac{1}{\alpha-d}}\} \bar{\varphi}(\|z_1\|) \bar{\varphi}(\|z_2\|) \, \mathrm{d}(y,z_1,z_2) \\
+& = \gamma^3 \lambda_d(\Gamma_s) \bigg( \int_{\mathbb{R}^d} \mathbf{1}\{\|z\|\geq a s^{\frac{1}{\alpha-d}}\} \bar{\varphi}(\|z\|) \, \mathrm{d}z \bigg)^2 = \gamma^3 s \bigg( d\kappa_d \int_{a s^{\frac{1}{\alpha-d}}}^\infty \bar{\varphi}(u) u^{d-1}\, \mathrm{d}u \bigg)^2.
+\end{align*}
+From \eqref{eqn:Upper_bound_bar_varphi} it follows that
+$$
+\int_{a s^{\frac{1}{\alpha-d}}}^\infty \bar{\varphi}(u) \, \mathrm{d}u \leq C_{\bar{\varphi}} \int_{a s^{\frac{1}{\alpha-d}}}^\infty u^{d-\alpha-1} \, \mathrm{d}u = \frac{C_{\bar{\varphi}}}{\alpha-d} (a s^{\frac{1}{\alpha-d}})^{d-\alpha} = \frac{C_{\bar{\varphi}}}{(\alpha-d) a^{\alpha-d} s}.
+$$
+This to
+$$
+I_a \leq \frac{\gamma^3 (d\kappa_d C_{\bar{\varphi}})^2}{(\alpha-d)^2 a^{2(\alpha-d)}} \frac{1}{s}
+$$
+Now part a) follows from Theorem \ref{Poisson_process_approximation}.
+
+By \eqref{eqn:Upper_bound_bar_varphi}, one has
+$$
+\big|s^{\frac{\alpha}{\alpha-d}}v^{\alpha} \bar{\varphi}(s^{\frac{1}{\alpha-d}}v) -l_{\bar{\varphi}}\big| \leq (C_{\bar{\varphi}}+l_{\bar{\varphi}}) v^{d-\alpha-1}
+$$
+for all $v\geq a$ and the right-hand side is integrable on $(a,\infty)$. Moreover, \eqref{eqn:assumption_phi} ensures that
+$$
+\lim_{s\to\infty} \big|s^{\frac{\alpha}{\alpha-d}}v^{\alpha} \bar{\varphi}(s^{\frac{1}{\alpha-d}}v) -l_{\bar{\varphi}}\big| \, v^{d-\alpha-1} = 0
+$$
+for all $v\geq a$. Thus, the dominated convergence theorem leads to
+$$
+\lim_{s\to\infty} \int_a^\infty \big|s^{\frac{\alpha}{\alpha-d}}v^{\alpha} \bar{\varphi}(s^{\frac{1}{\alpha-d}}v) -l_{\bar{\varphi}}\big| \, v^{d-\alpha-1}\, \mathrm{d}v = 0.
+$$
+Since the second part of the bound in part a) obviously vanishes as $s\to\infty$, we see that
+$$
+\lim_{s\to\infty} {\rm d}_{\rm KR}(\tilde{\xi}_s|_{[a,\infty)},\zeta^{(\alpha)}|_{[a,\infty)})=0.
+$$
+Since convergence in the Kantorovich--Rubinstein distance implies convergence in distribution, we obtain that
+$$
+\tilde{\xi}_s|_{[a,\infty)}\overset{d}{\longrightarrow}\zeta^{(\alpha)}|_{[a,\infty)} \quad \text{as} \quad s\to\infty.
+$$
+By \cite[Theorem 23.16]{Kallenberg_2023} this implies that $\tilde{\xi}_s\overset{d}{\longrightarrow}\zeta^{(\alpha)}$ as $s\to\infty$.
+\end{proof}
+
+\begin{corollary}
+Let the assumptions of Theorem \ref{thm:edge-length_process} prevail and let $Z$ be a random variable such that $\mathbb{P}(Z>a)=e^{-c_{\bar{\varphi}}a^{d-\alpha}}$ for $a\in(0,\infty)$. Then,
+$$
+s^{-\frac{1}{\alpha-d}}\max_{(x_1,x_2)\in\eta_{s,\neq}^2, x_1\leftrightarrow x_2, \frac{x_1+x_2}{2}\in\Gamma_s} \|x_1-x_2\| \overset{d}{\longrightarrow} Z \quad \text{as} \quad s\to\infty.
+$$
+\end{corollary}
+
+\begin{proof}
+Let $a\in(0,\infty)$ be fixed. Using the same notation as in Theorem \ref{thm:edge-length_process}, we see that
+$$
+\mathbb{P}(\zeta^{(\alpha)}((a,\infty))=0)= \mathbb{P}(\zeta((0,a^{d-\alpha}))=0) = e^{-c_{\bar{\varphi}} a^{d-\alpha}}=\mathbb{P}(Z>a)
+$$
+and that
+$$
+\mathbb{P}\bigg( s^{-\frac{1}{\alpha-d}}\max_{(x_1,x_2)\in\eta_{s,\neq}^2, \frac{x_1+x_2}{2}\in\Gamma_s} \|x_1-x_2\|>a\bigg) = \mathbb{P}(\tilde{\xi}_s((a,\infty))=0).
+$$
+This implies that
+\begin{align*}
+\big| \mathbb{P}\bigg( s^{-\frac{1}{\alpha-d}}\max_{(x_1,x_2)\in\eta_{s,\neq}^2, \frac{x_1+x_2}{2}\in\Gamma_s} \|x_1-x_2\|>a\bigg) - \mathbb{P}(Z>a) \big| & \leq {\rm d}_{\rm TV}(\tilde{\xi}_s((a,\infty)),\zeta^{(\alpha)}((a,\infty))) \\ & \leq {\rm d}_{\rm KR}(\tilde{\xi}_s|_{[a,\infty)},\zeta^{(\alpha)}|_{[a,\infty)}).
+\end{align*}
+Since, by Theorem \ref{thm:edge-length_process}, the right-hand side converges to zero as $s\to\infty$, this proves the desired statement.
+\end{proof}
+
+For $\tau\in(0,\infty)$ we consider the edge-length functionals
+$$
+\widetilde{L}_s^{(\tau)} = \frac{1}{2} \sum_{(x_1,x_2)\in\eta^2_{s,\neq}} \mathbf{1}\bigg\{ x_1\leftrightarrow x_2, \frac{x_1+x_2}{2}\in\Gamma_s \bigg\} \|x_1-x_2\|^\tau
+$$
+for $s\geq 1$.
+
+Moreover, for a fixed $a\in(0,\infty)$, we let
+$$
+\widetilde{L}_{s,>a}^{(\tau)} = \frac{1}{2} \sum_{(x_1,x_2)\in\eta^2_{s,\neq}} \mathbf{1}\bigg\{x_1\leftrightarrow x_2,\frac{x_1+x_2}{2}\in\Gamma_s,\|x_1-x_2\|>s^{\frac{1}{\alpha-d}}a\bigg\} \|x_1-x_2\|^\tau
+$$
+and
+$$
+\widetilde{L}_{s,\leq a}^{(\tau)} = \frac{1}{2} \sum_{(x_1,x_2)\in\eta^2_{s,\neq}} \mathbf{1}\{x_1\leftrightarrow x_2, \frac{x_1+x_2}{2}\in\Gamma_s, \|x_1-x_2\|\leq s^{\frac{1}{\alpha-d}}a\} \|x_1-x_2\|^\tau
+$$
+for $s\geq 1$.
+
+Note that, for $u\in\mathbb{R}$,
+$$
+\mathbb{P}( s^{-\frac{\tau}{\alpha-d}} \widetilde{L}_{s,>a}^{(\tau)} \leq u ) = \mathbb{P}\bigg( \sum_{t\in\tilde{\xi}_s\cap (a,\infty)} t^{\tau} \leq u\bigg) 
+$$
+and
+$$
+\mathbb{P}\bigg( \sum_{t\in\zeta\cap[0,a^{d-\alpha})} t^{-\frac{\tau}{\alpha-d}} \leq u \bigg) = \mathbb{P}\bigg( \sum_{t\in\zeta^{(\alpha)}\cap(a,\infty)} t^\tau \leq u \bigg).
+$$
+This leads to
+$$
+\bigg| \mathbb{P}( s^{-\frac{\tau}{\alpha-d}} \widetilde{L}_{s,>a}^{(\tau)} \leq u ) - \mathbb{P}\bigg( \sum_{t\in\zeta\cap[0,a^{d-\alpha})} t^{-\frac{\tau}{\alpha-d}} \leq u \bigg) \bigg| \leq {\rm d}_{\rm KR}(\tilde{\xi}_s,\zeta^{(\alpha)})
+$$
+so that, by Theorem \ref{thm:edge-length_process} a),
+$$
+s^{-\frac{\tau}{\alpha-d}} \widetilde{L}_{s,>a}^{(\tau)} \overset{d}{\longrightarrow} \sum_{t\in\zeta\cap[0,a^{d-\alpha})} t^{-\frac{\tau}{\alpha-d}} \quad \text{as} \quad s\to\infty.
+$$
+
+For $d+\tau<\alpha$ we have
+\begin{align*}
+s^{-\frac{\tau}{\alpha-d}}\mathbb{E} \widetilde{L}_{s,>a}^{(\tau)} & = \frac{s^{-\frac{\tau}{\alpha-d}}}{2} \mathbb{E} \sum_{(x_1,x_2)\in\eta^2_{s,\neq}} \mathbf{1}\bigg\{\frac{x_1+x_2}{2}\in\Gamma_s,\|x_1-x_2\|>s^{\frac{1}{\alpha-d}}a\bigg\} \|x_1-x_2\|^\tau \\
+& = \frac{\gamma^2 s^{-\frac{\tau}{\alpha-d}}}{2} \int_{(\mathbb{R}^d)^2} \mathbf{1}\bigg\{\frac{x_1+x_2}{2}\in\Gamma_s,\|x_1-x_2\|>s^{\frac{1}{\alpha-d}}a\bigg\} \|x_1-x_2\|^\tau \bar{\varphi}(\|x_1-x_2\|) \, \mathrm{d}(x_1,x_2) \\
+& = \frac{\gamma^2 s^{-\frac{\tau}{\alpha-d}}}{2} \int_{(\mathbb{R}^d)^2} \mathbf{1}\{y\in\Gamma_s,\|z\|>s^{\frac{1}{\alpha-d}}a\} \|z\|^\tau \bar{\varphi}(\|z\|) \, \mathrm{d}(y,z) \\
+& = \frac{\gamma^2 s^{1-\frac{\tau}{\alpha-d}} d\kappa_d}{2} \int_{s^{\frac{1}{\alpha-d}}a}^\infty u^\tau \bar{\varphi}(u) u^{d-1} \, \mathrm{d}u  = \frac{\gamma^2 d\kappa_d}{2} \int_{a}^\infty s^{\frac{\alpha}{d-\alpha}} u^\tau \bar{\varphi}(s^{\frac{1}{\alpha-d}}u) u^{d-1} \, \mathrm{d}u.
+\end{align*}
+By the dominated convergence theorem, we obtain that
+$$
+\lim_{s\to\infty} s^{-\frac{\tau}{\alpha-d}}\mathbb{E} \widetilde{L}_{s,>a}^{(\tau)} = \frac{\gamma^2 d\kappa_d}{2} \int_{a}^\infty l_{\bar{\varphi}} u^{\tau-\alpha+d-1} \, \mathrm{d}u.
+$$
 
 \section{Related work on the RCM}
 
