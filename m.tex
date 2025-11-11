@@ -746,7 +746,7 @@ If Assumption~\ref{graph-ass1}-i) holds, then there exist constants $C,s_0>0$, d
 Moreover, if Assumption~\ref{graph-ass1}-ii) holds, the same bound applies to the induced subgraph count $N_G^{=}$.
 \end{theorem}
 Before proving Theorem~\ref{propgraph}, we first show that as a direct consequence of Proposition~\ref{prop:moments}, the growth of cumulants of subgraph counts is well controlled. 
-\begin{prop}
+\begin{prop}\label{subgraph-cumu-1}
 For any $\ell\in\mathbb{N}$ and $i\in\{=,\subset\}$, we have, for each $\pi\in\widetilde{\Pi}^\ell(k)$
 \begin{equation}\label{intgrand-0}
 \int_{\Gamma_s^{|\pi|}}\int_{[0,1]^{|\pi|\times|\pi|}_{\ne}}((f^{(i)}_G)^{\otimes\ell})_{\pi}(\bm{x},\bm{u})\mathrm{d}\bm{u}\lambda_d^{|\pi|}(\mathrm{d}\bm{x})\le 
@@ -784,8 +784,8 @@ and edge set
 $$
 \left\{\{x^{(1)}_i,x^{(1)}_j\},\{x^{(2)}_i,x^{(2)}_j\},\dots, \{x^{(\ell)}_i,x^{(\ell)}_j\}:\{i,j\}\in E_G\right\}_{\pi}
 $$
-is a connected graph with $|\pi|$ vertices, denoted by $(G^{\otimes \ell})_{|\pi|}$.
-Consequently, there exists a spanning tree of $(G^{\otimes \ell})_{|\pi|}$, which is isomorphic to a tree $I_{|\pi|}\in\mathcal{I}_{|\pi|}$.
+is a connected graph with $|\pi|$ vertices, denoted by $(G^{\otimes \ell})_{\pi}$.
+Consequently, there exists a spanning tree of $(G^{\otimes \ell})_{\pi}$, which is isomorphic to a tree $I_{\pi}\in\mathcal{I}_{|\pi|}$.
 Therefore, the integral in \eqref{intgrand-1} is bounded by 
 \begin{align}
 	&\int_{\Gamma_s^{|\pi|}}\int_{[0,1]^{|\pi|\times|\pi|}_{\ne}}((f^{(i)}_G)^{\otimes\ell})_{\pi}(\bm{x},\bm{u})\mathrm{d}\bm{u}\lambda_d^{|\pi|}(\mathrm{d}\bm{x})\nonumber\\
@@ -794,7 +794,7 @@ Therefore, the integral in \eqref{intgrand-1} is bounded by
 	&\le\frac1{|\mathrm{Aut}(G)|^\ell}\int_{(\mathbb{R}^d)^{|\pi|}}\mathbf{1}(x_1\in\Gamma_s)\prod_{\{i,j\}\in I_{|\pi|}}\varphi\left(x_i^{(r)}-x_j^{(r)}\right)_{\pi}\gamma^{|\pi|}\mathrm{d}\bm{x}\nonumber\\
 &=\frac{1}{|\mathrm{Aut}(G)|^\ell}\mathrm{Vol}(\Gamma_s)\left(\int_{\mathbb{R}^d}\varphi(z)\mathrm{d}z\right)^{|\pi|-1}\gamma^{|\pi|},\label{intgrand-2}
 \end{align}
-where the last equation is obtained by integrating successively beginning with the variables, except $x_1$, whose indices are leaves of the tree $I_{|\pi|}$.
+where the last equation is obtained by integrating successively beginning with the variables, except $x_1$, whose indices are leaves of the tree $I_{\pi}$.
 Because $|\pi|\le \ell(k-1)+1$ for all $\pi\in\widetilde{\Pi}^\ell(k)$, combining \eqref{intgrand-2} with cumulant identities in \eqref{momeq-3}, we have 
 \begin{align}
     	\cum_\ell(N_G^{I})&\le \sum_{\pi\in\widetilde{\Pi}^\ell(k)}\frac{1}{|\mathrm{Aut}(G)|^\ell}\mathrm{Vol}(\Gamma_s)\left(\int_{\mathbb{R}^d}\varphi(z)\mathrm{d}z\right)^{|\pi|-1}\gamma^{|\pi|}\nonumber\\
@@ -830,7 +830,7 @@ where the last inequality comes from \cite[Proposition~6.1]{schulte2}.
 % \end{align}
 % where the last equation is obtained by integrating successively begining with the variables, except $x_1$, whose indices are leaves of the tree $I_{|\pi|}$.
 
-When Assumption~\ref{graph-ass1}-i) holds, it immediately implies that 
+When Assumption~\ref{graph-ass1}-ii) holds, it immediately implies that 
 \begin{equation*}
 	\mathbb{E}\sum_{\substack{(x_1,\dots,x_k)\in\eta^k_{\ne}\\ x_1\in[0,1]^d}}\left(\prod_{\{i,j\}\in E_G}\mathbf{1}(x_i\leftrightarrow x_j)\right)\left(\prod_{\{\imath,\jmath\}\notin E_G}\mathbf{1}(x_{\imath}\nleftrightarrow x_{\jmath})\right) >0.
 \end{equation*}
@@ -874,7 +874,114 @@ The non-induced case can be treated analogously and is therefore omitted. This c
 \end{proof}
 
 
+\subsubsection{Subgraph counts with non-integrable connection function}
 
+Assume that there exist constants $l_{\bar{\varphi}}\in(0,\infty)$ and $\alpha\in(0,d)$ such that
+\begin{equation}
+\lim_{t\to\infty} t^{\alpha} \bar{\varphi}(t)=l_{\bar{\varphi}}.
+\end{equation}
+Together with the observation that $\bar{\varphi}$ is bounded by one, this yields the existence of a constant $C_{\bar{\varphi}}$ such that
+\begin{equation}
+\bar{\varphi}(t) \leq \frac{C_{\bar{\varphi}}}{t^\alpha}
+\end{equation}
+for all $t\in(0,\infty)$. 
+
+To study the power-weighted subgraph count $N_G^{\subset}$ with non-integrable connection function, we need some minimal assumption.
+%\textcolor{cyan}{
+\begin{ass}\label{bound-ass-1}
+  There exist constants $r_1>0$ and $c>0$ such that 
+\begin{equation}
+	\operatorname*{ess~inf}_{r\le r_1}\bar{\varphi}(r)\ge c.
+\end{equation}
+\end{ass}
+\begin{lemma}\label{noninteg-upper-1}
+For any $\ell\in\mathbb{N}$ and $i\in\{=,\subset\}$, we have, for each $\pi\in\widetilde{\Pi}^\ell(k)$
+\begin{equation}
+\int_{\Gamma_s^{|\pi|}}\int_{[0,1]^{|\pi|\times|\pi|}_{\ne}}((f^{(i)}_G)^{\otimes\ell})_{\pi}(\bm{x},\bm{u})\mathrm{d}\bm{u}\lambda_d^{|\pi|}(\mathrm{d}\bm{x})\le 
+C s^{(1-\alpha/d)(|\pi|-1)+1}.
+\end{equation}
+Moreover, we have 
+\begin{equation}
+	\cum_\ell(N_G^{(i)})\le
+C s^{(k-1)\ell(1-\alpha/d)+1}.
+\end{equation}
+ \end{lemma}
+%}
+\begin{proof}
+  We need modifty the estimates appeared in \eqref{intgrand-2}
+\begin{align*}
+  	&\int_{\Gamma_s^{|\pi|}}\int_{[0,1]^{|\pi|\times|\pi|}_{\ne}}((f^{(i)}_G)^{\otimes\ell})_{\pi}(\bm{x},\bm{u})\mathrm{d}\bm{u}\lambda_d^{|\pi|}(\mathrm{d}\bm{x})\nonumber\\
+	&\le\frac1{|\mathrm{Aut}(G)|^\ell}\int_{(\mathbb{R}^d)^{|\pi|}}\mathbf{1}(x_1,\dots,x_{|\pi|}\in\Gamma_s)\left(\prod_{r=1}^\ell\prod_{\{i,j\}\in E_G}\varphi\left(x_i^{(r)}-x_j^{(r)}\right)\right)_{\pi}\gamma^{|\pi|}\mathrm{d}\bm{x}\nonumber\\
+	&\le\frac1{|\mathrm{Aut}(G)|^\ell}\int_{(\mathbb{R}^d)^{|\pi|}}\mathbf{1}(x_1,\dots,x_{|\pi|}\in\Gamma_s)\prod_{\{i,j\}\in I_{|\pi|}}\varphi\left(x_i^{(r)}-x_j^{(r)}\right)_{\pi}\gamma^{|\pi|}\mathrm{d}\bm{x}\nonumber,
+\end{align*}
+where $x^{(r)}_i:=x_{j}$ if $(r,i)\in\pi_j$ for $r=1,\dots,\ell$, $i=1,\dots,k$ and $j=1,\dots,|\pi|$.
+Taking integration recursively from leaves to the root, using the key observation that 
+\begin{equation}\label{subgraph-integral-1}
+	\int_{W_s}\varphi(x)\mathrm{d}x\sim\int_0^{s^{1/d}}r^{d-1-\alpha}\mathrm{d}r=s^{1-\alpha/d},
+\end{equation}
+we have
+\begin{equation}
+	\int_{\Gamma_s^{|\pi|}}\int_{[0,1]^{|\pi|\times|\pi|}_{\ne}}((f^{(i)}_G)^{\otimes\ell})_{\pi}(\bm{x},\bm{u})\mathrm{d}\bm{u}\lambda_d^{|\pi|}(\mathrm{d}\bm{x})\le C (s^{1-\alpha/d})^{|\pi|-1}s.
+\end{equation}
+Moreover, since $|\pi|\le (k-1)\ell+1$ for all $\pi\in\widetilde{\Pi}^\ell(k)$, the cumulant of order  $\ell$ is bounded by 
+$$
+C  (s^{1-\alpha/d})^{(k-1)\ell}s,
+$$
+which completes the proof.
+\end{proof}
+\begin{lemma}\label{noninte-lower-1}
+Let $d_*$ denote the maximum degree of the graph $G$. 
+If Assumption~\ref{bound-ass-1} holds, we have 
+\begin{equation}
+	\Var(N_G^{\subset})\gtrsim s^{1+2d_*(1-\alpha/d)}.
+\end{equation}
+\end{lemma}
+\begin{proof}
+	The proof follows from that there exists a spanning tree in each connected graph, as in the proof of Proposition~\ref{subgraph-cumu-1}. Denote $\Gamma_s^{\circ}:=\{y\in\Gamma_s:B(y,r_1)\subseteq\Gamma_s\}$.
+
+Without loss of generality, we may assume that vertex $1\in V_G$ is a vertex of maximum degree. 
+Take $\rho \in \widetilde{\Pi}^2(k)$ to be the set partition such that 
+$\{(1,1),(2,1)\} \in \rho$ and every other block of $\rho$ contains exactly one element, 
+so that $|\rho| = 2k - 1$. Hence, the maximum degree in $(G^{\otimes 2})_{\rho}$ is $2d_*$. 
+Consequently, there exists a spanning tree $I_{\rho} \in \mathcal{I}_{2k-1}$ of 
+$(G^{\otimes 2})_{\rho}$ whose root has degree $2d_*$.
+\begin{align*}
+&\Var(N_G^{\subset})\\
+&=\sum_{\pi\in\widetilde{\Pi}^2(k)}\int_{\Gamma_s^{|\pi|}}\int_{[0,1]^{|\pi|(|\pi|-1)/2}}(f^{\subset}_G\otimes f^{\subset}_G)_{\pi}(\bm{x},\bm{u})\mathrm{d}\bm{u}\gamma^{|\pi|}\mathrm{d}\bm{x}\nonumber\\
+&\ge\int_{(\mathbb{R}^d)^{2k-1}}\mathbf{1}(x_1,\dots,x_{2k-1}\in\Gamma_s)\left(\prod_{\{i,j\}\in E_{(G^{\otimes 2})_{\rho}}}\varphi(x_i-x_j)\right)\mathrm{d}(x_1,\dots,x_{2k-1})\\
+&\ge\int_{\mathbb{R}^d}\mathbf{1}(x_1\in\Gamma_s)\mathrm{d}x_1\int_{(\mathbb{R}^d)^{2k-2}}\mathbf{1}(\exists y\in\Gamma_s^{\circ}:x_2,\dots,x_{2k-1}\in B(y,r_1))\left(\prod_{\{i,j\}\in E_{(G^{\otimes 2})_{\rho}}}\varphi(x_i-x_j)\right)\mathrm{d}(x_2,\dots,x_{2k-1}).
+\end{align*}
+With the Assumption~\ref{bound-ass-1}, we can further bound the integrand as follows
+\begin{align*}
+  &\int_{(\mathbb{R}^d)^{2k-2}}\mathbf{1}(\exists y\in\Gamma_s^{\circ}:x_2,\dots,x_{2k-1}\in B(y,r_1))\left(\prod_{\{i,j\}\in E_{(G^{\otimes 2})_{\rho}}}\varphi(x_i-x_j)\right)\mathrm{d}(x_2,\dots,x_{2k-1})\\
+  &\ge c^{2|E_G|-2d_*}\int_{(\mathbb{R}^d)^{2k-2}}\mathbf{1}(\exists y\in\Gamma_s^{\circ}:x_2,\dots,x_{2k-1}\in B(y,r_1))\left(\prod_{\{1,j\}\in E_{(G^{\otimes 2})_{\rho}}}\varphi(x_1-x_j)\right)\mathrm{d}(x_2,\dots,x_{2k-1})\\
+  &\sim \left[\int_{\mathbb{R}^d}\mathbf{1}(\exists y\in\Gamma_s^{\circ}:z\in B(y,r_1))\varphi(z-x_1)\mathrm{d}z\right]^{2d_*}\\
+  &\sim s^{2d_*(1-\alpha/d)},
+\end{align*}
+where the last equivalence follows again from \eqref{subgraph-integral-1}.
+Hence, the proof is completed upon integrating $x_1$ over $\Gamma_s$.
+\end{proof}
+
+\begin{theorem}
+Assume that the connection function $\varphi$ is radial, and denote by $\bar{\varphi}:\mathbb{R}\to[0,1]$ its radial profile. Suppose that there exist constants $l_{\bar{\varphi}}\in(0,\infty)$ and $\alpha\in(0,d)$ such that
+\begin{equation*}
+\lim_{t\to\infty} t^{\alpha} \bar{\varphi}(t)=l_{\bar{\varphi}}.
+\end{equation*}
+Let $d_*$ denote the maximum degree of the graph $G$. 
+Suppose Assumption~\ref{bound-ass-1} holds, we have
+\begin{equation}
+	\mathrm{d}_{\mathrm{Wass}}\left(\frac{N_G^{\subset}-\mathbb{E} N_G^{\subset}}{\sqrt{\Var N_G^{\subset}}},N\right)\le \mathrm{d}_{\mathrm{K}}\left(\frac{N_G^{\subset}-\mathbb{E} N_G^{\subset}}{\sqrt{\Var N_G^{\subset}}},N\right)\le C\frac1{\sqrt{s}}(s^{k-1-d_*})^{2(1-\alpha/d)}.
+\end{equation}
+\end{theorem}
+\begin{proof}
+From Lemma~\ref{noninteg-upper-1}, it is straighforward that 
+$$
+\max_{1\le i,j\le k}M_{i,j}(f_G^{\subset})\le s^{4(k-1)(1-\alpha/d)+1}.
+$$
+Combining with the lower bound of the variance obtained in Lemma~\ref{noninte-lower-1}, the claim follows directly from Theorem~\ref{normalapp1}.
+\end{proof}
+When $d_*=k-1$, 
+the convergence rate is $O(s^{-1/2})$. 
 \subsection{edge-length functionals}
 
 
@@ -1847,21 +1954,123 @@ Thus, using these bounds in Corollary~\ref{normalapp1k2} we arrive at the follow
 In particular, if $\tau \in (0, \frac{d}{2}]$, a central limit theorem holds.
 \end{theorem}
 
-$$
-\overline{L}_s(\tau) = \frac{1}{2} \sum_{(x_1,x_2)\in\eta_{s,\neq}^2\cap\Gamma_s^2} \mathbf{1}\{ x_1\leftrightarrow x_2, \|x_1-x_2\|\leq s^{\frac{1}{2\tau}} \} \|x_1-x_2\|^\tau
-$$
 
-$$
-\mathbb{E}[L_s(\tau) - \overline{L}_s(\tau)] \sim s \int_{s^{\frac{1}{2\tau}}}^\infty r^{\tau} r^{-\alpha} r^{d-1} \, \, \mathrm{d}r \sim s (s^{\frac{1}{2\tau}})^{\tau-\alpha+d} =  s (s^{\frac{1}{2\tau}})^{-\tau}= \sqrt{s}
-$$
+\medskip
+\noindent\textbf{Truncation in the critical regime.}
+For $\tau>0$ define the (growing-cutoff) truncated statistic
+\[
+\overline{L}_s(\tau)
+:= \frac{1}{2}\sum_{(x_1,x_2)\in \eta^2_{\neq}\cap \Gamma_s^2}
+\mathbf{1}\!\left\{x_1\leftrightarrow x_2,\ \|x_1-x_2\|\le s^{\frac{1}{2\tau}}\right\}
+\|x_1-x_2\|^{\tau}.
+\]
+By Mecke’s formula and the same change-of-variables/reduction as above,
+\[
+\mathbb{E}\!\left[L_s(\tau)-\overline{L}_s(\tau)\right]
+= \frac{1}{2}\int_{\Gamma_s}\!\!\int_{\Gamma_s}
+\mathbf{1}_{\{\|x-y\|>s^{\frac{1}{2\tau}}\}}\,
+\varphi(x-y)\,\|x-y\|^{\tau}\,\mathrm{d}x\,\mathrm{d}y
+\;\sim\;
+s\!\int_{s^{\frac{1}{2\tau}}}^{\infty}\! r^{\tau}\,\bar{\varphi}(r)\,r^{d-1}\,\mathrm{d}r.
+\]
+In the critical case $\alpha=2\tau+d$ we have $\bar{\varphi}(r)\sim r^{-\alpha}$, hence
+\[
+\int_{s^{\frac{1}{2\tau}}}^{\infty} r^{\tau}\,r^{-\alpha}\,r^{d-1}\,\mathrm{d}r
+=\int_{s^{\frac{1}{2\tau}}}^{\infty} r^{-(\tau+1)}\,\mathrm{d}r
+\;\asymp\; \big(s^{\frac{1}{2\tau}}\big)^{-\tau}
+= s^{-\frac{1}{2}}.
+\]
+Therefore
+\begin{equation}\label{eq:L1gap_critical}
+\mathbb{E}\!\left[L_s(\tau)-\overline{L}_s(\tau)\right]
+\;\asymp\; \sqrt{s}.
+\end{equation}
+Since in the critical regime $\Var L_s(\tau)\asymp s\log s$ (see Lemma~\ref{lem:varlength} and the discussion above),
+the standardized $L^1$ gap satisfies
+\begin{equation}\label{eq:std_gap_critical}
+\frac{\mathbb{E}\!\left[L_s(\tau)-\overline{L}_s(\tau)\right]}
+{\sqrt{\Var L_s(\tau)}}
+\;\asymp\; \frac{\sqrt{s}}{\sqrt{s\log s}}
+\;=\; \frac{1}{\sqrt{\log s}}.
+\end{equation}
 
-$$
-\frac{\mathbb{E}[L_s(\tau) - \overline{L}_s(\tau)]}{\sqrt{\operatorname{Var} L_s(\tau)}} \sim \frac{\sqrt{s}}{\sqrt{s \log s}} = \frac{1}{\sqrt{\log s}}
-$$
+\begin{lemma}\label{lem:critical_truncation_gap}
+Let $\tau>0$ and $\alpha=2\tau+d$. Then
+\[
+\frac{\mathbb{E}\!\left|L_s(\tau)-\overline{L}_s(\tau)\right|}
+{\sqrt{\Var L_s(\tau)}}
+\;\le\; \frac{C}{\sqrt{\log s}},
+\]
+for some $C\in(0,\infty)$ independent of $s$.
+\end{lemma}
 
-$$
-s \int_0^{s^{\frac{1}{2\tau}}} r^{4\tau} r^{-\alpha} r^{d-1} \, \mathrm{d} r \sim s (s^{\frac{1}{2\tau}})^{4\tau-\alpha+d} = s (s^{\frac{1}{2\tau}})^{2\tau} =s^2
-$$
+\begin{proof}
+By \eqref{eq:L1gap_critical} we have $\E|L_s-\overline{L}_s|\asymp\sqrt{s}$.
+If we divide by $\sqrt{\Var L_s(\tau)}\asymp \sqrt{s\log s}$ we obtain \eqref{eq:std_gap_critical}.
+\end{proof}
+
+\begin{lemma}\label{lem:critical_truncated_CLT}
+In the setting $\tau>0$, $\alpha=2\tau+d$, the truncated statistic $\overline{L}_s(\tau)$
+satisfies a central limit theorem with
+\[
+\mathrm{d}_{\mathrm{Wass}}\!\left(
+\frac{\overline{L}_s(\tau)-\E \overline{L}_s(\tau)}{\sqrt{\Var \overline{L}_s(\tau)}},\,N\right)
+\;\le\; C\,s^{-1/2},
+\qquad
+\mathrm{d}_{\mathrm{K}}\!\left(
+\frac{\overline{L}_s(\tau)-\E \overline{L}_s(\tau)}{\sqrt{\Var \overline{L}_s(\tau)}},\,N\right)
+\;\le\; C\,s^{-1/2}.
+\]
+\end{lemma}
+
+\begin{proof}
+We repeat the moment bounds as in Lemma~\ref{lem:CLT_truncated}, now with the cutoff
+$a=s^{\frac{1}{2\tau}}$. The inner integrals are restricted to $\|u\|\le a$, and their growth
+in $a$ induces at most polylogarithmic factors at the critical exponent;
+the resulting $M_{ij}$ terms are still $O(s\,\mathrm{polylog}(s))$.
+Moreover, $\Var\overline{L}_s(\tau)\asymp s\log s$, so Corollary~\ref{normalapp1k2}
+yields the stated $s^{-1/2}$ rate.
+\end{proof}
+
+
+
+
+Combining Lemma~\ref{lem:critical_truncation_gap} with Lemma~\ref{lem:critical_truncated_CLT}
+and using that $\Var[L_s(\tau)] \asymp s\log s$, we obtain that the difference between
+$L_s(\tau)$ and its truncated version is negligible at the scale $\sqrt{\Var[L_s(\tau)]}$.
+Together with the central limit theorem for $\overline{L}_s(\tau)$, this yields the following.
+
+\begin{theorem}\label{thm:CLTedgelengths_critical_full}
+Let $\tau>0$ and assume $\bar{\varphi}(r)\sim r^{-\alpha}$ as $r\to\infty$ with exponent
+$\alpha=2\tau+d$. Then, as $s\to\infty$,
+\[
+\frac{L_s(\tau)-\E[L_s(\tau)]}{\sqrt{\Var[L_s(\tau)]}}
+\;\xrightarrow{d}\;
+N.
+\]
+In particular, a central limit theorem holds for $L_s(\tau)$ in the critical regime.
+\end{theorem}
+
+
+
+
+
+
+%$$
+%\overline{L}_s(\tau) = \frac{1}{2} \sum_{(x_1,x_2)\in\eta_{s,\neq}^2\cap\Gamma_s^2} \mathbf{1}\{ x_1\leftrightarrow x_2, \|x_1-x_2\|\leq s^{\frac{1}{2\tau}} \} \|x_1-x_2\|^\tau
+%$$
+
+%$$
+%\mathbb{E}[L_s(\tau) - \overline{L}_s(\tau)] \sim s \int_{s^{\frac{1}{2\tau}}}^\infty r^{\tau} r^{-\alpha} r^{d-1} \, \, \mathrm{d}r \sim s (s^{\frac{1}{2\tau}})^{\tau-\alpha+d} =  s (s^{\frac{1}{2\tau}})^{-\tau}= \sqrt{s}
+%$$
+
+%$$
+%\frac{\mathbb{E}[L_s(\tau) - \overline{L}_s(\tau)]}{\sqrt{\operatorname{Var} L_s(\tau)}} \sim \frac{\sqrt{s}}{\sqrt{s \log s}} = \frac{1}{\sqrt{\log s}}
+%$$
+
+%$$
+%s \int_0^{s^{\frac{1}{2\tau}}} r^{4\tau} r^{-\alpha} r^{d-1} \, \mathrm{d} r \sim s (s^{\frac{1}{2\tau}})^{4\tau-\alpha+d} = s (s^{\frac{1}{2\tau}})^{2\tau} =s^2
+%$$
 
 
 
@@ -2043,7 +2252,7 @@ $$
 $$
 This implies that
 \begin{align*}
-\big| \mathbb{P}\bigg( s^{-\frac{1}{\alpha-d}}\max_{(x_1,x_2)\in\eta_{s,\neq}^2, \frac{x_1+x_2}{2}\in\Gamma_s} \|x_1-x_2\|>a\bigg) - \mathbb{P}(Z>a) \big| & \leq {\rm d}_{\rm TV}(\tilde{\xi}_s((a,\infty)),\zeta^{(\alpha)}((a,\infty))) \\ & \leq {\rm d}_{\rm KR}(\tilde{\xi}_s|_{[a,\infty)},\zeta^{(\alpha)}|_{[a,\infty)}).
+\left| \mathbb{P}\bigg( s^{-\frac{1}{\alpha-d}}\max_{(x_1,x_2)\in\eta_{s,\neq}^2, \frac{x_1+x_2}{2}\in\Gamma_s} \|x_1-x_2\|>a\bigg) - \mathbb{P}(Z>a) \right| & \leq {\rm d}_{\rm TV}(\tilde{\xi}_s((a,\infty)),\zeta^{(\alpha)}((a,\infty))) \\ & \leq {\rm d}_{\rm KR}(\tilde{\xi}_s|_{[a,\infty)},\zeta^{(\alpha)}|_{[a,\infty)}).
 \end{align*}
 Since, by Theorem \ref{thm:edge-length_process}, the right-hand side converges to zero as $s\to\infty$, this proves the desired statement.
 \end{proof}
