@@ -930,47 +930,46 @@ $$
 which completes the proof.
 \end{proof}
 \begin{lemma}\label{noninte-lower-1}
-Let $d_*$ denote the maximum degree of the graph $G$. 
+	Suppose the connection function $\varphi$ is radial, and $\bar{\varphi}$ is non-increasing and satisfies 
+\begin{equation}
+\lim_{t\to\infty} t^{\alpha} \bar{\varphi}(t)=l_{\bar{\varphi}}>0,
+\end{equation}
+with $\alpha\in(0,d)$. 
 If Assumption~\ref{bound-ass-1} holds, we have 
 \begin{equation}
-	\Var(N_G^{\subset})\gtrsim s^{1+2d_*(1-\alpha/d)}.
+	\Var(N_G^{\subset})\gtrsim s^{2k-1-2|E_G|\alpha/d}.
 \end{equation}
 \end{lemma}
 \begin{proof}
-	The proof follows from that there exists a spanning tree in each connected graph, as in the proof of Proposition~\ref{subgraph-cumu-1}. Denote $\Gamma_s^{\circ}:=\{y\in\Gamma_s:B(y,r_1)\subseteq\Gamma_s\}$.
-
-Without loss of generality, we may assume that vertex $1\in V_G$ is a vertex of maximum degree. 
+For the convex set $\Gamma_s$, we denote the inradius of $W_s$ as $r(\Gamma_s)$. Given that the volume of $\Gamma_s$ is $s$, there exists a constant $c_1>0$ such that  $r(\Gamma_s)\le c_1 s^{1/d}$. Since $\bar{\varphi}(r)\sim r^{-\alpha}$ is non-increasing and satisfies Assumption~\ref{bound-ass-1}, there exists a constant $c_2>0$ such that for all sufficiently large $s$  
+\begin{equation}
+	\inf_{x,y\in\Gamma_s}\varphi(x-y)=\inf_{0\le t\le r(\Gamma_s)}\bar{\varphi}(t)\ge c_2 r(\Gamma_s)^{-\alpha}\asymp c_3 s^{-\alpha/d}.
+\end{equation}
+The proof follows from that there exists a spanning tree in each connected graph, as in the proof of Proposition~\ref{subgraph-cumu-1}.
 Take $\rho \in \widetilde{\Pi}^2(k)$ to be the set partition such that 
 $\{(1,1),(2,1)\} \in \rho$ and every other block of $\rho$ contains exactly one element, 
-so that $|\rho| = 2k - 1$. Hence, the maximum degree in $(G^{\otimes 2})_{\rho}$ is $2d_*$. 
+so that $|\rho| = 2k - 1$. 
 Consequently, there exists a spanning tree $I_{\rho} \in \mathcal{I}_{2k-1}$ of 
-$(G^{\otimes 2})_{\rho}$ whose root has degree $2d_*$.
+$(G^{\otimes 2})_{\rho}$.
+Hence, we have 
 \begin{align*}
 &\Var(N_G^{\subset})\\
 &=\sum_{\pi\in\widetilde{\Pi}^2(k)}\int_{\Gamma_s^{|\pi|}}\int_{[0,1]^{|\pi|(|\pi|-1)/2}}(f^{\subset}_G\otimes f^{\subset}_G)_{\pi}(\bm{x},\bm{u})\mathrm{d}\bm{u}\gamma^{|\pi|}\mathrm{d}\bm{x}\nonumber\\
 &\ge\int_{(\mathbb{R}^d)^{2k-1}}\mathbf{1}(x_1,\dots,x_{2k-1}\in\Gamma_s)\left(\prod_{\{i,j\}\in E_{(G^{\otimes 2})_{\rho}}}\varphi(x_i-x_j)\right)\mathrm{d}(x_1,\dots,x_{2k-1})\\
-&\ge\int_{\mathbb{R}^d}\mathbf{1}(x_1\in\Gamma_s)\mathrm{d}x_1\int_{(\mathbb{R}^d)^{2k-2}}\mathbf{1}(\exists y\in\Gamma_s^{\circ}:x_2,\dots,x_{2k-1}\in B(y,r_1))\left(\prod_{\{i,j\}\in E_{(G^{\otimes 2})_{\rho}}}\varphi(x_i-x_j)\right)\mathrm{d}(x_2,\dots,x_{2k-1}).
+&\ge\int_{(\mathbb{R}^d)^{2k-1}}\mathbf{1}(x_1,\dots,x_{2k-1}\in\Gamma_s)\left(\prod_{\{i,j\}\in I_{\rho}}\varphi(x_i-x_j)\right)\mathrm{d}(x_1,\dots,x_{2k-1})
+\times\left[\inf_{x,y\in\Gamma_s}\varphi(x-y)\right]^{2|E_G|-(2k-2)}\\
+&\gtrsim s \left(s^{1-\alpha/d}\right)^{2k-2}\left(s^{-\alpha/d}\right)^{2|E_G|-(2k-2)}=s^{2k-1-2|E_G|\alpha/d}.
 \end{align*}
-With the Assumption~\ref{bound-ass-1}, we can further bound the integrand as follows
-\begin{align*}
-  &\int_{(\mathbb{R}^d)^{2k-2}}\mathbf{1}(\exists y\in\Gamma_s^{\circ}:x_2,\dots,x_{2k-1}\in B(y,r_1))\left(\prod_{\{i,j\}\in E_{(G^{\otimes 2})_{\rho}}}\varphi(x_i-x_j)\right)\mathrm{d}(x_2,\dots,x_{2k-1})\\
-  &\ge c^{2|E_G|-2d_*}\int_{(\mathbb{R}^d)^{2k-2}}\mathbf{1}(\exists y\in\Gamma_s^{\circ}:x_2,\dots,x_{2k-1}\in B(y,r_1))\left(\prod_{\{1,j\}\in E_{(G^{\otimes 2})_{\rho}}}\varphi(x_1-x_j)\right)\mathrm{d}(x_2,\dots,x_{2k-1})\\
-  &\sim \left[\int_{\mathbb{R}^d}\mathbf{1}(\exists y\in\Gamma_s^{\circ}:z\in B(y,r_1))\varphi(z-x_1)\mathrm{d}z\right]^{2d_*}\\
-  &\sim s^{2d_*(1-\alpha/d)},
-\end{align*}
-where the last equivalence follows again from \eqref{subgraph-integral-1}.
-Hence, the proof is completed upon integrating $x_1$ over $\Gamma_s$.
 \end{proof}
 
 \begin{theorem}
-Assume that the connection function $\varphi$ is radial, and denote by $\bar{\varphi}:\mathbb{R}\to[0,1]$ its radial profile. Suppose that there exist constants $l_{\bar{\varphi}}\in(0,\infty)$ and $\alpha\in(0,d)$ such that
+	Assume that the connection function $\varphi$ is radial, and denote its radial profile by $\bar{\varphi}:\mathbb{R}\to[0,1]$. Suppose that $\bar{\varphi}$ is non-increasing and there exist constants $l_{\bar{\varphi}}\in(0,\infty)$ and $\alpha\in(0,d)$ such that
 \begin{equation*}
 \lim_{t\to\infty} t^{\alpha} \bar{\varphi}(t)=l_{\bar{\varphi}}.
 \end{equation*}
-Let $d_*$ denote the maximum degree of the graph $G$. 
-Suppose Assumption~\ref{bound-ass-1} holds, we have
+Assuming that Assumption~\ref{bound-ass-1} holds, we have
 \begin{equation}
-	\mathrm{d}_{\mathrm{Wass}}\left(\frac{N_G^{\subset}-\mathbb{E} N_G^{\subset}}{\sqrt{\Var N_G^{\subset}}},N\right)\le \mathrm{d}_{\mathrm{K}}\left(\frac{N_G^{\subset}-\mathbb{E} N_G^{\subset}}{\sqrt{\Var N_G^{\subset}}},N\right)\le C\frac1{\sqrt{s}}(s^{k-1-d_*})^{2(1-\alpha/d)}.
+	\mathrm{d}_{\mathrm{Wass}}\left(\frac{N_G^{\subset}-\mathbb{E} N_G^{\subset}}{\sqrt{\Var N_G^{\subset}}},N\right)\le \mathrm{d}_{\mathrm{K}}\left(\frac{N_G^{\subset}-\mathbb{E} N_G^{\subset}}{\sqrt{\Var N_G^{\subset}}},N\right)\le C\frac1{\sqrt{s}}s^{2(|E_G|-k+1)\alpha/d}.
 \end{equation}
 \end{theorem}
 \begin{proof}
@@ -981,13 +980,13 @@ $$
 Combining with the lower bound of the variance obtained in Lemma~\ref{noninte-lower-1}, the claim follows directly from Theorem~\ref{normalapp1}.
 \end{proof}
 \begin{remark}
-When $d_*=k-1$, 
+When $|E_G|=k-1$, i.e., $G$ is a tree,  
 the convergence rate is $O(s^{-1/2})$. 
 \end{remark}
 \begin{remark}
-If $k-1>d_*$, then the central limit theorem holds whenever 
+If $|E_G|>k-1$, then the central limit theorem holds whenever 
 $$
-d\left(1-\frac1{4(k-1-d_*)}\right)<\alpha<d.
+0<\alpha<\frac{d}{4(|E_G|-k+1)}.
 $$
 \end{remark}
 \subsection{edge-length functionals}
