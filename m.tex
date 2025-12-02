@@ -901,7 +901,7 @@ For any $\ell\in\mathbb{N}$ and $i\in\{=,\subset\}$, we have, for each $\pi\in\w
 C s^{(1-\alpha/d)(|\pi|-1)+1}.
 \end{equation}
 Moreover, we have 
-\begin{equation}
+\begin{equation}\label{upperbound-2}
 	\cum_\ell(N_G^{(i)})\le
 C s^{(k-1)\ell(1-\alpha/d)+1}.
 \end{equation}
@@ -936,7 +936,7 @@ which completes the proof.
 \end{equation}
 with $\alpha\in(0,d)$. 
 If Assumption~\ref{bound-ass-1} holds, we have 
-\begin{equation}
+\begin{equation}\label{lowerbound-2}
 	\Var(N_G^{\subset})\gtrsim s^{2k-1-2|E_G|\alpha/d}.
 \end{equation}
 \end{lemma}
@@ -961,7 +961,9 @@ Hence, we have
 &\gtrsim s \left(s^{1-\alpha/d}\right)^{2k-2}\left(s^{-\alpha/d}\right)^{2|E_G|-(2k-2)}=s^{2k-1-2|E_G|\alpha/d}.
 \end{align*}
 \end{proof}
-
+\begin{remark}
+	Note the lower bound in \eqref{lowerbound-2} is sharp, meaning it coincides with the upper bound established in \eqref{upperbound-2},  when $|E_G|=k-1$, i.e., when $G$ is a tree.
+\end{remark}
 \begin{theorem}
 	Assume that the connection function $\varphi$ is radial, and denote its radial profile by $\bar{\varphi}:\mathbb{R}\to[0,1]$. Suppose that $\bar{\varphi}$ is non-increasing and there exist constants $l_{\bar{\varphi}}\in(0,\infty)$ and $\alpha\in(0,d)$ such that
 \begin{equation*}
