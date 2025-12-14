@@ -741,10 +741,15 @@ Therefore, taking $\mathbb{M}=[0,1]$, and $\mathbb{Q}$ to be the uniform distrib
 %	S=\sum_{(x_1,\dots,x_k)\in\eta^k_{\ne}}f\big(x_1,\dots,x_k,\left(\mathbf{1}(\mathcal{M}_{x_i,x_j}\le\varphi(x_i,x_j))_{i,j\in[k],i\ne j}\right)\big).
 %\end{equation*}
 
-\subsection{subgraph count}
+\subsection{Subgraph count}
 Let $G=(V_G,E_G)$ be a fixed connected graph of order $k$, $k\ge2$, with vertex set $V_G$ and edge set $E_G$. 
 %For any two graphs $G_1$ and $G_2$, we denote $G_1\simeq G_2$ when $G_1$ is isomorphic to $G_2$. 
 Denote $|\mathrm{Aut}(G)|$ as the number of automorphism of $G$. 
+\subsubsection{Subgraph counts with integrable connection function}
+Suppose the connection function $\varphi$ satisfies 
+$$
+\int_{\mathbb{R}^d}\varphi(x)\mathrm{d}x<\infty.
+$$
 To ensure normal approximation, we need the following minimal condition for the connection function $\varphi$.
 \begin{ass}\label{graph-ass1}
 	Let $G$ be a connected graph with $k\ge2$ vertices.
@@ -1013,9 +1018,9 @@ where
 \end{align*}
 Moreover, by letting $v_i:=s^{-1/d}x_i$, we can write 
 \begin{align*}
-	I_1(s)&=\int_{\Gamma_1^5}\varphi(s^{1/d}(v_1-v_2))\varphi(s^{1/d}(v_2-v_3))\varphi(s^{1/d}(v_3-v_1))\\
+	I_1(s)&=\int_{\Gamma_0^5}\varphi(s^{1/d}(v_1-v_2))\varphi(s^{1/d}(v_2-v_3))\varphi(s^{1/d}(v_3-v_1))\\
 	      &\ \ \ \times\varphi(s^{1/d}(v_1-v_4))\varphi(s^{1/d}(v_1-v_5))\varphi(s^{1/d}(v_4-v_5))s^{5}\mathrm{d}(v_1,\dots,v_5),\\
-	      &\asymp s^5 s^{-6\frac{\alpha}d}\int_{\Gamma_1^5}\|v_1-v_2\|^{-\alpha}\|v_2-v_3\|^{-\alpha}\|v_3-v_1\|^{-\alpha}\\
+	      &\asymp s^5 s^{-6\frac{\alpha}d}\int_{\Gamma_0^5}\|v_1-v_2\|^{-\alpha}\|v_2-v_3\|^{-\alpha}\|v_3-v_1\|^{-\alpha}\\
 	      &\ \ \ \times\|v_1-v_4\|^{-\alpha}\|v_1-v_5\|^{-\alpha}\|v_4-v_5\|^{-\alpha}\mathrm{d}(v_1,\dots,v_5).
 \end{align*}
 Because $\varphi$ is bounded by $1$, integrations over $\Gamma_1$ is finite. Hence, we have 
@@ -2411,4 +2416,3 @@ with $\beta_G$ depending on the considered subgraph $G$
 \bibliography{lit}
 
 \end{document}
-
