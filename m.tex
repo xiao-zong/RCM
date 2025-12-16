@@ -959,15 +959,38 @@ $\mathbb{G}_{\varphi}(\eta\cap\Gamma_{s_n})$, defined by
 	N_n^{=}&:=\frac1{|\mathrm{Aut}(G)|}\sum_{(x_1,\dots,x_k)\in\eta^k_{\ne}\cap\Gamma_{s_n}}\prod_{\{i,j\}\in E_G}
     \mathbf{1}\{x_i\leftrightarrow x_j\}\prod_{\{\imath,\jmath\}\notin E_G}\mathbf{1}\{x_{\imath}\nleftrightarrow x_{\jmath}\}.
 \end{align}
-If Assumption~\ref{graph-ass1}-i) holds, then 
+If Assumption~\ref{graph-ass1}-i) holds, then there exists constant $C$ (see \eqref{mdp-const1}) such that  
 $\left\{(N_n^{\subset}-\mathbb{E}N_n^{\subset})/\sqrt{\Var N_n^{\subset}}\right\}_{n\in\mathbb{N}}$ satisfies 
-\textbf{$\mathrm{MDP}$}$(\gamma,\{\Delta_n\}_{n\in\mathbb{N}})$
-and \textbf{$\mathrm{CI}$}$(\gamma, \{\Delta_n\}_{n \in \mathbb{N}})$. 
+\textbf{$\mathrm{MDP}$}$(\gamma,\{C\sqrt{s_n}\}_{n\in\mathbb{N}})$
+and \textbf{$\mathrm{CI}$}$(\gamma, \{C\sqrt{s_n}\}_{n \in \mathbb{N}})$. 
 Moreover, if Assumption~\ref{graph-ass1}-ii) holds, then 
 $\left\{(N_n^{=}-\mathbb{E}N_n^{=})/\sqrt{\Var N_n^{=}}\right\}_{n\in\mathbb{N}}$ satisfies 
-\textbf{$\mathrm{MDP}$}$(\gamma,\{\Delta_n\}_{n\in\mathbb{N}})$
-and \textbf{$\mathrm{CI}$}$(\gamma, \{\Delta_n\}_{n \in \mathbb{N}})$.
+\textbf{$\mathrm{MDP}$}$(k-1,\{C\sqrt{s_n}\}_{n\in\mathbb{N}})$
+and \textbf{$\mathrm{CI}$}$(k-1, \{C\sqrt{s_n}\}_{n \in \mathbb{N}})$.
 \end{theorem}
+\begin{proof}
+	From Proposition~\ref{subgraph-cumu-1} and \eqref{graphvar3}, we obtain that for $\ell\ge3$,
+\begin{align}
+	\cum_{\ell}\left(\frac{N_n^{=}-\mathbb{E}N_n^{=}}{\sqrt{\Var(N_n^{=})}}\right)&=\frac{\cum_{\ell}(N_n^{=})}{\Var(N_n^{=})^{\ell/2}}\nonumber\\
+																&\le\frac{
+																\frac{1}{|\mathrm{Aut}(G)|^\ell}\left[\left(\gamma \int_{\mathbb{R}^d}\varphi(z)\mathrm{d}z\right)\vee1\right]^{\ell(k-1)+1}k^{k\ell}(\ell!)^k s_n}{(\frac{\underline{c}\gamma^k}{2|\mathrm{Aut}(G)|}s_n)^{\ell/2}}\nonumber\\
+																&=(\ell!)^ks_n^{1-\ell/2}T^\ell\left[\left(\gamma \int_{\mathbb{R}^d}\varphi(z)\mathrm{d}z\right)\vee1\right]\label{cumuboun1}
+\end{align}
+where 
+$$
+T:=k^k\left[\left(\gamma \int_{\mathbb{R}^d}\varphi(z)\mathrm{d}z\right)\vee1\right]^{k-1}\left(\frac2{\underline{c}\gamma^k|\mathrm{Aut}(G)|}\right)^{1/2}.
+$$
+\textcolor{red}{Furthermore, since for $\ell\ge3$ we have
+$$
+\left[\left(\gamma \int_{\mathbb{R}^d}\varphi(z)\mathrm{d}z\right)\vee1\right]T^2 \le \left(\left[\left(\gamma \int_{\mathbb{R}^d}\varphi(z)\mathrm{d}z\right)\vee1\right]T^2\right)^{\ell-2},
+$$
+combining this with \eqref{cumuboun1} allows us to define
+\begin{equation}\label{mdp-const1}
+\Delta_n := \frac{\sqrt{s_n}}{\left[\left(\gamma \int_{\mathbb{R}^d}\varphi(z)\mathrm{d}z\right)\vee1\right]T^{3}}.
+\end{equation}
+}
+According to Proposition~\ref{prop:MDP}, we complete the proof.
+\end{proof}
 \subsubsection{Subgraph counts with non-integrable connection function}
 
 \begin{ass}\label{bound-ass-1}
