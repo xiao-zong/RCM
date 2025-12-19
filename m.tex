@@ -709,29 +709,40 @@ Let us first recall from \cite{DemboZeitouni2010} that a sequence of probability
 where $\operatorname{int}(A)$ and $\operatorname{cl}(A)$ stand for the interior and the closure of $A$, respectively. 
 A sequence of random variables $\{X_n\}_{n\in\mathbb{N}}$ satisfies a LDP if their distributions do. We will speak about a moderate deviation principle (MDP) instead of a LDP if the scaling of the involved random variables is between that of a law of large numbers and that of a central limit theorem.
 
-Let $\{X_n\}_{n\in\mathbb{N}}$ be a sequence of square-integrable random variables, $\gamma\ge0$ be a constant and $\{\Delta_n\}_{n\in\mathbb{N}}$ be a positive real-valued sequence. For the ease of notation, we say that $\{X_n\}_{n\in\mathbb{N}}$ satisfies
+Let $\{X_n\}_{n\in\mathbb{N}}$ be a sequence of square-integrable random variables, $\beta\ge0$ be a constant and $\{\Delta_n\}_{n\in\mathbb{N}}$ be a positive real-valued sequence. For the ease of notation, we say that $\{X_n\}_{n\in\mathbb{N}}$ satisfies
 \begin{itemize}
-	\item \textbf{$\mathrm{MDP}$}$(\gamma,\{\Delta_n\}_{n\in\mathbb{N}})$
+	\item \textbf{$\mathrm{MDP}$}$(\beta,\{\Delta_n\}_{n\in\mathbb{N}})$
 		if for any positive real-valued sequence $\{a_n\}_{n\in\mathbb{N}}$ with
 \begin{equation*}
   \lim_{n \to \infty} a_n = \infty
 \qquad \text{and} \qquad
-\lim_{n \to \infty} \frac{a_n}{\Delta_n^{1/(1+2\gamma)}} = 0,
+\lim_{n \to \infty} \frac{a_n}{\Delta_n^{1/(1+2\beta)}} = 0,
 \end{equation*}
 the rescaled random variables
 $\left\{ a_n^{-1} \frac{X_n - \mathbb{E} X_n}{\sqrt{\operatorname{Var} X_n}} \right\}_{n \in \mathbb{N}}$
 satisfy a MDP with speed $a_n^2$ and good rate function $\mathcal{I}(z) = \frac{z^2}{2}.$
-\item \textbf{$\mathrm{CI}$}$(\gamma, \{\Delta_n\}_{n \in \mathbb{N}})$ 
+\item \textbf{$\mathrm{CI}$}$(\beta, \{\Delta_n\}_{n \in \mathbb{N}})$ 
 	if the Bernstein-type
 concentration inequality
 \begin{equation*}
 \mathbb{P}\!\left( |X_n - \mathbb{E} X_n| \ge z \sqrt{\Var(X_n)} \right)
-\le 2\exp\!\left(-\frac{1}{4}\min \left\{\frac{z^2}{2^{1+\gamma}},\,(z \Delta_n)^{1/(1+\gamma)}\right\}\right)
+\le 2\exp\!\left(-\frac{1}{4}\min \left\{\frac{z^2}{2^{1+\beta}},\,(z \Delta_n)^{1/(1+\beta)}\right\}\right)
 \end{equation*}
 holds for all $n \in \mathbb{N}$ and $z \ge 0$.
+    \item \textbf{$\mathrm{NACC}$}$(\beta, \{\Delta_n\}_{n \in \mathbb{N}})$ if a normal approximation bound with Cramér correction holds, that is, if there exist constants $c_0, c_1, c_2 > 0$ only depending on $\beta$ such that for all $n \in \mathbb{N}$ and $z \in \left[0, c_0 \Delta_n^{1/(1+2\beta)}\right]$,
+    $$
+    \mathbb{P}(X_n - \mathbb{E}X_n \geq z \sqrt{\Var X_n}) = e^{L_{n,z}^+} (1 - \Phi(z)) \left( 1 + c_1 \theta_{n,z}^+ \frac{1+z}{\Delta_n^{1/(1+2\beta)}} \right)
+    $$ 
+    and
+    $$
+    \mathbb{P}(X_n - \mathbb{E}X_n \leq -z \sqrt{\Var X_n}) = e^{L_{n,z}^-} (1 - \Phi(z)) \left( 1 + c_1 \theta_{n,z}^- \frac{1+z}{\Delta_n^{1/(1+2\beta)}} \right)
+    $$ 
+    with $\theta_{n,z}^+, \theta_{n,z}^- \in [-1, 1]$ and $L_{n,z}^+, L_{n,z}^- \in (-c_2 z^3 / \Delta_n^{1/(1+2\beta)}, c_2 z^3 / \Delta_n^{1/(1+2\beta)})$, where $\Phi$ is the distribution function of a standard Gaussian random variable.
 \end{itemize}
 
 The next proposition is summarized from the monograph \cite{saulis} and the survey \cite{doering}, and is tailored for $U$-statistics of edge-marked Poisson processes. 
+%Adding Cramer correction+rewriting (3.16) and a short proof from Prop 3.9. 
+%adding balanced condition for non-integrable subgraph count and refine the normal approximation
 
 \begin{prop}\label{prop:MDP}
 	Let $\{\eta_n\}_{n\in\mathbb{N}}$ be a family of Poisson processes over a  $\sigma$-finite measure space $(\mathbb{X},\mathcal{X},\lambda)$, and let $f: \mathbb{X}^k\times \mathbb{M}^{k\times k}_{\neq}\to\mathbb{R}$ be a measurable function.
@@ -739,13 +750,13 @@ Define
 $$S_n:=\sum_{(x_1,\hdots,x_k)\in(\eta_n)^k_{\neq}} f(x_1,\hdots,x_k, (\mathcal{M}_{x_i,x_j})_{i,j\in[k], i\neq j}),$$
 for $n\in\mathbb{N}$.
 Suppose that $\E\left(\overline{S}_n^\ell\right)<\infty$ for all $\ell\ge1$ with $\overline{S}_n$ given in \eqref{def-integ1}. 
-Let $X_n:=\frac{S_n-\mathbb{E}S_n}{\sqrt{\Var S_n}}$ for $n\in\mathbb{N}$. Suppose that there exist a constant $\gamma\ge0$ and a positive real-valuled sequence $\{\Delta_n\}_{n\in\mathbb{N}}$ such that
+Let $X_n:=\frac{S_n-\mathbb{E}S_n}{\sqrt{\Var S_n}}$ for $n\in\mathbb{N}$. Suppose that there exist a constant $\beta\ge0$ and a positive real-valuled sequence $\{\Delta_n\}_{n\in\mathbb{N}}$ such that
 \begin{equation}
-	|\cum_\ell(X_n)|\le\frac{(\ell!)^{1+\gamma}}{\Delta_n^{\ell-2}}
+	|\cum_\ell(X_n)|\le\frac{(\ell!)^{1+\beta}}{\Delta_n^{\ell-2}}
 \end{equation}
 for all $\ell\ge3$ and $n\in\mathbb{N}$. Then $\{X_n\}_{n\in\mathbb{N}}$ satisfies 
-\textbf{$\mathrm{MDP}$}$(\gamma,\{\Delta_n\}_{n\in\mathbb{N}})$ and 
-\textbf{$\mathrm{CI}$}$(\gamma, \{\Delta_n\}_{n \in \mathbb{N}})$. 
+\textbf{$\mathrm{MDP}$}$(\beta,\{\Delta_n\}_{n\in\mathbb{N}})$, 
+\textbf{$\mathrm{CI}$}$(\beta, \{\Delta_n\}_{n \in \mathbb{N}})$ and \textbf{$\mathrm{NACC}$}$(\beta,\{\Delta_n\}_{n\in\mathbb{N}})$. 
 \end{prop}
 \section{Limit theorems for RCM}
 In this section, we consider the RCM 
@@ -765,7 +776,7 @@ The following examples can be studied:
 
 
 Let $\eta$ be a stationary Poisson process on $\mathbb{R}^d$, with intensity measure $\gamma\cdot \lambda_d$, $\gamma>0$ and $\lambda_d$ is the Lebesgue measure on $\mathbb{R}^d$. 
-Let $\Gamma_0\subseteq\mathbb{R}^d$ be a compact convex set with $\lambda_d(\Gamma_0)=1$, and denote $\Gamma_s:=s^{1/d}\Gamma_0$. 
+Let $\Gamma_1\subseteq\mathbb{R}^d$ be a compact convex set with $\lambda_d(\Gamma_1)=1$, and denote $\Gamma_s:=s^{1/d}\Gamma_1$, for $s\ge1$. 
 
 For any $r\ge2$, and $\{x_1,\dots,x_r\}\subseteq\mathbb{R}^d$, we denote the RCM on $\{x_1,\dots,x_r\}$ with connection function $\varphi$ as $\mathbb{G}_{\varphi}(\{x_1,\dots,x_r\})$,
 and the weighted random connection model (WRCM) on $\{x_1,\dots,x_r\}$ with connection function $\varphi$ and weight distribution $W$ as $\mathbb{G}_{\varphi}(\{x_1,\dots,x_r\},W)$.
@@ -917,9 +928,9 @@ $$
 $$
 with $x_1:=0$. By the monotone convergence theorem there exists an $r_0\in(0,\infty)$ such that
 $$
-\underline{c}:=\inf_{x_1\in\Gamma_0}\int_{(B(x_1,r_0))^{k-1}} \prod_{\{i,j\}\in E_G}\varphi(x_i-x_j)\prod_{\{\imath,\jmath\}\notin E_G}(1-\varphi(x_{\imath}-x_{\jmath}))\mathrm{d}(x_2,\dots,x_k)>0.
+\underline{c}:=\inf_{x_1\in\Gamma_1}\int_{(B(x_1,r_0))^{k-1}} \prod_{\{i,j\}\in E_G}\varphi(x_i-x_j)\prod_{\{\imath,\jmath\}\notin E_G}(1-\varphi(x_{\imath}-x_{\jmath}))\mathrm{d}(x_2,\dots,x_k)>0.
 $$
-Since $\Gamma_0$ is compact and convex and $\lambda_d(\Gamma_0)=1$, there exists an $s_0\geq 1$ such that
+Since $\Gamma_1$ is compact and convex and $\lambda_d(\Gamma_1)=1$, there exists an $s_0\geq 1$ such that
 $$
 \lambda_d(\{ y\in\Gamma_s: B(y,r_0)\subseteq\Gamma_s \})\geq \frac{s}{2},
 $$
@@ -961,8 +972,8 @@ $\mathbb{G}_{\varphi}(\eta\cap\Gamma_{s_n})$, defined by
 \end{align}
 If Assumption~\ref{graph-ass1}-i) holds, then there exists constant $C$ (see \eqref{mdp-const1}) such that  
 $\left\{(N_n^{\subset}-\mathbb{E}N_n^{\subset})/\sqrt{\Var N_n^{\subset}}\right\}_{n\in\mathbb{N}}$ satisfies 
-\textbf{$\mathrm{MDP}$}$(\gamma,\{C\sqrt{s_n}\}_{n\in\mathbb{N}})$
-and \textbf{$\mathrm{CI}$}$(\gamma, \{C\sqrt{s_n}\}_{n \in \mathbb{N}})$. 
+\textbf{$\mathrm{MDP}$}$(k-1,\{C\sqrt{s_n}\}_{n\in\mathbb{N}})$
+and \textbf{$\mathrm{CI}$}$(k-1, \{C\sqrt{s_n}\}_{n \in \mathbb{N}})$. 
 Moreover, if Assumption~\ref{graph-ass1}-ii) holds, then 
 $\left\{(N_n^{=}-\mathbb{E}N_n^{=})/\sqrt{\Var N_n^{=}}\right\}_{n\in\mathbb{N}}$ satisfies 
 \textbf{$\mathrm{MDP}$}$(k-1,\{C\sqrt{s_n}\}_{n\in\mathbb{N}})$
@@ -980,7 +991,7 @@ where
 $$
 T:=k^k\left[\left(\gamma \int_{\mathbb{R}^d}\varphi(z)\mathrm{d}z\right)\vee1\right]^{k-1}\left(\frac2{\underline{c}\gamma^k|\mathrm{Aut}(G)|}\right)^{1/2}.
 $$
-\textcolor{red}{Furthermore, since for $\ell\ge3$ we have
+Furthermore, since for $\ell\ge3$ we have
 $$
 \left[\left(\gamma \int_{\mathbb{R}^d}\varphi(z)\mathrm{d}z\right)\vee1\right]T^2 \le \left(\left[\left(\gamma \int_{\mathbb{R}^d}\varphi(z)\mathrm{d}z\right)\vee1\right]T^2\right)^{\ell-2},
 $$
@@ -988,7 +999,6 @@ combining this with \eqref{cumuboun1} allows us to define
 \begin{equation}\label{mdp-const1}
 \Delta_n := \frac{\sqrt{s_n}}{\left[\left(\gamma \int_{\mathbb{R}^d}\varphi(z)\mathrm{d}z\right)\vee1\right]T^{3}}.
 \end{equation}
-}
 According to Proposition~\ref{prop:MDP}, we complete the proof.
 \end{proof}
 \subsubsection{Subgraph counts with non-integrable connection function}
@@ -1100,11 +1110,12 @@ where
 	I_2(s)&:=\int_{\Gamma_s^4}\varphi(x_1-x_2)\varphi(x_2-x_3)\varphi(x_3-x_1)\varphi(x_1-x_4)\varphi(x_4-x_2)\mathrm{d}(x_1,\dots,x_4),\\
 	I_3(s)&:=\int_{\Gamma_s^3}\varphi(x_1-x_2)\varphi(x_2-x_3)\varphi(x_3-x_1)\mathrm{d}(x_1,x_2,x_3).
 \end{align*}
+
 Moreover, by letting $v_i:=s^{-1/d}x_i$, we can write 
 \begin{align*}
-	I_1(s)&=\int_{\Gamma_0^5}\varphi(s^{1/d}(v_1-v_2))\varphi(s^{1/d}(v_2-v_3))\varphi(s^{1/d}(v_3-v_1))\\
+	I_1(s)&=\int_{\Gamma_1^5}\varphi(s^{1/d}(v_1-v_2))\varphi(s^{1/d}(v_2-v_3))\varphi(s^{1/d}(v_3-v_1))\\
 	      &\ \ \ \times\varphi(s^{1/d}(v_1-v_4))\varphi(s^{1/d}(v_1-v_5))\varphi(s^{1/d}(v_4-v_5))s^{5}\mathrm{d}(v_1,\dots,v_5),\\
-	      &\asymp s^5 s^{-6\frac{\alpha}d}\int_{\Gamma_0^5}\|v_1-v_2\|^{-\alpha}\|v_2-v_3\|^{-\alpha}\|v_3-v_1\|^{-\alpha}\\
+	      &\asymp s^5 s^{-6\frac{\alpha}d}\int_{\Gamma_1^5}\|v_1-v_2\|^{-\alpha}\|v_2-v_3\|^{-\alpha}\|v_3-v_1\|^{-\alpha}\\
 	      &\ \ \ \times\|v_1-v_4\|^{-\alpha}\|v_1-v_5\|^{-\alpha}\|v_4-v_5\|^{-\alpha}\mathrm{d}(v_1,\dots,v_5).
 \end{align*}
 Because $\varphi$ is bounded by $1$, integrations over $\Gamma_1$ is finite. Hence, we have 
@@ -1115,7 +1126,7 @@ and
 \begin{equation}
 	\Var(N_{K_3}^{\subset})\asymp
 \begin{cases}
-	s^{5-6\alpha/d},\ \ \ &\mbox{when}~\alpha\in(0,\frac23d),\\
+	s^{5-6\alpha/d},\ \ \ &\mbox{when}~\alpha\in(0,\frac23d],\\
 	s^{3-3\alpha/d},\ \ \ &\mbox{when}~\alpha\in(\frac23d,d).
 \end{cases}
 \end{equation}
