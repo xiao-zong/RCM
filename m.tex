@@ -740,24 +740,37 @@ holds for all $n \in \mathbb{N}$ and $z \ge 0$.
     with $\theta_{n,z}^+, \theta_{n,z}^- \in [-1, 1]$ and $L_{n,z}^+, L_{n,z}^- \in (-c_2 z^3 / \Delta_n^{1/(1+2\beta)}, c_2 z^3 / \Delta_n^{1/(1+2\beta)})$, where $\Phi$ is the distribution function of a standard Gaussian random variable.
 \end{itemize}
 
-The next proposition is summarized from the monograph \cite{saulis} and the survey \cite{doering}, and is tailored for $U$-statistics of edge-marked Poisson processes. 
-%Adding Cramer correction+rewriting (3.16) and a short proof from Prop 3.9. 
+The next result extend \cite[Theorem~3.2]{schulte2} from sums of Poisson $U$-statistics to $U$-statistics of edge-marked Poisson processes. 
 %adding balanced condition for non-integrable subgraph count and refine the normal approximation
 
-\begin{prop}\label{prop:MDP}
-	Let $\{\eta_n\}_{n\in\mathbb{N}}$ be a family of Poisson processes over a  $\sigma$-finite measure space $(\mathbb{X},\mathcal{X},\lambda)$, and let $f: \mathbb{X}^k\times \mathbb{M}^{k\times k}_{\neq}\to\mathbb{R}$ be a measurable function.
+\begin{theorem}\label{thm:MDP}
+	Let $\{\eta_n\}_{n\in\mathbb{N}}$ be a family of Poisson processes over a  $\sigma$-finite measure space $(\mathbb{X},\mathcal{X},\lambda_n)$, and let $f_n: \mathbb{X}^k\times \mathbb{M}^{k\times k}_{\neq}\to\mathbb{R}$ be a measurable function, $n\in\mathbb{N}$.
 Define 
-$$S_n:=\sum_{(x_1,\hdots,x_k)\in(\eta_n)^k_{\neq}} f(x_1,\hdots,x_k, (\mathcal{M}_{x_i,x_j})_{i,j\in[k], i\neq j}),$$
+$$S_n:=\sum_{(x_1,\hdots,x_k)\in(\eta_n)^k_{\neq}} f_n(x_1,\hdots,x_k, (\mathcal{M}_{x_i,x_j})_{i,j\in[k], i\neq j}),$$
 for $n\in\mathbb{N}$.
 Suppose that $\E\left(\overline{S}_n^\ell\right)<\infty$ for all $\ell\ge1$ with $\overline{S}_n$ given in \eqref{def-integ1}. 
-Let $X_n:=\frac{S_n-\mathbb{E}S_n}{\sqrt{\Var S_n}}$ for $n\in\mathbb{N}$. Suppose that there exist a constant $\beta\ge0$ and a positive real-valuled sequence $\{\Delta_n\}_{n\in\mathbb{N}}$ such that
+Let $X_n:=$ for $n\in\mathbb{N}$. Suppose that there is a positive real-valuled sequence $\{b_n\}_{n\in\mathbb{N}}$ such that
 \begin{equation}
-	|\cum_\ell(X_n)|\le\frac{(\ell!)^{1+\beta}}{\Delta_n^{\ell-2}}
+	(\Var S_n)^{-\ell/2}\left|\int_{\mathbb{X}^{|\pi|}}\int_{\mathbb{M}^{|\pi|\times|\pi|}_{\ne}}(f_n^{\otimes\ell})_{\pi}(\bm{x},\bm{u})\mathbb{Q}^{|\pi|\times|\pi|}_{\ne}(\mathrm{d}\bm{u})\lambda_n^{|\pi|}(\mathrm{d}\bm{x})\right|\le b_n^{\ell-2}
 \end{equation}
-for all $\ell\ge3$ and $n\in\mathbb{N}$. Then $\{X_n\}_{n\in\mathbb{N}}$ satisfies 
-\textbf{$\mathrm{MDP}$}$(\beta,\{\Delta_n\}_{n\in\mathbb{N}})$, 
-\textbf{$\mathrm{CI}$}$(\beta, \{\Delta_n\}_{n \in \mathbb{N}})$ and \textbf{$\mathrm{NACC}$}$(\beta,\{\Delta_n\}_{n\in\mathbb{N}})$. 
-\end{prop}
+for all $\pi\in\widetilde{\Pi}^\ell(k)$, $\ell\ge3$ and $n\in\mathbb{N}$. Then $\left\{(S_n-\mathbb{E}S_n)(\Var S_n)^{-1/2}\right\}_{n\in\mathbb{N}}$ satisfies 
+\textbf{$\mathrm{MDP}$}$(k-1,\{(b_nk^{3k})^{-1}\}_{n\in\mathbb{N}})$, 
+\textbf{$\mathrm{CI}$}$(k-1, \{(b_nk^{3k})^{-1}\}_{n \in \mathbb{N}})$ and \textbf{$\mathrm{NACC}$}$(k-1,\{(b_nk^{3k})^{-1}\}_{n\in\mathbb{N}})$. 
+\end{theorem}
+\begin{proof}
+	From \cite[Proposition~6.1]{schulte2}, we have 
+	$$
+	|\widetilde{\Pi}^\ell(k)|\le k^{k\ell}(\ell!)^k\le k^{3k(\ell-2)}(\ell!)^k.
+	$$
+	Together with Proposition~\ref{prop:moments}, we obtain 
+\begin{align}
+	\cum_\ell\left(\frac{S_n-\mathbb{E}S_n}{\sqrt{\Var S_n}}\right)
+	&=\frac{\cum_\ell(S_n)}{(\Var S_n)^{\ell/2}}\nonumber\\
+	&=(\Var S_n)^{-\ell/2}\sum_{\pi\in\widetilde{\Pi}^\ell(k)}\int_{\mathbb{X}^{|\pi|}}\int_{\mathbb{M}^{|\pi|\times|\pi|}_{\ne}}(f_n^{\otimes\ell})_{\pi}(\bm{x},\bm{u})\mathbb{Q}^{|\pi|\times|\pi|}_{\ne}(\mathrm{d}\bm{u})\lambda_n^{|\pi|}(\mathrm{d}\bm{x})\nonumber\\
+	&\le (b_nk^{3k})^{\ell-2}(\ell!)^k.
+\end{align}
+The claim follows from the `main lemmas' presented in \cite{saulis}, see also the survey \cite{doering}, a result frequently refered to as the `Statulevičius condition'.
+\end{proof}
 \section{Limit theorems for RCM}
 In this section, we consider the RCM 
 The following examples can be studied:
@@ -999,7 +1012,7 @@ combining this with \eqref{cumuboun1} allows us to define
 \begin{equation}\label{mdp-const1}
 \Delta_n := \frac{\sqrt{s_n}}{\left[\left(\gamma \int_{\mathbb{R}^d}\varphi(z)\mathrm{d}z\right)\vee1\right]T^{3}}.
 \end{equation}
-According to Proposition~\ref{prop:MDP}, we complete the proof.
+According to Theorem~\ref{thm:MDP}, we complete the proof.
 \end{proof}
 \subsubsection{Subgraph counts with non-integrable connection function}
 
