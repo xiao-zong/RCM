@@ -812,6 +812,18 @@ Therefore, taking $\mathbb{M}=[0,1]$, and $\mathbb{Q}$ to be the uniform distrib
 Let $G=(V_G,E_G)$ be a fixed connected graph of order $k$, $k\ge2$, with vertex set $V_G$ and edge set $E_G$. 
 %For any two graphs $G_1$ and $G_2$, we denote $G_1\simeq G_2$ when $G_1$ is isomorphic to $G_2$. 
 Denote $|\mathrm{Aut}(G)|$ as the number of automorphism of $G$. 
+Define $v(G):=|V_G|$ as the number of vertices and $e(G):=|E_G|$ as the number of edges of the graph $G$. 
+For any two graphs $G_1,G_2$, we write $G_1\simeq G_2$ when $G_1$ is isomorphic to $G_2$.
+\begin{defi}{\cite[pp.~64-65]{JLR}}
+ % \label{balgra}
+        A graph $G$ is balanced if 
+      \begin{equation}
+  \frac{e(H)}{v(H)}\leq \frac{e(G)}{v(G)},
+  \qquad H\subseteq G,   \label{balance1} 
+    \end{equation}
+   and strictly balanced if \eqref{balance1} 
+   holds as a strict inequality for all $H\subsetneq G$. 
+  \end{defi}
 \subsubsection{Subgraph counts with integrable connection function}
 Suppose the connection function $\varphi$ satisfies 
 $$
@@ -973,6 +985,8 @@ Substituting $\eta$ in Theorem~\ref{normalapp1} with $\eta\cap\Gamma_s$, and $f$
 \end{align}
 The non-induced case can be treated analogously and is therefore omitted. This completes the proof.
 \end{proof}
+
+As a directly consequece of cumulants estimates established in Proposition~\ref{subgraph-cumu-1} and the proof of Theorem~\ref{propgraph}, we obtain moderate deviation principle, concentration inequality and normal approximation with Cram\'er correction for the normalized subgraph counts via the method of cumulants. 
 
 \begin{theorem}\label{thm:subgraphMDP}
 	Let $G$ be a connected graph with $k\ge2$ vertices, and $\{s_n\}_{n\in\mathbb{N}}$ be a positive real-valued sequence with $s_n\to\infty$. 
