@@ -90,7 +90,7 @@ with various approaches being proposed to analyze the structure and asymptotic p
 \section{Preliminaries and notation}
 
 \subsection*{Probability metrics and Kantorovich-Rubinstein distance}
-In this paper, we investigate the closeness between two real-valued random variables, as well as between two point processes. To this end, we employ several probability distance, including the Kolmogorov distance, the Wasserstein distance, and the Kantorovich--Rubinstein distance.
+In this paper, we investigate the closeness between two real-valued random variables, as well as between two point processes. To this end, we employ several probability distances, including the Kolmogorov distance, the Wasserstein distance, and the Kantorovich--Rubinstein distance.
 
 The Kolmogorov distance between distributions of two random variables $X$ and $Y$ is given by 
 \begin{equation*}
@@ -753,7 +753,7 @@ Let $X_n:=$ for $n\in\mathbb{N}$. Suppose that there is a positive real-valuled 
 \begin{equation}
 	(\Var S_n)^{-\ell/2}\left|\int_{\mathbb{X}^{|\pi|}}\int_{\mathbb{M}^{|\pi|\times|\pi|}_{\ne}}(f_n^{\otimes\ell})_{\pi}(\bm{x},\bm{u})\mathbb{Q}^{|\pi|\times|\pi|}_{\ne}(\mathrm{d}\bm{u})\lambda_n^{|\pi|}(\mathrm{d}\bm{x})\right|\le b_n^{\ell-2}
 \end{equation}
-for all $\pi\in\widetilde{\Pi}^\ell(k)$, $\ell\ge3$ and $n\in\mathbb{N}$. Then $\left\{(S_n-\mathbb{E}S_n)(\Var S_n)^{-1/2}\right\}_{n\in\mathbb{N}}$ satisfies 
+for all $\pi\in\widetilde{\Pi}^\ell(k)$, $\ell\ge3$ and $n\in\mathbb{N}$. Then $\{S_n\}_{n\in\mathbb{N}}$ satisfies 
 \textbf{$\mathrm{MDP}$}$(k-1,\{(b_nk^{3k})^{-1}\}_{n\in\mathbb{N}})$, 
 \textbf{$\mathrm{CI}$}$(k-1, \{(b_nk^{3k})^{-1}\}_{n \in \mathbb{N}})$ and \textbf{$\mathrm{NACC}$}$(k-1,\{(b_nk^{3k})^{-1}\}_{n\in\mathbb{N}})$. 
 \end{theorem}
@@ -813,16 +813,25 @@ Let $G=(V_G,E_G)$ be a fixed connected graph of order $k$, $k\ge2$, with vertex 
 %For any two graphs $G_1$ and $G_2$, we denote $G_1\simeq G_2$ when $G_1$ is isomorphic to $G_2$. 
 Denote $|\mathrm{Aut}(G)|$ as the number of automorphism of $G$. 
 Define $v(G):=|V_G|$ as the number of vertices and $e(G):=|E_G|$ as the number of edges of the graph $G$. 
-For any two graphs $G_1,G_2$, we write $G_1\simeq G_2$ when $G_1$ is isomorphic to $G_2$.
+For any two graphs $G_1,G_2$, we write $G_1\simeq G_2$ when $G_1$ is isomorphic to $G_2$. 
 \begin{defi}{\cite[pp.~64-65]{JLR}}
  % \label{balgra}
-        A graph $G$ is balanced if 
-      \begin{equation}
+\begin{itemize}
+\item[1)]
+A graph $G$ is balanced if 
+\begin{equation}
   \frac{e(H)}{v(H)}\leq \frac{e(G)}{v(G)},
-  \qquad H\subseteq G,   \label{balance1} 
+  \qquad \quad \text{for all }H\subseteq G,   \label{balance1} 
     \end{equation}
-   and strictly balanced if \eqref{balance1} 
-   holds as a strict inequality for all $H\subsetneq G$. 
+and strictly balanced if \eqref{balance1} 
+holds as a strict inequality for all $H\subsetneq G$. 
+\item[2)] A graph $G$ is $K_1$-balanced if 
+\begin{equation}
+	\frac{e(H)}{v(H)-1}\le\frac{e(G)}{v(G)-1}, \qquad \quad \text{for all }H\subseteq G \quad \text{with} \quad v(H)>1,
+	\label{balance2}
+\end{equation}
+with the convention $0/0=0$.
+\end{itemize}
   \end{defi}
 \subsubsection{Subgraph counts with integrable connection function}
 Suppose the connection function $\varphi$ satisfies 
@@ -998,13 +1007,11 @@ $\mathbb{G}_{\varphi}(\eta\cap\Gamma_{s_n})$, defined by
     \mathbf{1}\{x_i\leftrightarrow x_j\}\prod_{\{\imath,\jmath\}\notin E_G}\mathbf{1}\{x_{\imath}\nleftrightarrow x_{\jmath}\}.
 \end{align}
 If Assumption~\ref{graph-ass1}-i) holds, then there exists constant $C$ (see \eqref{mdp-const1}) such that  
-$\left\{(N_n^{\subset}-\mathbb{E}N_n^{\subset})/\sqrt{\Var N_n^{\subset}}\right\}_{n\in\mathbb{N}}$ satisfies 
-\textbf{$\mathrm{MDP}$}$(k-1,\{C\sqrt{s_n}\}_{n\in\mathbb{N}})$
-and \textbf{$\mathrm{CI}$}$(k-1, \{C\sqrt{s_n}\}_{n \in \mathbb{N}})$. 
+$\{N_n^{\subset}\}_{n\in\mathbb{N}}$ satisfies 
+\textbf{$\mathrm{MDP}$}$(k-1,\{C\sqrt{s_n}\}_{n\in\mathbb{N}})$, \textbf{$\mathrm{CI}$}$(k-1, \{C\sqrt{s_n}\}_{n \in \mathbb{N}})$, and \textbf{$\mathrm{NACC}$}$(k-1,\{C\sqrt{s_n}\}_{n\in\mathbb{N}})$. 
 Moreover, if Assumption~\ref{graph-ass1}-ii) holds, then 
-$\left\{(N_n^{=}-\mathbb{E}N_n^{=})/\sqrt{\Var N_n^{=}}\right\}_{n\in\mathbb{N}}$ satisfies 
-\textbf{$\mathrm{MDP}$}$(k-1,\{C\sqrt{s_n}\}_{n\in\mathbb{N}})$
-and \textbf{$\mathrm{CI}$}$(k-1, \{C\sqrt{s_n}\}_{n \in \mathbb{N}})$.
+$\{N_n^{=}\}_{n\in\mathbb{N}}$ satisfies 
+\textbf{$\mathrm{MDP}$}$(k-1,\{C\sqrt{s_n}\}_{n\in\mathbb{N}})$, \textbf{$\mathrm{CI}$}$(k-1, \{C\sqrt{s_n}\}_{n \in \mathbb{N}})$, and \textbf{$\mathrm{NACC}$}$(k-1,\{C\sqrt{s_n}\}_{n\in\mathbb{N}})$. 
 \end{theorem}
 \begin{proof}
 	From Proposition~\ref{subgraph-cumu-1} and \eqref{graphvar3}, we obtain that for $\ell\ge3$,
@@ -1061,7 +1068,7 @@ with $i\in\{=,\subset\}$.
 where $x^{(r)}_i:=x_{j}$ if $(r,i)\in\pi_j$ for $r=1,\dots,\ell$, $i=1,\dots,k$ and $j=1,\dots,|\pi|$.
 Taking integration recursively from leaves to the root, using the key observation that 
 \begin{equation}\label{subgraph-integral-1}
-	\int_{W_s}\varphi(x)\mathrm{d}x\asymp\int_0^{s^{1/d}}r^{d-1-\alpha}\mathrm{d}r\asymp s^{1-\alpha/d},
+	\int_{\Gamma_s}\varphi(x)\mathrm{d}x\asymp\int_0^{s^{1/d}}r^{d-1-\alpha}\mathrm{d}r\asymp s^{1-\alpha/d},
 \end{equation}
 we have
 \begin{equation}
@@ -1080,7 +1087,7 @@ If Assumption~\ref{bound-ass-1} holds, we have
 \end{equation}
 \end{lemma}
 \begin{proof}
-For the convex set $\Gamma_s$, we denote the inradius of $W_s$ as $r(\Gamma_s)$. Given that the volume of $\Gamma_s$ is $s$, there exists a constant $c_1>0$ such that  $r(\Gamma_s)\le c_1 s^{1/d}$. Since $\bar{\varphi}(r)\asymp r^{-\alpha}$ is non-increasing, there exists a constant $c_2>0$ such that for all sufficiently large $s$  
+For the convex set $\Gamma_s$, we denote the inradius of $\Gamma_s$ as $r(\Gamma_s)$. Given that the volume of $\Gamma_s$ is $s$, there exists a constant $c_1>0$ such that  $r(\Gamma_s)\le c_1 s^{1/d}$. Since $\bar{\varphi}(r)\asymp r^{-\alpha}$ is non-increasing, there exists a constant $c_2>0$ such that for all sufficiently large $s$  
 \begin{equation}
 	\inf_{x,y\in\Gamma_s}\varphi(x-y)=\inf_{0\le t\le 2r(\Gamma_s)}\bar{\varphi}(t)\ge c_2 r(\Gamma_s)^{-\alpha}\asymp s^{-\alpha/d}.
 \end{equation}
@@ -1159,7 +1166,801 @@ and
 \end{equation}
 \end{example}
 
-\subsection{edge-length functionals}
+\textcolor{red}{
+According to the Example above, we know that, for each $\pi\in\widetilde{\Pi}^\ell(k)$ 
+\begin{equation}
+	\int_{\Gamma_s^{|\pi|}}\int_{[0,1]^{|\pi|\times|\pi|}_{\ne}}((f^{(i)}_G)^{\otimes\ell})_{\pi}(\bm{x},\bm{u})\mathrm{d}\bm{u}\lambda_d^{|\pi|}(\mathrm{d}\bm{x})\nonumber\asymp s^{|\pi|-e((G^{\otimes\ell})_\pi)\alpha/d}.
+\end{equation}
+Analogous to \cite[Proposition~7.1]{LiuPrivault25b}, suppose that $G$ is $K_1$-balanced, we have 
+\begin{align}
+	\cum_\ell(N_G^{\subset})\asymp
+\begin{cases}
+	s^{1+(k-1)\ell}s^{-\ell e(G)\alpha/d}, \ \ \ &\mbox{when}~\alpha\in(0,\frac{k-1}{e(G)}d],\\
+	s^{k-e(G)\alpha/d}, \ \ \ &\mbox{when}~\alpha\in(\frac{k-1}{e(G)}d,d).
+\end{cases}
+\end{align}
+This further gives that, by applying Theorem~\ref{normalapp1}, when $G$ is $K_1$-balanced, 
+\begin{align}
+	\label{norm-opt}
+	\mathrm{d}_{\mathrm{Wass}}\left(\frac{N_G^{\subset}-\mathbb{E} N_G^{\subset}}{\sqrt{\Var N_G^{\subset}}},N\right)\le \mathrm{d}_{\mathrm{K}}\left(\frac{N_G^{\subset}-\mathbb{E} N_G^{\subset}}{\sqrt{\Var N_G^{\subset}}},N\right)\le\frac{C}{\Delta_s},
+\end{align}
+with 
+\begin{align}
+\Delta_s:=
+\begin{cases}
+	\displaystyle
+	\sqrt{s}, \ \ \ &\mbox{when}~\alpha\in(0,\frac{k-1}{e(G)}d],\\
+	\displaystyle
+	\sqrt{s^{k-e(G)\alpha/d}}, \ \ \ &\mbox{when}~\alpha\in\left(\frac{k-1}{e(G)}d,(\frac{k}{e(G)}\wedge 1)d\right).
+\end{cases}
+\end{align}
+Note the convergence rates obtained in \cite[Theorem~3.5]{LiuPrivault25b} is $O(\Delta_s^{-1/(2k-1)})$, 
+We notice that the estimates \eqref{norm-opt} yield presumably optimal rates of convergence. 
+}
+
+%\subsection{edge-length functionals}
+
+
+\subsection{Power-weighted edge-lengths}
+
+%Using the above notation, define
+% \begin{align}\label{originalUstat}
+ %    S_t:= \frac{1}{k!}\sum_{(x_1, \ldots, x_k) \in \eta^k_{\neq}} f_t \Big( x_1, \ldots, x_k, (W_{x_i,x_j})_{i,j =1,\ldots, k, i \neq j} \Big) ,
+% \end{align}
+%where $f_t$, $t \geq 1$, is a measurable function and the sum is taken over all $k$-tuples of pairwise distinct points. Note that $S$ is not a Poisson $U$-statistics. Now consider the following. For two points $\hat{x}=(x,\mathbf{u}=(u_{i,l})_{i,l\in\mathbb{N}})$ and $\hat{y}=(y,\mathbf{v}=(v_{i,l})_{i,l\in\mathbb{N}})$ in $\hat{\eta}$ such that $x\leq y$ and $y\in A_i$ define $\hat{W}_{\hat{x},\hat{y}} := u_{i,1}$, and
+%$$ \hat{S}_t:= \frac{1}{k!}\sum_{(\hat{x}_1, \ldots, \hat{x}_k) \in \hat{\eta}^k_{\neq}} f_t \Big( {x}_1, \ldots, {x}_k, (\hat{W}_{\hat{x}_i,\hat{x}_j}) \Big) =:  \sum_{(\hat{x}_1, \ldots, \hat{x}_k) \in \hat{\eta}^k_{\neq}} \hat{f}_t ( \hat{x}_1, \ldots, \hat{x}_k ),$$
+%which on the other hand is a Poisson U-statistics. Now, choose the partition $\{A_i\}_{i\in\mathbb{N}}$ such that $\lambda_d (A_i) = \frac{\varepsilon}{i}$ for every $i \in \mathbb{N}$, where $\varepsilon>0$ is a given (later chosen to be sufficiently small) number. Then we have
+%\begin{align}\label{ShatS}
+%\begin{split}
+%    \mathbb{P} (S \neq \hat{S}) &= \mathbb{P} ( \exists i \in \mathbb{N} : \eta (A_i) \geq 2 ) \leq \sum_{i=1}^\infty \mathbb{P} ( \eta (A_i) \geq 2 ) \\
+ %   & \leq \sum_{i=1}^\infty  \lambda_d (A_i)^2 = \varepsilon^2 \sum_{i=1}^\infty \frac{1}{k^2},
+%\end{split}
+%\end{align}
+%so that $\mathbb{P} (S \neq \hat{S}) \to 0$, as $\varepsilon \to 0$. Moreover, for every random variable $N$ we have
+%\begin{align} \label{Kineq}
+ %    d_K (S,N) \leq \mathbb{P} (S \neq \hat{S}) + d_K (\hat{S},N) .
+%\end{align}
+
+
+%Based on the latter observations, the following approximations could be studied:
+
+%\begin{itemize}
+  %  \item Poisson process approximation, see \cite{dst}
+ %   \item Quantitative Normal approximation (Wasserstein, Kolmogorov distance), %see \cite{reitznerschulte,schulte,eichelsbacher}
+ %   \item Poisson approximation, see \cite{pianoforte}
+ %   \item Moderate deviations and concentration inequalities, see \cite{schulte2, bonnet}
+%    \item Approximation by $\alpha$-stable distributions
+%\end{itemize}
+
+%One conjecture is that the point process
+%$$ \frac{1}{2} \sum_{(z_1, z_2) \in \eta^2_{\neq} \cap B^2(0, \rho)} \delta_{\|%z_1 - z_2\| - b_\rho}$$
+%converges in distribution to a Poisson point process, for a suitably chosen sequence $b_\rho$.
+
+Recall that $\varphi$ denotes the connection function. In this section we make the following assumption on $\varphi$.
+
+\begin{ass}\label{edgelength-ass1}
+	 The function $\varphi$ is only radially dependent. Its radial part is denoted by $\bar{\varphi}$, that has a polynomial decay with some exponent $\alpha \in (d, \infty)$, i.e. it holds
+     $$ \lim_{r\to\infty} \frac{\bar{\varphi}(r)}{r^{-\alpha}} =:C \in (0,\infty).$$
+\end{ass}
+
+Note that the condition $\alpha>d$ in Assumption \ref{edgelength-ass1} ensures that the (non-trivial) integrability property
+$$ 0 < \int_{\mathbb{R}^d} \varphi (x) \mathrm{d} x< \infty$$
+is satisfied.
+
+\subsubsection{Expectation and variance asymptotics}
+
+Consider the statistics
+
+$$L_s (\tau):=\frac{1}{2} \sum_{(z_1, z_2) \in \eta^2_{\neq} \cap \Gamma_s^2} \mathbf{1}\{ z_1 \leftrightarrow z_2 \} \| z_1- z_2 \|^\tau, \quad \tau \in \mathbb{R}.$$
+
+In addition, we introduce a modified version that eliminates boundary effects:
+\[
+\widetilde{L}_s(\tau)
+:= \frac{1}{2} \sum_{(z_1, z_2) \in \eta^2_{\neq}}
+   \mathbf{1}\!\left\{
+      \tfrac{z_1 + z_2}{2} \in \Gamma_s,\;
+      z_1 \leftrightarrow z_2
+   \right\}
+   \| z_1 - z_2 \|^{\tau}.
+\]
+Here, the summation runs over all pairs of points in $\eta$ whose \emph{midpoint}
+lies inside $\Gamma_s$, regardless of whether both endpoints belong to $\Gamma_s$.
+This statistic is the \emph{midpoint version} of the edge-length sum. In our results we find that its asymptotic behavior and limiting variance differ from those of $L_s(\tau)$.
+In particular, the absence of boundary effects in $\widetilde{L}_s(\tau)$
+leads to different scaling properties and limit theorems.
+
+
+
+
+Proceeding as in \cite[Theorem 3.1]{reitznerschultethaele} gives the following formula for its expectation structure. 
+
+\begin{lemma} \label{lem:expectedlength}
+    Assume that $\tau > -d$. It holds
+    $$ \mathbb{E}[L_s (\tau)]= \frac{\gamma^2}{2} \int_0^{cs^{\frac{1}{d}}} \bar{\varphi} (r) r^{\tau + d -1} \int_{\mathbb{S}^{d-1}
+} f_\rho (r u) \mathrm{d}u \mathrm{d}r,$$
+where $c\in (0, \infty)$ is a constant independent of $s$,
+$$f_\rho (ru) := \lambda_d \left( \Gamma_s \cap (\Gamma_s + ru) \right)$$
+and $\mathrm{d}u$ stands for the infinitesimal element of the spherical Lebesgue measure. Moreover, it holds
+\begin{align*}
+    & \frac{\gamma^2}{2} d \kappa_d \lambda_d(\Gamma_s) \int_0^{cs^{\frac{1}{d}}} \bar{\varphi} (r) r^{\tau + d -1} \mathrm{d}r -\gamma^2\kappa_{d-1} \operatorname{surf}(\Gamma_s) \int_0^{cs^{\frac{1}{d}}} \bar{\varphi} (r) r^{\tau + d } \mathrm{d}r\\
+    & \leq \mathbb{E}[L_s (\tau)] \leq \frac{\gamma^2}{2} d \kappa_d \lambda_d(\Gamma_s) \int_0^{cs^{\frac{1}{d}}} \bar{\varphi} (r) r^{\tau + d -1} \mathrm{d}r,
+\end{align*}
+where $\kappa_d$ denotes the volume of the $d$-dimensional unit ball and $\operatorname{surf}(\Gamma_s)$ denotes the surface area of the set  $\Gamma_s$.
+\end{lemma}
+
+Note that Lemma \ref{lem:expectedlength} shows that the asymptotics of the expectation of power-weighted edge-lengths depends on whether the integral
+$$\int_0^\infty \bar{\varphi} (r) r^{\tau + d -1} \mathrm{d} r $$
+is finite or not. If we assume that $\bar{\varphi}$ has polynomial decay $\bar{\varphi}(r) \sim r^{-\alpha}$, $r \to \infty$, for some exponent $\alpha$, this translates to whether $\alpha>\tau +d$ or $\alpha\leq\tau +d$.
+
+Next we give a formula for the variance.
+
+\textcolor{red}{Matthias: I think we need to assume always that $\tau>-d/2$. Otherwise the $I(\rho)$ in the proof can become infinite since the integrand can explode in the neighbourhood of $0$.}
+
+\begin{lemma} \label{lem:varlength}
+    Let $\tau > -d$. Then $L_s (\tau)$ has finite variance given by
+    \begin{align}\label{varformula}
+    \begin{split}
+        & \operatorname{Var}[L_s (\tau)] = \frac{\gamma^2}{2} \int_{\Gamma_s}\int_{\Gamma_s} \varphi(x-y) \| y-x \|^{2\tau} \mathrm{d}x \mathrm{d}y  \\
+        & \quad + \gamma^3\int_{\Gamma_s}\int_{\Gamma_s} \varphi(x_1-y) \| y-x_1 \|^\tau \mathrm{d} x_1 \int_{\Gamma_s} \varphi(x_2-y)  \| y-x_2 \|^\tau \mathrm{d} x_2 \mathrm{d} y.
+    \end{split} 
+    \end{align}
+Moreover, if $\bar{\varphi}$ has polynomial decay $\bar{\varphi}(r) \sim r^{-\alpha}$, $r \to \infty$, for some exponent $\alpha$, there is a constant $C \in (0, \infty)$ independent of $s$ such that
+$$ \frac{1}{C} s \left( \frac{1}{C} + s^{\frac{2\tau + d -\alpha}{d}} \right) \leq \operatorname{Var}[L_s (\tau)] \leq Cs\left( {C} + s^{\frac{2\tau + d -\alpha}{d}} \right), \quad \text{ if } \alpha \neq d+2\tau,$$
+and
+$$ \frac{1}{C} s \left( \frac{1}{C} + \log s^{\frac{1}{d}} \right) \leq \operatorname{Var}[L_s (\tau)] \leq  Cs ( C +\log s^{\frac{1}{d}}), \quad \text{ if } \alpha = d+2\tau.$$
+\end{lemma}
+
+\begin{proof}
+    The formula in \eqref{varformula} can be proven by proceeding as in the proof of \cite[Theorem 3.3]{reitznerschultethaele}. Based on this formula, we now calculate the order of the variance. Concerning the first term on the right-hand side of \eqref{varformula} we have
+    
+\begin{align*}
+I(s) 
+  &:= \int_{\Gamma_s} \int_{\Gamma_s} 
+       \varphi(x-y)\,\|y-x\|^{2\tau}\, \mathrm{d}x\, \mathrm{d}y \\[0.5em]
+  &= \int_{\Gamma_s} \int_{\mathbb{R}^d} 
+       \varphi(z)\,\|z\|^{2\tau}\, \mathbf{1}_{\{y+z \in \Gamma_s\}}\, \mathrm{d}z\, \mathrm{d}y \\[0.5em]
+  &= \int_{\mathbb{R}^d} \varphi(z)\,\|z\|^{2\tau}\,
+       \mathrm{Vol}\big(\Gamma_s\cap (\Gamma_s+z)\big)\, \mathrm{d}z \\[0.5em]
+  &= \int_{0}^{\infty}\int_{\mathbb{S}^{d-1}} 
+       \bar{\varphi}(r)\,r^{2\tau+d-1}\,
+       \mathrm{Vol}\!\big(\Gamma_s\cap (\Gamma_s+ru)\big)\,
+        \mathrm{d}u\, \mathrm{d}r \\
+  &= \int_{0}^{cs^{\frac{1}{d}}}\int_{\mathbb{S}^{d-1}} 
+       \bar{\varphi}(r)\,r^{2\tau+d-1}\,
+       \mathrm{Vol}\!\big(\Gamma_s\cap (\Gamma_s+ru)\big)\,
+        \mathrm{d}u\, \mathrm{d}r.
+\end{align*}
+with
+\begin{align*}
+   d \kappa_d \lambda_d(\Gamma_s)  -\kappa_{d-1} \operatorname{surf}(\Gamma_s) r\leq \int_{\mathbb{S}^{d-1}} 
+       \mathrm{Vol}\!\big(\Gamma_s\cap (\Gamma_s+ru)\big)\,
+        \mathrm{d}u \leq d \kappa_d \lambda_d(\Gamma_s) 
+\end{align*}
+so that the variance asymptotics depends on whether
+$$\int_0^\infty \bar{\varphi} (r) r^{2\tau + d -1} \mathrm{d} r< \infty$$ 
+or not. Moreover the asymptotics of $I(s)$, as $s \to \infty$, is
+$$ C_1 s (C_1 + s^{\frac{2\tau + d -\alpha}{d}} )\leq I(s) \leq C_2 s (C_2 + s^{\frac{2\tau + d -\alpha}{d}} ) $$
+for some constants $C_1, C_2>0$, if $\alpha \neq 2\tau +d$, and
+$$ C_1 s (C_1 + \log s^{\frac{1}{d}} )\leq I(s) \leq C_2 s (C_2 + \log s^{\frac{1}{d}} ) $$
+if $\alpha = 2\tau +d$.
+
+Similarly, considering the second term on the right-hand side of \eqref{varformula} we obtain
+\begin{align*}
+J(s) 
+  &:= \int_{\Gamma_s}\!
+     \Bigg(\int_{\Gamma_s} \varphi(x_1-y)\,\|y-x_1\|^{\tau}\,\mathrm{d}x_1\Bigg)
+     \Bigg(\int_{\Gamma_s} \varphi(x_2-y)\,\|y-x_2\|^{\tau}\,\mathrm{d}x_2\Bigg)
+     \mathrm{d}y \\[0.4em]
+  &= \int_{\Gamma_s}\!
+     \int_{\mathbb{R}^d}\!\int_{\mathbb{R}^d}
+        \varphi(z_1)g(z_2)\,\|z_1\|^{\tau}\|z_2\|^{\tau}\,
+        \mathbf{1}_{\{y+z_1\in \Gamma_s\}}\,
+        \mathbf{1}_{\{y+z_2\in \Gamma_s\}}\,
+        \mathrm{d}z_1\,\mathrm{d}z_2\,\mathrm{d}y \\[0.4em]
+  &= \int_{\mathbb{R}^d}\!\int_{\mathbb{R}^d}
+        \varphi(z_1)\varphi(z_2)\,\|z_1\|^{\tau}\|z_2\|^{\tau}\,
+        \mathrm{Vol}\!\big(\Gamma_s\cap(\Gamma_s+z_1)\cap(\Gamma_s+z_2)\big)\,
+        \mathrm{d}z_1\,\mathrm{d}z_2 \\[0.6em]
+  &= \int_{0}^{cs^{\frac{1}{d}}}\!\!\int_{0}^{cs^{\frac{1}{d}}}
+     \int_{\mathbb{S}^{d-1}}\!\int_{\mathbb{S}^{d-1}}
+        \varphi(r_1)\varphi(r_2)\,r_1^{\tau}r_2^{\tau}\,
+      \mathrm{Vol}\!\big(\Gamma_s\cap(\Gamma_s+r u_1)\cap(\Gamma_s+r u_2)\big)\,
+        \mathrm{d}u_1\,\mathrm{d}u_2\,
+        \mathrm{d}r_1\,\mathrm{d}r_2 
+\end{align*}
+with the asymptotic bound
+$$ \frac{1}{C} s\leq \mathrm{Vol}\!\big(\Gamma_s\cap(\Gamma_s+r u_1)\cap(\Gamma_s+r u_2)\big) \leq {C} s ,$$
+so that the assertion follows easily.
+    
+\end{proof}
+
+From the statements in Lemma \ref{lem:varlength} we observe that the variance asymptotics is not finite.
+
+\subsubsection{Regime with central limit theorem}
+
+The next theorem illustrates that there is a central limit theorem in the regime with polynomial decay for exponents $\alpha$ satisfying $\alpha> 2\tau + d$.
+
+\begin{theorem} \label{CLT:sumsedgelengths}
+    Let $\tau > -d$. Assume $\bar{\varphi}$ has polynomial decay $\bar{\varphi}(r) \sim r^{-\alpha}$, $r \to \infty$, with (positive) exponent $\alpha \in (2\tau + d, \infty)$. Then there is a constant $C \in (0, \infty)$ independent of $s$ such that
+    \begin{align*}
+	\mathrm{d}_{\mathrm{Wass}}\left(\frac{L_s(\tau)-\E L_s(\tau)}{\sqrt{\Var L_s(\tau)}},N\right) & \le C \max\left\{ s^{-\frac{1}{2}} , s^{\frac{2\tau -\frac{\alpha}{2}}{d}} \right\},\\
+	\mathrm{d}_{\mathrm{K}}\left(\frac{L_s(\tau)-\E L_s(\tau)}{\sqrt{\Var L_s(\tau)}},N\right) & \le  C \max\left\{ s^{-\frac{1}{2}} , s^{\frac{2\tau -\frac{\alpha}{2}}{d}}\right\}.
+\end{align*}
+\end{theorem}
+
+\begin{proof}
+    The theorem will be a consequence of Corollary \ref{normalapp1k2}. In this proof we denote by $c$ an unspecified positive constant that might change from line to line. We can estimate each expression $M_{ij}(f)$ in the latter corollary as follows. Considering the term $M_{11}(f)$ we have
+    \begin{align*}
+M_{11}(f)
+&= c \int_{\Gamma_s^5} \prod_{j=2}^{5} \|x_1-x_j\|^{\tau}\,\varphi(x_1-x_j)\,\mathrm{d}x_1\cdots \mathrm{d}x_5 \\[4pt]
+&= c\int_{\Gamma_s} \left( \int_{\Gamma_s^4} \prod_{j=2}^{5}  \|x_1-x_j \|^{\tau}\,\varphi(x_1-x_j)\,\mathrm{d}x_2\cdots \mathrm{d}x_5 \right) \mathrm{d}x_1 \\[4pt]
+&= \int_{\Gamma_s} \left( \int_{\Gamma_s(-x_1)} |u|^{\tau}\,\varphi(u)\,\mathrm{d}u \right)^{4} \mathrm{d}x_1,
+\end{align*}
+where $\Gamma_s(-x_1) \;:=\; \{\, u \in \mathbb{R}^d : u + x_1 \in \Gamma_s \,\}$ and we used the substitution $u=x_1-x_j$ for each $j\ge 2$. S\text{ince }$\Gamma_s(-x_1)\subseteq \Gamma_{cs}$ \text{ for }$x_1\in\Gamma_s$, the latter can be further estimated by
+\begin{align*}
+&\int_{\Gamma_s} \left( \int_{\Gamma_s(-x_1)} |u|^{\tau}\,\varphi(u)\,\mathrm{d}u \right)^{4} \mathrm{d}x_1= \mathrm{Vol}\big(\Gamma_s\big)\,\left( \int_{\Gamma_{cs}} |u|^{\tau}\,\varphi(u)\,\mathrm{d}u \right)^{4}
+\end{align*}
+\text{Assuming }$\alpha>2\tau+d$ we have
+\begin{align*}
+\int_{\mathbb{R}^d} |u|^{\tau}\varphi(u)\,\mathrm{d}u =:\kappa<\infty.
+\end{align*}
+Consequently
+$$\int_{\Gamma_{cs}} |u|^{\tau}\varphi(u)\,\mathrm{d}u \leq \kappa,$$
+and therefore
+\begin{align} \label{cltedgelengthsm11}
+M_{11}(f) \leq  c\mathrm{Vol}\big(\Gamma_s\big)\,\kappa^{4}
+\;=\; C\,s\qquad(\text{for some }C>0).
+\end{align}
+
+%Proposal Matthias:
+%$$
+%M_{11}(f) \leq \rho^d \max\{1,\rho^{\tau+d-\alpha}\}^4
+%$$
+
+
+Next we consider $M_{12}(f)$ in the statement of Corollary \ref{normalapp1k2}. The first term in the definition of this quantity is
+\begin{align*}
+    & c \int_{\Gamma_s}  \|x_1-x_2\|^{\tau}\,\varphi(x_1-x_2)  \|x_1-x_3\|^{\tau}\,\varphi(x_1-x_3) \|x_1-x_4\|^{2\tau}\,\varphi(x_1-x_4) \,\mathrm{d}x_1\cdots \mathrm{d}x_4 .
+\end{align*}
+Proceeding as before we obtain that the last expression can be estimated by
+$$ c s \left( (c + c s^{\frac{\tau + d -\alpha}{d}})^2 (c + c s^{\frac{2\tau + d -\alpha}{d}}) \right) .$$
+The other terms in the definition of $M_{12}(f)$ are handled similarly. Using the fact $\alpha>2\tau+d$ we thus obtain
+\begin{align} \label{cltedgelengthsm12}
+M_{12}(f) \leq  c s .
+\end{align}
+Using similar observations, one can see that
+\begin{align} \label{cltedgelengthsm13}
+\begin{split}
+& M_{22}(f) \\
+&\leq (c + c s^{\frac{\tau + d -\alpha}{d}})^4 + (c + c s^{\frac{\tau + d -\alpha}{d}}) (c+cs^{\frac{2\tau + d -\alpha}{d}}) + c s (c + c s^{\frac{2\tau + d -\alpha}{d}})^2 + c s (c + c s^{\frac{4\tau + d -\alpha}{d}}).
+\end{split}
+\end{align}
+%Proposal Matthias for the first two terms
+%$$
+%\rho^d \max\{1,\rho^{\tau+d-\alpha}\}^2 \max\{1,\rho^{2\tau+d-\alpha}\} + \rho^d \max\{1,\rho^{\tau+d-\alpha}\} \max\{1,\rho^{2\tau+d-\alpha}\} 
+%$$
+%$$
+%\rho^d \max\{1,\rho^{\tau+d-\alpha}\}^2 \max\{1,\rho^{2\tau+d-\alpha}\} \leq \rho^d \max\{1,\rho^{2\tau+d-\alpha}\}^2 \leq  \rho^d \max\{1,\rho^{4\tau+d-\alpha}\}
+%$$
+%\begin{align*}
+%& \|x_1-x_2\|^\tau \|x_2-x_3\|^\tau \|x_3-x_4\|^\tau \|x_4-x_1\|^\tau \\
+%& \leq \|x_1-x_2\|^\tau \|x_2-x_3\|^\tau \|x_3-x_4\|^{2\tau} + \|x_1-x_2\|^\tau \|x_2-x_3\|^\tau \|x_4-x_1\|^{2\tau}
+%\end{align*}
+Combining \eqref{cltedgelengthsm11}, \eqref{cltedgelengthsm12}, \eqref{cltedgelengthsm13} with Lemma \ref{lem:varlength} and Corollary \ref{normalapp1k2} yields the statement of the theorem.
+\end{proof}
+
+\begin{remark}
+    If $\alpha \in (d,2d)$ the above proof together with Lemma \ref{lem:varlength} implies that $L_s(\tau)$ satisfies a CLT as well with
+    \begin{align*}
+	\mathrm{d}_{\mathrm{Wass}}\left(\frac{L_s(\tau)-\E L_s(\tau)}{\sqrt{\Var L_s(\tau)}},N\right) & \le C \max\{ s^{-\frac{1}{2}},  s^{-\frac{\tau}{2d}} ,  s^{-\frac{\alpha}{d}}, s^{\frac{\alpha}{2d}-1} \},\\
+	\mathrm{d}_{\mathrm{K}}\left(\frac{L_s(\tau)-\E L_s(\tau)}{\sqrt{\Var L_s(\tau)}},N\right) & \le  C \max\{ s^{-\frac{1}{2}},  s^{-\frac{\tau}{2d}} ,  s^{-\frac{\alpha}{d}}, s^{\frac{\alpha}{2d}-1} \} .
+\end{align*}
+\end{remark}
+
+\subsubsection*{Truncation}
+
+For $a>0$ define
+$$
+L_{s,a} (\tau):=\frac{1}{2} \sum_{(z_1, z_2) \in \eta^2_{\neq} \cap \Gamma_s^2} \mathbf{1}\{ z_1 \leftrightarrow z_2, \|z_1-z_2\|\leq a \} \| z_1- z_2 \|^\tau.
+$$
+We aim to estimate
+$$
+\frac{\mathbb{E}[(L_{s,a} (\tau)-L_{s} (\tau))^2]}{s}. %\leq c a^{-...}
+$$
+By definition we have
+\begin{align*}
+L_{s,a}(\tau)-L_{s}(\tau)
+&= \frac{1}{2}\sum_{(z_1,z_2)\in\eta^2_{\neq}\cap \Gamma_s^2}
+\mathbf{1}\{z_1\leftrightarrow z_2\}
+\|z_1-z_2\|^{\tau}
+\big(\mathbf{1}_{\{\|z_1-z_2\|\le a\}}-1\big) \\[0.4em]
+&= -\frac{1}{2}\sum_{(z_1,z_2)\in\eta^2_{\neq}\cap \Gamma_s^2}
+\mathbf{1}\{z_1\leftrightarrow z_2,\ \|z_1-z_2\|>a\}\,
+\|z_1-z_2\|^{\tau},
+\end{align*}
+and
+\begin{align*}
+& (L_{s,a}(\tau)-L_{s}(\tau))^2\\
+& = \frac{1}{4}\!\!\sum_{(z_1,z_2),(z_3,z_4)\in\eta^2_{\neq}\cap \Gamma_s^4}
+\!\!\!\!\mathbf{1}\{z_1\leftrightarrow z_2,\|z_1-z_2\|>a\}
+\mathbf{1}\{z_3\leftrightarrow z_4,\|z_3-z_4\|>a\}
+\|z_1-z_2\|^{\tau}\|z_3-z_4\|^{\tau},
+\end{align*}
+so that
+\begin{align*}
+\mathbb{E}\!\left[(L_{s,a}(\tau)-L_{s}(\tau))^2\right]
+&= C_1 I_a(s) + C_2 J_a(s),
+\end{align*}
+where, by Mecke’s formula,
+\begin{align*}
+I_a(s)
+&= \int_{\Gamma_s}\!\!\int_{\Gamma_s}
+\mathbf{1}_{\{\|x-y\|>a\}}\,
+\varphi(x-y)\,\|x-y\|^{2\tau}\,\mathrm{d}x\,\mathrm{d}y, \\[0.3em]
+J_a(s)
+&= \int_{\Gamma_s}\!
+\Bigg(\int_{\Gamma_s}
+\mathbf{1}_{\{\|x_1-y\|>a\}}\,
+\varphi(x_1-y)\,\|x_1-y\|^{\tau}\,\mathrm{d}x_1\Bigg)^{\!2}\mathrm{d}y.
+\end{align*}
+Assuming $\varphi(r)\sim C r^{-\alpha}$ with $\alpha>2\tau+d$, the tails are integrable and the same calculations as before show that
+\begin{align*}
+I_a(s),\,J_a(s)\;\leq \;cs\,a^{2\tau+d-\alpha},
+\end{align*}
+so that we have proven the following.
+
+\begin{lemma}\label{truncationlemma1}
+    There exists a constant $c \in (0,\infty)$ not depending on $a$ such that
+    $$\frac{\mathbb{E}[(L_{s,a} (\tau)-L_{s} (\tau))^2]}{s} \leq c a^{2\tau+d-\alpha} .$$
+\end{lemma}
+
+Next we prove that $L_{s,a} (\tau)$ satisfies a CLT for every $a>0$ and the regime $2\tau+d<\alpha$. The strategy is identical to the proof of Theorem \ref{CLT:sumsedgelengths}, with the key difference that the truncation will give us better (quantitative convergence) bounds.
+
+\begin{lemma}\label{lem:CLT_truncated}
+Let $\tau > -d$ and $a>0$. 
+Assume that $\bar{\varphi}$ has polynomial decay $\bar{\varphi}(r)\sim r^{-\alpha}$ as $r\to\infty$ with exponent $\alpha>2\tau+d$. 
+Then there exists a constant $C\in(0,\infty)$, independent of $s$, such that
+\begin{align*}
+\mathrm{d}_{\mathrm{Wass}}\!\left(
+\frac{L_{s,a}(\tau)-\E L_{s,a}(\tau)}{\sqrt{\Var L_{s,a}(\tau)}},
+N
+\right)
+&\le C\,s^{-1/2},\\[0.4em]
+\mathrm{d}_{\mathrm{K}}\!\left(
+\frac{L_{s,a}(\tau)-\E L_{s,a}(\tau)}{\sqrt{\Var L_{s,a}(\tau)}},
+N
+\right)
+&\le C\,s^{-1/2}.
+\end{align*}
+\end{lemma}
+
+\begin{proof}
+The proof follows the same steps as in Theorem~\ref{CLT:sumsedgelengths}, 
+with the additional indicator $\mathbf{1}_{\{\|x_1-x_2\|\le a\}}$ restricting all integrals to a bounded region. 
+For instance,
+\[
+M_{11}(f_a)
+= c \int_{\Gamma_s}
+\!\left(
+\int_{\Gamma_s(-x_1)\cap B(0,a)} |u|^{\tau}\varphi(u)\,\mathrm{d}u
+\right)^{\!4}
+\mathrm{d}x_1
+\le C\,s,
+\]
+since $\int_{B(0,a)}|u|^{\tau}\varphi(u)\,\mathrm{d}u<\infty$.
+Analogous bounds hold for $M_{12}(f_a)$ and $M_{22}(f_a)$.
+Thus, all moment terms in Corollary~\ref{normalapp1k2} are of order $s$, 
+and by Lemma~\ref{lem:varlength} the variance satisfies $\Var[L_{s,a}(\tau)]\geq cs$.
+Applying Corollary~\ref{normalapp1k2} yields the stated bounds with rate $s^{-1/2}$.
+\end{proof}
+
+Thus, Lemma \ref{truncationlemma1} and Lemma \ref{lem:CLT_truncated} yield the following theorem, giving a CLT in the entire regime $\alpha>2\tau+d$ for $L_{s}(\tau)$.
+
+\begin{theorem}\label{thm:CLTedgelengths_full}
+Let $\tau > -d$ and assume that $\bar{\varphi}(r)\sim r^{-\alpha}$ as $r\to\infty$ with exponent $\alpha>2\tau+d$. 
+Then, as $s\to\infty$,
+\[
+\frac{L_{s}(\tau)-\E[L_{s}(\tau)]}{\sqrt{\Var[L_{s}(\tau)]}}
+\;\xrightarrow{d}\;
+N.
+\]
+\end{theorem}
+
+
+\subsubsection*{The critical case \texorpdfstring{$\alpha = 2\tau + d$}{α = 2τ + d}}
+\label{subsubsec:criticalcase}
+
+We now turn to the borderline situation in which the decay exponent of $\bar{\varphi}$ satisfies
+$\alpha = 2\tau + d$. Recall that $\Gamma_s \subset \mathbb{R}^d$ is a convex, compact observation
+window with Lebesgue measure $\mathrm{Vol}(\Gamma_s)=s$. Let us assume that $\tau >0$. In the critical case we have
+\[
+|u|^{\tau}\,\bar{\varphi}(u) \;\sim\; |u|^{-(\tau + d)}, \qquad |u|\to\infty,
+\]
+and hence
+\[
+\int_{\Gamma_{cs}} |u|^{\tau}\,\bar{\varphi}(u)\,\mathrm{d}u
+\;\leq\;
+c+c\int_1^{{cs}} r^{\tau}r^{-2\tau - d}r^{d-1}\,\mathrm{d}r
+\; \leq c\, + cs^{-\frac{\tau}{d}},
+\]
+for some constant $c>0$ not depending on $s$. Inserting this estimate into the bound for $M_{11}(f)$ from~\eqref{cltedgelengthsm11} gives
+\[
+M_{11}(f)
+\;\leq\;
+ c \mathrm{Vol}(\Gamma_s)\,\Big(\int_{\Gamma_{cs}} |u|^{\tau}\bar{\varphi}(u)\,\mathrm{d}u\Big)^{4}
+\;\leq\;
+s\,(c+cs^{-\frac{\tau}{d}})^4.
+\]
+Analogous considerations show that for $M_{12}(f)$ appearing in
+Corollary~\ref{normalapp1k2} we have
+\begin{align*}
+    M_{12}(f) \leq s (c +s^{-\frac{\tau}{d}})^2(c + \log s^{\frac{1}{d}}) + s(c+cs^{-\frac{\tau}{d}})^4
+\end{align*}
+and, moreover, for the term $M_{22}(f)$ we have
+\begin{align*}
+    M_{22}(f) \leq  (c+cs^{-\frac{\tau}{d}})^4 + (c +s^{-\frac{\tau}{d}})^2(c + \log s^{\frac{1}{d}}) + s(c + \log s^{\frac{1}{d}})^2 +s(c +s^{\frac{2\tau}{d}}).
+\end{align*}
+
+Thus, using these bounds in Corollary~\ref{normalapp1k2} we arrive at the following statement.
+
+\begin{theorem} \label{CLT:sumsedgelengthscritical}
+    Let $\tau > 0$. Assume $\bar{\varphi}$ has polynomial decay $\bar{\varphi}(r) \sim r^{-\alpha}$, $r \to \infty$, with (positive) exponent $\alpha = 2\tau + d$. Then there is a constant $C \in (0, \infty)$ independent of $s$ such that
+    \begin{align*}
+	\mathrm{d}_{\mathrm{Wass}}\left(\frac{L_s(\tau)-\E L_s(\tau)}{\sqrt{\Var L_s(\tau)}},N\right) & \le C \frac{s^{\frac{\tau}{d}-\frac12}}{\log s^{\frac{1}{d}}}\\
+	\mathrm{d}_{\mathrm{K}}\left(\frac{L_s(\tau)-\E L_s(\tau)}{\sqrt{\Var L_s(\tau)}},N\right) & \le  C \frac{s^{\frac{\tau}{d}-\frac12}}{\log s^{\frac{1}{d}}}.
+\end{align*}
+In particular, if $\tau \in (0, \frac{d}{2}]$, a central limit theorem holds.
+\end{theorem}
+
+
+\medskip
+\noindent\textbf{Truncation in the critical regime.}
+For $\tau>0$ define the (growing-cutoff) truncated statistic
+\[
+\overline{L}_s(\tau)
+:= \frac{1}{2}\sum_{(x_1,x_2)\in \eta^2_{\neq}\cap \Gamma_s^2}
+\mathbf{1}\!\left\{x_1\leftrightarrow x_2,\ \|x_1-x_2\|\le s^{\frac{1}{2\tau}}\right\}
+\|x_1-x_2\|^{\tau}.
+\]
+By Mecke’s formula and the same change-of-variables/reduction as above,
+\[
+\mathbb{E}\!\left[L_s(\tau)-\overline{L}_s(\tau)\right]
+= \frac{1}{2}\int_{\Gamma_s}\!\!\int_{\Gamma_s}
+\mathbf{1}_{\{\|x-y\|>s^{\frac{1}{2\tau}}\}}\,
+\varphi(x-y)\,\|x-y\|^{\tau}\,\mathrm{d}x\,\mathrm{d}y
+\;\sim\;
+s\!\int_{s^{\frac{1}{2\tau}}}^{\infty}\! r^{\tau}\,\bar{\varphi}(r)\,r^{d-1}\,\mathrm{d}r.
+\]
+In the critical case $\alpha=2\tau+d$ we have $\bar{\varphi}(r)\sim r^{-\alpha}$, hence
+\[
+\int_{s^{\frac{1}{2\tau}}}^{\infty} r^{\tau}\,r^{-\alpha}\,r^{d-1}\,\mathrm{d}r
+=\int_{s^{\frac{1}{2\tau}}}^{\infty} r^{-(\tau+1)}\,\mathrm{d}r
+\;\asymp\; \big(s^{\frac{1}{2\tau}}\big)^{-\tau}
+= s^{-\frac{1}{2}}.
+\]
+Therefore
+\begin{equation}\label{eq:L1gap_critical}
+\mathbb{E}\!\left[L_s(\tau)-\overline{L}_s(\tau)\right]
+\;\asymp\; \sqrt{s}.
+\end{equation}
+Since in the critical regime $\Var L_s(\tau)\asymp s\log s$ (see Lemma~\ref{lem:varlength} and the discussion above),
+the standardized $L^1$ gap satisfies
+\begin{equation}\label{eq:std_gap_critical}
+\frac{\mathbb{E}\!\left[L_s(\tau)-\overline{L}_s(\tau)\right]}
+{\sqrt{\Var L_s(\tau)}}
+\;\asymp\; \frac{\sqrt{s}}{\sqrt{s\log s}}
+\;=\; \frac{1}{\sqrt{\log s}}.
+\end{equation}
+
+\begin{lemma}\label{lem:critical_truncation_gap}
+Let $\tau>0$ and $\alpha=2\tau+d$. Then
+\[
+\frac{\mathbb{E}\!\left|L_s(\tau)-\overline{L}_s(\tau)\right|}
+{\sqrt{\Var L_s(\tau)}}
+\;\le\; \frac{C}{\sqrt{\log s}},
+\]
+for some $C\in(0,\infty)$ independent of $s$.
+\end{lemma}
+
+\begin{proof}
+By \eqref{eq:L1gap_critical} we have $\E|L_s-\overline{L}_s|\asymp\sqrt{s}$.
+If we divide by $\sqrt{\Var L_s(\tau)}\asymp \sqrt{s\log s}$ we obtain \eqref{eq:std_gap_critical}.
+\end{proof}
+
+\begin{lemma}\label{lem:critical_truncated_CLT}
+In the setting $\tau>0$, $\alpha=2\tau+d$, the truncated statistic $\overline{L}_s(\tau)$
+satisfies a central limit theorem with
+\[
+\mathrm{d}_{\mathrm{Wass}}\!\left(
+\frac{\overline{L}_s(\tau)-\E \overline{L}_s(\tau)}{\sqrt{\Var \overline{L}_s(\tau)}},\,N\right)
+\;\le\; C\,s^{-1/2},
+\qquad
+\mathrm{d}_{\mathrm{K}}\!\left(
+\frac{\overline{L}_s(\tau)-\E \overline{L}_s(\tau)}{\sqrt{\Var \overline{L}_s(\tau)}},\,N\right)
+\;\le\; C\,s^{-1/2}.
+\]
+\end{lemma}
+
+\begin{proof}
+We repeat the moment bounds as in Lemma~\ref{lem:CLT_truncated}, now with the cutoff
+$a=s^{\frac{1}{2\tau}}$. The inner integrals are restricted to $\|u\|\le a$, and their growth
+in $a$ induces at most polylogarithmic factors at the critical exponent;
+the resulting $M_{ij}$ terms are still $O(s\,\mathrm{polylog}(s))$.
+Moreover, $\Var\overline{L}_s(\tau)\asymp s\log s$, so Corollary~\ref{normalapp1k2}
+yields the stated $s^{-1/2}$ rate.
+\end{proof}
+
+
+
+
+Combining Lemma~\ref{lem:critical_truncation_gap} with Lemma~\ref{lem:critical_truncated_CLT}
+and using that $\Var[L_s(\tau)] \asymp s\log s$, we obtain that the difference between
+$L_s(\tau)$ and its truncated version is negligible at the scale $\sqrt{\Var[L_s(\tau)]}$.
+Together with the central limit theorem for $\overline{L}_s(\tau)$, this yields the following.
+
+\begin{theorem}\label{thm:CLTedgelengths_critical_full}
+Let $\tau>0$ and assume $\bar{\varphi}(r)\sim r^{-\alpha}$ as $r\to\infty$ with exponent
+$\alpha=2\tau+d$. Then, as $s\to\infty$,
+\[
+\frac{L_s(\tau)-\E[L_s(\tau)]}{\sqrt{\Var[L_s(\tau)]}}
+\;\xrightarrow{d}\;
+N.
+\]
+In particular, a central limit theorem holds for $L_s(\tau)$ in the critical regime.
+\end{theorem}
+
+
+
+
+
+
+%$$
+%\overline{L}_s(\tau) = \frac{1}{2} \sum_{(x_1,x_2)\in\eta_{s,\neq}^2\cap\Gamma_s^2} \mathbf{1}\{ x_1\leftrightarrow x_2, \|x_1-x_2\|\leq s^{\frac{1}{2\tau}} \} \|x_1-x_2\|^\tau
+%$$
+
+%$$
+%\mathbb{E}[L_s(\tau) - \overline{L}_s(\tau)] \sim s \int_{s^{\frac{1}{2\tau}}}^\infty r^{\tau} r^{-\alpha} r^{d-1} \, \, \mathrm{d}r \sim s (s^{\frac{1}{2\tau}})^{\tau-\alpha+d} =  s (s^{\frac{1}{2\tau}})^{-\tau}= \sqrt{s}
+%$$
+
+%$$
+%\frac{\mathbb{E}[L_s(\tau) - \overline{L}_s(\tau)]}{\sqrt{\operatorname{Var} L_s(\tau)}} \sim \frac{\sqrt{s}}{\sqrt{s \log s}} = \frac{1}{\sqrt{\log s}}
+%$$
+
+%$$
+%s \int_0^{s^{\frac{1}{2\tau}}} r^{4\tau} r^{-\alpha} r^{d-1} \, \mathrm{d} r \sim s (s^{\frac{1}{2\tau}})^{4\tau-\alpha+d} = s (s^{\frac{1}{2\tau}})^{2\tau} =s^2
+%$$
+
+
+
+
+
+
+
+\subsubsection{Stable limit theorems}
+
+Here are some conjectured theorems based on preliminary computations:
+
+Define
+$$
+\xi_s:=\frac{1}{2}\sum_{(z_1,z_2)\in\eta^2_{\neq}\cap \Gamma_s^2} \delta_{s^{1/(d-\alpha)}\|z_1-z_2\|}.
+$$
+
+\begin{theorem}\label{thm:edge-length_process}
+Assume that $\bar{\varphi}(r)\sim r^{-\alpha}$ as $r\to\infty$. Let $\zeta$ be a homogeneous Poisson process on $(0,\infty)$ with intensity $??$ and let
+$$
+\zeta^{(\alpha)}:= \sum_{t\in\zeta} \delta_{t^{1/(d-\alpha)}}
+$$
+\begin{itemize}
+\item [a)] For each $a\in(0,\infty)$,
+$$
+{\rm d_{KR}}(\xi_s^{(\tau)}|_{[a,\infty)}, \zeta^{(\alpha)}|_{[a,\infty)}) \leq ???.
+$$
+\item [b)] Then,
+$$
+\xi_s^{(\tau)} \overset{d}{\longrightarrow} \zeta^{(\alpha)} \quad \text{as} \quad s\to\infty.
+$$
+\end{itemize}
+\end{theorem}
+
+\begin{theorem}
+Let the assumptions of Theorem \ref{thm:edge-length_process} prevail.
+\begin{itemize}
+\item [a)] If $(\alpha-d)/\tau\in(0,1)$,
+$$
+s^{\tau/(d-\alpha)}L_s(\tau) \overset{d}{\longrightarrow} \sum_{t\in\zeta} t^{\tau/(d-\alpha)} \quad \text{as} \quad s\to\infty.
+$$
+\item [b)] If $(\alpha-d)/\tau=1$,
+$$
+s^{\tau/(d-\alpha)}(L_s(\tau) - \mathbb{E}[L_s(\tau)])  \overset{d}{\longrightarrow} S \quad \text{as} \quad s\to\infty,
+$$
+where
+$$
+S:=\lim_{n\to\infty} \sum_{t\in\zeta\cap[0,n]} t^{-1} - \ln n.
+$$
+\item [c)] If $(\alpha-d)/\tau\in(1,2)$,
+$$
+s^{\tau/(d-\alpha)}(L_s(\tau) - \mathbb{E}[L_s(\tau)]) \overset{d}{\longrightarrow} S_\tau \quad \text{as} \quad s\to\infty,
+$$
+where
+$$
+S_\tau := \lim_{n\to\infty} \sum_{t\in\zeta\cap[0,n]} t^{\tau/(d-\alpha)} - \mathbb{E}\sum_{t\in\zeta\cap[0,\infty]} t^{\tau/(d-\alpha)}.
+$$
+\end{itemize}
+\end{theorem}
+
+
+\subsection{Point process convergence for edge-lengths}
+
+Again assume that there exist constants $l_{\bar{\varphi}}\in(0,\infty)$ and $\alpha\in(d,\infty)$ such that
+\begin{equation}\label{eqn:assumption_phi}
+\lim_{t\to\infty} t^{\alpha} \bar{\varphi}(t)=l_{\bar{\varphi}}.
+\end{equation}
+Together with the observation that $\bar{\varphi}$ is bounded by one, this yields the existence of a constant $C_{\bar{\varphi}}$ such that
+\begin{equation}\label{eqn:Upper_bound_bar_varphi}
+\bar{\varphi}(t) \leq \frac{C_{\bar{\varphi}}}{t^\alpha}
+\end{equation}
+for all $t\in(0,\infty)$. Moreover, we define
+$$
+c_{\bar{\varphi}} = \frac{\gamma^2 d \kappa_d l_{\bar{\varphi}}}{2(\alpha-d)}.
+$$
+
+In the following, we consider the point processes
+$$
+\tilde{\xi}_s = \frac{1}{2} \sum_{(x_1,x_2)\in\eta_{s,\neq}^2} \mathbf{1}\bigg\{x_1\leftrightarrow x_2, \frac{x_1+x_2}{2}\in\Gamma_s \bigg\} \delta_{s^{-\frac{1}{\alpha-d}}\|x_1-x_2\|}
+$$
+for $s\geq 1$.
+
+\begin{theorem}\label{thm:edge-length_process}
+Assume that \eqref{eqn:assumption_phi} is satisfied with $\alpha\in(d,\infty)$. Let $\zeta$ be a homogeneous Poisson process on $(0,\infty)$ with intensity $c_{\bar{\varphi}}$ and let
+$$
+\zeta^{(\alpha)}:= \sum_{t\in\zeta} \delta_{t^{-\frac{1}{\alpha-d}}}.
+$$
+\begin{itemize}
+\item [a)] For any $a\in(0,\infty)$,
+$$
+d_{\rm KR}(\tilde{\xi}_s|_{[a,\infty)},\zeta^{(\alpha)}|_{[a,\infty)}) \leq \int_a^\infty \big|s^{\frac{\alpha}{\alpha-d}}v^{\alpha} \bar{\varphi}(s^{\frac{1}{\alpha-d}}v) -l_{\bar{\varphi}}\big| \, v^{d-\alpha-1}\, \mathrm{d}v + \frac{\gamma^3 (d\kappa_d C_{\bar{\varphi}})^2}{(\alpha-d)^2 a^{2(\alpha-d)}} \frac{1}{s}.
+$$
+Moreover, the right-hand side vanishes as $s\to\infty$.
+\item [b)] One has
+$$
+\tilde{\xi}_s\overset{d}{\longrightarrow} \zeta^{(\alpha)}\quad \text{as} \quad s\to\infty.
+$$
+\end{itemize}
+\end{theorem}
+
+\begin{proof}
+Let $A\in\mathcal{B}(\mathbb{R})$ be such that $A\subset [a,\infty)$. For the intensity measure $\widetilde{\mathbf{L}}_s$ of $\tilde{\xi}_s$ we obtain
+\begin{align*}
+\mathbf{L}_s(A) & = \mathbb{E} \tilde{\xi}_s(A) = \frac{1}{2} \mathbb{E} \sum_{(x_1,x_2)\in\eta_{s,\neq}^2} \mathbf{1}\bigg\{ \frac{x_1+x_2}{2}\in\Gamma_s \bigg\} \mathbf{1}\{s^{-\frac{1}{\alpha-d}}\|x_1-x_2\| \in A\} \\
+& = \frac{\gamma^2}{2} \int_{(\mathbb{R}^d)^2} \mathbf{1}\bigg\{ \frac{x_1+x_2}{2} \in \Gamma_s\bigg\} \mathbf{1}\{s^{-\frac{1}{\alpha-d}}\|x_1-x_2\|\in A\} \bar{\varphi}(\|x_1-x_2\|) \, \mathrm{d}(x_1,x_2) \\
+& = \frac{\gamma^2}{2} \int_{(\mathbb{R}^d)^2} \mathbf{1}\{ z \in \Gamma_s\} \mathbf{1}\{s^{-\frac{1}{\alpha-d}}\|z\|\in A\} \bar{\varphi}(\|z\|) \, \mathrm{d}(y,z) \\
+& = \frac{\gamma^2 \lambda_d(\Gamma_s)}{2} \int_{\mathbb{R}^d} \mathbf{1}\{s^{-\frac{1}{\alpha-d}}\|z\|\in A\} \bar{\varphi}(\|z\|) \, \mathrm{d}z = \frac{\gamma^2 s}{2} d\kappa_d \int_0^\infty \mathbf{1}\{s^{-\frac{1}{\alpha-d}}u\in A\} \bar{\varphi}(u) u^{d-1} \, \mathrm{d}u \\
+& = \frac{d\kappa_d \gamma^2}{2} s^{1+\frac{d}{\alpha-d}} \int_0^\infty \mathbf{1}\{v\in A\} \bar{\varphi}(s^{\frac{1}{\alpha-d}}v) v^{d-1} \, \mathrm{d}v = \frac{d\kappa_d \gamma^2}{2} \int_A s^{\frac{\alpha}{\alpha-d}} \bar{\varphi}(s^{\frac{1}{\alpha-d}}v) v^{d-1} \, \mathrm{d}v.
+\end{align*}
+The intensity measure $\mathbf{L}$ of $\zeta^{(\alpha)}$ satisfies
+\begin{align*}
+\mathbf{L}(A) & = \mathbb{E} \sum_{t\in\zeta} \mathbf{1}\{t^{\frac{1}{d-\alpha}}\in A\} = c_{\bar{\varphi}} \int_0^\infty \mathbf{1}\{t^{\frac{1}{d-\alpha}}\in A\} \, \mathrm{d}t \\
+& = c_{\bar{\varphi}} (\alpha-d) \int_0^\infty \mathbf{1}\{v\in A\} v^{d-\alpha-1} \, \mathrm{d}v = \frac{\gamma^2 d \kappa_d }{2} \int_A l_{\bar{\varphi}}v^{d-\alpha-1} \, \mathrm{d}v.
+\end{align*}
+This implies
+$$
+|\mathbf{L}_s(A)-\mathbf{L}(A)| \leq  \frac{\gamma^2 d \kappa_d }{2} \int_A |s^{\frac{\alpha}{\alpha-d}} \bar{\varphi}(s^{\frac{1}{\alpha-d}}v) v^{d-1}-l_{\bar{\varphi}}v^{d-\alpha-1}| \, \mathrm{d}v
+$$
+so that
+\begin{align*}
+d_{\rm TV}(\mathbf{L}_s|_A, \mathbf{L}|_A) & \leq \int_a^\infty |s^{\frac{\alpha}{\alpha-d}} \bar{\varphi}(s^{\frac{1}{\alpha-d}}v) v^{d-1}-l_{\bar{\varphi}}v^{d-\alpha-1}| \, \mathrm{d}v \\
+& \leq \int_a^\infty \big|s^{\frac{\alpha}{\alpha-d}}v^{\alpha} \bar{\varphi}(s^{\frac{1}{\alpha-d}}v) -l_{\bar{\varphi}}\big| \, v^{d-\alpha-1}\, \mathrm{d}v.
+\end{align*}
+Moreover, we have
+\begin{align*}
+I_a & := \gamma^3 \int_{(\mathbb{R}^d)^3} \mathbf{1}\bigg\{ \frac{x_1+x_2}{2}, \frac{x_1+x_3}{2} \in \Gamma_s \bigg\} \mathbf{1}\{ \|x_1-x_2\|, \|x_1-x_3\| \geq a s^{\frac{1}{\alpha-d}}\} \\
+& \hspace{4cm} \times \bar{\varphi}(\|x_1-x_2\|) \bar{\varphi}(\|x_1-x_3\|) \, \mathrm{d}(x_1,x_2,x_3) \\
+& \le \gamma^3 \int_{(\mathbb{R}^d)^3} \mathbf{1}\bigg\{ \frac{x_1+x_2}{2} \in \Gamma_s \bigg\} \mathbf{1}\{ \|x_1-x_2\|, \|x_1-x_3\| \geq a s^{\frac{1}{\alpha-d}}\} \\
+& \hspace{4cm} \times \bar{\varphi}(\|x_1-x_2\|) \bar{\varphi}(\|x_1-x_3\|) \, \mathrm{d}(x_1,x_2,x_3) \\
+& \le \gamma^3 \int_{(\mathbb{R}^d)^3} \mathbf{1}\{ y \in \Gamma_s \} \mathbf{1}\{ \|z_1\|, \|z_2\| \geq a s^{\frac{1}{\alpha-d}}\} \bar{\varphi}(\|z_1\|) \bar{\varphi}(\|z_2\|) \, \mathrm{d}(y,z_1,z_2) \\
+& = \gamma^3 \lambda_d(\Gamma_s) \bigg( \int_{\mathbb{R}^d} \mathbf{1}\{\|z\|\geq a s^{\frac{1}{\alpha-d}}\} \bar{\varphi}(\|z\|) \, \mathrm{d}z \bigg)^2 = \gamma^3 s \bigg( d\kappa_d \int_{a s^{\frac{1}{\alpha-d}}}^\infty \bar{\varphi}(u) u^{d-1}\, \mathrm{d}u \bigg)^2.
+\end{align*}
+From \eqref{eqn:Upper_bound_bar_varphi} it follows that
+$$
+\int_{a s^{\frac{1}{\alpha-d}}}^\infty \bar{\varphi}(u) \, \mathrm{d}u \leq C_{\bar{\varphi}} \int_{a s^{\frac{1}{\alpha-d}}}^\infty u^{d-\alpha-1} \, \mathrm{d}u = \frac{C_{\bar{\varphi}}}{\alpha-d} (a s^{\frac{1}{\alpha-d}})^{d-\alpha} = \frac{C_{\bar{\varphi}}}{(\alpha-d) a^{\alpha-d} s}.
+$$
+This to
+$$
+I_a \leq \frac{\gamma^3 (d\kappa_d C_{\bar{\varphi}})^2}{(\alpha-d)^2 a^{2(\alpha-d)}} \frac{1}{s}
+$$
+Now part a) follows from Theorem \ref{Poisson_process_approximation}.
+
+By \eqref{eqn:Upper_bound_bar_varphi}, one has
+$$
+\big|s^{\frac{\alpha}{\alpha-d}}v^{\alpha} \bar{\varphi}(s^{\frac{1}{\alpha-d}}v) -l_{\bar{\varphi}}\big| \leq (C_{\bar{\varphi}}+l_{\bar{\varphi}}) v^{d-\alpha-1}
+$$
+for all $v\geq a$ and the right-hand side is integrable on $(a,\infty)$. Moreover, \eqref{eqn:assumption_phi} ensures that
+$$
+\lim_{s\to\infty} \big|s^{\frac{\alpha}{\alpha-d}}v^{\alpha} \bar{\varphi}(s^{\frac{1}{\alpha-d}}v) -l_{\bar{\varphi}}\big| \, v^{d-\alpha-1} = 0
+$$
+for all $v\geq a$. Thus, the dominated convergence theorem leads to
+$$
+\lim_{s\to\infty} \int_a^\infty \big|s^{\frac{\alpha}{\alpha-d}}v^{\alpha} \bar{\varphi}(s^{\frac{1}{\alpha-d}}v) -l_{\bar{\varphi}}\big| \, v^{d-\alpha-1}\, \mathrm{d}v = 0.
+$$
+Since the second part of the bound in part a) obviously vanishes as $s\to\infty$, we see that
+$$
+\lim_{s\to\infty} {\rm d}_{\rm KR}(\tilde{\xi}_s|_{[a,\infty)},\zeta^{(\alpha)}|_{[a,\infty)})=0.
+$$
+Since convergence in the Kantorovich--Rubinstein distance implies convergence in distribution, we obtain that
+$$
+\tilde{\xi}_s|_{[a,\infty)}\overset{d}{\longrightarrow}\zeta^{(\alpha)}|_{[a,\infty)} \quad \text{as} \quad s\to\infty.
+$$
+By \cite[Theorem 23.16]{Kallenberg_2023} this implies that $\tilde{\xi}_s\overset{d}{\longrightarrow}\zeta^{(\alpha)}$ as $s\to\infty$.
+\end{proof}
+
+\begin{corollary}
+Let the assumptions of Theorem \ref{thm:edge-length_process} prevail and let $Z$ be a random variable such that $\mathbb{P}(Z>a)=e^{-c_{\bar{\varphi}}a^{d-\alpha}}$ for $a\in(0,\infty)$. Then,
+$$
+s^{-\frac{1}{\alpha-d}}\max_{(x_1,x_2)\in\eta_{s,\neq}^2, x_1\leftrightarrow x_2, \frac{x_1+x_2}{2}\in\Gamma_s} \|x_1-x_2\| \overset{d}{\longrightarrow} Z \quad \text{as} \quad s\to\infty.
+$$
+\end{corollary}
+
+\begin{proof}
+Let $a\in(0,\infty)$ be fixed. Using the same notation as in Theorem \ref{thm:edge-length_process}, we see that
+$$
+\mathbb{P}(\zeta^{(\alpha)}((a,\infty))=0)= \mathbb{P}(\zeta((0,a^{d-\alpha}))=0) = e^{-c_{\bar{\varphi}} a^{d-\alpha}}=\mathbb{P}(Z>a)
+$$
+and that
+$$
+\mathbb{P}\bigg( s^{-\frac{1}{\alpha-d}}\max_{(x_1,x_2)\in\eta_{s,\neq}^2, \frac{x_1+x_2}{2}\in\Gamma_s} \|x_1-x_2\|>a\bigg) = \mathbb{P}(\tilde{\xi}_s((a,\infty))=0).
+$$
+This implies that
+\begin{align*}
+\left| \mathbb{P}\bigg( s^{-\frac{1}{\alpha-d}}\max_{(x_1,x_2)\in\eta_{s,\neq}^2, \frac{x_1+x_2}{2}\in\Gamma_s} \|x_1-x_2\|>a\bigg) - \mathbb{P}(Z>a) \right| & \leq {\rm d}_{\rm TV}(\tilde{\xi}_s((a,\infty)),\zeta^{(\alpha)}((a,\infty))) \\ & \leq {\rm d}_{\rm KR}(\tilde{\xi}_s|_{[a,\infty)},\zeta^{(\alpha)}|_{[a,\infty)}).
+\end{align*}
+Since, by Theorem \ref{thm:edge-length_process}, the right-hand side converges to zero as $s\to\infty$, this proves the desired statement.
+\end{proof}
+
+For $\tau\in(0,\infty)$ we consider the edge-length functionals
+$$
+\widetilde{L}_s^{(\tau)} = \frac{1}{2} \sum_{(x_1,x_2)\in\eta^2_{s,\neq}} \mathbf{1}\bigg\{ x_1\leftrightarrow x_2, \frac{x_1+x_2}{2}\in\Gamma_s \bigg\} \|x_1-x_2\|^\tau
+$$
+for $s\geq 1$.
+
+Moreover, for a fixed $a\in(0,\infty)$, we let
+$$
+\widetilde{L}_{s,>a}^{(\tau)} = \frac{1}{2} \sum_{(x_1,x_2)\in\eta^2_{s,\neq}} \mathbf{1}\bigg\{x_1\leftrightarrow x_2,\frac{x_1+x_2}{2}\in\Gamma_s,\|x_1-x_2\|>s^{\frac{1}{\alpha-d}}a\bigg\} \|x_1-x_2\|^\tau
+$$
+and
+$$
+\widetilde{L}_{s,\leq a}^{(\tau)} = \frac{1}{2} \sum_{(x_1,x_2)\in\eta^2_{s,\neq}} \mathbf{1}\{x_1\leftrightarrow x_2, \frac{x_1+x_2}{2}\in\Gamma_s, \|x_1-x_2\|\leq s^{\frac{1}{\alpha-d}}a\} \|x_1-x_2\|^\tau
+$$
+for $s\geq 1$.
+
+Note that, for $u\in\mathbb{R}$,
+$$
+\mathbb{P}( s^{-\frac{\tau}{\alpha-d}} \widetilde{L}_{s,>a}^{(\tau)} \leq u ) = \mathbb{P}\bigg( \sum_{t\in\tilde{\xi}_s\cap (a,\infty)} t^{\tau} \leq u\bigg) 
+$$
+and
+$$
+\mathbb{P}\bigg( \sum_{t\in\zeta\cap[0,a^{d-\alpha})} t^{-\frac{\tau}{\alpha-d}} \leq u \bigg) = \mathbb{P}\bigg( \sum_{t\in\zeta^{(\alpha)}\cap(a,\infty)} t^\tau \leq u \bigg).
+$$
+This leads to
+$$
+\bigg| \mathbb{P}( s^{-\frac{\tau}{\alpha-d}} \widetilde{L}_{s,>a}^{(\tau)} \leq u ) - \mathbb{P}\bigg( \sum_{t\in\zeta\cap[0,a^{d-\alpha})} t^{-\frac{\tau}{\alpha-d}} \leq u \bigg) \bigg| \leq {\rm d}_{\rm KR}(\tilde{\xi}_s,\zeta^{(\alpha)})
+$$
+so that, by Theorem \ref{thm:edge-length_process} a),
+$$
+s^{-\frac{\tau}{\alpha-d}} \widetilde{L}_{s,>a}^{(\tau)} \overset{d}{\longrightarrow} \sum_{t\in\zeta\cap[0,a^{d-\alpha})} t^{-\frac{\tau}{\alpha-d}} \quad \text{as} \quad s\to\infty.
+$$
+
+For $d+\tau<\alpha$ we have
+\begin{align*}
+s^{-\frac{\tau}{\alpha-d}}\mathbb{E} \widetilde{L}_{s,>a}^{(\tau)} & = \frac{s^{-\frac{\tau}{\alpha-d}}}{2} \mathbb{E} \sum_{(x_1,x_2)\in\eta^2_{s,\neq}} \mathbf{1}\bigg\{\frac{x_1+x_2}{2}\in\Gamma_s,\|x_1-x_2\|>s^{\frac{1}{\alpha-d}}a\bigg\} \|x_1-x_2\|^\tau \\
+& = \frac{\gamma^2 s^{-\frac{\tau}{\alpha-d}}}{2} \int_{(\mathbb{R}^d)^2} \mathbf{1}\bigg\{\frac{x_1+x_2}{2}\in\Gamma_s,\|x_1-x_2\|>s^{\frac{1}{\alpha-d}}a\bigg\} \|x_1-x_2\|^\tau \bar{\varphi}(\|x_1-x_2\|) \, \mathrm{d}(x_1,x_2) \\
+& = \frac{\gamma^2 s^{-\frac{\tau}{\alpha-d}}}{2} \int_{(\mathbb{R}^d)^2} \mathbf{1}\{y\in\Gamma_s,\|z\|>s^{\frac{1}{\alpha-d}}a\} \|z\|^\tau \bar{\varphi}(\|z\|) \, \mathrm{d}(y,z) \\
+& = \frac{\gamma^2 s^{1-\frac{\tau}{\alpha-d}} d\kappa_d}{2} \int_{s^{\frac{1}{\alpha-d}}a}^\infty u^\tau \bar{\varphi}(u) u^{d-1} \, \mathrm{d}u  = \frac{\gamma^2 d\kappa_d}{2} \int_{a}^\infty s^{\frac{\alpha}{d-\alpha}} u^\tau \bar{\varphi}(s^{\frac{1}{\alpha-d}}u) u^{d-1} \, \mathrm{d}u.
+\end{align*}
+By the dominated convergence theorem, we obtain that
+$$
+\lim_{s\to\infty} s^{-\frac{\tau}{\alpha-d}}\mathbb{E} \widetilde{L}_{s,>a}^{(\tau)} = \frac{\gamma^2 d\kappa_d}{2} \int_{a}^\infty l_{\bar{\varphi}} u^{\tau-\alpha+d-1} \, \mathrm{d}u.
+$$
+
 
 
 \subsection{Hub-to-hub edges}
@@ -1720,764 +2521,9 @@ which completes the proof.
 \end{proof}
 
 
-\section{Power-weighted edge-lengths}
 
-%Using the above notation, define
-% \begin{align}\label{originalUstat}
- %    S_t:= \frac{1}{k!}\sum_{(x_1, \ldots, x_k) \in \eta^k_{\neq}} f_t \Big( x_1, \ldots, x_k, (W_{x_i,x_j})_{i,j =1,\ldots, k, i \neq j} \Big) ,
-% \end{align}
-%where $f_t$, $t \geq 1$, is a measurable function and the sum is taken over all $k$-tuples of pairwise distinct points. Note that $S$ is not a Poisson $U$-statistics. Now consider the following. For two points $\hat{x}=(x,\mathbf{u}=(u_{i,l})_{i,l\in\mathbb{N}})$ and $\hat{y}=(y,\mathbf{v}=(v_{i,l})_{i,l\in\mathbb{N}})$ in $\hat{\eta}$ such that $x\leq y$ and $y\in A_i$ define $\hat{W}_{\hat{x},\hat{y}} := u_{i,1}$, and
-%$$ \hat{S}_t:= \frac{1}{k!}\sum_{(\hat{x}_1, \ldots, \hat{x}_k) \in \hat{\eta}^k_{\neq}} f_t \Big( {x}_1, \ldots, {x}_k, (\hat{W}_{\hat{x}_i,\hat{x}_j}) \Big) =:  \sum_{(\hat{x}_1, \ldots, \hat{x}_k) \in \hat{\eta}^k_{\neq}} \hat{f}_t ( \hat{x}_1, \ldots, \hat{x}_k ),$$
-%which on the other hand is a Poisson U-statistics. Now, choose the partition $\{A_i\}_{i\in\mathbb{N}}$ such that $\lambda_d (A_i) = \frac{\varepsilon}{i}$ for every $i \in \mathbb{N}$, where $\varepsilon>0$ is a given (later chosen to be sufficiently small) number. Then we have
-%\begin{align}\label{ShatS}
-%\begin{split}
-%    \mathbb{P} (S \neq \hat{S}) &= \mathbb{P} ( \exists i \in \mathbb{N} : \eta (A_i) \geq 2 ) \leq \sum_{i=1}^\infty \mathbb{P} ( \eta (A_i) \geq 2 ) \\
- %   & \leq \sum_{i=1}^\infty  \lambda_d (A_i)^2 = \varepsilon^2 \sum_{i=1}^\infty \frac{1}{k^2},
-%\end{split}
-%\end{align}
-%so that $\mathbb{P} (S \neq \hat{S}) \to 0$, as $\varepsilon \to 0$. Moreover, for every random variable $N$ we have
-%\begin{align} \label{Kineq}
- %    d_K (S,N) \leq \mathbb{P} (S \neq \hat{S}) + d_K (\hat{S},N) .
-%\end{align}
 
 
-%Based on the latter observations, the following approximations could be studied:
-
-%\begin{itemize}
-  %  \item Poisson process approximation, see \cite{dst}
- %   \item Quantitative Normal approximation (Wasserstein, Kolmogorov distance), %see \cite{reitznerschulte,schulte,eichelsbacher}
- %   \item Poisson approximation, see \cite{pianoforte}
- %   \item Moderate deviations and concentration inequalities, see \cite{schulte2, bonnet}
-%    \item Approximation by $\alpha$-stable distributions
-%\end{itemize}
-
-%One conjecture is that the point process
-%$$ \frac{1}{2} \sum_{(z_1, z_2) \in \eta^2_{\neq} \cap B^2(0, \rho)} \delta_{\|%z_1 - z_2\| - b_\rho}$$
-%converges in distribution to a Poisson point process, for a suitably chosen sequence $b_\rho$.
-
-Recall that $\varphi$ denotes the connection function. In this section we make the following assumption on $\varphi$.
-
-\begin{ass}\label{edgelength-ass1}
-	 The function $\varphi$ is only radially dependent. Its radial part is denoted by $\bar{\varphi}$, that has a polynomial decay with some exponent $\alpha \in (d, \infty)$, i.e. it holds
-     $$ \lim_{r\to\infty} \frac{\bar{\varphi}(r)}{r^{-\alpha}} =:C \in (0,\infty).$$
-\end{ass}
-
-Note that the condition $\alpha>d$ in Assumption \ref{edgelength-ass1} ensures that the (non-trivial) integrability property
-$$ 0 < \int_{\mathbb{R}^d} \varphi (x) \mathrm{d} x< \infty$$
-is satisfied.
-
-\subsection{Expectation and variance asymptotics}
-
-Consider the statistics
-
-$$L_s (\tau):=\frac{1}{2} \sum_{(z_1, z_2) \in \eta^2_{\neq} \cap \Gamma_s^2} \mathbf{1}\{ z_1 \leftrightarrow z_2 \} \| z_1- z_2 \|^\tau, \quad \tau \in \mathbb{R}.$$
-
-In addition, we introduce a modified version that eliminates boundary effects:
-\[
-\widetilde{L}_s(\tau)
-:= \frac{1}{2} \sum_{(z_1, z_2) \in \eta^2_{\neq}}
-   \mathbf{1}\!\left\{
-      \tfrac{z_1 + z_2}{2} \in \Gamma_s,\;
-      z_1 \leftrightarrow z_2
-   \right\}
-   \| z_1 - z_2 \|^{\tau}.
-\]
-Here, the summation runs over all pairs of points in $\eta$ whose \emph{midpoint}
-lies inside $\Gamma_s$, regardless of whether both endpoints belong to $\Gamma_s$.
-This statistic is the \emph{midpoint version} of the edge-length sum. In our results we find that its asymptotic behavior and limiting variance differ from those of $L_s(\tau)$.
-In particular, the absence of boundary effects in $\widetilde{L}_s(\tau)$
-leads to different scaling properties and limit theorems.
-
-
-
-
-Proceeding as in \cite[Theorem 3.1]{reitznerschultethaele} gives the following formula for its expectation structure. 
-
-\begin{lemma} \label{lem:expectedlength}
-    Assume that $\tau > -d$. It holds
-    $$ \mathbb{E}[L_s (\tau)]= \frac{\gamma^2}{2} \int_0^{cs^{\frac{1}{d}}} \bar{\varphi} (r) r^{\tau + d -1} \int_{\mathbb{S}^{d-1}
-} f_\rho (r u) \mathrm{d}u \mathrm{d}r,$$
-where $c\in (0, \infty)$ is a constant independent of $s$,
-$$f_\rho (ru) := \lambda_d \left( \Gamma_s \cap (\Gamma_s + ru) \right)$$
-and $\mathrm{d}u$ stands for the infinitesimal element of the spherical Lebesgue measure. Moreover, it holds
-\begin{align*}
-    & \frac{\gamma^2}{2} d \kappa_d \lambda_d(\Gamma_s) \int_0^{cs^{\frac{1}{d}}} \bar{\varphi} (r) r^{\tau + d -1} \mathrm{d}r -\gamma^2\kappa_{d-1} \operatorname{surf}(\Gamma_s) \int_0^{cs^{\frac{1}{d}}} \bar{\varphi} (r) r^{\tau + d } \mathrm{d}r\\
-    & \leq \mathbb{E}[L_s (\tau)] \leq \frac{\gamma^2}{2} d \kappa_d \lambda_d(\Gamma_s) \int_0^{cs^{\frac{1}{d}}} \bar{\varphi} (r) r^{\tau + d -1} \mathrm{d}r,
-\end{align*}
-where $\kappa_d$ denotes the volume of the $d$-dimensional unit ball and $\operatorname{surf}(\Gamma_s)$ denotes the surface area of the set  $\Gamma_s$.
-\end{lemma}
-
-Note that Lemma \ref{lem:expectedlength} shows that the asymptotics of the expectation of power-weighted edge-lengths depends on whether the integral
-$$\int_0^\infty \bar{\varphi} (r) r^{\tau + d -1} \mathrm{d} r $$
-is finite or not. If we assume that $\bar{\varphi}$ has polynomial decay $\bar{\varphi}(r) \sim r^{-\alpha}$, $r \to \infty$, for some exponent $\alpha$, this translates to whether $\alpha>\tau +d$ or $\alpha\leq\tau +d$.
-
-Next we give a formula for the variance.
-
-\textcolor{red}{Matthias: I think we need to assume always that $\tau>-d/2$. Otherwise the $I(\rho)$ in the proof can become infinite since the integrand can explode in the neighbourhood of $0$.}
-
-\begin{lemma} \label{lem:varlength}
-    Let $\tau > -d$. Then $L_s (\tau)$ has finite variance given by
-    \begin{align}\label{varformula}
-    \begin{split}
-        & \operatorname{Var}[L_s (\tau)] = \frac{\gamma^2}{2} \int_{\Gamma_s}\int_{\Gamma_s} \varphi(x-y) \| y-x \|^{2\tau} \mathrm{d}x \mathrm{d}y  \\
-        & \quad + \gamma^3\int_{\Gamma_s}\int_{\Gamma_s} \varphi(x_1-y) \| y-x_1 \|^\tau \mathrm{d} x_1 \int_{\Gamma_s} \varphi(x_2-y)  \| y-x_2 \|^\tau \mathrm{d} x_2 \mathrm{d} y.
-    \end{split} 
-    \end{align}
-Moreover, if $\bar{\varphi}$ has polynomial decay $\bar{\varphi}(r) \sim r^{-\alpha}$, $r \to \infty$, for some exponent $\alpha$, there is a constant $C \in (0, \infty)$ independent of $s$ such that
-$$ \frac{1}{C} s \left( \frac{1}{C} + s^{\frac{2\tau + d -\alpha}{d}} \right) \leq \operatorname{Var}[L_s (\tau)] \leq Cs\left( {C} + s^{\frac{2\tau + d -\alpha}{d}} \right), \quad \text{ if } \alpha \neq d+2\tau,$$
-and
-$$ \frac{1}{C} s \left( \frac{1}{C} + \log s^{\frac{1}{d}} \right) \leq \operatorname{Var}[L_s (\tau)] \leq  Cs ( C +\log s^{\frac{1}{d}}), \quad \text{ if } \alpha = d+2\tau.$$
-\end{lemma}
-
-\begin{proof}
-    The formula in \eqref{varformula} can be proven by proceeding as in the proof of \cite[Theorem 3.3]{reitznerschultethaele}. Based on this formula, we now calculate the order of the variance. Concerning the first term on the right-hand side of \eqref{varformula} we have
-    
-\begin{align*}
-I(s) 
-  &:= \int_{\Gamma_s} \int_{\Gamma_s} 
-       \varphi(x-y)\,\|y-x\|^{2\tau}\, \mathrm{d}x\, \mathrm{d}y \\[0.5em]
-  &= \int_{\Gamma_s} \int_{\mathbb{R}^d} 
-       \varphi(z)\,\|z\|^{2\tau}\, \mathbf{1}_{\{y+z \in \Gamma_s\}}\, \mathrm{d}z\, \mathrm{d}y \\[0.5em]
-  &= \int_{\mathbb{R}^d} \varphi(z)\,\|z\|^{2\tau}\,
-       \mathrm{Vol}\big(\Gamma_s\cap (\Gamma_s+z)\big)\, \mathrm{d}z \\[0.5em]
-  &= \int_{0}^{\infty}\int_{\mathbb{S}^{d-1}} 
-       \bar{\varphi}(r)\,r^{2\tau+d-1}\,
-       \mathrm{Vol}\!\big(\Gamma_s\cap (\Gamma_s+ru)\big)\,
-        \mathrm{d}u\, \mathrm{d}r \\
-  &= \int_{0}^{cs^{\frac{1}{d}}}\int_{\mathbb{S}^{d-1}} 
-       \bar{\varphi}(r)\,r^{2\tau+d-1}\,
-       \mathrm{Vol}\!\big(\Gamma_s\cap (\Gamma_s+ru)\big)\,
-        \mathrm{d}u\, \mathrm{d}r.
-\end{align*}
-with
-\begin{align*}
-   d \kappa_d \lambda_d(\Gamma_s)  -\kappa_{d-1} \operatorname{surf}(\Gamma_s) r\leq \int_{\mathbb{S}^{d-1}} 
-       \mathrm{Vol}\!\big(\Gamma_s\cap (\Gamma_s+ru)\big)\,
-        \mathrm{d}u \leq d \kappa_d \lambda_d(\Gamma_s) 
-\end{align*}
-so that the variance asymptotics depends on whether
-$$\int_0^\infty \bar{\varphi} (r) r^{2\tau + d -1} \mathrm{d} r< \infty$$ 
-or not. Moreover the asymptotics of $I(s)$, as $s \to \infty$, is
-$$ C_1 s (C_1 + s^{\frac{2\tau + d -\alpha}{d}} )\leq I(s) \leq C_2 s (C_2 + s^{\frac{2\tau + d -\alpha}{d}} ) $$
-for some constants $C_1, C_2>0$, if $\alpha \neq 2\tau +d$, and
-$$ C_1 s (C_1 + \log s^{\frac{1}{d}} )\leq I(s) \leq C_2 s (C_2 + \log s^{\frac{1}{d}} ) $$
-if $\alpha = 2\tau +d$.
-
-Similarly, considering the second term on the right-hand side of \eqref{varformula} we obtain
-\begin{align*}
-J(s) 
-  &:= \int_{\Gamma_s}\!
-     \Bigg(\int_{\Gamma_s} \varphi(x_1-y)\,\|y-x_1\|^{\tau}\,\mathrm{d}x_1\Bigg)
-     \Bigg(\int_{\Gamma_s} \varphi(x_2-y)\,\|y-x_2\|^{\tau}\,\mathrm{d}x_2\Bigg)
-     \mathrm{d}y \\[0.4em]
-  &= \int_{\Gamma_s}\!
-     \int_{\mathbb{R}^d}\!\int_{\mathbb{R}^d}
-        \varphi(z_1)g(z_2)\,\|z_1\|^{\tau}\|z_2\|^{\tau}\,
-        \mathbf{1}_{\{y+z_1\in \Gamma_s\}}\,
-        \mathbf{1}_{\{y+z_2\in \Gamma_s\}}\,
-        \mathrm{d}z_1\,\mathrm{d}z_2\,\mathrm{d}y \\[0.4em]
-  &= \int_{\mathbb{R}^d}\!\int_{\mathbb{R}^d}
-        \varphi(z_1)\varphi(z_2)\,\|z_1\|^{\tau}\|z_2\|^{\tau}\,
-        \mathrm{Vol}\!\big(\Gamma_s\cap(\Gamma_s+z_1)\cap(\Gamma_s+z_2)\big)\,
-        \mathrm{d}z_1\,\mathrm{d}z_2 \\[0.6em]
-  &= \int_{0}^{cs^{\frac{1}{d}}}\!\!\int_{0}^{cs^{\frac{1}{d}}}
-     \int_{\mathbb{S}^{d-1}}\!\int_{\mathbb{S}^{d-1}}
-        \varphi(r_1)\varphi(r_2)\,r_1^{\tau}r_2^{\tau}\,
-      \mathrm{Vol}\!\big(\Gamma_s\cap(\Gamma_s+r u_1)\cap(\Gamma_s+r u_2)\big)\,
-        \mathrm{d}u_1\,\mathrm{d}u_2\,
-        \mathrm{d}r_1\,\mathrm{d}r_2 
-\end{align*}
-with the asymptotic bound
-$$ \frac{1}{C} s\leq \mathrm{Vol}\!\big(\Gamma_s\cap(\Gamma_s+r u_1)\cap(\Gamma_s+r u_2)\big) \leq {C} s ,$$
-so that the assertion follows easily.
-    
-\end{proof}
-
-From the statements in Lemma \ref{lem:varlength} we observe that the variance asymptotics is not finite.
-
-\subsection{Regime with central limit theorem}
-
-The next theorem illustrates that there is a central limit theorem in the regime with polynomial decay for exponents $\alpha$ satisfying $\alpha> 2\tau + d$.
-
-\begin{theorem} \label{CLT:sumsedgelengths}
-    Let $\tau > -d$. Assume $\bar{\varphi}$ has polynomial decay $\bar{\varphi}(r) \sim r^{-\alpha}$, $r \to \infty$, with (positive) exponent $\alpha \in (2\tau + d, \infty)$. Then there is a constant $C \in (0, \infty)$ independent of $s$ such that
-    \begin{align*}
-	\mathrm{d}_{\mathrm{Wass}}\left(\frac{L_s(\tau)-\E L_s(\tau)}{\sqrt{\Var L_s(\tau)}},N\right) & \le C \max\left\{ s^{-\frac{1}{2}} , s^{\frac{2\tau -\frac{\alpha}{2}}{d}} \right\},\\
-	\mathrm{d}_{\mathrm{K}}\left(\frac{L_s(\tau)-\E L_s(\tau)}{\sqrt{\Var L_s(\tau)}},N\right) & \le  C \max\left\{ s^{-\frac{1}{2}} , s^{\frac{2\tau -\frac{\alpha}{2}}{d}}\right\}.
-\end{align*}
-\end{theorem}
-
-\begin{proof}
-    The theorem will be a consequence of Corollary \ref{normalapp1k2}. In this proof we denote by $c$ an unspecified positive constant that might change from line to line. We can estimate each expression $M_{ij}(f)$ in the latter corollary as follows. Considering the term $M_{11}(f)$ we have
-    \begin{align*}
-M_{11}(f)
-&= c \int_{\Gamma_s^5} \prod_{j=2}^{5} \|x_1-x_j\|^{\tau}\,\varphi(x_1-x_j)\,\mathrm{d}x_1\cdots \mathrm{d}x_5 \\[4pt]
-&= c\int_{\Gamma_s} \left( \int_{\Gamma_s^4} \prod_{j=2}^{5}  \|x_1-x_j \|^{\tau}\,\varphi(x_1-x_j)\,\mathrm{d}x_2\cdots \mathrm{d}x_5 \right) \mathrm{d}x_1 \\[4pt]
-&= \int_{\Gamma_s} \left( \int_{\Gamma_s(-x_1)} |u|^{\tau}\,\varphi(u)\,\mathrm{d}u \right)^{4} \mathrm{d}x_1,
-\end{align*}
-where $\Gamma_s(-x_1) \;:=\; \{\, u \in \mathbb{R}^d : u + x_1 \in \Gamma_s \,\}$ and we used the substitution $u=x_1-x_j$ for each $j\ge 2$. S\text{ince }$\Gamma_s(-x_1)\subseteq \Gamma_{cs}$ \text{ for }$x_1\in\Gamma_s$, the latter can be further estimated by
-\begin{align*}
-&\int_{\Gamma_s} \left( \int_{\Gamma_s(-x_1)} |u|^{\tau}\,\varphi(u)\,\mathrm{d}u \right)^{4} \mathrm{d}x_1= \mathrm{Vol}\big(\Gamma_s\big)\,\left( \int_{\Gamma_{cs}} |u|^{\tau}\,\varphi(u)\,\mathrm{d}u \right)^{4}
-\end{align*}
-\text{Assuming }$\alpha>2\tau+d$ we have
-\begin{align*}
-\int_{\mathbb{R}^d} |u|^{\tau}\varphi(u)\,\mathrm{d}u =:\kappa<\infty.
-\end{align*}
-Consequently
-$$\int_{\Gamma_{cs}} |u|^{\tau}\varphi(u)\,\mathrm{d}u \leq \kappa,$$
-and therefore
-\begin{align} \label{cltedgelengthsm11}
-M_{11}(f) \leq  c\mathrm{Vol}\big(\Gamma_s\big)\,\kappa^{4}
-\;=\; C\,s\qquad(\text{for some }C>0).
-\end{align}
-
-%Proposal Matthias:
-%$$
-%M_{11}(f) \leq \rho^d \max\{1,\rho^{\tau+d-\alpha}\}^4
-%$$
-
-
-Next we consider $M_{12}(f)$ in the statement of Corollary \ref{normalapp1k2}. The first term in the definition of this quantity is
-\begin{align*}
-    & c \int_{\Gamma_s}  \|x_1-x_2\|^{\tau}\,\varphi(x_1-x_2)  \|x_1-x_3\|^{\tau}\,\varphi(x_1-x_3) \|x_1-x_4\|^{2\tau}\,\varphi(x_1-x_4) \,\mathrm{d}x_1\cdots \mathrm{d}x_4 .
-\end{align*}
-Proceeding as before we obtain that the last expression can be estimated by
-$$ c s \left( (c + c s^{\frac{\tau + d -\alpha}{d}})^2 (c + c s^{\frac{2\tau + d -\alpha}{d}}) \right) .$$
-The other terms in the definition of $M_{12}(f)$ are handled similarly. Using the fact $\alpha>2\tau+d$ we thus obtain
-\begin{align} \label{cltedgelengthsm12}
-M_{12}(f) \leq  c s .
-\end{align}
-Using similar observations, one can see that
-\begin{align} \label{cltedgelengthsm13}
-\begin{split}
-& M_{22}(f) \\
-&\leq (c + c s^{\frac{\tau + d -\alpha}{d}})^4 + (c + c s^{\frac{\tau + d -\alpha}{d}}) (c+cs^{\frac{2\tau + d -\alpha}{d}}) + c s (c + c s^{\frac{2\tau + d -\alpha}{d}})^2 + c s (c + c s^{\frac{4\tau + d -\alpha}{d}}).
-\end{split}
-\end{align}
-%Proposal Matthias for the first two terms
-%$$
-%\rho^d \max\{1,\rho^{\tau+d-\alpha}\}^2 \max\{1,\rho^{2\tau+d-\alpha}\} + \rho^d \max\{1,\rho^{\tau+d-\alpha}\} \max\{1,\rho^{2\tau+d-\alpha}\} 
-%$$
-%$$
-%\rho^d \max\{1,\rho^{\tau+d-\alpha}\}^2 \max\{1,\rho^{2\tau+d-\alpha}\} \leq \rho^d \max\{1,\rho^{2\tau+d-\alpha}\}^2 \leq  \rho^d \max\{1,\rho^{4\tau+d-\alpha}\}
-%$$
-%\begin{align*}
-%& \|x_1-x_2\|^\tau \|x_2-x_3\|^\tau \|x_3-x_4\|^\tau \|x_4-x_1\|^\tau \\
-%& \leq \|x_1-x_2\|^\tau \|x_2-x_3\|^\tau \|x_3-x_4\|^{2\tau} + \|x_1-x_2\|^\tau \|x_2-x_3\|^\tau \|x_4-x_1\|^{2\tau}
-%\end{align*}
-Combining \eqref{cltedgelengthsm11}, \eqref{cltedgelengthsm12}, \eqref{cltedgelengthsm13} with Lemma \ref{lem:varlength} and Corollary \ref{normalapp1k2} yields the statement of the theorem.
-\end{proof}
-
-\begin{remark}
-    If $\alpha \in (d,2d)$ the above proof together with Lemma \ref{lem:varlength} implies that $L_s(\tau)$ satisfies a CLT as well with
-    \begin{align*}
-	\mathrm{d}_{\mathrm{Wass}}\left(\frac{L_s(\tau)-\E L_s(\tau)}{\sqrt{\Var L_s(\tau)}},N\right) & \le C \max\{ s^{-\frac{1}{2}},  s^{-\frac{\tau}{2d}} ,  s^{-\frac{\alpha}{d}}, s^{\frac{\alpha}{2d}-1} \},\\
-	\mathrm{d}_{\mathrm{K}}\left(\frac{L_s(\tau)-\E L_s(\tau)}{\sqrt{\Var L_s(\tau)}},N\right) & \le  C \max\{ s^{-\frac{1}{2}},  s^{-\frac{\tau}{2d}} ,  s^{-\frac{\alpha}{d}}, s^{\frac{\alpha}{2d}-1} \} .
-\end{align*}
-\end{remark}
-
-\subsubsection{Truncation}
-
-For $a>0$ define
-$$
-L_{s,a} (\tau):=\frac{1}{2} \sum_{(z_1, z_2) \in \eta^2_{\neq} \cap \Gamma_s^2} \mathbf{1}\{ z_1 \leftrightarrow z_2, \|z_1-z_2\|\leq a \} \| z_1- z_2 \|^\tau.
-$$
-We aim to estimate
-$$
-\frac{\mathbb{E}[(L_{s,a} (\tau)-L_{s} (\tau))^2]}{s}. %\leq c a^{-...}
-$$
-By definition we have
-\begin{align*}
-L_{s,a}(\tau)-L_{s}(\tau)
-&= \frac{1}{2}\sum_{(z_1,z_2)\in\eta^2_{\neq}\cap \Gamma_s^2}
-\mathbf{1}\{z_1\leftrightarrow z_2\}
-\|z_1-z_2\|^{\tau}
-\big(\mathbf{1}_{\{\|z_1-z_2\|\le a\}}-1\big) \\[0.4em]
-&= -\frac{1}{2}\sum_{(z_1,z_2)\in\eta^2_{\neq}\cap \Gamma_s^2}
-\mathbf{1}\{z_1\leftrightarrow z_2,\ \|z_1-z_2\|>a\}\,
-\|z_1-z_2\|^{\tau},
-\end{align*}
-and
-\begin{align*}
-& (L_{s,a}(\tau)-L_{s}(\tau))^2\\
-& = \frac{1}{4}\!\!\sum_{(z_1,z_2),(z_3,z_4)\in\eta^2_{\neq}\cap \Gamma_s^4}
-\!\!\!\!\mathbf{1}\{z_1\leftrightarrow z_2,\|z_1-z_2\|>a\}
-\mathbf{1}\{z_3\leftrightarrow z_4,\|z_3-z_4\|>a\}
-\|z_1-z_2\|^{\tau}\|z_3-z_4\|^{\tau},
-\end{align*}
-so that
-\begin{align*}
-\mathbb{E}\!\left[(L_{s,a}(\tau)-L_{s}(\tau))^2\right]
-&= C_1 I_a(s) + C_2 J_a(s),
-\end{align*}
-where, by Mecke’s formula,
-\begin{align*}
-I_a(s)
-&= \int_{\Gamma_s}\!\!\int_{\Gamma_s}
-\mathbf{1}_{\{\|x-y\|>a\}}\,
-\varphi(x-y)\,\|x-y\|^{2\tau}\,\mathrm{d}x\,\mathrm{d}y, \\[0.3em]
-J_a(s)
-&= \int_{\Gamma_s}\!
-\Bigg(\int_{\Gamma_s}
-\mathbf{1}_{\{\|x_1-y\|>a\}}\,
-\varphi(x_1-y)\,\|x_1-y\|^{\tau}\,\mathrm{d}x_1\Bigg)^{\!2}\mathrm{d}y.
-\end{align*}
-Assuming $\varphi(r)\sim C r^{-\alpha}$ with $\alpha>2\tau+d$, the tails are integrable and the same calculations as before show that
-\begin{align*}
-I_a(s),\,J_a(s)\;\leq \;cs\,a^{2\tau+d-\alpha},
-\end{align*}
-so that we have proven the following.
-
-\begin{lemma}\label{truncationlemma1}
-    There exists a constant $c \in (0,\infty)$ not depending on $a$ such that
-    $$\frac{\mathbb{E}[(L_{s,a} (\tau)-L_{s} (\tau))^2]}{s} \leq c a^{2\tau+d-\alpha} .$$
-\end{lemma}
-
-Next we prove that $L_{s,a} (\tau)$ satisfies a CLT for every $a>0$ and the regime $2\tau+d<\alpha$. The strategy is identical to the proof of Theorem \ref{CLT:sumsedgelengths}, with the key difference that the truncation will give us better (quantitative convergence) bounds.
-
-\begin{lemma}\label{lem:CLT_truncated}
-Let $\tau > -d$ and $a>0$. 
-Assume that $\bar{\varphi}$ has polynomial decay $\bar{\varphi}(r)\sim r^{-\alpha}$ as $r\to\infty$ with exponent $\alpha>2\tau+d$. 
-Then there exists a constant $C\in(0,\infty)$, independent of $s$, such that
-\begin{align*}
-\mathrm{d}_{\mathrm{Wass}}\!\left(
-\frac{L_{s,a}(\tau)-\E L_{s,a}(\tau)}{\sqrt{\Var L_{s,a}(\tau)}},
-N
-\right)
-&\le C\,s^{-1/2},\\[0.4em]
-\mathrm{d}_{\mathrm{K}}\!\left(
-\frac{L_{s,a}(\tau)-\E L_{s,a}(\tau)}{\sqrt{\Var L_{s,a}(\tau)}},
-N
-\right)
-&\le C\,s^{-1/2}.
-\end{align*}
-\end{lemma}
-
-\begin{proof}
-The proof follows the same steps as in Theorem~\ref{CLT:sumsedgelengths}, 
-with the additional indicator $\mathbf{1}_{\{\|x_1-x_2\|\le a\}}$ restricting all integrals to a bounded region. 
-For instance,
-\[
-M_{11}(f_a)
-= c \int_{\Gamma_s}
-\!\left(
-\int_{\Gamma_s(-x_1)\cap B(0,a)} |u|^{\tau}\varphi(u)\,\mathrm{d}u
-\right)^{\!4}
-\mathrm{d}x_1
-\le C\,s,
-\]
-since $\int_{B(0,a)}|u|^{\tau}\varphi(u)\,\mathrm{d}u<\infty$.
-Analogous bounds hold for $M_{12}(f_a)$ and $M_{22}(f_a)$.
-Thus, all moment terms in Corollary~\ref{normalapp1k2} are of order $s$, 
-and by Lemma~\ref{lem:varlength} the variance satisfies $\Var[L_{s,a}(\tau)]\geq cs$.
-Applying Corollary~\ref{normalapp1k2} yields the stated bounds with rate $s^{-1/2}$.
-\end{proof}
-
-Thus, Lemma \ref{truncationlemma1} and Lemma \ref{lem:CLT_truncated} yield the following theorem, giving a CLT in the entire regime $\alpha>2\tau+d$ for $L_{s}(\tau)$.
-
-\begin{theorem}\label{thm:CLTedgelengths_full}
-Let $\tau > -d$ and assume that $\bar{\varphi}(r)\sim r^{-\alpha}$ as $r\to\infty$ with exponent $\alpha>2\tau+d$. 
-Then, as $s\to\infty$,
-\[
-\frac{L_{s}(\tau)-\E[L_{s}(\tau)]}{\sqrt{\Var[L_{s}(\tau)]}}
-\;\xrightarrow{d}\;
-N.
-\]
-\end{theorem}
-
-
-\subsubsection*{The critical case \texorpdfstring{$\alpha = 2\tau + d$}{α = 2τ + d}}
-\label{subsubsec:criticalcase}
-
-We now turn to the borderline situation in which the decay exponent of $\bar{\varphi}$ satisfies
-$\alpha = 2\tau + d$. Recall that $\Gamma_s \subset \mathbb{R}^d$ is a convex, compact observation
-window with Lebesgue measure $\mathrm{Vol}(\Gamma_s)=s$. Let us assume that $\tau >0$. In the critical case we have
-\[
-|u|^{\tau}\,\bar{\varphi}(u) \;\sim\; |u|^{-(\tau + d)}, \qquad |u|\to\infty,
-\]
-and hence
-\[
-\int_{\Gamma_{cs}} |u|^{\tau}\,\bar{\varphi}(u)\,\mathrm{d}u
-\;\leq\;
-c+c\int_1^{{cs}} r^{\tau}r^{-2\tau - d}r^{d-1}\,\mathrm{d}r
-\; \leq c\, + cs^{-\frac{\tau}{d}},
-\]
-for some constant $c>0$ not depending on $s$. Inserting this estimate into the bound for $M_{11}(f)$ from~\eqref{cltedgelengthsm11} gives
-\[
-M_{11}(f)
-\;\leq\;
- c \mathrm{Vol}(\Gamma_s)\,\Big(\int_{\Gamma_{cs}} |u|^{\tau}\bar{\varphi}(u)\,\mathrm{d}u\Big)^{4}
-\;\leq\;
-s\,(c+cs^{-\frac{\tau}{d}})^4.
-\]
-Analogous considerations show that for $M_{12}(f)$ appearing in
-Corollary~\ref{normalapp1k2} we have
-\begin{align*}
-    M_{12}(f) \leq s (c +s^{-\frac{\tau}{d}})^2(c + \log s^{\frac{1}{d}}) + s(c+cs^{-\frac{\tau}{d}})^4
-\end{align*}
-and, moreover, for the term $M_{22}(f)$ we have
-\begin{align*}
-    M_{22}(f) \leq  (c+cs^{-\frac{\tau}{d}})^4 + (c +s^{-\frac{\tau}{d}})^2(c + \log s^{\frac{1}{d}}) + s(c + \log s^{\frac{1}{d}})^2 +s(c +s^{\frac{2\tau}{d}}).
-\end{align*}
-
-Thus, using these bounds in Corollary~\ref{normalapp1k2} we arrive at the following statement.
-
-\begin{theorem} \label{CLT:sumsedgelengthscritical}
-    Let $\tau > 0$. Assume $\bar{\varphi}$ has polynomial decay $\bar{\varphi}(r) \sim r^{-\alpha}$, $r \to \infty$, with (positive) exponent $\alpha = 2\tau + d$. Then there is a constant $C \in (0, \infty)$ independent of $s$ such that
-    \begin{align*}
-	\mathrm{d}_{\mathrm{Wass}}\left(\frac{L_s(\tau)-\E L_s(\tau)}{\sqrt{\Var L_s(\tau)}},N\right) & \le C \frac{s^{\frac{\tau}{d}-\frac12}}{\log s^{\frac{1}{d}}}\\
-	\mathrm{d}_{\mathrm{K}}\left(\frac{L_s(\tau)-\E L_s(\tau)}{\sqrt{\Var L_s(\tau)}},N\right) & \le  C \frac{s^{\frac{\tau}{d}-\frac12}}{\log s^{\frac{1}{d}}}.
-\end{align*}
-In particular, if $\tau \in (0, \frac{d}{2}]$, a central limit theorem holds.
-\end{theorem}
-
-
-\medskip
-\noindent\textbf{Truncation in the critical regime.}
-For $\tau>0$ define the (growing-cutoff) truncated statistic
-\[
-\overline{L}_s(\tau)
-:= \frac{1}{2}\sum_{(x_1,x_2)\in \eta^2_{\neq}\cap \Gamma_s^2}
-\mathbf{1}\!\left\{x_1\leftrightarrow x_2,\ \|x_1-x_2\|\le s^{\frac{1}{2\tau}}\right\}
-\|x_1-x_2\|^{\tau}.
-\]
-By Mecke’s formula and the same change-of-variables/reduction as above,
-\[
-\mathbb{E}\!\left[L_s(\tau)-\overline{L}_s(\tau)\right]
-= \frac{1}{2}\int_{\Gamma_s}\!\!\int_{\Gamma_s}
-\mathbf{1}_{\{\|x-y\|>s^{\frac{1}{2\tau}}\}}\,
-\varphi(x-y)\,\|x-y\|^{\tau}\,\mathrm{d}x\,\mathrm{d}y
-\;\sim\;
-s\!\int_{s^{\frac{1}{2\tau}}}^{\infty}\! r^{\tau}\,\bar{\varphi}(r)\,r^{d-1}\,\mathrm{d}r.
-\]
-In the critical case $\alpha=2\tau+d$ we have $\bar{\varphi}(r)\sim r^{-\alpha}$, hence
-\[
-\int_{s^{\frac{1}{2\tau}}}^{\infty} r^{\tau}\,r^{-\alpha}\,r^{d-1}\,\mathrm{d}r
-=\int_{s^{\frac{1}{2\tau}}}^{\infty} r^{-(\tau+1)}\,\mathrm{d}r
-\;\asymp\; \big(s^{\frac{1}{2\tau}}\big)^{-\tau}
-= s^{-\frac{1}{2}}.
-\]
-Therefore
-\begin{equation}\label{eq:L1gap_critical}
-\mathbb{E}\!\left[L_s(\tau)-\overline{L}_s(\tau)\right]
-\;\asymp\; \sqrt{s}.
-\end{equation}
-Since in the critical regime $\Var L_s(\tau)\asymp s\log s$ (see Lemma~\ref{lem:varlength} and the discussion above),
-the standardized $L^1$ gap satisfies
-\begin{equation}\label{eq:std_gap_critical}
-\frac{\mathbb{E}\!\left[L_s(\tau)-\overline{L}_s(\tau)\right]}
-{\sqrt{\Var L_s(\tau)}}
-\;\asymp\; \frac{\sqrt{s}}{\sqrt{s\log s}}
-\;=\; \frac{1}{\sqrt{\log s}}.
-\end{equation}
-
-\begin{lemma}\label{lem:critical_truncation_gap}
-Let $\tau>0$ and $\alpha=2\tau+d$. Then
-\[
-\frac{\mathbb{E}\!\left|L_s(\tau)-\overline{L}_s(\tau)\right|}
-{\sqrt{\Var L_s(\tau)}}
-\;\le\; \frac{C}{\sqrt{\log s}},
-\]
-for some $C\in(0,\infty)$ independent of $s$.
-\end{lemma}
-
-\begin{proof}
-By \eqref{eq:L1gap_critical} we have $\E|L_s-\overline{L}_s|\asymp\sqrt{s}$.
-If we divide by $\sqrt{\Var L_s(\tau)}\asymp \sqrt{s\log s}$ we obtain \eqref{eq:std_gap_critical}.
-\end{proof}
-
-\begin{lemma}\label{lem:critical_truncated_CLT}
-In the setting $\tau>0$, $\alpha=2\tau+d$, the truncated statistic $\overline{L}_s(\tau)$
-satisfies a central limit theorem with
-\[
-\mathrm{d}_{\mathrm{Wass}}\!\left(
-\frac{\overline{L}_s(\tau)-\E \overline{L}_s(\tau)}{\sqrt{\Var \overline{L}_s(\tau)}},\,N\right)
-\;\le\; C\,s^{-1/2},
-\qquad
-\mathrm{d}_{\mathrm{K}}\!\left(
-\frac{\overline{L}_s(\tau)-\E \overline{L}_s(\tau)}{\sqrt{\Var \overline{L}_s(\tau)}},\,N\right)
-\;\le\; C\,s^{-1/2}.
-\]
-\end{lemma}
-
-\begin{proof}
-We repeat the moment bounds as in Lemma~\ref{lem:CLT_truncated}, now with the cutoff
-$a=s^{\frac{1}{2\tau}}$. The inner integrals are restricted to $\|u\|\le a$, and their growth
-in $a$ induces at most polylogarithmic factors at the critical exponent;
-the resulting $M_{ij}$ terms are still $O(s\,\mathrm{polylog}(s))$.
-Moreover, $\Var\overline{L}_s(\tau)\asymp s\log s$, so Corollary~\ref{normalapp1k2}
-yields the stated $s^{-1/2}$ rate.
-\end{proof}
-
-
-
-
-Combining Lemma~\ref{lem:critical_truncation_gap} with Lemma~\ref{lem:critical_truncated_CLT}
-and using that $\Var[L_s(\tau)] \asymp s\log s$, we obtain that the difference between
-$L_s(\tau)$ and its truncated version is negligible at the scale $\sqrt{\Var[L_s(\tau)]}$.
-Together with the central limit theorem for $\overline{L}_s(\tau)$, this yields the following.
-
-\begin{theorem}\label{thm:CLTedgelengths_critical_full}
-Let $\tau>0$ and assume $\bar{\varphi}(r)\sim r^{-\alpha}$ as $r\to\infty$ with exponent
-$\alpha=2\tau+d$. Then, as $s\to\infty$,
-\[
-\frac{L_s(\tau)-\E[L_s(\tau)]}{\sqrt{\Var[L_s(\tau)]}}
-\;\xrightarrow{d}\;
-N.
-\]
-In particular, a central limit theorem holds for $L_s(\tau)$ in the critical regime.
-\end{theorem}
-
-
-
-
-
-
-%$$
-%\overline{L}_s(\tau) = \frac{1}{2} \sum_{(x_1,x_2)\in\eta_{s,\neq}^2\cap\Gamma_s^2} \mathbf{1}\{ x_1\leftrightarrow x_2, \|x_1-x_2\|\leq s^{\frac{1}{2\tau}} \} \|x_1-x_2\|^\tau
-%$$
-
-%$$
-%\mathbb{E}[L_s(\tau) - \overline{L}_s(\tau)] \sim s \int_{s^{\frac{1}{2\tau}}}^\infty r^{\tau} r^{-\alpha} r^{d-1} \, \, \mathrm{d}r \sim s (s^{\frac{1}{2\tau}})^{\tau-\alpha+d} =  s (s^{\frac{1}{2\tau}})^{-\tau}= \sqrt{s}
-%$$
-
-%$$
-%\frac{\mathbb{E}[L_s(\tau) - \overline{L}_s(\tau)]}{\sqrt{\operatorname{Var} L_s(\tau)}} \sim \frac{\sqrt{s}}{\sqrt{s \log s}} = \frac{1}{\sqrt{\log s}}
-%$$
-
-%$$
-%s \int_0^{s^{\frac{1}{2\tau}}} r^{4\tau} r^{-\alpha} r^{d-1} \, \mathrm{d} r \sim s (s^{\frac{1}{2\tau}})^{4\tau-\alpha+d} = s (s^{\frac{1}{2\tau}})^{2\tau} =s^2
-%$$
-
-
-
-
-
-
-
-\subsection{Stable limit theorems}
-
-Here are some conjectured theorems based on preliminary computations:
-
-Define
-$$
-\xi_s:=\frac{1}{2}\sum_{(z_1,z_2)\in\eta^2_{\neq}\cap \Gamma_s^2} \delta_{s^{1/(d-\alpha)}\|z_1-z_2\|}.
-$$
-
-\begin{theorem}\label{thm:edge-length_process}
-Assume that $\bar{\varphi}(r)\sim r^{-\alpha}$ as $r\to\infty$. Let $\zeta$ be a homogeneous Poisson process on $(0,\infty)$ with intensity $??$ and let
-$$
-\zeta^{(\alpha)}:= \sum_{t\in\zeta} \delta_{t^{1/(d-\alpha)}}
-$$
-\begin{itemize}
-\item [a)] For each $a\in(0,\infty)$,
-$$
-{\rm d_{KR}}(\xi_s^{(\tau)}|_{[a,\infty)}, \zeta^{(\alpha)}|_{[a,\infty)}) \leq ???.
-$$
-\item [b)] Then,
-$$
-\xi_s^{(\tau)} \overset{d}{\longrightarrow} \zeta^{(\alpha)} \quad \text{as} \quad s\to\infty.
-$$
-\end{itemize}
-\end{theorem}
-
-\begin{theorem}
-Let the assumptions of Theorem \ref{thm:edge-length_process} prevail.
-\begin{itemize}
-\item [a)] If $(\alpha-d)/\tau\in(0,1)$,
-$$
-s^{\tau/(d-\alpha)}L_s(\tau) \overset{d}{\longrightarrow} \sum_{t\in\zeta} t^{\tau/(d-\alpha)} \quad \text{as} \quad s\to\infty.
-$$
-\item [b)] If $(\alpha-d)/\tau=1$,
-$$
-s^{\tau/(d-\alpha)}(L_s(\tau) - \mathbb{E}[L_s(\tau)])  \overset{d}{\longrightarrow} S \quad \text{as} \quad s\to\infty,
-$$
-where
-$$
-S:=\lim_{n\to\infty} \sum_{t\in\zeta\cap[0,n]} t^{-1} - \ln n.
-$$
-\item [c)] If $(\alpha-d)/\tau\in(1,2)$,
-$$
-s^{\tau/(d-\alpha)}(L_s(\tau) - \mathbb{E}[L_s(\tau)]) \overset{d}{\longrightarrow} S_\tau \quad \text{as} \quad s\to\infty,
-$$
-where
-$$
-S_\tau := \lim_{n\to\infty} \sum_{t\in\zeta\cap[0,n]} t^{\tau/(d-\alpha)} - \mathbb{E}\sum_{t\in\zeta\cap[0,\infty]} t^{\tau/(d-\alpha)}.
-$$
-\end{itemize}
-\end{theorem}
-
-\section{Point process convergence for edge lengths}
-
-Assume that there exist constants $l_{\bar{\varphi}}\in(0,\infty)$ and $\alpha\in(d,\infty)$ such that
-\begin{equation}\label{eqn:assumption_phi}
-\lim_{t\to\infty} t^{\alpha} \bar{\varphi}(t)=l_{\bar{\varphi}}.
-\end{equation}
-Together with the observation that $\bar{\varphi}$ is bounded by one, this yields the existence of a constant $C_{\bar{\varphi}}$ such that
-\begin{equation}\label{eqn:Upper_bound_bar_varphi}
-\bar{\varphi}(t) \leq \frac{C_{\bar{\varphi}}}{t^\alpha}
-\end{equation}
-for all $t\in(0,\infty)$. Moreover, we define
-$$
-c_{\bar{\varphi}} = \frac{\gamma^2 d \kappa_d l_{\bar{\varphi}}}{2(\alpha-d)}.
-$$
-
-In the following, we consider the point processes
-$$
-\tilde{\xi}_s = \frac{1}{2} \sum_{(x_1,x_2)\in\eta_{s,\neq}^2} \mathbf{1}\bigg\{x_1\leftrightarrow x_2, \frac{x_1+x_2}{2}\in\Gamma_s \bigg\} \delta_{s^{-\frac{1}{\alpha-d}}\|x_1-x_2\|}
-$$
-for $s\geq 1$.
-
-\begin{theorem}\label{thm:edge-length_process}
-Assume that \eqref{eqn:assumption_phi} is satisfied with $\alpha\in(d,\infty)$. Let $\zeta$ be a homogeneous Poisson process on $(0,\infty)$ with intensity $c_{\bar{\varphi}}$ and let
-$$
-\zeta^{(\alpha)}:= \sum_{t\in\zeta} \delta_{t^{-\frac{1}{\alpha-d}}}.
-$$
-\begin{itemize}
-\item [a)] For any $a\in(0,\infty)$,
-$$
-d_{\rm KR}(\tilde{\xi}_s|_{[a,\infty)},\zeta^{(\alpha)}|_{[a,\infty)}) \leq \int_a^\infty \big|s^{\frac{\alpha}{\alpha-d}}v^{\alpha} \bar{\varphi}(s^{\frac{1}{\alpha-d}}v) -l_{\bar{\varphi}}\big| \, v^{d-\alpha-1}\, \mathrm{d}v + \frac{\gamma^3 (d\kappa_d C_{\bar{\varphi}})^2}{(\alpha-d)^2 a^{2(\alpha-d)}} \frac{1}{s}.
-$$
-Moreover, the right-hand side vanishes as $s\to\infty$.
-\item [b)] One has
-$$
-\tilde{\xi}_s\overset{d}{\longrightarrow} \zeta^{(\alpha)}\quad \text{as} \quad s\to\infty.
-$$
-\end{itemize}
-\end{theorem}
-
-\begin{proof}
-Let $A\in\mathcal{B}(\mathbb{R})$ be such that $A\subset [a,\infty)$. For the intensity measure $\widetilde{\mathbf{L}}_s$ of $\tilde{\xi}_s$ we obtain
-\begin{align*}
-\mathbf{L}_s(A) & = \mathbb{E} \tilde{\xi}_s(A) = \frac{1}{2} \mathbb{E} \sum_{(x_1,x_2)\in\eta_{s,\neq}^2} \mathbf{1}\bigg\{ \frac{x_1+x_2}{2}\in\Gamma_s \bigg\} \mathbf{1}\{s^{-\frac{1}{\alpha-d}}\|x_1-x_2\| \in A\} \\
-& = \frac{\gamma^2}{2} \int_{(\mathbb{R}^d)^2} \mathbf{1}\bigg\{ \frac{x_1+x_2}{2} \in \Gamma_s\bigg\} \mathbf{1}\{s^{-\frac{1}{\alpha-d}}\|x_1-x_2\|\in A\} \bar{\varphi}(\|x_1-x_2\|) \, \mathrm{d}(x_1,x_2) \\
-& = \frac{\gamma^2}{2} \int_{(\mathbb{R}^d)^2} \mathbf{1}\{ z \in \Gamma_s\} \mathbf{1}\{s^{-\frac{1}{\alpha-d}}\|z\|\in A\} \bar{\varphi}(\|z\|) \, \mathrm{d}(y,z) \\
-& = \frac{\gamma^2 \lambda_d(\Gamma_s)}{2} \int_{\mathbb{R}^d} \mathbf{1}\{s^{-\frac{1}{\alpha-d}}\|z\|\in A\} \bar{\varphi}(\|z\|) \, \mathrm{d}z = \frac{\gamma^2 s}{2} d\kappa_d \int_0^\infty \mathbf{1}\{s^{-\frac{1}{\alpha-d}}u\in A\} \bar{\varphi}(u) u^{d-1} \, \mathrm{d}u \\
-& = \frac{d\kappa_d \gamma^2}{2} s^{1+\frac{d}{\alpha-d}} \int_0^\infty \mathbf{1}\{v\in A\} \bar{\varphi}(s^{\frac{1}{\alpha-d}}v) v^{d-1} \, \mathrm{d}v = \frac{d\kappa_d \gamma^2}{2} \int_A s^{\frac{\alpha}{\alpha-d}} \bar{\varphi}(s^{\frac{1}{\alpha-d}}v) v^{d-1} \, \mathrm{d}v.
-\end{align*}
-The intensity measure $\mathbf{L}$ of $\zeta^{(\alpha)}$ satisfies
-\begin{align*}
-\mathbf{L}(A) & = \mathbb{E} \sum_{t\in\zeta} \mathbf{1}\{t^{\frac{1}{d-\alpha}}\in A\} = c_{\bar{\varphi}} \int_0^\infty \mathbf{1}\{t^{\frac{1}{d-\alpha}}\in A\} \, \mathrm{d}t \\
-& = c_{\bar{\varphi}} (\alpha-d) \int_0^\infty \mathbf{1}\{v\in A\} v^{d-\alpha-1} \, \mathrm{d}v = \frac{\gamma^2 d \kappa_d }{2} \int_A l_{\bar{\varphi}}v^{d-\alpha-1} \, \mathrm{d}v.
-\end{align*}
-This implies
-$$
-|\mathbf{L}_s(A)-\mathbf{L}(A)| \leq  \frac{\gamma^2 d \kappa_d }{2} \int_A |s^{\frac{\alpha}{\alpha-d}} \bar{\varphi}(s^{\frac{1}{\alpha-d}}v) v^{d-1}-l_{\bar{\varphi}}v^{d-\alpha-1}| \, \mathrm{d}v
-$$
-so that
-\begin{align*}
-d_{\rm TV}(\mathbf{L}_s|_A, \mathbf{L}|_A) & \leq \int_a^\infty |s^{\frac{\alpha}{\alpha-d}} \bar{\varphi}(s^{\frac{1}{\alpha-d}}v) v^{d-1}-l_{\bar{\varphi}}v^{d-\alpha-1}| \, \mathrm{d}v \\
-& \leq \int_a^\infty \big|s^{\frac{\alpha}{\alpha-d}}v^{\alpha} \bar{\varphi}(s^{\frac{1}{\alpha-d}}v) -l_{\bar{\varphi}}\big| \, v^{d-\alpha-1}\, \mathrm{d}v.
-\end{align*}
-Moreover, we have
-\begin{align*}
-I_a & := \gamma^3 \int_{(\mathbb{R}^d)^3} \mathbf{1}\bigg\{ \frac{x_1+x_2}{2}, \frac{x_1+x_3}{2} \in \Gamma_s \bigg\} \mathbf{1}\{ \|x_1-x_2\|, \|x_1-x_3\| \geq a s^{\frac{1}{\alpha-d}}\} \\
-& \hspace{4cm} \times \bar{\varphi}(\|x_1-x_2\|) \bar{\varphi}(\|x_1-x_3\|) \, \mathrm{d}(x_1,x_2,x_3) \\
-& \le \gamma^3 \int_{(\mathbb{R}^d)^3} \mathbf{1}\bigg\{ \frac{x_1+x_2}{2} \in \Gamma_s \bigg\} \mathbf{1}\{ \|x_1-x_2\|, \|x_1-x_3\| \geq a s^{\frac{1}{\alpha-d}}\} \\
-& \hspace{4cm} \times \bar{\varphi}(\|x_1-x_2\|) \bar{\varphi}(\|x_1-x_3\|) \, \mathrm{d}(x_1,x_2,x_3) \\
-& \le \gamma^3 \int_{(\mathbb{R}^d)^3} \mathbf{1}\{ y \in \Gamma_s \} \mathbf{1}\{ \|z_1\|, \|z_2\| \geq a s^{\frac{1}{\alpha-d}}\} \bar{\varphi}(\|z_1\|) \bar{\varphi}(\|z_2\|) \, \mathrm{d}(y,z_1,z_2) \\
-& = \gamma^3 \lambda_d(\Gamma_s) \bigg( \int_{\mathbb{R}^d} \mathbf{1}\{\|z\|\geq a s^{\frac{1}{\alpha-d}}\} \bar{\varphi}(\|z\|) \, \mathrm{d}z \bigg)^2 = \gamma^3 s \bigg( d\kappa_d \int_{a s^{\frac{1}{\alpha-d}}}^\infty \bar{\varphi}(u) u^{d-1}\, \mathrm{d}u \bigg)^2.
-\end{align*}
-From \eqref{eqn:Upper_bound_bar_varphi} it follows that
-$$
-\int_{a s^{\frac{1}{\alpha-d}}}^\infty \bar{\varphi}(u) \, \mathrm{d}u \leq C_{\bar{\varphi}} \int_{a s^{\frac{1}{\alpha-d}}}^\infty u^{d-\alpha-1} \, \mathrm{d}u = \frac{C_{\bar{\varphi}}}{\alpha-d} (a s^{\frac{1}{\alpha-d}})^{d-\alpha} = \frac{C_{\bar{\varphi}}}{(\alpha-d) a^{\alpha-d} s}.
-$$
-This to
-$$
-I_a \leq \frac{\gamma^3 (d\kappa_d C_{\bar{\varphi}})^2}{(\alpha-d)^2 a^{2(\alpha-d)}} \frac{1}{s}
-$$
-Now part a) follows from Theorem \ref{Poisson_process_approximation}.
-
-By \eqref{eqn:Upper_bound_bar_varphi}, one has
-$$
-\big|s^{\frac{\alpha}{\alpha-d}}v^{\alpha} \bar{\varphi}(s^{\frac{1}{\alpha-d}}v) -l_{\bar{\varphi}}\big| \leq (C_{\bar{\varphi}}+l_{\bar{\varphi}}) v^{d-\alpha-1}
-$$
-for all $v\geq a$ and the right-hand side is integrable on $(a,\infty)$. Moreover, \eqref{eqn:assumption_phi} ensures that
-$$
-\lim_{s\to\infty} \big|s^{\frac{\alpha}{\alpha-d}}v^{\alpha} \bar{\varphi}(s^{\frac{1}{\alpha-d}}v) -l_{\bar{\varphi}}\big| \, v^{d-\alpha-1} = 0
-$$
-for all $v\geq a$. Thus, the dominated convergence theorem leads to
-$$
-\lim_{s\to\infty} \int_a^\infty \big|s^{\frac{\alpha}{\alpha-d}}v^{\alpha} \bar{\varphi}(s^{\frac{1}{\alpha-d}}v) -l_{\bar{\varphi}}\big| \, v^{d-\alpha-1}\, \mathrm{d}v = 0.
-$$
-Since the second part of the bound in part a) obviously vanishes as $s\to\infty$, we see that
-$$
-\lim_{s\to\infty} {\rm d}_{\rm KR}(\tilde{\xi}_s|_{[a,\infty)},\zeta^{(\alpha)}|_{[a,\infty)})=0.
-$$
-Since convergence in the Kantorovich--Rubinstein distance implies convergence in distribution, we obtain that
-$$
-\tilde{\xi}_s|_{[a,\infty)}\overset{d}{\longrightarrow}\zeta^{(\alpha)}|_{[a,\infty)} \quad \text{as} \quad s\to\infty.
-$$
-By \cite[Theorem 23.16]{Kallenberg_2023} this implies that $\tilde{\xi}_s\overset{d}{\longrightarrow}\zeta^{(\alpha)}$ as $s\to\infty$.
-\end{proof}
-
-\begin{corollary}
-Let the assumptions of Theorem \ref{thm:edge-length_process} prevail and let $Z$ be a random variable such that $\mathbb{P}(Z>a)=e^{-c_{\bar{\varphi}}a^{d-\alpha}}$ for $a\in(0,\infty)$. Then,
-$$
-s^{-\frac{1}{\alpha-d}}\max_{(x_1,x_2)\in\eta_{s,\neq}^2, x_1\leftrightarrow x_2, \frac{x_1+x_2}{2}\in\Gamma_s} \|x_1-x_2\| \overset{d}{\longrightarrow} Z \quad \text{as} \quad s\to\infty.
-$$
-\end{corollary}
-
-\begin{proof}
-Let $a\in(0,\infty)$ be fixed. Using the same notation as in Theorem \ref{thm:edge-length_process}, we see that
-$$
-\mathbb{P}(\zeta^{(\alpha)}((a,\infty))=0)= \mathbb{P}(\zeta((0,a^{d-\alpha}))=0) = e^{-c_{\bar{\varphi}} a^{d-\alpha}}=\mathbb{P}(Z>a)
-$$
-and that
-$$
-\mathbb{P}\bigg( s^{-\frac{1}{\alpha-d}}\max_{(x_1,x_2)\in\eta_{s,\neq}^2, \frac{x_1+x_2}{2}\in\Gamma_s} \|x_1-x_2\|>a\bigg) = \mathbb{P}(\tilde{\xi}_s((a,\infty))=0).
-$$
-This implies that
-\begin{align*}
-\left| \mathbb{P}\bigg( s^{-\frac{1}{\alpha-d}}\max_{(x_1,x_2)\in\eta_{s,\neq}^2, \frac{x_1+x_2}{2}\in\Gamma_s} \|x_1-x_2\|>a\bigg) - \mathbb{P}(Z>a) \right| & \leq {\rm d}_{\rm TV}(\tilde{\xi}_s((a,\infty)),\zeta^{(\alpha)}((a,\infty))) \\ & \leq {\rm d}_{\rm KR}(\tilde{\xi}_s|_{[a,\infty)},\zeta^{(\alpha)}|_{[a,\infty)}).
-\end{align*}
-Since, by Theorem \ref{thm:edge-length_process}, the right-hand side converges to zero as $s\to\infty$, this proves the desired statement.
-\end{proof}
-
-For $\tau\in(0,\infty)$ we consider the edge-length functionals
-$$
-\widetilde{L}_s^{(\tau)} = \frac{1}{2} \sum_{(x_1,x_2)\in\eta^2_{s,\neq}} \mathbf{1}\bigg\{ x_1\leftrightarrow x_2, \frac{x_1+x_2}{2}\in\Gamma_s \bigg\} \|x_1-x_2\|^\tau
-$$
-for $s\geq 1$.
-
-Moreover, for a fixed $a\in(0,\infty)$, we let
-$$
-\widetilde{L}_{s,>a}^{(\tau)} = \frac{1}{2} \sum_{(x_1,x_2)\in\eta^2_{s,\neq}} \mathbf{1}\bigg\{x_1\leftrightarrow x_2,\frac{x_1+x_2}{2}\in\Gamma_s,\|x_1-x_2\|>s^{\frac{1}{\alpha-d}}a\bigg\} \|x_1-x_2\|^\tau
-$$
-and
-$$
-\widetilde{L}_{s,\leq a}^{(\tau)} = \frac{1}{2} \sum_{(x_1,x_2)\in\eta^2_{s,\neq}} \mathbf{1}\{x_1\leftrightarrow x_2, \frac{x_1+x_2}{2}\in\Gamma_s, \|x_1-x_2\|\leq s^{\frac{1}{\alpha-d}}a\} \|x_1-x_2\|^\tau
-$$
-for $s\geq 1$.
-
-Note that, for $u\in\mathbb{R}$,
-$$
-\mathbb{P}( s^{-\frac{\tau}{\alpha-d}} \widetilde{L}_{s,>a}^{(\tau)} \leq u ) = \mathbb{P}\bigg( \sum_{t\in\tilde{\xi}_s\cap (a,\infty)} t^{\tau} \leq u\bigg) 
-$$
-and
-$$
-\mathbb{P}\bigg( \sum_{t\in\zeta\cap[0,a^{d-\alpha})} t^{-\frac{\tau}{\alpha-d}} \leq u \bigg) = \mathbb{P}\bigg( \sum_{t\in\zeta^{(\alpha)}\cap(a,\infty)} t^\tau \leq u \bigg).
-$$
-This leads to
-$$
-\bigg| \mathbb{P}( s^{-\frac{\tau}{\alpha-d}} \widetilde{L}_{s,>a}^{(\tau)} \leq u ) - \mathbb{P}\bigg( \sum_{t\in\zeta\cap[0,a^{d-\alpha})} t^{-\frac{\tau}{\alpha-d}} \leq u \bigg) \bigg| \leq {\rm d}_{\rm KR}(\tilde{\xi}_s,\zeta^{(\alpha)})
-$$
-so that, by Theorem \ref{thm:edge-length_process} a),
-$$
-s^{-\frac{\tau}{\alpha-d}} \widetilde{L}_{s,>a}^{(\tau)} \overset{d}{\longrightarrow} \sum_{t\in\zeta\cap[0,a^{d-\alpha})} t^{-\frac{\tau}{\alpha-d}} \quad \text{as} \quad s\to\infty.
-$$
-
-For $d+\tau<\alpha$ we have
-\begin{align*}
-s^{-\frac{\tau}{\alpha-d}}\mathbb{E} \widetilde{L}_{s,>a}^{(\tau)} & = \frac{s^{-\frac{\tau}{\alpha-d}}}{2} \mathbb{E} \sum_{(x_1,x_2)\in\eta^2_{s,\neq}} \mathbf{1}\bigg\{\frac{x_1+x_2}{2}\in\Gamma_s,\|x_1-x_2\|>s^{\frac{1}{\alpha-d}}a\bigg\} \|x_1-x_2\|^\tau \\
-& = \frac{\gamma^2 s^{-\frac{\tau}{\alpha-d}}}{2} \int_{(\mathbb{R}^d)^2} \mathbf{1}\bigg\{\frac{x_1+x_2}{2}\in\Gamma_s,\|x_1-x_2\|>s^{\frac{1}{\alpha-d}}a\bigg\} \|x_1-x_2\|^\tau \bar{\varphi}(\|x_1-x_2\|) \, \mathrm{d}(x_1,x_2) \\
-& = \frac{\gamma^2 s^{-\frac{\tau}{\alpha-d}}}{2} \int_{(\mathbb{R}^d)^2} \mathbf{1}\{y\in\Gamma_s,\|z\|>s^{\frac{1}{\alpha-d}}a\} \|z\|^\tau \bar{\varphi}(\|z\|) \, \mathrm{d}(y,z) \\
-& = \frac{\gamma^2 s^{1-\frac{\tau}{\alpha-d}} d\kappa_d}{2} \int_{s^{\frac{1}{\alpha-d}}a}^\infty u^\tau \bar{\varphi}(u) u^{d-1} \, \mathrm{d}u  = \frac{\gamma^2 d\kappa_d}{2} \int_{a}^\infty s^{\frac{\alpha}{d-\alpha}} u^\tau \bar{\varphi}(s^{\frac{1}{\alpha-d}}u) u^{d-1} \, \mathrm{d}u.
-\end{align*}
-By the dominated convergence theorem, we obtain that
-$$
-\lim_{s\to\infty} s^{-\frac{\tau}{\alpha-d}}\mathbb{E} \widetilde{L}_{s,>a}^{(\tau)} = \frac{\gamma^2 d\kappa_d}{2} \int_{a}^\infty l_{\bar{\varphi}} u^{\tau-\alpha+d-1} \, \mathrm{d}u.
-$$
 
 \section{Related work on the RCM}
 
