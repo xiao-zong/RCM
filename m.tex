@@ -825,7 +825,7 @@ A graph $G$ is balanced if
     \end{equation}
 and strictly balanced if \eqref{balance1} 
 holds as a strict inequality for all $H\subsetneq G$. 
-\item[2)] A graph $G$ is $K_1$-balanced if 
+\item[2)] A graph $G$ is $K_1$-balanced, also called strongly balanced, if 
 \begin{equation}
 	\frac{e(H)}{v(H)-1}\le\frac{e(G)}{v(G)-1}, \qquad \quad \text{for all }H\subseteq G \quad \text{with} \quad v(H)>1,
 	\label{balance2}
@@ -833,6 +833,14 @@ holds as a strict inequality for all $H\subsetneq G$.
 with the convention $0/0=0$.
 \end{itemize}
   \end{defi}
+
+We consider $\ell$ copies of $G$ with the vertices, denoted by $x_i^{(r)}$ for $i \in [k]$ and $r \in [1, \dots, \ell]$. For a given partition $\pi \in \widetilde{\Pi}^\ell(k)$, the {\it contracted graph} $(G^{\otimes \ell})_{\pi}$ is constructed as follows:
+\begin{itemize}
+    \item \textbf{Vertices:} The vertex set consists of the blocks of the partition $\pi$. Formally, two vertices $x_{i_1}^{(r_1)}$ and $x_{i_2}^{(r_2)}$ are identified as a single vertex in $(G^{\otimes \ell})_{\pi}$ if and only if the indices $(r_1, i_1)$ and $(r_2, i_2)$ belong to the same block of $\pi$. The resulting graph has exactly $|\pi|$ vertices.
+    
+    \item \textbf{Edges:} The edge set is inherited from the $\ell$ copies of $G$. For every original edge $\{i, j\} \in E_G$, we include the edges $\{x_i^{(r)}, x_j^{(r)}\}$ for all $r \in [\ell]$, subject to the vertex identifications defined by $\pi$.
+\end{itemize}
+Note that Because $G$ is connected and the identification process (contraction) does not break existing paths, the resulting graph $(G^{\otimes \ell})_{\pi}$ remains connected.
 \subsubsection{Subgraph counts with integrable connection function}
 Suppose the connection function $\varphi$ satisfies 
 $$
@@ -898,15 +906,7 @@ For $n\in\mathbb{N}$, we use the abbreviation $\mathbf{I}_n:=\{(i,j)\in[n]^2:i<j
 \begin{equation*}
 	\mathcal{I}_n:=\{T\subset\mathbf{I}_n:|T|=n-1~\mbox{and the graph $([n],T)$ is connected}\}.
 \end{equation*}
-Because graph $G$ is connected, for any $\pi\in\widetilde{\Pi}^2(\ell)$, the graph with vertex set 
-$$
-\left\{x_i^{(1)},x_i^{(2)},\dots,x_i^{(\ell)}:i\in[k]\right\}_{\pi},
-$$
-and edge set 
-$$
-\left\{\{x^{(1)}_i,x^{(1)}_j\},\{x^{(2)}_i,x^{(2)}_j\},\dots, \{x^{(\ell)}_i,x^{(\ell)}_j\}:\{i,j\}\in E_G\right\}_{\pi}
-$$
-is a connected graph with $|\pi|$ vertices, denoted by $(G^{\otimes \ell})_{\pi}$.
+Because graph $G$ is connected, for any $\pi\in\widetilde{\Pi}^\ell(k)$, the contracted graph $(G^{\otimes\ell})_{\pi}$ is still connected. 
 Consequently, there exists a spanning tree of $(G^{\otimes \ell})_{\pi}$, which is isomorphic to a tree $I_{\pi}\in\mathcal{I}_{|\pi|}$.
 Therefore, the integral in \eqref{intgrand-1} is bounded by 
 \begin{align}
@@ -1043,96 +1043,7 @@ The connection function $\varphi$ is radial with radial profile $\bar{\varphi}$.
 \lim_{t\to\infty} t^{\alpha} \bar{\varphi}(t)=l_{\bar{\varphi}}.
 \end{equation}
 \end{ass}
-\begin{lemma}\label{noninteg-upper-1}
-If Assumption~\ref{bound-ass-1} holds, we have, for any $\ell\in\mathbb{N}$ and  $\pi\in\widetilde{\Pi}^\ell(k)$
-\begin{equation}
-\int_{\Gamma_s^{|\pi|}}\int_{[0,1]^{|\pi|\times|\pi|}_{\ne}}((f^{(i)}_G)^{\otimes\ell})_{\pi}(\bm{x},\bm{u})\mathrm{d}\bm{u}\lambda_d^{|\pi|}(\mathrm{d}\bm{x})\le 
-C s^{(1-\alpha/d)(|\pi|-1)+1},
-\end{equation}
-with $i\in\{=,\subset\}$.
-Moreover, we have 
-\begin{equation}\label{upperbound-2}
-	\cum_\ell(N_G^{(i)})\le
-C s^{(k-1)\ell(1-\alpha/d)+1},
-\end{equation}
-with $i\in\{=,\subset\}$.
- \end{lemma}
-%}
-\begin{proof}
-  We need modifty the estimates appeared in \eqref{intgrand-2}
-\begin{align*}
-  	&\int_{\Gamma_s^{|\pi|}}\int_{[0,1]^{|\pi|\times|\pi|}_{\ne}}((f^{(i)}_G)^{\otimes\ell})_{\pi}(\bm{x},\bm{u})\mathrm{d}\bm{u}\lambda_d^{|\pi|}(\mathrm{d}\bm{x})\nonumber\\
-	&\le\frac1{|\mathrm{Aut}(G)|^\ell}\int_{(\mathbb{R}^d)^{|\pi|}}\mathbf{1}(x_1,\dots,x_{|\pi|}\in\Gamma_s)\left(\prod_{r=1}^\ell\prod_{\{i,j\}\in E_G}\varphi\left(x_i^{(r)}-x_j^{(r)}\right)\right)_{\pi}\gamma^{|\pi|}\mathrm{d}\bm{x}\nonumber\\
-	&\le\frac1{|\mathrm{Aut}(G)|^\ell}\int_{(\mathbb{R}^d)^{|\pi|}}\mathbf{1}(x_1,\dots,x_{|\pi|}\in\Gamma_s)\prod_{\{i,j\}\in I_{|\pi|}}\varphi\left(x_i^{(r)}-x_j^{(r)}\right)_{\pi}\gamma^{|\pi|}\mathrm{d}\bm{x}\nonumber,
-\end{align*}
-where $x^{(r)}_i:=x_{j}$ if $(r,i)\in\pi_j$ for $r=1,\dots,\ell$, $i=1,\dots,k$ and $j=1,\dots,|\pi|$.
-Taking integration recursively from leaves to the root, using the key observation that 
-\begin{equation}\label{subgraph-integral-1}
-	\int_{\Gamma_s}\varphi(x)\mathrm{d}x\asymp\int_0^{s^{1/d}}r^{d-1-\alpha}\mathrm{d}r\asymp s^{1-\alpha/d},
-\end{equation}
-we have
-\begin{equation}
-	\int_{\Gamma_s^{|\pi|}}\int_{[0,1]^{|\pi|\times|\pi|}_{\ne}}((f^{(i)}_G)^{\otimes\ell})_{\pi}(\bm{x},\bm{u})\mathrm{d}\bm{u}\lambda_d^{|\pi|}(\mathrm{d}\bm{x})\le C (s^{1-\alpha/d})^{|\pi|-1}s.
-\end{equation}
-Moreover, since $|\pi|\le (k-1)\ell+1$ for all $\pi\in\widetilde{\Pi}^\ell(k)$, the cumulant of order  $\ell$ is bounded by 
-$$
-C  (s^{1-\alpha/d})^{(k-1)\ell}s,
-$$
-which completes the proof.
-\end{proof}
-\begin{lemma}\label{noninte-lower-1}
-If Assumption~\ref{bound-ass-1} holds, we have 
-\begin{equation}\label{lowerbound-2}
-	\Var(N_G^{\subset})\gtrsim s^{2k-1-2|E_G|\alpha/d}.
-\end{equation}
-\end{lemma}
-\begin{proof}
-For the convex set $\Gamma_s$, we denote the inradius of $\Gamma_s$ as $r(\Gamma_s)$. Given that the volume of $\Gamma_s$ is $s$, there exists a constant $c_1>0$ such that  $r(\Gamma_s)\le c_1 s^{1/d}$. Since $\bar{\varphi}(r)\asymp r^{-\alpha}$ is non-increasing, there exists a constant $c_2>0$ such that for all sufficiently large $s$  
-\begin{equation}
-	\inf_{x,y\in\Gamma_s}\varphi(x-y)=\inf_{0\le t\le 2r(\Gamma_s)}\bar{\varphi}(t)\ge c_2 r(\Gamma_s)^{-\alpha}\asymp s^{-\alpha/d}.
-\end{equation}
-The proof follows from that there exists a spanning tree in each connected graph, as in the proof of Proposition~\ref{subgraph-cumu-1}.
-Take $\rho \in \widetilde{\Pi}^2(k)$ to be the set partition such that 
-$\{(1,1),(2,1)\} \in \rho$ and every other block of $\rho$ contains exactly one element, 
-so that $|\rho| = 2k - 1$. 
-Consequently, there exists a spanning tree $I_{\rho} \in \mathcal{I}_{2k-1}$ of 
-$(G^{\otimes 2})_{\rho}$.
-Hence, we have 
-\begin{align*}
-&\Var(N_G^{\subset})\\
-&=\sum_{\pi\in\widetilde{\Pi}^2(k)}\int_{\Gamma_s^{|\pi|}}\int_{[0,1]^{|\pi|(|\pi|-1)/2}}(f^{\subset}_G\otimes f^{\subset}_G)_{\pi}(\bm{x},\bm{u})\mathrm{d}\bm{u}\gamma^{|\pi|}\mathrm{d}\bm{x}\nonumber\\
-&\ge\int_{(\mathbb{R}^d)^{2k-1}}\mathbf{1}(x_1,\dots,x_{2k-1}\in\Gamma_s)\left(\prod_{\{i,j\}\in E_{(G^{\otimes 2})_{\rho}}}\varphi(x_i-x_j)\right)\mathrm{d}(x_1,\dots,x_{2k-1})\\
-&\ge\int_{(\mathbb{R}^d)^{2k-1}}\mathbf{1}(x_1,\dots,x_{2k-1}\in\Gamma_s)\left(\prod_{\{i,j\}\in I_{\rho}}\varphi(x_i-x_j)\right)\mathrm{d}(x_1,\dots,x_{2k-1})
-\times\left[\inf_{x,y\in\Gamma_s}\varphi(x-y)\right]^{2|E_G|-(2k-2)}\\
-&\gtrsim s \left(s^{1-\alpha/d}\right)^{2k-2}\left(s^{-\alpha/d}\right)^{2|E_G|-(2k-2)}=s^{2k-1-2|E_G|\alpha/d}.
-\end{align*}
-\end{proof}
-\begin{remark}
-	Note the lower bound in \eqref{lowerbound-2} is sharp, meaning it coincides with the upper bound established in \eqref{upperbound-2},  when $|E_G|=k-1$, i.e., when $G$ is a tree.
-\end{remark}
-\begin{theorem}
-Assuming that Assumption~\ref{bound-ass-1} holds, we have
-\begin{equation}
-	\mathrm{d}_{\mathrm{Wass}}\left(\frac{N_G^{\subset}-\mathbb{E} N_G^{\subset}}{\sqrt{\Var N_G^{\subset}}},N\right)\le \mathrm{d}_{\mathrm{K}}\left(\frac{N_G^{\subset}-\mathbb{E} N_G^{\subset}}{\sqrt{\Var N_G^{\subset}}},N\right)\le C\frac1{\sqrt{s}}s^{2(|E_G|-k+1)\alpha/d}.
-\end{equation}
-\end{theorem}
-\begin{proof}
-From Lemma~\ref{noninteg-upper-1}, it is straightforward that 
-$$
-\max_{1\le i,j\le k}M_{i,j}(f_G^{\subset})\le s^{4(k-1)(1-\alpha/d)+1}.
-$$
-Combining with the lower bound of the variance obtained in Lemma~\ref{noninte-lower-1}, the claim follows directly from Theorem~\ref{normalapp1}.
-\end{proof}
-\begin{remark}
-When $|E_G|=k-1$, i.e., $G$ is a tree,  
-the convergence rate is $O(s^{-1/2})$. 
-\end{remark}
-\begin{remark}
-If $|E_G|>k-1$, then the central limit theorem holds whenever 
-$$
-0<\alpha<\frac{d}{4(|E_G|-k+1)}.
-$$
-\end{remark}
+Before presenting the main results of this section, we first illustrate the key ideas with a toy example.
 \begin{example}
 	When $G=K_3$ is a triangle, according to Proposition~\ref{prop:expectation_variance}, we have
 \begin{align*}
@@ -1166,12 +1077,13 @@ and
 \end{equation}
 \end{example}
 
-\textcolor{red}{
-According to the Example above, we know that, for each $\pi\in\widetilde{\Pi}^\ell(k)$ 
-\begin{equation}
-	\int_{\Gamma_s^{|\pi|}}\int_{[0,1]^{|\pi|\times|\pi|}_{\ne}}((f^{(i)}_G)^{\otimes\ell})_{\pi}(\bm{x},\bm{u})\mathrm{d}\bm{u}\lambda_d^{|\pi|}(\mathrm{d}\bm{x})\nonumber\asymp s^{|\pi|-e((G^{\otimes\ell})_\pi)\alpha/d}.
+\begin{lemma}\label{noninteg-upper-1}
+If Assumption~\ref{bound-ass-1} holds, we have, for any $\ell\in\mathbb{N}$ and  $\pi\in\widetilde{\Pi}^\ell(k)$
+\begin{equation}\label{noninteg-upper-2}
+\int_{\Gamma_s^{|\pi|}}\int_{[0,1]^{|\pi|\times|\pi|}_{\ne}}((f^{\subset}_G)^{\otimes\ell})_{\pi}(\bm{x},\bm{u})\mathrm{d}\bm{u}\lambda_d^{|\pi|}(\mathrm{d}\bm{x})\asymp 
+s^{|\pi|-e((G^{\otimes\ell})_\pi)\alpha/d}.
 \end{equation}
-Analogous to \cite[Proposition~7.1]{LiuPrivault25b}, suppose that $G$ is $K_1$-balanced, we have 
+Moreover, suppose that $G$ is $K_1$-balanced, we have 
 \begin{align}
 	\label{cumasym1}
     \cum_\ell(N_G^{\subset})\asymp
@@ -1180,13 +1092,73 @@ Analogous to \cite[Proposition~7.1]{LiuPrivault25b}, suppose that $G$ is $K_1$-b
 	s^{k-e(G)\alpha/d}, \ \ \ &\mbox{when}~\alpha\in(\frac{k-1}{e(G)}d,d).
 \end{cases}
 \end{align}
-This further gives that, by applying Theorem~\ref{normalapp1}, when $G$ is $K_1$-balanced, 
+ \end{lemma}
+%}
+\begin{proof}
+	We need modifty the estimates appeared in \eqref{intgrand-2}. By letting $v_i:=s^{-1/d}x_i$, we have 
+\begin{align}
+  	&\int_{\Gamma_s^{|\pi|}}\int_{[0,1]^{|\pi|\times|\pi|}_{\ne}}((f^{\subset}_G)^{\otimes\ell})_{\pi}(\bm{x},\bm{u})\mathrm{d}\bm{u}\lambda_d^{|\pi|}(\mathrm{d}\bm{x})\nonumber\\
+	&=\frac1{|\mathrm{Aut}(G)|^\ell}\int_{\Gamma_s^{|\pi|}}\left(\prod_{r=1}^\ell\prod_{\{i,j\}\in E_G}\varphi\left(x_i^{(r)}-x_j^{(r)}\right)\right)_{\pi}\gamma^{|\pi|}\mathrm{d}\bm{x}\nonumber\\
+	&=\frac1{|\mathrm{Aut}(G)|^\ell}\int_{\Gamma_s^{|\pi|}}\prod_{\{i,j\}\in E((G^{\otimes\ell})_\pi)}\varphi(x_i-x_j)\gamma^{|\pi|}\mathrm{d}\bm{x}\nonumber\\
+	&=\frac{\gamma^{|\pi|}}{|\mathrm{Aut}(G)|^\ell}\int_{\Gamma_1^{|\pi|}}\prod_{\{i,j\}\in E((G^{\otimes\ell})_\pi)}\varphi(s^{1/d}(v_i-v_j))s^{|\pi|}\mathrm{d}\bm{v}.\label{subgraph-integral-1}
+\end{align}
+Due to the Assumption~\ref{bound-ass-1} and the connection function $\varphi\le1$, we further have
+
+\begin{align}\label{subgraph-integral-2}
+	\int_{\Gamma_1^{|\pi|}}\prod_{\{i,j\}\in E((G^{\otimes\ell})_\ell)}\varphi(s^{1/d}(v_i-v_j))\mathrm{d}\bm{v}&\asymp s^{-e((G^{\otimes\ell})_\pi)\alpha/d}\int_{\Gamma_1^{|\pi|}}\prod_{\{i,j\}\in E((G^{\otimes\ell})_\pi)}\varphi(v_i-v_j)\mathrm{d}\bm{v}.
+\end{align}
+Hence, \eqref{noninteg-upper-2} is obtained by combining estimates from \eqref{subgraph-integral-1} and \eqref{subgraph-integral-2}.
+When $G$ is $K_1$-balanced, the dichotomy presented in \eqref{cumasym1} follows from  \eqref{noninteg-upper-2} and a convex analysis of the leading terms in the cumulant expressions \eqref{momeq-3}. This approach is analogous to the one employed in \cite[Proposition~7.1]{LiuPrivault25b}.
+\end{proof}
+\begin{remark}
+	All trees, cycles, and complete graphs are $K_1$-balanced, see \cite{RucinskiVince86}. 
+\end{remark}
+
+\begin{remark}
+The assumption that $G$ is $K_1$-balanced is necessary to guarantee the dichotomy in \eqref{cumasym1}; see \cite[Proposition~6.1]{LiuPrivault25b} for a precise statement and proof.
+\end{remark}
+\iffalse
+\begin{lemma}\label{noninte-lower-1}
+If Assumption~\ref{bound-ass-1} holds, we have 
+\begin{equation}\label{lowerbound-2}
+	\Var(N_G^{\subset})\gtrsim s^{2k-1-2|E_G|\alpha/d}.
+\end{equation}
+\end{lemma}
+\begin{proof}
+For the convex set $\Gamma_s$, we denote the inradius of $\Gamma_s$ as $r(\Gamma_s)$. Given that the volume of $\Gamma_s$ is $s$, there exists a constant $c_1>0$ such that  $r(\Gamma_s)\le c_1 s^{1/d}$. Since $\bar{\varphi}(r)\asymp r^{-\alpha}$ is non-increasing, there exists a constant $c_2>0$ such that for all sufficiently large $s$  
+\begin{equation}
+	\inf_{x,y\in\Gamma_s}\varphi(x-y)=\inf_{0\le t\le 2r(\Gamma_s)}\bar{\varphi}(t)\ge c_2 r(\Gamma_s)^{-\alpha}\asymp s^{-\alpha/d}.
+\end{equation}
+The proof follows from that there exists a spanning tree in each connected graph, as in the proof of Proposition~\ref{subgraph-cumu-1}.
+Take $\rho \in \widetilde{\Pi}^2(k)$ to be the set partition such that 
+$\{(1,1),(2,1)\} \in \rho$ and every other block of $\rho$ contains exactly one element, 
+so that $|\rho| = 2k - 1$. 
+Consequently, there exists a spanning tree $I_{\rho} \in \mathcal{I}_{2k-1}$ of 
+$(G^{\otimes 2})_{\rho}$.
+Hence, we have 
+\begin{align*}
+&\Var(N_G^{\subset})\\
+&=\sum_{\pi\in\widetilde{\Pi}^2(k)}\int_{\Gamma_s^{|\pi|}}\int_{[0,1]^{|\pi|(|\pi|-1)/2}}(f^{\subset}_G\otimes f^{\subset}_G)_{\pi}(\bm{x},\bm{u})\mathrm{d}\bm{u}\gamma^{|\pi|}\mathrm{d}\bm{x}\nonumber\\
+&\ge\int_{(\mathbb{R}^d)^{2k-1}}\mathbf{1}(x_1,\dots,x_{2k-1}\in\Gamma_s)\left(\prod_{\{i,j\}\in E_{(G^{\otimes 2})_{\rho}}}\varphi(x_i-x_j)\right)\mathrm{d}(x_1,\dots,x_{2k-1})\\
+&\ge\int_{(\mathbb{R}^d)^{2k-1}}\mathbf{1}(x_1,\dots,x_{2k-1}\in\Gamma_s)\left(\prod_{\{i,j\}\in I_{\rho}}\varphi(x_i-x_j)\right)\mathrm{d}(x_1,\dots,x_{2k-1})
+\times\left[\inf_{x,y\in\Gamma_s}\varphi(x-y)\right]^{2|E_G|-(2k-2)}\\
+&\gtrsim s \left(s^{1-\alpha/d}\right)^{2k-2}\left(s^{-\alpha/d}\right)^{2|E_G|-(2k-2)}=s^{2k-1-2|E_G|\alpha/d}.
+\end{align*}
+\end{proof}
+\begin{remark}
+	Note the lower bound in \eqref{lowerbound-2} is sharp, meaning it coincides with the upper bound established in \eqref{upperbound-2},  when $|E_G|=k-1$, i.e., when $G$ is a tree.
+\end{remark}
+\fi
+
+From Lemma~\ref{noninteg-upper-1} and Theorem~\ref{normalapp1}, the following result is straightforward. 
+\begin{theorem}
+Assuming that Assumption~\ref{bound-ass-1} holds and $G$ is $K_1$-balanced, we have
 \begin{align}
 	\label{norm-opt}
 	\mathrm{d}_{\mathrm{Wass}}\left(\frac{N_G^{\subset}-\mathbb{E} N_G^{\subset}}{\sqrt{\Var N_G^{\subset}}},N\right)\le \mathrm{d}_{\mathrm{K}}\left(\frac{N_G^{\subset}-\mathbb{E} N_G^{\subset}}{\sqrt{\Var N_G^{\subset}}},N\right)\le\frac{C}{\Delta_s},
 \end{align}
 with 
-\begin{align}
+\begin{align}\label{non-integrable-rate0}
 \Delta_s:=
 \begin{cases}
 	\displaystyle
@@ -1195,12 +1167,11 @@ with
 	\sqrt{s^{k-e(G)\alpha/d}}, \ \ \ &\mbox{when}~\alpha\in\left(\frac{k-1}{e(G)}d,(\frac{k}{e(G)}\wedge 1)d\right).
 \end{cases}
 \end{align}
-Note the convergence rates obtained in \cite[Theorem~3.5]{LiuPrivault25b} is $O(\Delta_s^{-1/(2k-1)})$, 
-We notice that the estimates \eqref{norm-opt} yield presumably optimal rates of convergence. }
+\end{theorem}
+\begin{remark}
+	The convergence rates established in \cite[Theorem~3.5]{LiuPrivault25b} are of order $O(\Delta_s^{-1/(2k-1)})$, where $\Delta_s$ is defined as in \eqref{non-integrable-rate0}. In contrast, our estimates in \eqref{norm-opt} provide what are conjected to be optimal rates of convergence. 
+\end{remark}
 
-\textcolor{blue}{
-The assumption that $G$ is $K_1$-balanced is necessary to guarantee the dichotomy in \eqref{cumasym1}; see \cite[Proposition~6.1]{LiuPrivault25b} for a precise statement and proof.
-}
 
 %\subsection{edge-length functionals}
 \subsection{Point process convergence for edge-lengths}
@@ -1245,7 +1216,7 @@ $$
 \begin{proof}
 Let $A\in\mathcal{B}(\mathbb{R})$ be such that $A\subset [a,\infty)$. For the intensity measure $\widetilde{\mathbf{L}}_s$ of $\tilde{\xi}_s$ we obtain
 \begin{align*}
-\mathbf{L}_s(A) & = \mathbb{E} \tilde{\xi}_s(A) = \frac{1}{2} \mathbb{E} \sum_{(x_1,x_2)\in\eta_{s,\neq}^2} \mathbf{1}\bigg\{ x_1\leftrightarrow x_2,\frac{x_1+x_2}{2}\in\Gamma_s \bigg\} \mathbf{1}\{s^{-\frac{1}{\alpha-d}}\|x_1-x_2\| \in A\} \\
+\widetilde{\mathbf{L}}_s(A) & = \mathbb{E} \tilde{\xi}_s(A) = \frac{1}{2} \mathbb{E} \sum_{(x_1,x_2)\in\eta_{s,\neq}^2} \mathbf{1}\bigg\{ x_1\leftrightarrow x_2,\frac{x_1+x_2}{2}\in\Gamma_s \bigg\} \mathbf{1}\{s^{-\frac{1}{\alpha-d}}\|x_1-x_2\| \in A\} \\
 & = \frac{\gamma^2}{2} \int_{(\mathbb{R}^d)^2} \mathbf{1}\bigg\{ \frac{x_1+x_2}{2} \in \Gamma_s\bigg\} \mathbf{1}\{s^{-\frac{1}{\alpha-d}}\|x_1-x_2\|\in A\} \bar{\varphi}(\|x_1-x_2\|) \, \mathrm{d}(x_1,x_2) \\
 & = \frac{\gamma^2}{2} \int_{(\mathbb{R}^d)^2} \mathbf{1}\{ y \in \Gamma_s\} \mathbf{1}\{s^{-\frac{1}{\alpha-d}}\|z\|\in A\} \bar{\varphi}(\|z\|) \, \mathrm{d}(y,z) \\
 & = \frac{\gamma^2 \lambda_d(\Gamma_s)}{2} \int_{\mathbb{R}^d} \mathbf{1}\{s^{-\frac{1}{\alpha-d}}\|z\|\in A\} \bar{\varphi}(\|z\|) \, \mathrm{d}z = \frac{\gamma^2 s}{2} d\kappa_d \int_0^\infty \mathbf{1}\{s^{-\frac{1}{\alpha-d}}u\in A\} \bar{\varphi}(u) u^{d-1} \, \mathrm{d}u \\
@@ -1258,11 +1229,11 @@ The intensity measure $\mathbf{L}$ of $\zeta^{(\alpha)}$ satisfies
 \end{align*}
 This implies
 $$
-|\mathbf{L}_s(A)-\mathbf{L}(A)| \leq  \frac{\gamma^2 d \kappa_d }{2} \int_A |s^{\frac{\alpha}{\alpha-d}} \bar{\varphi}(s^{\frac{1}{\alpha-d}}v) v^{d-1}-l_{\bar{\varphi}}v^{d-\alpha-1}| \, \mathrm{d}v
+|\widetilde{\mathbf{L}}_s(A)-\mathbf{L}(A)| \leq  \frac{\gamma^2 d \kappa_d }{2} \int_A |s^{\frac{\alpha}{\alpha-d}} \bar{\varphi}(s^{\frac{1}{\alpha-d}}v) v^{d-1}-l_{\bar{\varphi}}v^{d-\alpha-1}| \, \mathrm{d}v
 $$
 so that
 \begin{align*}
-d_{\rm TV}(\mathbf{L}_s|_A, \mathbf{L}|_A) & \leq \int_a^\infty |s^{\frac{\alpha}{\alpha-d}} \bar{\varphi}(s^{\frac{1}{\alpha-d}}v) v^{d-1}-l_{\bar{\varphi}}v^{d-\alpha-1}| \, \mathrm{d}v \\
+d_{\rm TV}(\widetilde{\mathbf{L}}_s|_A, \mathbf{L}|_A) & \leq \int_a^\infty |s^{\frac{\alpha}{\alpha-d}} \bar{\varphi}(s^{\frac{1}{\alpha-d}}v) v^{d-1}-l_{\bar{\varphi}}v^{d-\alpha-1}| \, \mathrm{d}v \\
 & \leq \int_a^\infty \big|s^{\frac{\alpha}{\alpha-d}}v^{\alpha} \bar{\varphi}(s^{\frac{1}{\alpha-d}}v) -l_{\bar{\varphi}}\big| \, v^{d-\alpha-1}\, \mathrm{d}v.
 \end{align*}
 Moreover, we have
@@ -1321,11 +1292,11 @@ $$
 $$
 and that
 $$
-\mathbb{P}\bigg( s^{-\frac{1}{\alpha-d}}\max_{(x_1,x_2)\in\eta_{s,\neq}^2, \frac{x_1+x_2}{2}\in\Gamma_s} \|x_1-x_2\|>a\bigg) = \mathbb{P}(\tilde{\xi}_s((a,\infty))=0).
+\mathbb{P}\bigg( s^{-\frac{1}{\alpha-d}}\max_{(x_1,x_2)\in\eta_{s,\neq}^2, x_1\leftrightarrow x_2, \frac{x_1+x_2}{2}\in\Gamma_s} \|x_1-x_2\|>a\bigg) = \mathbb{P}(\tilde{\xi}_s((a,\infty))=0).
 $$
 This implies that
 \begin{align*}
-\left| \mathbb{P}\bigg( s^{-\frac{1}{\alpha-d}}\max_{(x_1,x_2)\in\eta_{s,\neq}^2, \frac{x_1+x_2}{2}\in\Gamma_s} \|x_1-x_2\|>a\bigg) - \mathbb{P}(Z>a) \right| & \leq {\rm d}_{\rm TV}(\tilde{\xi}_s((a,\infty)),\zeta^{(\alpha)}((a,\infty))) \\ & \leq {\rm d}_{\rm KR}(\tilde{\xi}_s|_{[a,\infty)},\zeta^{(\alpha)}|_{[a,\infty)}).
+\left| \mathbb{P}\bigg( s^{-\frac{1}{\alpha-d}}\max_{(x_1,x_2)\in\eta_{s,\neq}^2,x_1\leftrightarrow x_2, \frac{x_1+x_2}{2}\in\Gamma_s} \|x_1-x_2\|>a\bigg) - \mathbb{P}(Z>a) \right| & \leq {\rm d}_{\rm TV}(\tilde{\xi}_s((a,\infty)),\zeta^{(\alpha)}((a,\infty))) \\ & \leq {\rm d}_{\rm KR}(\tilde{\xi}_s|_{[a,\infty)},\zeta^{(\alpha)}|_{[a,\infty)}).
 \end{align*}
 Since, by Theorem \ref{thm:edge-length_process}, the right-hand side converges to zero as $s\to\infty$, this proves the desired statement.
 \end{proof}
@@ -1365,11 +1336,11 @@ Since, by Theorem \ref{thm:edge-length_process}, the right-hand side converges t
 %$$ \frac{1}{2} \sum_{(z_1, z_2) \in \eta^2_{\neq} \cap B^2(0, \rho)} \delta_{\|%z_1 - z_2\| - b_\rho}$$
 %converges in distribution to a Poisson point process, for a suitably chosen sequence $b_\rho$.
 
-Recall that $\varphi$ denotes the connection function. In this section we make the following assumption on $\varphi$.
+Recall that $\varphi$ denotes the connection function and that we make the following assumption on $\varphi$.
 
 \begin{ass}\label{edgelength-ass1}
 	 The function $\varphi$ is only radially dependent. Its radial part is denoted by $\bar{\varphi}$, that has a polynomial decay with some exponent $\alpha \in (d, \infty)$, i.e. it holds
-     $$ \lim_{r\to\infty} \frac{\bar{\varphi}(r)}{r^{-\alpha}} =:C \in (0,\infty).$$
+     $$ \lim_{r\to\infty} \frac{\bar{\varphi}(r)}{r^{-\alpha}} = l_{\bar{\varphi}} \in (0,\infty).$$
 \end{ass}
 
 Note that the condition $\alpha>d$ in Assumption \ref{edgelength-ass1} ensures that the (non-trivial) integrability property
@@ -1871,11 +1842,11 @@ Here are some conjectured theorems based on preliminary computations:
 
 Define
 $$
-\xi_s:=\frac{1}{2}\sum_{(z_1,z_2)\in\eta^2_{\neq}\cap \Gamma_s^2} \delta_{s^{1/(d-\alpha)}\|z_1-z_2\|}.
+\xi_s:=\frac{1}{2}\sum_{(z_1,z_2)\in\eta^2_{\neq}\cap \Gamma_s^2} \mathbf{1}\left\{ z_1 \leftrightarrow z_2 \right\}\delta_{s^{1/(d-\alpha)}\|z_1-z_2\|}.
 $$
 
 \begin{theorem}\label{thm:edge-length_process}
-Assume that $\bar{\varphi}(r)\sim r^{-\alpha}$ as $r\to\infty$. Let $\zeta$ be a homogeneous Poisson process on $(0,\infty)$ with intensity $??$ and let
+Suppose that Assumption \ref{edgelength-ass1} holds. Let $\zeta$ be a homogeneous Poisson process on $(0,\infty)$ with intensity $??$ and let
 $$
 \zeta^{(\alpha)}:= \sum_{t\in\zeta} \delta_{t^{1/(d-\alpha)}}
 $$
