@@ -1862,6 +1862,45 @@ $$
 \end{itemize}
 \end{theorem}
 
+\begin{proof}
+    Let $A\in\mathcal{B}(\mathbb{R})$ be such that $A\subset[a,\infty)$. The intensity measure of $\xi_s$ is given by
+
+\begin{align*}
+    L_s(A)
+& = \frac{1}{2}\E \sum_{(z_1,z_2)\in\eta^2_{\neq}\cap\Gamma_s^2}
+\mathbf{1}\Big\{s^{\frac{1}{d-\alpha}}\|z_1-z_2\|\in A\Big\}\,
+\mathbf{1}\{z_1\leftrightarrow z_2\} \\
+&= \frac{\gamma^2}{2}\int_{\Gamma_s}\int_{\Gamma_s}
+\mathbf{1}\Big\{s^{\frac{1}{d-\alpha}}\|x-y\|\in A\Big\}\,
+\bar\varphi(\|x-y\|)\,\mathrm{d}x\,\mathrm{d}y.
+\end{align*}
+
+Equivalently, with the change of variables $z=y-x$,
+\[
+L_s(A)
+= \frac{\gamma^2}{2}\int_{\R^d}
+\mathbf{1}\Big\{s^{\frac{1}{d-\alpha}}\|z\|\in A\Big\}\,
+\bar\varphi(\|z\|)\,
+\lambda_d\big(\Gamma_s\cap(\Gamma_s-z)\big)\,\mathrm{d}z.
+\]
+
+The intensity measure $L$ of $\zeta^{(\alpha)}$ is given, for $A\in\mathcal{B}(\R)$, by
+\[
+L(A) =  \E[\zeta^{(\alpha)}(A)]
+= \E\sum_{t\in\zeta}\mathbf{1}\Big\{t^{\frac{1}{d-\alpha}}\in A\Big\}
+= c_{\bar\varphi}\int_0^\infty \mathbf{1}\Big\{t^{\frac{1}{d-\alpha}}\in A\Big\}\,\mathrm{d}t.
+\]
+If $A\subset(0,\infty)$, we may substitute $t=v^{\,d-\alpha}$ (equivalently $v=t^{1/(d-\alpha)}$), so that
+$dt=(d-\alpha)v^{d-\alpha-1}dv=(\alpha-d)v^{d-\alpha-1}dv$ in absolute value, yielding
+\[
+L(A)
+= c_{\bar\varphi}(\alpha-d)\int_0^\infty \mathbf{1}\{v\in A\}\,v^{d-\alpha-1}\,\mathrm{d}v
+= c_{\bar\varphi}(\alpha-d)\int_A v^{d-\alpha-1}\,\mathrm{d}v.
+\]
+
+\end{proof}
+
+
 \begin{theorem}
 Let the assumptions of Theorem \ref{thm:edge-length_process} prevail.
 \begin{itemize}
