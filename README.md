@@ -75,3 +75,8 @@ For the next meeting on 12 Feb:
 1. Should we also move the proof of Corollary 3.4 (special case for the Normal approximation theorem) to Section 5.2
 2. we use both $(x_1,x_2)\in\eta^2_{s,\ne}$ and $(z_1,z_2)\in\eta^2_{\ne}\cap\Gamma_s^2$. Better to choose only one. 
 3. Corollary 3.4 has been changed, which leads to certain necessary changes to some places where it has been applied, for example, Theorem 4.18, Lemma 4.21, 
+
+--------------------------------------
+1st March update:
+for next meeting on 6th March
+1. the \textcolor{cyan}{???} is still unsolved.
