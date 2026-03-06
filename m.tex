@@ -8,6 +8,7 @@
 \usepackage{authblk}
 \usepackage{tikz}
 \usepackage{float}
+\usepackage{cite}
 \usetikzlibrary{arrows.meta,calc}
 \renewcommand\Authands{ and }      % optional: nicer "A and B"
 \renewcommand\Affilfont{\itshape}  % optional: italic affiliation
@@ -15,7 +16,7 @@
 \setcounter{Maxaffil}{0}      
 
 
-\title{$U$-statistics and point processes of the random connection model and edge--marked Poisson processes}
+\title{The random connection model and $U$-statistics of edge-marked Poisson processes}
 
 
 \author{
@@ -76,6 +77,79 @@ We study a class of subgraph and edge-based statistics in the random connection 
 
 \section{Introduction}
 
+Random graphs have been considered extensively for many years. For such graphs, whose vertices or edges are random, many models were introduced and a rich variety of properties and questions can be investigated, making random graphs an important topic of probability theory. Apart from their mathematical beauty, a further motivation to study random graphs is that they can be suitable models for complex networks. The latter are large graphs with a highly non-trivial structure as they arise in many applications ranging from social networks to biology and the engineering of telecommunication networks. For a detailed introduction to random graph and complex networks we refer, for example, to \cite{van_der_Hofstad_book}.
+
+Many random graph models such as Erd\H{o}s-R\'enyi graphs, rank-one inhomogeneous random graphs, the configuration model or preferential attachment models are purely combinatorial in the sense that the set of vertices are usually the natural numbers $1,\hdots,n$. In contrast, the vertices of spatial random graphs are points in Euclidean space and the edges depend on the geometry of the points. For many complex networks such an assumption is reasonable since the position of a vertex in space could provide its features and, thus, be relevant for the existence of edges. An important model for spatial random graphs are random geometric graphs, which are also known as Gilbert graphs. Their vertices are given by the points of a Poisson process $\eta$ on some space $\mathbb{X}$ and two vertices $x,y\in\eta$ are connected by an edge whenever their distance does not exceed a given threshold $r$, i.e., $\|x-y\|\leq r$. Random geometric graphs are a much studied model; see, for example, the monograph \cite{Penrose_book}. For given vertices the edges of a random geometric graph are completely deterministic. This is generalised by the so-called random connection model where the edges between given vertices become random and the edge probability depends on the positions of the potential endpoints. The vertices of the random connection model are still the points of the Poisson process $\eta$ on a space $\mathbb{X}$ and moreover a symmetric function $\varphi:\mathbb{X}\times\mathbb{X}\to[0,1]$, the so-called connection function, is chosen. For each pair of vertices $x,y\in\eta$ it is decided independently if they are connected by an edge and the probability of an edge is given by $\varphi(x,y)$.
+
+The random connection model was first introduced in \cite{Penrose1}. Roughly speaking the mechanism for drawing edges in the random connection model can be seen as a mixture between the Erd\H{o}s-R\'enyi graph, where each vertex is present with the same probability, and the random geometric graph, where the edges are completely determined by the locations of the vertices.
+
+An important class of random connection models are so-called weighted random connection models, where the vertices are equipped with i.i.d.\ weights that are also taken into account by the connection function. Such a class of random connection models was first studied in \cite{deprez2019scale}, who considered the continuous counterpart to a long-range percolation model on the lattice from \cite{deijfen2013scale}. {\em Add more references on random connection
+(Janson and Nowiski 1991 PTRF The asymptotic distribution of generalised U-statistics with applications to random graphs)
+}
+
+For an at most countable collection of random elements $(X_i)_{i\in I}$ in some space $\mathbb{Y}$ and a measurable function $f:\mathbb{Y}^k\to\mathbb{R}$ with $k\in\mathbb{N}$ the random variable
+$$
+\sum_{(i_1,\hdots,i_k)\in I^k_{\neq}} f(X_{i_1},\hdots,X_{i_k}),
+$$
+where $I^k_{\neq}$ is the set of all $k$-tuples of distinct elements of $I$, is called a $U$-statistic. The classical situation of $U$-statistics is that of $n$ i.i.d.\ random elements $(X_i)_{i\in\{1,\hdots,n\}}$.
+
+The idea of a $U$-statistic is that one has a sum where each summand depends on a $k$-tuple $(X_{i_1},\hdots,X_{i_k})$. One can wonder if such random variables also make sense in case of the random connection model. Instead of $(X_i)_{i\in I}$, one could choose $\eta$. However, when considering $k$-tuples of distinct points of $\eta$, one does not take into account edges. Thus, in the context of the random connection model it is more reasonable to study $k$-tuples of points and all potential edges between them. In the following, we denote by $\eta^k_{\neq}$ the set of all $k$-tuples of distinct points of $\eta$ and write $\mathbf{1}\{x\leftrightarrow y\}$ for the indicator of the event that $x,y\in\eta$ are connected by an edge. For a measurable function $f:\mathbb{X}^k\times \{0,1\}^{\frac{k(k-1)}{2}}\to\mathbb{R}$ we call the random variable
+\begin{equation}\label{eqn:Ustatistic_RCM}
+\sum_{(x_1,\hdots,x_k)\in\eta^k_{\neq}} f(x_1,\hdots,x_k, (\mathbf{1}\{x_i\leftrightarrow x_j\})_{1\leq i<j\leq k})
+\end{equation}
+a $U$-statistic of the random connection model.
+
+Several prominent quantities of the random connection model are $U$-statistics. For example, the number of non-induced subgraphs of the random connection model that are isomorphic to a given connected graph $H$ with $\ell$ vertices denoted by $1,\hdots,\ell$ and that have only vertices in some observation window $\widetilde{\Gamma}$ is given by
+$$
+\sum_{(x_1,\hdots,x_\ell)\in\eta^{\ell}_{\neq}\cap \widetilde{\Gamma}^\ell} \prod_{\substack{i,j\in\{1,\hdots,\ell\},\\ \{i,j\}\text{ is an edge of }H}} \mathbf{1}\{x_i\leftrightarrow x_j\}.
+$$
+
+{\em Add reference on subgraph counts}
+
+Another class of $U$-statistics are the edge-length functionals
+$$
+\frac{1}{2}\sum_{(x_1,x_2)\in\eta^2_{\neq}\cap \widetilde{\Gamma}^2} \mathbf{1}\{x_1\leftrightarrow x_2\} \|x_1-x_2\|^\tau.
+$$
+{\em Add reference on edge-length functionals}
+
+
+For a Poisson process $\tilde{\eta}$ in a space $\mathbb{Y}$ and a measurable function $f:\mathbb{Y}^k\to\mathbb{R}$, the $U$-statistic
+$$
+\sum_{(x_1,\hdots,x_k)\in\tilde{\eta}^k_{\neq}} f(x_1,\hdots,x_k)
+$$
+is called a Poisson $U$-statistic. Such random variables arise in many problems from stochastic geometry and have been studied intensively in recent years. For results on the normal approximation of Poisson $U$-statistics we refer to \cite{reitznerschulte,eichelsbacher,schulte}, while Poisson approximation and Poisson process approximation for related point processes was studied in \cite{dst, pianoforte}. Moderate deviation principles and concentration inequalities for Poisson $U$-statistics were considered in \cite{Bonnet_Gusakova,schulte2}.
+
+Since the random connection model involves a Poisson process, it is a natural question whether results for Poisson $U$-statistics can be applied to its $U$-statistics. As introduced above the $U$-statistics of the random connection model are not of the desired form since apart from the underlying Poisson process $\eta$ for the vertices one has also the random decisions, which edges are present. This additional randomness can be modelled by marking each pair of vertices $\{x,y\}$ independently by a random variable $U_{\{x,y\}}$ that is uniformly distributed on $[0,1]$ and drawing an edge between $x$ and $y$ if and only if $U_{\{x,y\}}\leq\varphi(x,y)$. This way the random connection is completely determined by $\eta$ and $(U_{\{x,y\}})_{(x,y)\in\eta^2_{\neq}}$. Now the latter can be constructed from a marked Poisson process $\widehat{\eta}$, where the point process without the marks have the same distribution as $\eta$ and the marks are sequences of independent random variables uniformly distributed on $[0,1]$. The idea is to take the points of $\widehat{\eta}$ without marks as $\eta$ and to derive $(U_{\{x,y\}})_{(x,y)\in\eta^2_{\neq}}$ from the marks. To this end, one can equip $\mathbb{X}$ with an order $\prec$ and a distance ${\rm d}$. If $x\prec y$ and $y$ is the $j$-th closest point of $\eta$ to $x$, we let $U_{\{x,y\}}$ be the $j$-th element from the mark sequence of $x$. This means that the random connection model can be seen as a function of the Poisson process $\widehat{\eta}$. Nevertheless, a $U$-statistic of the random connection model does not become a Poisson $U$-statistic with respect to $\widehat{\eta}$. This is caused by the fact that the way the marks are assigned to the the pairs of vertices depends on all points of $\eta$ and thus destroys the structure of $U$-statistics.   
+
+In this paper, we address the problem that $U$-statistics of the random connection model are not Poisson $U$-statistics. Our strategy is to approximate $U$-statistics of the random connection model by Poisson $U$-statistics with respect to Poisson processes on larger spaces. This way we can systematically transfer results for Poisson $U$-statistics to $U$-statistics of the random connection model. The key approximation argument in our proofs is the same that is employed in \cite{Last_Nestmann_Schulte} the derive second-order Poincar\'e inequalities for functionals of edge-marked Poisson processes.
+
+Refer to erroneous applications in Heerten/Hirsch/Otto and Otto/other Dutch guys
+
+We formulate our abstract results for the slightly more general framework of edge marked Poisson processes, where each pair of points of a Poisson process $\eta$ in $\mathbb{X}$ is equipped with an i.i.d.\ random mark in a space $\mathbb{M}$, i.e., one has a collection of so-called egde-marks $(\mathcal{M}_{x,y})_{x,y\in\eta}$. As described above the random connection model can be obtained from an edge-marked Poisson process with marks uniformly distributed on $[0,1]$. The definition of a $U$-statistic of an edge-marked Poisson process is the same as that of a $U$-statistic of a random connection model in \eqref{eqn:Ustatistic_RCM} with the only difference that the indicators of edges are replaced by the pairwise marks, i.e., for a measurable function $f:\mathbb{X}^k\times\mathbb{M}^{k(k-1)}$ we are interested in random variables of the form
+$$
+\sum_{(x_1,\hdots,x_k)\in\eta^k_{\neq}} f(x_1,\hdots,x_k, (\mathcal{M}_{x_i,x_j})_{i,j\in\{1,\hdots,k\},i\neq j}).
+$$ 
+Under suitable assumption we derive for such random variables
+\begin{itemize}
+\item formulas for expectation and variance as well as for higher-order moments and cumulants
+\item quantitative bounds for the normal approximation with respect to the Kolmogorov and the Wasserstein distance
+\item a quantitative bound for Poisson approximation with respect to the Wasserstein distance
+\item a quantitative bound for compound Poisson approximation with respect to the total variation distance
+\item moderate deviation principles.
+\end{itemize}
+Apart from U-statistics we also consider some associated point processes. For a measurable function $\tilde{f}:\mathbb{X}^k\to\mathbb{Y}$ with $k\in\mathbb{N}$ and some space $\mathbb{Y}$, we can define a point process
+$$
+\tilde{\xi}:=\frac{1}{k!}\sum_{(x_1,\hdots,x_k)\in\eta^k_{\neq}} \delta_{\tilde{f}(x_1,\hdots,x_k)},
+$$ 
+where $\delta_y$ denotes the Dirac measure concentrated at a point $y\in\mathbb{Y}$. We also derive a quantitative bound for the Kantorovich-Rubinstein distance between $\tilde{\xi}$ and a Poisson process on $\mathbb{Y}$ under suitable assumptions. This result is employed to derive the Poisson and compound Poisson approximation bounds for $U$-statistics of the random connection model.
+
+{\em Comment on our applications, stationary Poisson process on Euclidean space}
+
+This paper is organised as follows. 
+
+
+\section{Introduction old}
+
 % Consider the following random graph $(V,E)$: the vertex set is given by $V=\eta$, where $\eta=\{X_n: n \in \mathbb{N} \}$ is (a realization of) a homogeneous Poisson point process with unit intensity in $\mathbb{R}ƒ^d$. Given the set of vertices $V$ we construct the set of (undirected) edges as follows. Let $g\colon \mathbb{R}^d \to [0,1]$ be a measurable function satisfying $g(x) = g(-x)$ for all $x\in\mathbb{R}^d$ and
 % \begin{equation} \label{g1}
 %  0< \int_{\mathbb{R}^d} g(x) dx < \infty.
@@ -123,7 +197,7 @@ By abuse of notation we will also write $\mathrm{d}_{\rm KR}(\xi,\zeta)$ instead
 
 
 
-\section{$U$-statistics of edge-marked Poisson processes}
+\section{Results for $U$-statistics of edge-marked Poisson processes}
 
 
 
@@ -730,7 +804,8 @@ for all $\pi\in\widetilde{\Pi}^\ell(k)$, $\ell\ge3$ and $n\in\mathbb{N}$. Then $
 \textbf{$\mathrm{MDP}$}$(k-1,\{(b_nk^{3k})^{-1}\}_{n\in\mathbb{N}})$, 
 \textbf{$\mathrm{CI}$}$(k-1, \{(b_nk^{3k})^{-1}\}_{n \in \mathbb{N}})$ and \textbf{$\mathrm{NACC}$}$(k-1,\{(b_nk^{3k})^{-1}\}_{n\in\mathbb{N}})$. 
 \end{theorem}
-\section{Limit theorems for RCM}
+
+\section{Results for $U$-statistics of random connection models}
 \iffalse
 The following examples can be studied:
 \begin{itemize}
@@ -763,7 +838,7 @@ Therefore, taking $\mathbb{M}=[0,1]$, and $\mathbb{Q}$ to be the uniform distrib
 	\mathbf{1}(x\leftrightarrow y)\overset{d}{=}\mathbf{1}(\mathcal{M}_{x_i,x_j}\le\varphi(x_i-x_j)).
 \end{equation*}
 
-In this section, we consider a few applications on the RCM, including subgraph counts, edge-length functionals, long edges and Hub-to-hub edges. 
+In this section, we consider a few applications on the RCM, including subgraph counts, edge lengths and hub-to-hub edges. 
 
 %the functional we're interested in \eqref{def:ustat} now becomes 
 %\begin{equation*}
