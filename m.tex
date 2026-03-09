@@ -83,34 +83,42 @@ Many random graph models such as Erd\H{o}s-R\'enyi graphs, rank-one inhomogeneou
 
 The random connection model was first introduced in \cite{Penrose1}. Roughly speaking the mechanism for drawing edges in the random connection model can be seen as a mixture between the Erd\H{o}s-R\'enyi graph, where each vertex is present with the same probability, and the random geometric graph, where the edges are completely determined by the locations of the vertices.
 
-An important class of random connection models are so-called weighted random connection models, where the vertices are equipped with i.i.d.\ weights that are also taken into account by the connection function. Such a class of random connection models was first studied in \cite{deprez2019scale}, who considered the continuous counterpart to a long-range percolation model on the lattice from \cite{deijfen2013scale}. {\em Add more references on random connection
-(Janson and Nowiski 1991 PTRF The asymptotic distribution of generalised U-statistics with applications to random graphs)
+An important class of random connection models are so-called weighted random connection models, where the vertices are equipped with i.i.d.\ weights that are also taken into account by the connection function. Such a class of random connection models was first studied in \cite{deprez2019scale}, who considered the continuous counterpart to a long-range percolation model on the lattice from \cite{deijfen2013scale}. \textcolor{blue}{\em Add more references on random connection model
 }
+Counting statistics on RCM gains vastly attention in recent years, including isolated vertices counts \cite{Penrose2}, component counts \cite{Last_Nestmann_Schulte} and subgraph counts in \cite{can2022, LiuPrivault,LiuPrivault25b},
+with various approaches being proposed to analyze the structure and asymptotic properties of these random graphs.
 
-For an at most countable collection of random elements $(X_i)_{i\in I}$ in some space $\mathbb{Y}$ and a measurable function $f:\mathbb{Y}^k\to\mathbb{R}$ with $k\in\mathbb{N}$ the random variable
-$$
+For an at most countable collection of random elements $(X_i)_{i\in I}$ taking values in a space $\mathbb{Y}$ and a measurable function $f:\mathbb{Y}^k\to\mathbb{R}$ with $k\in\mathbb{N}$, the random variable
+\[
 \sum_{(i_1,\hdots,i_k)\in I^k_{\neq}} f(X_{i_1},\hdots,X_{i_k}),
-$$
-where $I^k_{\neq}$ is the set of all $k$-tuples of distinct elements of $I$, is called a $U$-statistic. The classical situation of $U$-statistics is that of $n$ i.i.d.\ random elements $(X_i)_{i\in\{1,\hdots,n\}}$.
+\]
+where $I^k_{\neq}$ denotes the set of all $k$-tuples of distinct elements of $I$, is called a $U$-statistic. In the classical setting one considers $n$ i.i.d.\ random elements $(X_i)_{i\in\{1,\hdots,n\}}$, a framework that has played a central role in the study of symmetric kernels and their limit theorems. However, this classical formulation restricts the kernel to depend solely on vertex attributes. As a consequence, it is often insufficient for capturing the structural dependencies inherent in random graphs and point processes.
 
-The idea of a $U$-statistic is that one has a sum where each summand depends on a $k$-tuple $(X_{i_1},\hdots,X_{i_k})$. One can wonder if such random variables also make sense in case of the random connection model. Instead of $(X_i)_{i\in I}$, one could choose $\eta$. However, when considering $k$-tuples of distinct points of $\eta$, one does not take into account edges. Thus, in the context of the random connection model it is more reasonable to study $k$-tuples of points and all potential edges between them. In the following, we denote by $\eta^k_{\neq}$ the set of all $k$-tuples of distinct points of $\eta$ and write $\mathbf{1}\{x\leftrightarrow y\}$ for the indicator of the event that $x,y\in\eta$ are connected by an edge. For a measurable function $f:\mathbb{X}^k\times \{0,1\}^{\frac{k(k-1)}{2}}\to\mathbb{R}$ we call the random variable
+To overcome this limitation, \cite{Janson91} introduced the notion of generalized $U$-statistics, which extend the classical definition by allowing the kernel to depend not only on vertex attributes but also on the edges between them. In their framework one considers sums of functions of the form
+$$
+f(X_{i_1},\hdots,X_{i_k},(Y_{i_j,i_\ell})_{j,\ell\in\{1,\dots,k\},\, j<\ell}),
+$$
+where $(X_i)_{i\in I}$ and $(Y_{i,j})_{i,j\in I,\,i<j}$ are two independent collections of i.i.d.\ random elements. This extension proved crucial for studying the asymptotic behaviour of subgraph counts and other graph-theoretic functionals, as it provides a unified framework for handling the dependencies induced by the underlying network structure. Further details can be found in Chapter~11 of the monograph \cite{janson}; see also the recent developments in \cite{zhangzs,bhattacharya23}.
+
+In the context of the random connection model, it is therefore natural to adopt this generalized perspective. Rather than considering $k$-tuples of distinct points from a point process $\eta$ in isolation, one should also take into account the stochastic connectivity between them. Denote by $\eta^k_{\neq}$ the set of all $k$-tuples of distinct points of $\eta$, and write $\mathbf{1}\{x\leftrightarrow y\}$ for the indicator of the event that two points $x,y\in\eta$ are connected by an edge. For a measurable function $f:\mathbb{X}^k\times \{0,1\}^{\frac{k(k-1)}{2}}\to\mathbb{R}$,
+we define the random variable
 \begin{equation}\label{eqn:Ustatistic_RCM}
-\sum_{(x_1,\hdots,x_k)\in\eta^k_{\neq}} f(x_1,\hdots,x_k, (\mathbf{1}\{x_i\leftrightarrow x_j\})_{1\leq i<j\leq k})
+\sum_{(x_1,\hdots,x_k)\in\eta^k_{\neq}}
+f\big(x_1,\hdots,x_k,(\mathbf{1}\{x_i\leftrightarrow x_j\})_{1\le i<j\le k}\big)
 \end{equation}
-a $U$-statistic of the random connection model.
+and call it a $U$-statistic of the random connection model. This formulation embeds the concept of generalized $U$-statistics into the continuum setting of the random connection model and provides a natural framework for analysing geometric and combinatorial characteristics of the resulting random graph.
 
-Several prominent quantities of the random connection model are $U$-statistics. For example, the number of non-induced subgraphs of the random connection model that are isomorphic to a given connected graph $H$ with $\ell$ vertices denoted by $1,\hdots,\ell$ and that have only vertices in some observation window $\widetilde{\Gamma}$ is given by
+Several prominent functionals of the random connection model can be framed as $U$-statistics. For example, consider the number of non-induced copies of a fixed connected graph $G$ with $k$ vertices, labelled $1,\hdots,k$ and edge set $E_G$. When restricted to an observation window $\widetilde{\Gamma}\subseteq\mathbb{X}$, this subgraph count is given by the $U$-statistic:
 $$
-\sum_{(x_1,\hdots,x_\ell)\in\eta^{\ell}_{\neq}\cap \widetilde{\Gamma}^\ell} \prod_{\substack{i,j\in\{1,\hdots,\ell\},\\ \{i,j\}\text{ is an edge of }H}} \mathbf{1}\{x_i\leftrightarrow x_j\}.
+\sum_{(x_1,\hdots,x_k)\in\eta^{k}_{\neq}\cap \widetilde{\Gamma}^k} \prod_{\{i,j\}\in E_G} \mathbf{1}\{x_i\leftrightarrow x_j\},
 $$
-
-{\em Add reference on subgraph counts}
+The asymptotic behavior of such subgraph counts has been a central theme in random graph theory. In the contect of the random connection model, a central limit theorem was first established in \cite{can2022} under certain weak stabilization condition. The normal approximation for subgraph counts was derived in \cite{LiuPrivault} using the method of cumulant, and further refined in \cite{LiuPrivault25b}. Most recently, these limit theorems have been extended to the more general setting of  weighted random connection models in \cite{Heerten_Hirsch_Otto}.
 
 Another class of $U$-statistics are the edge-length functionals
 $$
 \frac{1}{2}\sum_{(x_1,x_2)\in\eta^2_{\neq}\cap \widetilde{\Gamma}^2} \mathbf{1}\{x_1\leftrightarrow x_2\} \|x_1-x_2\|^\tau.
 $$
-{\em Add reference on edge-length functionals}
+\textcolor{blue}{\em Add reference on edge-length functionals}
 
 
 For a Poisson process $\tilde{\eta}$ in a space $\mathbb{Y}$ and a measurable function $f:\mathbb{Y}^k\to\mathbb{R}$, the $U$-statistic
@@ -123,7 +131,7 @@ Since the random connection model involves a Poisson process, it is a natural qu
 
 In this paper, we address the problem that $U$-statistics of the random connection model are not Poisson $U$-statistics. Our strategy is to approximate $U$-statistics of the random connection model by Poisson $U$-statistics with respect to Poisson processes on larger spaces. This way we can systematically transfer results for Poisson $U$-statistics to $U$-statistics of the random connection model. The key approximation argument in our proofs is the same that is employed in \cite{Last_Nestmann_Schulte} the derive second-order Poincar\'e inequalities for functionals of edge-marked Poisson processes.
 
-Refer to erroneous applications in Heerten/Hirsch/Otto and Otto/other Dutch guys
+\textcolor{blue}{Refer to erroneous applications in \cite{Heerten_Hirsch_Otto} and \cite{Otto25}}
 
 We formulate our abstract results for the slightly more general framework of edge marked Poisson processes, where each pair of points of a Poisson process $\eta$ in $\mathbb{X}$ is equipped with an i.i.d.\ random mark in a space $\mathbb{M}$, i.e., one has a collection of so-called egde-marks $(\mathcal{M}_{x,y})_{x,y\in\eta}$. As described above the random connection model can be obtained from an edge-marked Poisson process with marks uniformly distributed on $[0,1]$. The definition of a $U$-statistic of an edge-marked Poisson process is the same as that of a $U$-statistic of a random connection model in \eqref{eqn:Ustatistic_RCM} with the only difference that the indicators of edges are replaced by the pairwise marks, i.e., for a measurable function $f:\mathbb{X}^k\times\mathbb{M}^{k(k-1)}$ we are interested in random variables of the form
 $$
@@ -143,11 +151,16 @@ $$
 $$ 
 where $\delta_y$ denotes the Dirac measure concentrated at a point $y\in\mathbb{Y}$. We also derive a quantitative bound for the Kantorovich-Rubinstein distance between $\tilde{\xi}$ and a Poisson process on $\mathbb{Y}$ under suitable assumptions. This result is employed to derive the Poisson and compound Poisson approximation bounds for $U$-statistics of the random connection model.
 
-{\em Comment on our applications, stationary Poisson process on Euclidean space}
+\textcolor{blue}{\em Comment on our applications, stationary Poisson process on Euclidean space}
+Let $\eta$ be a homogeneous Poisson point process with intensity $\gamma>0$ in $\mathbb{R}^d$. Let $\varphi\colon \mathbb{R}^d \to [0,1]$ be a measurable function satisfying $\varphi(x) = \varphi(-x)$ for all $x\in\mathbb{R}^d$ and
+\begin{equation} \label{g1}
+ 0< \int_{\mathbb{R}^d} \varphi(x) \mathrm{d}x < \infty.
+\end{equation}
+Any two distinct points $x,y\in\eta$ are connected by an edge with probability $\varphi(x-y)$, independently of all other edges. 
 
 This paper is organised as follows. 
 
-
+\iffalse
 \section{Introduction old}
 
 % Consider the following random graph $(V,E)$: the vertex set is given by $V=\eta$, where $\eta=\{X_n: n \in \mathbb{N} \}$ is (a realization of) a homogeneous Poisson point process with unit intensity in $\mathbb{R}ƒ^d$. Given the set of vertices $V$ we construct the set of (undirected) edges as follows. Let $g\colon \mathbb{R}^d \to [0,1]$ be a measurable function satisfying $g(x) = g(-x)$ for all $x\in\mathbb{R}^d$ and
@@ -163,37 +176,626 @@ Any two distinct points $x,y\in\eta$ are connected by an edge with probability $
 
 Counting statistics on RCM gains vastly attention in recent years, including isolated vertices counts \cite{Penrose2}, component counts \cite{Last_Nestmann_Schulte} and subgraph counts in \cite{can2022, LiuPrivault,LiuPrivault25b},
 with various approaches being proposed to analyze the structure and asymptotic properties of these random graphs. In this note, we focus on various approximation results for counting statistics in RCM by incorporating the random connection model into the framework of Poisson $U$-statistics, see \cite{reitznerschulte}, \cite{last4}, and \cite{schulte} for more details.
-% \subsection{$U$-statistics of RCM}
-\section{Preliminaries and notation}
+\fi
 
-\subsection*{Probability metrics and Kantorovich-Rubinstein distance}
-In this paper, we investigate the closeness between two real-valued random variables, as well as between two point processes. To this end, we employ several probability distances, including the Kolmogorov distance, the Wasserstein distance, and the Kantorovich--Rubinstein distance.
 
-The Kolmogorov distance between distributions of two random variables $X$ and $Y$ is given by 
+\section{Results for $U$-statistics of random connection models}
+\iffalse
+The following examples can be studied:
+\begin{itemize}
+    \item subgraph counts (CLT, MDPs, concentration, stable limits)
+    \item edge-length functionals (CLT, MDP, stable limits), i.e.
+    $$\frac{1}{2} \sum_{(z_1, z_2) \in \eta^2_{\neq} \cap B^2(0, \rho)} \mathbf{1}\{ z_1 \leftrightarrow z_2 \} \| z_1- z_2 \|^\tau, \quad \tau \in \mathbb{R}$$
+    \item long edges (Poisson approximation), i.e.
+    $$\frac{1}{2} \sum_{(z_1, z_2) \in \eta^2_{\neq} \cap B^2(0, \rho)} \mathbf{1}\{ z_1 \leftrightarrow z_2 \}  \mathbf{1}\{ \|z_1 - z_2\| \geq c_\rho \} $$
+    \item Hub-to-hub edges
+    $$
+    \frac{1}{2}\sum_{(x_1,x_2)\in\eta^2_{\neq}} \mathbf{1}(x_1\leftrightarrow x_2, W_{x_1},W_{x_2}\geq t)
+    $$
+\end{itemize}
+\fi 
+
+In this section, we explore several applications on the RCM based on a stationary Poisson process on $\mathbb{R}^d$. Our analysis covers a variety of functionals, including subgraph counts, edge lengths and hub-to-hub edges. 
+
+Let $\eta$ be a stationary Poisson process on $\mathbb{R}^d$ with intensity measure $\gamma\cdot \lambda_d$, where $\gamma>0$ is fixed and $\lambda_d$ denotes the Lebesgue measure on $\mathbb{R}^d$. 
+Let $\Gamma\subseteq\mathbb{R}^d$ be a compact convex set with $\lambda_d(\Gamma)=1$, and define $\Gamma_s:=s^{1/d}\Gamma$, for $s\ge1$. 
+
+For any finite collection of points $\{x_1,\dots,x_r\}\subseteq\mathbb{R}^d$, we denote the RCM formed on these points with connection function $\varphi$ as $\mathbb{G}_{\varphi}(\{x_1,\dots,x_r\})$. In this unweighted setting, any two distinct points $x,y\in\eta$ are connected be an edge independently with probability 
+$$
+\mathbb{P}(x\leftrightarrow y)=\varphi(x-y).
+$$
+This framework naturally extends to the weighted random connection model (WRCM), denoted $\mathbb{G}_{\varphi}(\{x_1,\dots,x_r\},W)$, by equipping each vertex with an i.i.d. weight drawn from a distribution $W$. In particular, we denote the Poisson RCM and its weighted counterpart base on the underlying Possion process $\eta$ as $\mathbb{G}_{\varphi}(\eta)$ and $\mathbb{G}_{\varphi}(\eta,W)$, respectively. 
+\textcolor{cyan}{
+\footnote{It should be moved to next section.}
+Therefore, taking $\mathbb{M}=[0,1]$, and $\mathbb{Q}$ to be the uniform distribution on $\mathbb{M}$, we have
+\begin{equation*}
+	\mathbf{1}(x\leftrightarrow y)\overset{d}{=}\mathbf{1}(\mathcal{M}_{x_i,x_j}\le\varphi(x_i-x_j)).
+\end{equation*}
+}
+To establish our limit theorems, we require precise measures of the distance between random elements. 
+We investigate the closeness of both real-valued random variables and point processes using several probability metrics.
+
+%In this paper, we investigate the closeness between two real-valued random variables, as well as between two point processes. To this end, we employ several probability distances, including the Kolmogorov distance, the Wasserstein distance, and the Kantorovich--Rubinstein distance.
+For real-valued random variables $X$ and $Y$, we employ the Kolmogorov distance,
 \begin{equation*}
 	\mathrm{d}_{\rm K}(X,Y):=\sup_{z\in\mathbb{R}}|\mathbb{P}(X\le z)-\mathbb{P}(Y\le z)|,
 \end{equation*}
-while the Wasserstein distance is 
+and the Wasserstein distance,
 \begin{equation*}
 	\mathrm{d}_{\rm Wass}(X,Y):=\sup_{h\in\mathscr{F}_W}|\mathbb{E} h(X)-\mathbb{E} h(Y)|,
 \end{equation*}
 where $\mathscr{F}_W:=\{h:\mathbb{R}\to\mathbb{R}:~|h(x)-h(y)|\le |x-y|\}$.
 
+When comparing the global structure of random graphs, it is often convenient to treat the graph (or its functionals) as point processes. 
 Let $\mathbb{Y}$ be a locally compact second countable Hausdorff space with Borel $\sigma$-algebra $\mathcal{Y}$.
 Let $N_{\mathbb{Y}}$ denote the space of $\sigma$-finite counting measures on $\mathbb{Y}$. Let $\mathcal{N}_{\mathbb{Y}}$ be the $\sigma$-algebra on $N_{\mathbb{Y}}$ generated by evalution mappings $\omega\mapsto\omega(A)$, $A\in\mathcal{Y}$.
-A point process $\xi$ is a random element in $N_{\mathbb{Y}}$.
+A point process $\xi$ is then a random element in $N_{\mathbb{Y}}$.
 
-We define the total variation distance between two finite measures $\nu_1$ and $\nu_2$ on $\mathbb{Y}$ by 
+To compare two point processes $\xi$ and $\zeta$ with distribution $P$ and $Q$, we utilize the Kantorovich-Rubinstein distance:
 \begin{equation*}
-	\mathrm{d}_{\rm TV}(\nu_1,\nu_2):=\sup_{A\in\mathcal{Y}}|\nu_1(A)-\nu_2(A)|.
+	\mathrm{d}_{\rm KR}(\xi,\zeta):= \inf_{C\in\Sigma(P,Q)}\int_{N_{\mathbb{Y}}\times N_{\mathbb{Y}}}\mathrm{d}_{\rm TV}(\omega_1,\omega_2) C(\mathrm{d}(\omega_1,\omega_2)),
 \end{equation*}
-Let $\mathscr{F}_{TV}$ denote the collection of $1$-Lipschitz functions with respect to $\mathrm{d}_{\rm TV}$. The Kantorovich-Rubinstein distance between two probability measures $P,Q$ on $N_{\mathbb{Y}}$ is defined as 
-\begin{equation*}
-	\mathrm{d}_{\rm KR}(P,Q):= \inf_{C\in\Sigma(P,Q)}\int_{N_{\mathbb{Y}}\times N_{\mathbb{Y}}}\mathrm{d}_{\rm TV}(\omega_1,\omega_2) C(\mathrm{d}(\omega_1,\omega_2)),
-\end{equation*}
-where $\Sigma(P,Q)$ denotes the set of probability measures on $N_{\mathbb{Y}}\times N_{\mathbb{Y}}$ with first marginal $P$ and second marginal $Q$. 
-By abuse of notation we will also write $\mathrm{d}_{\rm KR}(\xi,\zeta)$ instead of $\mathrm{d}_{\rm KR}(P,Q)$ for any two point processes $\xi,\zeta$ with distributions $P$ and $Q$ respectively. 
-%\textcolor{red}{Introduce Poisson $U$-statistics}
+where $\mathrm{d}_{\rm TV}(\nu_1,\nu_2):=\sup_{A\in\mathcal{Y}}|\nu_1(A)-\nu_2(A)|$ is the total variation distance between finite measures, and 
+$\Sigma(P,Q)$ is the set of probability measures on $N_{\mathbb{Y}}\times N_{\mathbb{Y}}$ with first marginal $P$ and second marginal $Q$. 
+
+
+%the functional we're interested in \eqref{def:ustat} now becomes 
+%\begin{equation*}
+%	S=\sum_{(x_1,\dots,x_k)\in\eta^k_{\ne}}f\big(x_1,\dots,x_k,\left(\mathbf{1}(\mathcal{M}_{x_i,x_j}\le\varphi(x_i,x_j))_{i,j\in[k],i\ne j}\right)\big).
+%\end{equation*}
+
+\subsection{Subgraph counts}
+Let $G=(V_G,E_G)$ be a fixed connected graph of order $k$, $k\ge2$, with vertex set $V_G$ and edge set $E_G$. 
+%For any two graphs $G_1$ and $G_2$, we denote $G_1\simeq G_2$ when $G_1$ is isomorphic to $G_2$. 
+Denote $|\mathrm{Aut}(G)|$ as the number of automorphism of $G$. 
+Define $v(G):=|V_G|$ as the number of vertices and $e(G):=|E_G|$ as the number of edges of the graph $G$. 
+For any two graphs $G_1,G_2$, we write $G_1\simeq G_2$ when $G_1$ is isomorphic to $G_2$. 
+\begin{defi}{\cite[pp.~64-65]{JLR}}
+ % \label{balgra}
+\begin{itemize}
+\item[1)]
+A graph $G$ is balanced if 
+\begin{equation}
+  \frac{e(H)}{v(H)}\leq \frac{e(G)}{v(G)},
+  \qquad \quad \text{for all }H\subseteq G,   \label{balance1} 
+    \end{equation}
+and strictly balanced if \eqref{balance1} 
+holds as a strict inequality for all $H\subsetneq G$. 
+\item[2)] A graph $G$ is $K_1$-balanced, also called strongly balanced, if 
+\begin{equation}
+	\frac{e(H)}{v(H)-1}\le\frac{e(G)}{v(G)-1}, \qquad \quad \text{for all }H\subseteq G \quad \text{with} \quad v(H)>1,
+	\label{balance2}
+\end{equation}
+with the convention $0/0=0$.
+\end{itemize}
+  \end{defi}
+
+We consider $\ell$ copies of $G$ with the vertices, denoted by $x_i^{(r)}$ for $i \in [k]$ and $r \in [1, \dots, \ell]$. For a given partition $\pi \in \widetilde{\Pi}^\ell(k)$, the {\it contracted graph} $(G^{\otimes \ell})_{\pi}$ is constructed as follows:
+\begin{itemize}
+    \item \textbf{Vertices:} The vertex set consists of the blocks of the partition $\pi$. Formally, two vertices $x_{i_1}^{(r_1)}$ and $x_{i_2}^{(r_2)}$ are identified as a single vertex in $(G^{\otimes \ell})_{\pi}$ if and only if the indices $(r_1, i_1)$ and $(r_2, i_2)$ belong to the same block of $\pi$. The resulting graph has exactly $|\pi|$ vertices.
+    
+    \item \textbf{Edges:} The edge set is inherited from the $\ell$ copies of $G$. For every original edge $\{i, j\} \in E_G$, we include the edges $\{x_i^{(r)}, x_j^{(r)}\}$ for all $r \in [\ell]$, subject to the vertex identifications defined by $\pi$.
+\end{itemize}
+Note that Because $G$ is connected and the identification process (contraction) does not break existing paths, the resulting graph $(G^{\otimes \ell})_{\pi}$ remains connected.
+\subsubsection{Subgraph counts with integrable connection function}
+Suppose the connection function $\varphi$ satisfies 
+$$
+\int_{\mathbb{R}^d}\varphi(x)\mathrm{d}x<\infty.
+$$
+To ensure normal approximation, we need the following minimal condition for the connection function $\varphi$.
+\begin{ass}\label{graph-ass1}
+	Let $G$ be a connected graph with $k\ge2$ vertices.
+\begin{enumerate}
+	\item[i)] 
+\begin{equation}
+	\mathbb{P}(\exists\ H\subseteq \mathbb{G}_{\varphi}(\eta):\ H\simeq G)>0.
+\end{equation}
+\item[ii)]
+\begin{equation}
+	\mathbb{P}\left(\exists\ \{x_1,\dots,x_k\}\subseteq\eta:\ \mathbb{G}_{\varphi}(\{x_1,\dots,x_k\})\simeq G\right)>0.
+\end{equation}
+\end{enumerate}
+\end{ass}
+\begin{theorem}\label{propgraph}
+Let $G$ be a connected graph with $k\ge2$ vertices.
+Denote by $N_G^{\subset}$ and $N_G^{=}$ the non-induced subgraph count and induced subgraph counts, respectively, of copies of $G$ in 
+$\mathbb{G}_{\varphi}(\eta\cap\Gamma_s)$, defined by
+\begin{align}
+	N_G^{\subset}&:=\frac1{|\mathrm{Aut}(G)|}\sum_{(x_1,\dots,x_k)\in\eta^k_{\ne}\cap\Gamma_s^k}\prod_{\{i,j\}\in E_G}\mathbf{1}\{x_i\leftrightarrow x_j\},\label{def:subgraph-count1}\\
+	N_G^{=}&:=\frac1{|\mathrm{Aut}(G)|}\sum_{(x_1,\dots,x_k)\in\eta^k_{\ne}\cap\Gamma_s^k}\prod_{\{i,j\}\in E_G}
+    \mathbf{1}\{x_i\leftrightarrow x_j\}\prod_{\{\imath,\jmath\}\notin E_G}\mathbf{1}\{x_{\imath}\nleftrightarrow x_{\jmath}\}.\label{def:subgraph-count2}
+\end{align}
+If Assumption~\ref{graph-ass1}-i) holds, then there exist constants $C,s_0>0$, depending only on $\varphi$, $k$ and $G$ such that when $s\ge s_0$,
+\begin{equation}
+	\mathrm{d}_{\mathrm{Wass}}\left(\frac{N_G^{\subset}-\mathbb{E} N_G^{\subset}}{\sqrt{\Var N_G^{\subset}}},N\right)\le \mathrm{d}_{\mathrm{K}}\left(\frac{N_G^{\subset}-\mathbb{E} N_G^{\subset}}{\sqrt{\Var N_G^{\subset}}},N\right)\le\frac{C}{\sqrt{s}}.
+\end{equation}
+Moreover, if Assumption~\ref{graph-ass1}-ii) holds, the same bound applies to the induced subgraph count $N_G^{=}$.
+\end{theorem}
+It can be shown that, 
+as a direct application of Proposition~\ref{prop:moments}, the growth of cumulants of subgraph counts is well controlled, which is essential for normal approximation in Theorem~\ref{propgraph}.
+\begin{prop}\label{subgraph-cumu-1}
+For any $\ell\in\mathbb{N}$ and $i\in\{=,\subset\}$, we have, for each $\pi\in\widetilde{\Pi}^\ell(k)$
+\begin{equation}\label{intgrand-0}
+\int_{\Gamma_s^{|\pi|}}\int_{[0,1]^{|\pi|\times|\pi|}_{\ne}}((f^{(i)}_G)^{\otimes\ell})_{\pi}(\bm{x},\bm{u})\mathrm{d}\bm{u}\lambda_d^{|\pi|}(\mathrm{d}\bm{x})\le 
+\frac{1}{|\mathrm{Aut}(G)|^\ell}\lambda_d(\Gamma_s)\left(\int_{\mathbb{R}^d}\varphi(z)\mathrm{d}z\right)^{|\pi|-1}\gamma^{|\pi|}.
+\end{equation}
+Moreover, we have 
+\begin{equation}
+	\cum_\ell(N_G^{(i)})\le \frac{1}{|\mathrm{Aut}(G)|^\ell}\left[\left(\gamma \int_{\mathbb{R}^d}\varphi(z)\mathrm{d}z\right)\vee1\right]^{\ell(k-1)+1}k^{k\ell}(\ell!)^k s.
+\end{equation}
+ \end{prop}
+
+As a directly consequence of cumulants estimates established in Proposition~\ref{subgraph-cumu-1} and the proof of Theorem~\ref{propgraph}, we obtain moderate deviation principle, concentration inequality and normal approximation with Cram\'er correction for the normalized subgraph counts via the method of cumulants. 
+
+\begin{theorem}\label{thm:subgraphMDP}
+	Let $G$ be a connected graph with $k\ge2$ vertices, and $\{s_n\}_{n\in\mathbb{N}}$ be a positive real-valued sequence with $s_n\to\infty$. 
+Denote by $N_n^{\subset}$ and $N_n^{=}$ the non-induced subgraph count and induced subgraph counts, respectively, of copies of $G$ in 
+$\mathbb{G}_{\varphi}(\eta\cap\Gamma_{s_n})$, defined by
+\begin{align}
+	N_n^{\subset}&:=\frac1{|\mathrm{Aut}(G)|}\sum_{(x_1,\dots,x_k)\in\eta^k_{\ne}\cap\Gamma_{s_n}^k}\prod_{\{i,j\}\in E_G}\mathbf{1}\{x_i\leftrightarrow x_j\},\\
+	N_n^{=}&:=\frac1{|\mathrm{Aut}(G)|}\sum_{(x_1,\dots,x_k)\in\eta^k_{\ne}\cap\Gamma_{s_n}^k}\prod_{\{i,j\}\in E_G}
+    \mathbf{1}\{x_i\leftrightarrow x_j\}\prod_{\{\imath,\jmath\}\notin E_G}\mathbf{1}\{x_{\imath}\nleftrightarrow x_{\jmath}\}.
+\end{align}
+If Assumption~\ref{graph-ass1}-i) holds, then there exists constant $C$ (see \eqref{mdp-const1}) such that  
+$\{N_n^{\subset}\}_{n\in\mathbb{N}}$ satisfies 
+\textbf{$\mathrm{MDP}$}$(k-1,\{C\sqrt{s_n}\}_{n\in\mathbb{N}})$, \textbf{$\mathrm{CI}$}$(k-1, \{C\sqrt{s_n}\}_{n \in \mathbb{N}})$, and \textbf{$\mathrm{NACC}$}$(k-1,\{C\sqrt{s_n}\}_{n\in\mathbb{N}})$. 
+Moreover, if Assumption~\ref{graph-ass1}-ii) holds, then 
+$\{N_n^{=}\}_{n\in\mathbb{N}}$ satisfies 
+\textbf{$\mathrm{MDP}$}$(k-1,\{C\sqrt{s_n}\}_{n\in\mathbb{N}})$, \textbf{$\mathrm{CI}$}$(k-1, \{C\sqrt{s_n}\}_{n \in \mathbb{N}})$, and \textbf{$\mathrm{NACC}$}$(k-1,\{C\sqrt{s_n}\}_{n\in\mathbb{N}})$. 
+\end{theorem}
+\subsubsection{Subgraph counts with non-integrable connection function}
+
+\begin{ass}\label{bound-ass-1}
+The connection function $\varphi$ is radial with radial profile $\bar{\varphi}$. The function $\bar{\varphi}$ is non-increasing and there exist constants $l_{\bar{\varphi}}\in(0,\infty)$ and $\alpha\in(0,d)$ such that
+\begin{equation}
+\lim_{t\to\infty} t^{\alpha} \bar{\varphi}(t)=l_{\bar{\varphi}}.
+\end{equation}
+\end{ass}
+Before presenting the main results of this section, we first illustrate the key ideas with a toy example.
+\begin{example}
+	When $G=K_3$ is a triangle, according to Proposition~\ref{prop:expectation_variance}, we have
+\begin{align*}
+\Var(N_{K_3}^{\subset})=9I_1(s)+18I_2(s)+3I_3(s),
+\end{align*}
+where
+\begin{align*}
+	I_1(s)&:=\gamma^5\int_{\Gamma_s^5}\varphi(x_1-x_2)\varphi(x_2-x_3)\varphi(x_3-x_1)\varphi(x_1-x_4)\varphi(x_1-x_5)\varphi(x_4-x_5)\mathrm{d}(x_1,\dots,x_5),\\
+	I_2(s)&:=\gamma^4\int_{\Gamma_s^4}\varphi(x_1-x_2)\varphi(x_2-x_3)\varphi(x_3-x_1)\varphi(x_1-x_4)\varphi(x_4-x_2)\mathrm{d}(x_1,\dots,x_4),\\
+	I_3(s)&:=\gamma^3\int_{\Gamma_s^3}\varphi(x_1-x_2)\varphi(x_2-x_3)\varphi(x_3-x_1)\mathrm{d}(x_1,x_2,x_3).
+\end{align*}
+
+Moreover, by letting $v_i:=s^{-1/d}x_i$, we can write 
+\begin{align*}
+	I_1(s)&=\gamma^5\int_{\Gamma^5}\varphi(s^{1/d}(v_1-v_2))\varphi(s^{1/d}(v_2-v_3))\varphi(s^{1/d}(v_3-v_1))\\
+	      &\ \ \ \times\varphi(s^{1/d}(v_1-v_4))\varphi(s^{1/d}(v_1-v_5))\varphi(s^{1/d}(v_4-v_5))s^{5}\mathrm{d}(v_1,\dots,v_5),\\
+	      &\asymp s^5 s^{-6\frac{\alpha}d}\int_{\Gamma^5}\|v_1-v_2\|^{-\alpha}\|v_2-v_3\|^{-\alpha}\|v_3-v_1\|^{-\alpha}\\
+	      &\ \ \ \times\|v_1-v_4\|^{-\alpha}\|v_1-v_5\|^{-\alpha}\|v_4-v_5\|^{-\alpha}\mathrm{d}(v_1,\dots,v_5).
+\end{align*}
+Because $\varphi$ is bounded by $1$, integrations over $\Gamma$ is finite. Hence, we have 
+\begin{equation}
+	I_1(s)\asymp s^{5-6\alpha/d},~~I_2(s)\asymp s^{4-5\alpha/d},~~I_3(s)\asymp s^{3-3\alpha/d},
+\end{equation}
+and 
+\begin{equation}
+	\Var(N_{K_3}^{\subset})\asymp
+\begin{cases}
+	s^{5-6\alpha/d},\ \ \ &\mbox{when}~\alpha\in(0,\frac23d],\\
+	s^{3-3\alpha/d},\ \ \ &\mbox{when}~\alpha\in(\frac23d,d).
+\end{cases}
+\end{equation}
+\end{example}
+
+\begin{lemma}\label{noninteg-upper-1}
+If Assumption~\ref{bound-ass-1} holds, we have, for any $\ell\in\mathbb{N}$ and  $\pi\in\widetilde{\Pi}^\ell(k)$
+\begin{equation}\label{noninteg-upper-2}
+\int_{\Gamma_s^{|\pi|}}\int_{[0,1]^{|\pi|\times|\pi|}_{\ne}}((f^{\subset}_G)^{\otimes\ell})_{\pi}(\bm{x},\bm{u})\mathrm{d}\bm{u}\lambda_d^{|\pi|}(\mathrm{d}\bm{x})\asymp 
+s^{|\pi|-e((G^{\otimes\ell})_\pi)\alpha/d}.
+\end{equation}
+Moreover, suppose that $G$ is $K_1$-balanced, we have 
+\begin{align}
+	\label{cumasym1}
+    \cum_\ell(N_G^{\subset})\asymp
+\begin{cases}
+	s^{1+(k-1)\ell}\cdot s^{-\ell e(G)\alpha/d}, \ \ \ &\mbox{when}~\alpha\in(0,\frac{k-1}{e(G)}d],\\
+	s^{k-e(G)\alpha/d}, \ \ \ &\mbox{when}~\alpha\in(\frac{k-1}{e(G)}d,d).
+\end{cases}
+\end{align}
+ \end{lemma}
+%}
+\begin{remark}
+	All trees, cycles, and complete graphs are $K_1$-balanced, see \cite{RucinskiVince86}. 
+\end{remark}
+
+\begin{remark}
+The assumption that $G$ is $K_1$-balanced is necessary to guarantee the dichotomy in \eqref{cumasym1}; see \cite[Proposition~6.1]{LiuPrivault25b} for a precise statement and proof.
+\end{remark}
+\iffalse
+\begin{lemma}\label{noninte-lower-1}
+If Assumption~\ref{bound-ass-1} holds, we have 
+\begin{equation}\label{lowerbound-2}
+	\Var(N_G^{\subset})\gtrsim s^{2k-1-2|E_G|\alpha/d}.
+\end{equation}
+\end{lemma}
+\begin{proof}
+For the convex set $\Gamma_s$, we denote the inradius of $\Gamma_s$ as $r(\Gamma_s)$. Given that the volume of $\Gamma_s$ is $s$, there exists a constant $c_1>0$ such that  $r(\Gamma_s)\le c_1 s^{1/d}$. Since $\bar{\varphi}(r)\asymp r^{-\alpha}$ is non-increasing, there exists a constant $c_2>0$ such that for all sufficiently large $s$  
+\begin{equation}
+	\inf_{x,y\in\Gamma_s}\varphi(x-y)=\inf_{0\le t\le 2r(\Gamma_s)}\bar{\varphi}(t)\ge c_2 r(\Gamma_s)^{-\alpha}\asymp s^{-\alpha/d}.
+\end{equation}
+The proof follows from that there exists a spanning tree in each connected graph, as in the proof of Proposition~\ref{subgraph-cumu-1}.
+Take $\rho \in \widetilde{\Pi}^2(k)$ to be the set partition such that 
+$\{(1,1),(2,1)\} \in \rho$ and every other block of $\rho$ contains exactly one element, 
+so that $|\rho| = 2k - 1$. 
+Consequently, there exists a spanning tree $I_{\rho} \in \mathcal{I}_{2k-1}$ of 
+$(G^{\otimes 2})_{\rho}$.
+Hence, we have 
+\begin{align*}
+&\Var(N_G^{\subset})\\
+&=\sum_{\pi\in\widetilde{\Pi}^2(k)}\int_{\Gamma_s^{|\pi|}}\int_{[0,1]^{|\pi|(|\pi|-1)/2}}(f^{\subset}_G\otimes f^{\subset}_G)_{\pi}(\bm{x},\bm{u})\mathrm{d}\bm{u}\gamma^{|\pi|}\mathrm{d}\bm{x}\nonumber\\
+&\ge\int_{(\mathbb{R}^d)^{2k-1}}\mathbf{1}(x_1,\dots,x_{2k-1}\in\Gamma_s)\left(\prod_{\{i,j\}\in E_{(G^{\otimes 2})_{\rho}}}\varphi(x_i-x_j)\right)\mathrm{d}(x_1,\dots,x_{2k-1})\\
+&\ge\int_{(\mathbb{R}^d)^{2k-1}}\mathbf{1}(x_1,\dots,x_{2k-1}\in\Gamma_s)\left(\prod_{\{i,j\}\in I_{\rho}}\varphi(x_i-x_j)\right)\mathrm{d}(x_1,\dots,x_{2k-1})
+\times\left[\inf_{x,y\in\Gamma_s}\varphi(x-y)\right]^{2|E_G|-(2k-2)}\\
+&\gtrsim s \left(s^{1-\alpha/d}\right)^{2k-2}\left(s^{-\alpha/d}\right)^{2|E_G|-(2k-2)}=s^{2k-1-2|E_G|\alpha/d}.
+\end{align*}
+\end{proof}
+\begin{remark}
+	Note the lower bound in \eqref{lowerbound-2} is sharp, meaning it coincides with the upper bound established in \eqref{upperbound-2},  when $|E_G|=k-1$, i.e., when $G$ is a tree.
+\end{remark}
+\fi
+
+From Lemma~\ref{noninteg-upper-1} and Theorem~\ref{normalapp1}, the following result is straightforward. 
+\begin{theorem}
+Assuming that Assumption~\ref{bound-ass-1} holds and $G$ is $K_1$-balanced, we have
+\begin{align}
+	\label{norm-opt}
+	\mathrm{d}_{\mathrm{Wass}}\left(\frac{N_G^{\subset}-\mathbb{E} N_G^{\subset}}{\sqrt{\Var N_G^{\subset}}},N\right)\le \mathrm{d}_{\mathrm{K}}\left(\frac{N_G^{\subset}-\mathbb{E} N_G^{\subset}}{\sqrt{\Var N_G^{\subset}}},N\right)\le\frac{C}{\Delta_s},
+\end{align}
+with 
+\begin{align}\label{non-integrable-rate0}
+\Delta_s:=
+\begin{cases}
+	\displaystyle
+	\sqrt{s}, \ \ \ &\mbox{when}~\alpha\in(0,\frac{k-1}{e(G)}d],\\
+	\displaystyle
+	\sqrt{s^{k-e(G)\alpha/d}}, \ \ \ &\mbox{when}~\alpha\in\left(\frac{k-1}{e(G)}d,(\frac{k}{e(G)}\wedge 1)d\right).
+\end{cases}
+\end{align}
+\end{theorem}
+\begin{remark}
+	The convergence rates established in \cite[Theorem~3.5]{LiuPrivault25b} are of order $O(\Delta_s^{-1/(2k-1)})$, where $\Delta_s$ is defined as in \eqref{non-integrable-rate0}. In contrast, our estimates in \eqref{norm-opt} provide what are conjected to be optimal rates of convergence. 
+\end{remark}
+
+
+%\subsection{edge-length functionals}
+\subsection{Edge-lengths}
+
+\begin{ass}\label{edgelength-ass1}
+	The function $\varphi$ is only radially dependent. Its radial part is denoted by $\bar{\varphi}$, that has a polynomial decay with some exponent $\alpha \in (d, \infty)$, i.e. there exists a constant $l_{\bar{\varphi}}\in(0,\infty)$ such that  
+\begin{equation}\label{eqn:assumption_phi}
+\lim_{t\to\infty} t^{\alpha} \bar{\varphi}(t)=l_{\bar{\varphi}}.
+\end{equation}
+\end{ass}
+
+Note that the condition $\alpha>d$ in Assumption \ref{edgelength-ass1} ensures that the (non-trivial) integrability property
+$$ 0 < \int_{\mathbb{R}^d} \varphi (x) \, \mathrm{d} x< \infty$$
+is satisfied.
+Together with the observation that $\bar{\varphi}$ as a probability is bounded by one, this yields the existence of a constant $C_{\bar{\varphi}}\in(0,\infty)$ such that
+\begin{equation}\label{eqn:Upper_bound_bar_varphi}
+\bar{\varphi}(t) \leq \frac{C_{\bar{\varphi}}}{t^\alpha}
+\end{equation}
+for all $t\in(0,\infty)$. Moreover, we define
+$$
+c_{\bar{\varphi}} := \frac{\gamma^2 d \kappa_d l_{\bar{\varphi}}}{2(\alpha-d)}.
+$$
+
+In the following, we first consider the point processes
+$$
+\tilde{\xi}_s := \frac{1}{2} \sum_{(x_1,x_2)\in\eta_{\neq}^2} \mathbf{1}\bigg\{x_1\leftrightarrow x_2, \frac{x_1+x_2}{2}\in\Gamma_s \bigg\} \delta_{s^{-\frac{1}{\alpha-d}}\|x_1-x_2\|}
+$$
+for $s\geq 1$, and also the functional form statistics 
+\begin{equation}\label{deflstau}
+    L_s (\tau):=\frac{1}{2} \sum_{(z_1, z_2) \in \eta^2_{\neq} \cap \Gamma_s^2} \mathbf{1}\{ z_1 \leftrightarrow z_2 \} \| z_1- z_2 \|^\tau, 
+\end{equation}
+for $\tau \in \mathbb{R}$ and $s\ge1$.
+
+Alternatively, one could also consider a modified version that eliminates boundary effects:
+\[
+\widetilde{L}_s(\tau)
+:= \frac{1}{2} \sum_{(z_1, z_2) \in \eta^2_{\neq}}
+   \mathbf{1}\!\left\{
+      \tfrac{z_1 + z_2}{2} \in \Gamma_s,\;
+      z_1 \leftrightarrow z_2
+   \right\}
+   \| z_1 - z_2 \|^{\tau}.
+\]
+Here, the summation runs over all pairs of points in $\eta$ whose {midpoint}
+lies inside $\Gamma_s$, regardless of whether both endpoints belong to $\Gamma_s$.
+%This statistic is the \emph{midpoint version} of the edge-length sum. 
+Here we focus on $L_s(\tau)$. The presence of boundary effects leads to different scaling properties and limit theorems.
+
+We first state the following result regarding the point process $\tilde{\xi}_s$.
+
+
+
+\begin{theorem}\label{thm:edge-length_process}
+Assume that \eqref{eqn:assumption_phi} is satisfied with $\alpha\in(d,\infty)$. Let $\zeta$ be a homogeneous Poisson process on $(0,\infty)$ with intensity $c_{\bar{\varphi}}$ and let
+$$
+\zeta^{(\alpha)}:= \sum_{t\in\zeta} \delta_{t^{-\frac{1}{\alpha-d}}}.
+$$
+\begin{itemize}
+\item [a)] For any $a\in(0,\infty)$,
+$$
+\mathrm{d}_{\rm KR}(\tilde{\xi}_s|_{[a,\infty)},\zeta^{(\alpha)}|_{[a,\infty)}) \leq \frac{\gamma^2 d \kappa_d }{2}\int_a^\infty \big|s^{\frac{\alpha}{\alpha-d}}v^{\alpha} \bar{\varphi}(s^{\frac{1}{\alpha-d}}v) -l_{\bar{\varphi}}\big| \, v^{d-\alpha-1}\, \mathrm{d}v + \frac{4\gamma^3 (d\kappa_d C_{\bar{\varphi}})^2}{(\alpha-d)^2 a^{2(\alpha-d)}} \frac{1}{s}.
+$$
+Moreover, the right-hand side vanishes as $s\to\infty$.
+\item [b)] One has
+$$
+\tilde{\xi}_s\overset{d}{\longrightarrow} \zeta^{(\alpha)}\quad \text{as} \quad s\to\infty.
+$$
+\item [c)] 
+Let $Z$ be a random variable such that $\mathbb{P}(Z>a)=e^{-c_{\bar{\varphi}}a^{d-\alpha}}$ for $a\in(0,\infty)$. Then,
+$$
+s^{-\frac{1}{\alpha-d}}\max_{(x_1,x_2)\in\eta_{\neq}^2, x_1\leftrightarrow x_2, \frac{x_1+x_2}{2}\in\Gamma_s} \|x_1-x_2\| \overset{d}{\longrightarrow} Z \quad \text{as} \quad s\to\infty.
+$$
+\end{itemize}
+\end{theorem}
+
+
+%Using the above notation, define
+% \begin{align}\label{originalUstat}
+ %    S_t:= \frac{1}{k!}\sum_{(x_1, \ldots, x_k) \in \eta^k_{\neq}} f_t \Big( x_1, \ldots, x_k, (W_{x_i,x_j})_{i,j =1,\ldots, k, i \neq j} \Big) ,
+% \end{align}
+%where $f_t$, $t \geq 1$, is a measurable function and the sum is taken over all $k$-tuples of pairwise distinct points. Note that $S$ is not a Poisson $U$-statistics. Now consider the following. For two points $\hat{x}=(x,\mathbf{u}=(u_{i,l})_{i,l\in\mathbb{N}})$ and $\hat{y}=(y,\mathbf{v}=(v_{i,l})_{i,l\in\mathbb{N}})$ in $\hat{\eta}$ such that $x\leq y$ and $y\in A_i$ define $\hat{W}_{\hat{x},\hat{y}} := u_{i,1}$, and
+%$$ \hat{S}_t:= \frac{1}{k!}\sum_{(\hat{x}_1, \ldots, \hat{x}_k) \in \hat{\eta}^k_{\neq}} f_t \Big( {x}_1, \ldots, {x}_k, (\hat{W}_{\hat{x}_i,\hat{x}_j}) \Big) =:  \sum_{(\hat{x}_1, \ldots, \hat{x}_k) \in \hat{\eta}^k_{\neq}} \hat{f}_t ( \hat{x}_1, \ldots, \hat{x}_k ),$$
+%which on the other hand is a Poisson U-statistics. Now, choose the partition $\{A_i\}_{i\in\mathbb{N}}$ such that $\lambda_d (A_i) = \frac{\varepsilon}{i}$ for every $i \in \mathbb{N}$, where $\varepsilon>0$ is a given (later chosen to be sufficiently small) number. Then we have
+%\begin{align}\label{ShatS}
+%\begin{split}
+%    \mathbb{P} (S \neq \hat{S}) &= \mathbb{P} ( \exists i \in \mathbb{N} : \eta (A_i) \geq 2 ) \leq \sum_{i=1}^\infty \mathbb{P} ( \eta (A_i) \geq 2 ) \\
+ %   & \leq \sum_{i=1}^\infty  \lambda_d (A_i)^2 = \varepsilon^2 \sum_{i=1}^\infty \frac{1}{k^2},
+%\end{split}
+%\end{align}
+%so that $\mathbb{P} (S \neq \hat{S}) \to 0$, as $\varepsilon \to 0$. Moreover, for every random variable $N$ we have
+%\begin{align} \label{Kineq}
+ %    d_K (S,N) \leq \mathbb{P} (S \neq \hat{S}) + d_K (\hat{S},N) .
+%\end{align}
+
+
+%Based on the latter observations, the following approximations could be studied:
+
+%\begin{itemize}
+  %  \item Poisson process approximation, see \cite{dst}
+ %   \item Quantitative Normal approximation (Wasserstein, Kolmogorov distance), %see \cite{reitznerschulte,schulte,eichelsbacher}
+ %   \item Poisson approximation, see \cite{pianoforte}
+ %   \item Moderate deviations and concentration inequalities, see \cite{schulte2, bonnet}
+%    \item Approximation by $\alpha$-stable distributions
+%\end{itemize}
+
+%One conjecture is that the point process
+%$$ \frac{1}{2} \sum_{(z_1, z_2) \in \eta^2_{\neq} \cap B^2(0, \rho)} \delta_{\|%z_1 - z_2\| - b_\rho}$$
+%converges in distribution to a Poisson point process, for a suitably chosen sequence $b_\rho$.
+
+%Recall that $\varphi$ denotes the connection function and that we make the following assumption on $\varphi$.
+%From the statements in Lemma \ref{lem:varlength} we observe that the variance asymptotics is not finite. 
+
+The following is the main result for the behavior of power-weighted edge-lengths. In particular we get different limit theorems (central or stable) depending on the values of $\alpha$, $d$ and $\tau$, including a distinctive regime with $\alpha =2d$, where a different limit theorem holds.
+
+\begin{theorem}\label{mainsumedges}
+    Let $L_s (\tau)$ be defined as in \eqref{deflstau} with $\tau>-d/2$. Suppose that Assumption \ref{edgelength-ass1} is satisfied. Then, as $s\to\infty$, the following trichotomy holds.
+
+\begin{enumerate}[label=\textup{(\roman*)},leftmargin=2.2em]
+\item {Gaussian regime.}
+If either
+\[
+\alpha \ge 2\tau+d
+\qquad\text{or}\qquad
+\alpha\in(d,2d),
+\]
+then
+\[
+\frac{L_s(\tau)-\E[L_s(\tau)]}{\sqrt{\Var(L_s(\tau))}}
+\overset{d}{\longrightarrow} N.
+\]
+
+\item {Stable regime.}
+If
+\[
+2d<\alpha<2\tau+d,
+\]
+then there exist centring constants $b_s\in\mathbb{R}$ and scaling constants $a_s>0$ such that
+\[
+\frac{L_s(\tau)-b_s}{a_s}
+\overset{d}{\longrightarrow} S_{\kappa},
+\qquad
+\kappa:=\frac{\alpha-d}{\tau}\in(0,2),
+\]
+where $S_{\kappa}$ is a non-degenerate $\kappa$-stable law.
+
+\item {Distinctive regime.}
+If
+\[
+\alpha=2d
+\qquad\text{and}\qquad
+\alpha<2\tau+d,
+\]
+then a distinctive, non-Gaussian and non-stable limit theorem holds, as specified in
+Theorem~\ref{thm:stable}.
+\end{enumerate}
+\end{theorem}
+
+Figure \ref{fig:phase-diagram-tau-alpha} summarizes the findings of Theorem \ref{mainsumedges}.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[>=Latex, font=\small]
+
+\def\Tmax{6.5}
+\def\Amax{6.0}
+
+\def\yD{0.70}
+\def\yTwoD{1.90}
+
+\pgfmathsetmacro{\tTop}{(\Amax-\yD)/2}
+\pgfmathsetmacro{\tAtTwoD}{(\yTwoD-\yD)/2}
+
+\tikzset{hilite/.style={black!15}}
+\tikzset{hiliteLight/.style={black!7}}
+
+% Shadings
+\fill[hilite] (0,\yD) rectangle (\Tmax,\yTwoD);
+\fill[hilite] (0,\Amax) -- (\tTop,\Amax) -- (0,\yD) -- cycle;
+\fill[hiliteLight]
+  (\tAtTwoD,\yTwoD) -- (\Tmax,\yTwoD) -- (\Tmax,\Amax) -- (\tTop,\Amax) -- cycle;
+
+% Labels inside shaded regions
+\node[font=\bfseries\large] at ({0.55*\Tmax},{(\yD+\yTwoD)/2}) {Gaussian limit};
+\node[font=\bfseries\large] at ({0.56*\Tmax},{0.47*(\yTwoD+\Amax)}) {stable limit};
+
+% Axes
+\draw[->, thick] (0,0) -- (\Tmax,0) node[below] {$\tau$};
+\draw[->, thick] (0,0) -- (0,\Amax) node[left] {$\alpha$};
+
+% Ticks
+\draw (-0.10,\yD) -- (0.10,\yD) node[left=5pt] {$d$};
+\draw (-0.10,\yTwoD) -- (0.10,\yTwoD) node[left=5pt] {$2d$};
+
+% Horizontal line at alpha=d (full length)
+\draw[thick] (0,\yD) -- (\Tmax,\yD);
+
+% Horizontal line at alpha=2d: ONLY from the green-line intersection to the right
+\draw[thick, red!70!black] (\tAtTwoD,\yTwoD) -- (\Tmax,\yTwoD);
+
+% Red label OUTSIDE, to the right
+\node[red!70!black, anchor=west] at (\Tmax+0.15,\yTwoD) {$\alpha=2d$};
+
+% Green line alpha = 2*tau + d
+% Green line: dotted between d and 2d, solid above 2d
+\draw[thick, green!60!black, dotted] (0,\yD) -- (\tAtTwoD,\yTwoD);
+\draw[thick, green!60!black] (\tAtTwoD,\yTwoD) -- (\tTop,\Amax)
+  node[above right, text=green!60!black] {$\alpha = 2\tau + d$};
+
+\end{tikzpicture}
+\caption{Schematic phase diagram in the $(\tau,\alpha)$-plane.
+The grey region indicates parameter regimes in which a central limit theorem holds for the sums of power-weighted edge lengths.
+The green line $\alpha=2\tau+d$ marks a critical regime in which a central limit theorem still holds. The lighter grey region corresponds to regimes with stable (non-Gaussian) limit theorems.
+Finally, the red line $\alpha=2d$ highlights a boundary regime with a distinct limiting behaviour.}
+\label{fig:phase-diagram-tau-alpha}
+
+\end{figure}
+
+
+Section~\ref{regimeclt} contains the proofs of the central limit theorems, whereas Section~\ref{nongaussianregime} provides the proofs of the non-Gaussian limit theorems, covering both the stable regime and the critical (distinctive) case. Moreover, in partial regimes for the central limit theorem, we additionally provide upper bounds on the convergence rates.
+
+
+
+
+
+
+\subsection{Hub-to-hub edges}
+
+In the following we study the weighted random connection model such that
+$$
+\mathbb{P}(x\leftrightarrow y) = \varphi(\kappa(W_x,W_y)/\|x-y\|^d)
+$$
+for given $x,y\in\eta$, $x\neq y$, with weights $W_x$ and $W_y$. Here, $\kappa: [0,\infty)^2\to[0,\infty)$ is measurable and $\varphi:[0,\infty)\to[0,\infty)$ satisfies
+$$
+c_\varphi:=\int_{\mathbb{R}^d} \varphi(1/\|v\|^d) \, \mathrm{d}v <\infty.
+$$
+
+In the following, we are interested in edges whose endpoints have large weights. We denote such edges as hub-to-hub edges. Let $(t_s)_{s\geq 1}$ be a family of non-negative real numbers. For $s\geq 1$ we study
+$$
+E_s:= \frac{1}{2} \sum_{(x_1,x_2)\in\eta^2_{\neq}} \mathbf{1}\{ x_1\leftrightarrow x_2 \} \mathbf{1}\bigg\{ \frac{x_1+x_2}{2}\in \Gamma_s, W_{x_1},W_{x_2} \geq t_s \bigg\},
+$$
+i.e., we count all edges with vertices having their midpoint in the observation window and weights exceeding $t_s$.
+
+We have that
+$$
+\mathbb{E}[E_s] = \frac{\gamma^2}{2} \mathbb{E} \int_{(\mathbb{R}^d)^2} \mathbf{1}\bigg\{ \frac{x_1+x_2}{2}\in \Gamma_s \bigg\} \mathbf{1}\{W_1,W_2\geq t_s\}  \varphi(\kappa(W_1,W_2)/\|x_1-x_2\|^d) \, \mathrm{d}(x_1,x_2)
+$$
+with independent copies $W_1$ and $W_2$ of the typical weight. The substitutions $z=(x_1+x_2)/2$ and $u=x_1-x_2$ as well as $u'=u/\kappa(W_1,W_2)^{1/d}$ lead to
+\begin{align*}
+\mathbb{E}[E_s] & = \frac{\gamma^2}{2} \mathbb{E} \int_{(\mathbb{R}^d)^2} \mathbf{1}\{z\in \Gamma_s\} \mathbf{1}\{W_1,W_2\geq t_s\}  \varphi(\kappa(W_1,W_2)/\|u\|^d) \, \mathrm{d}(z,u) \\
+& =  \frac{\gamma^2 \lambda_d(\Gamma_s)}{2} \mathbb{E}\bigg[ \mathbf{1}\{W_1,W_2\geq t_s\}  \int_{\mathbb{R}^d}  \varphi(\kappa(W_1,W_2)/\|u\|^d) \, \mathrm{d}u \bigg] \\
+& =  \frac{\gamma^2 s}{2} \mathbb{E}\bigg[ \mathbf{1}\{W_1,W_2\geq t_s\}  \int_{\mathbb{R}^d} \kappa(W_1,W_2) \varphi(1/\|u'\|^d) \, \mathrm{d}u' \bigg] \\
+& = \frac{\gamma^2 s}{2} c_\varphi \mathbb{E}[\kappa(W_1,W_2) \mathbf{1}\{W_1,W_2\geq t_s\}].
+\end{align*}
+
+For $E_s$ we can derive the following Poisson and normal approximation results.
+
+\begin{theorem}\label{thm:hub-to-hub-edges}
+Denote by $W_1,\hdots,W_5$ independent copies of $W$.
+\begin{itemize}
+\item [a)] Assume that $\mathbb{E}[\kappa(W_1,W_2)]<\infty$ and $\mathbb{E}[\kappa(W_1,W_2) \kappa(W_1,W_3)]<\infty$. For $s\geq 1$ and $Z_s\sim\operatorname{Poisson}(\gamma^2 c_\varphi s \mathbb{E}[\kappa(W_1,W_2) \mathbf{1}\{W_1,W_2\geq t_s\}]/2)$, one has
+$$
+\mathrm{d}_{\mathrm{Wass}}(E_s, Z_s) \leq 4 \gamma^3 c_\varphi^2 s \mathbb{E}[ \mathbf{1}\{ W_1,W_2,W_3\geq t_s \} \kappa(W_1,W_2) \kappa(W_1,W_3) ].
+$$
+\item [b)] Assume that
+$$
+\mathbb{E}\bigg[\prod_{j=2}^i \kappa(W_1,W_j) \bigg]<\infty \quad \quad \text{for} \quad i\in\{4,5\}
+$$
+and
+$$
+\mathbb{E}\bigg[\prod_{j=1}^i \kappa(W_j,W_{j+1})\bigg]<\infty \quad \text{for} \quad i\in\{1,\hdots,4\}
+$$
+let $N$ be a standard normal random variable.
+Then, there exist constants $C_{\mathrm{Wass}},C_{\mathrm{K}}\in(0,\infty)$ only depending on $\gamma$ and $\varphi$ such that, for $s\geq 1$,
+$$
+\mathrm{d}_{\mathrm{Wass}}\bigg( \frac{E_s-\mathbb{E}[E_s]}{\sqrt{\operatorname{Var}[E_s]}}, N \bigg) \leq \frac{C_{\mathrm{Wass}}  R_s}{\sqrt{s} \mathbb{E}[\kappa(W_1,W_2) \mathbf{1}\{W_1,W_2\geq t_s\}]}
+$$
+and
+$$
+\mathrm{d}_{\mathrm{K}}\bigg( \frac{E_s-\mathbb{E}[E_s]}{\sqrt{\operatorname{Var}[E_s]}}, N \bigg) \leq \frac{C_{\mathrm{K}}  R_s}{\sqrt{s} \mathbb{E}[\kappa(W_1,W_2) \mathbf{1}\{W_1,W_2\geq t_s\}]}
+$$
+with
+\begin{align*}
+R_s & := \sum_{i=4}^5 \sqrt{\mathbb{E}\bigg[\prod_{j=2}^i \kappa(W_1,W_j) \mathbf{1}\{W_1,\hdots,W_{i+1}\geq t_s\}\bigg]} \\
+& \quad +\sum_{i=1}^4 \sqrt{\mathbb{E}\bigg[\prod_{j=1}^i \kappa(W_j,W_{j+1})\mathbf{1}\{W_1,\hdots,W_{i+1}\geq t_s\}\bigg]}.
+\end{align*}
+\end{itemize}
+\end{theorem}
+For $s\to\infty$ one should use Poisson approximation for $E_s$ if $\mathbb{E}[E_s]$ converges to some constant and normal approximation if $\mathbb{E}[E_s]\to\infty$.
+
+As an application of Theorem \ref{thm:hub-to-hub-edges} we consider the situation of the so-called product kernel $\kappa(w_1,w_2)=w_1w_2$, which is a very prominent choice for $\kappa$ and where our formulas simpliy.
+
+\begin{corollary}\label{cor:hub-to-hub-edges1}
+Suppose that $\kappa(w_1,w_2)=w_1w_2$.
+\begin{itemize}
+\item [a)] Assume that $\mathbb{E}[W^2]<\infty$. Let $(t_s)_{s\geq 1}$ be such that $\sqrt{s}\mathbb{E}[W\mathbf{1}\{W\geq t_s\}]=a$ for some $a\in(0,\infty)$ and let $Z\sim\operatorname{Poisson}(\gamma^2c_{\varphi}a^2/2)$. Then,
+$$
+\mathrm{d}_{\mathrm{Wass}}(E_s,Z) \leq 4\gamma^3c_{\varphi}^2 a^2 \mathbb{E}[W^2 \mathbf{1}\{W\geq t_s\}]
+$$
+for $s\geq 1$.
+\item [b)] Assume that $\mathbb{E}[W^4]<\infty$ and let $N$ be a standard normal random variable. Then, there exist constants $C_{\mathrm{Wass}}',C_{\mathrm{K}}'\in(0,\infty)$ only depending on $\gamma$ and $\varphi$ such that, for all $s\geq 1$,
+$$
+\mathrm{d}_{\mathrm{Wass}}\bigg( \frac{E_s-\mathbb{E}[E_s]}{\sqrt{\operatorname{Var}[E_s]}}, N \bigg) \leq \frac{C_{\mathrm{Wass}}  R_s'}{\sqrt{s}}
+$$
+and
+$$
+\mathrm{d}_{\mathrm{K}}\bigg( \frac{E_s-\mathbb{E}[E_s]}{\sqrt{\operatorname{Var}[E_s]}}, N \bigg) \leq \frac{C_{\mathrm{K}}  R_s'}{\sqrt{s}}
+$$
+with 
+\begin{align*}
+R_s':= & \frac{\sqrt{\mathbb{E}[W^3 \mathbf{1}\{W\geq t_s\}]}}{\sqrt{\mathbb{E}[W \mathbf{1}\{W\geq t_s\}]}} + \sqrt{\mathbb{E}[W^4 \mathbf{1}\{W\geq t_s\}]} + \frac{2+2\sqrt{\mathbb{E}[W^2 \mathbf{1}\{W\geq t_s\}]}^3}{\mathbb{E}[W \mathbf{1}\{W\geq t_s\}]}.
+\end{align*}
+\end{itemize}
+\end{corollary}
+
+
+Finally, we derive a compound Poisson approximation result for the total edge length of the hub-to-hub edges with midpoint in our observation window. Apart from the product kernel we additionally assume that the weights are Pareto distributed.
+
+\begin{theorem}\label{thm:hub-to-hub-edges2}
+Assume that $\kappa(x_1,x_2)=x_1x_2$ and that $W\sim\operatorname{Pareto}(\beta)$ with $\beta>2$. Let $(t_s)_{s\geq 1}$ be such that $\sqrt{s}\mathbb{E}[W\mathbf{1}\{W\geq t_s\}]=a$ for some $a\in(0,\infty)$ and let
+$$
+F_s= \frac{t_s^{-\frac{2}{d}}}{2} \sum_{(x_1,x_2)\in\eta_{\neq}^2} \mathbf{1}\{x_1\leftrightarrow x_2\} \mathbf{1}\bigg\{ \frac{x_1+x_2}{2}\in \Gamma_s, W_{x_1},W_{x_2}\geq t_s\bigg\} \|x_1-x_2\|.
+$$
+Denote by $\zeta$ a Poisson process on $\mathbb{R}$ with the intensity measure
+$$
+\mathbf{L}(A) := \frac{\gamma^2(\beta-1)^2a^2}{2\beta^2} \int_{\mathbb{R}^d} \mathbb{E}[\mathbf{1}\{(W_1W_2)^{1/d}\|v\|\in A\} W_1W_2] \varphi(1/\|v\|^d) \, \mathrm{d}v
+$$
+for $A\in\mathcal{B}(\mathbb{R})$ and let $Z:=\sum_{z\in\zeta} z$. Then,
+$$
+\mathrm{d_{TV}}(F_s,Z) \leq \frac{4\gamma^3 c_\varphi^2 a^2 \beta}{\beta-2}t_s^{2-\beta}
+$$
+for $s\geq 1$.
+\end{theorem}
 
 
 
@@ -804,600 +1406,6 @@ for all $\pi\in\widetilde{\Pi}^\ell(k)$, $\ell\ge3$ and $n\in\mathbb{N}$. Then $
 \textbf{$\mathrm{MDP}$}$(k-1,\{(b_nk^{3k})^{-1}\}_{n\in\mathbb{N}})$, 
 \textbf{$\mathrm{CI}$}$(k-1, \{(b_nk^{3k})^{-1}\}_{n \in \mathbb{N}})$ and \textbf{$\mathrm{NACC}$}$(k-1,\{(b_nk^{3k})^{-1}\}_{n\in\mathbb{N}})$. 
 \end{theorem}
-
-\section{Results for $U$-statistics of random connection models}
-\iffalse
-The following examples can be studied:
-\begin{itemize}
-    \item subgraph counts (CLT, MDPs, concentration, stable limits)
-    \item edge-length functionals (CLT, MDP, stable limits), i.e.
-    $$\frac{1}{2} \sum_{(z_1, z_2) \in \eta^2_{\neq} \cap B^2(0, \rho)} \mathbf{1}\{ z_1 \leftrightarrow z_2 \} \| z_1- z_2 \|^\tau, \quad \tau \in \mathbb{R}$$
-    \item long edges (Poisson approximation), i.e.
-    $$\frac{1}{2} \sum_{(z_1, z_2) \in \eta^2_{\neq} \cap B^2(0, \rho)} \mathbf{1}\{ z_1 \leftrightarrow z_2 \}  \mathbf{1}\{ \|z_1 - z_2\| \geq c_\rho \} $$
-    \item Hub-to-hub edges
-    $$
-    \frac{1}{2}\sum_{(x_1,x_2)\in\eta^2_{\neq}} \mathbf{1}(x_1\leftrightarrow x_2, W_{x_1},W_{x_2}\geq t)
-    $$
-\end{itemize}
-\fi 
-
-
-Let $\eta$ be a stationary Poisson process on $\mathbb{R}^d$ with intensity measure $\gamma\cdot \lambda_d$, where $\gamma>0$ is fixed and $\lambda_d$ denotes the Lebesgue measure on $\mathbb{R}^d$. 
-Let $\Gamma\subseteq\mathbb{R}^d$ be a compact convex set with $\lambda_d(\Gamma)=1$, and define $\Gamma_s:=s^{1/d}\Gamma$, for $s\ge1$. 
-
-For any $r\ge2$, and $\{x_1,\dots,x_r\}\subseteq\mathbb{R}^d$, we denote the RCM on $\{x_1,\dots,x_r\}$ with connection function $\varphi$ as $\mathbb{G}_{\varphi}(\{x_1,\dots,x_r\})$,
-and the weighted random connection model (WRCM) on $\{x_1,\dots,x_r\}$ with connection function $\varphi$ and weight distribution $W$ as $\mathbb{G}_{\varphi}(\{x_1,\dots,x_r\},W)$.
-In particular, the Poisson RCM base on the underlying Possion process $\eta$ is denoted as $\mathbb{G}_{\varphi}(\eta)$, and the Poisson WRCM on $\eta$ as $\mathbb{G}_{\varphi}(\eta,W)$. 
-
-On the unweighted RCM $\mathbb{G}_{\varphi}(\eta)$, for any $x\ne y\in\eta$, the probability of connecting $x,y$ with an independent edge is 
-$$
-\mathbb{P}(x\leftrightarrow y)=\varphi(x-y).
-$$
-Therefore, taking $\mathbb{M}=[0,1]$, and $\mathbb{Q}$ to be the uniform distribution on $\mathbb{M}$, we have
-\begin{equation*}
-	\mathbf{1}(x\leftrightarrow y)\overset{d}{=}\mathbf{1}(\mathcal{M}_{x_i,x_j}\le\varphi(x_i-x_j)).
-\end{equation*}
-
-In this section, we consider a few applications on the RCM, including subgraph counts, edge lengths and hub-to-hub edges. 
-
-%the functional we're interested in \eqref{def:ustat} now becomes 
-%\begin{equation*}
-%	S=\sum_{(x_1,\dots,x_k)\in\eta^k_{\ne}}f\big(x_1,\dots,x_k,\left(\mathbf{1}(\mathcal{M}_{x_i,x_j}\le\varphi(x_i,x_j))_{i,j\in[k],i\ne j}\right)\big).
-%\end{equation*}
-
-\subsection{Subgraph counts}
-Let $G=(V_G,E_G)$ be a fixed connected graph of order $k$, $k\ge2$, with vertex set $V_G$ and edge set $E_G$. 
-%For any two graphs $G_1$ and $G_2$, we denote $G_1\simeq G_2$ when $G_1$ is isomorphic to $G_2$. 
-Denote $|\mathrm{Aut}(G)|$ as the number of automorphism of $G$. 
-Define $v(G):=|V_G|$ as the number of vertices and $e(G):=|E_G|$ as the number of edges of the graph $G$. 
-For any two graphs $G_1,G_2$, we write $G_1\simeq G_2$ when $G_1$ is isomorphic to $G_2$. 
-\begin{defi}{\cite[pp.~64-65]{JLR}}
- % \label{balgra}
-\begin{itemize}
-\item[1)]
-A graph $G$ is balanced if 
-\begin{equation}
-  \frac{e(H)}{v(H)}\leq \frac{e(G)}{v(G)},
-  \qquad \quad \text{for all }H\subseteq G,   \label{balance1} 
-    \end{equation}
-and strictly balanced if \eqref{balance1} 
-holds as a strict inequality for all $H\subsetneq G$. 
-\item[2)] A graph $G$ is $K_1$-balanced, also called strongly balanced, if 
-\begin{equation}
-	\frac{e(H)}{v(H)-1}\le\frac{e(G)}{v(G)-1}, \qquad \quad \text{for all }H\subseteq G \quad \text{with} \quad v(H)>1,
-	\label{balance2}
-\end{equation}
-with the convention $0/0=0$.
-\end{itemize}
-  \end{defi}
-
-We consider $\ell$ copies of $G$ with the vertices, denoted by $x_i^{(r)}$ for $i \in [k]$ and $r \in [1, \dots, \ell]$. For a given partition $\pi \in \widetilde{\Pi}^\ell(k)$, the {\it contracted graph} $(G^{\otimes \ell})_{\pi}$ is constructed as follows:
-\begin{itemize}
-    \item \textbf{Vertices:} The vertex set consists of the blocks of the partition $\pi$. Formally, two vertices $x_{i_1}^{(r_1)}$ and $x_{i_2}^{(r_2)}$ are identified as a single vertex in $(G^{\otimes \ell})_{\pi}$ if and only if the indices $(r_1, i_1)$ and $(r_2, i_2)$ belong to the same block of $\pi$. The resulting graph has exactly $|\pi|$ vertices.
-    
-    \item \textbf{Edges:} The edge set is inherited from the $\ell$ copies of $G$. For every original edge $\{i, j\} \in E_G$, we include the edges $\{x_i^{(r)}, x_j^{(r)}\}$ for all $r \in [\ell]$, subject to the vertex identifications defined by $\pi$.
-\end{itemize}
-Note that Because $G$ is connected and the identification process (contraction) does not break existing paths, the resulting graph $(G^{\otimes \ell})_{\pi}$ remains connected.
-\subsubsection{Subgraph counts with integrable connection function}
-Suppose the connection function $\varphi$ satisfies 
-$$
-\int_{\mathbb{R}^d}\varphi(x)\mathrm{d}x<\infty.
-$$
-To ensure normal approximation, we need the following minimal condition for the connection function $\varphi$.
-\begin{ass}\label{graph-ass1}
-	Let $G$ be a connected graph with $k\ge2$ vertices.
-\begin{enumerate}
-	\item[i)] 
-\begin{equation}
-	\mathbb{P}(\exists\ H\subseteq \mathbb{G}_{\varphi}(\eta):\ H\simeq G)>0.
-\end{equation}
-\item[ii)]
-\begin{equation}
-	\mathbb{P}\left(\exists\ \{x_1,\dots,x_k\}\subseteq\eta:\ \mathbb{G}_{\varphi}(\{x_1,\dots,x_k\})\simeq G\right)>0.
-\end{equation}
-\end{enumerate}
-\end{ass}
-\begin{theorem}\label{propgraph}
-Let $G$ be a connected graph with $k\ge2$ vertices.
-Denote by $N_G^{\subset}$ and $N_G^{=}$ the non-induced subgraph count and induced subgraph counts, respectively, of copies of $G$ in 
-$\mathbb{G}_{\varphi}(\eta\cap\Gamma_s)$, defined by
-\begin{align}
-	N_G^{\subset}&:=\frac1{|\mathrm{Aut}(G)|}\sum_{(x_1,\dots,x_k)\in\eta^k_{\ne}\cap\Gamma_s^k}\prod_{\{i,j\}\in E_G}\mathbf{1}\{x_i\leftrightarrow x_j\},\label{def:subgraph-count1}\\
-	N_G^{=}&:=\frac1{|\mathrm{Aut}(G)|}\sum_{(x_1,\dots,x_k)\in\eta^k_{\ne}\cap\Gamma_s^k}\prod_{\{i,j\}\in E_G}
-    \mathbf{1}\{x_i\leftrightarrow x_j\}\prod_{\{\imath,\jmath\}\notin E_G}\mathbf{1}\{x_{\imath}\nleftrightarrow x_{\jmath}\}.\label{def:subgraph-count2}
-\end{align}
-If Assumption~\ref{graph-ass1}-i) holds, then there exist constants $C,s_0>0$, depending only on $\varphi$, $k$ and $G$ such that when $s\ge s_0$,
-\begin{equation}
-	\mathrm{d}_{\mathrm{Wass}}\left(\frac{N_G^{\subset}-\mathbb{E} N_G^{\subset}}{\sqrt{\Var N_G^{\subset}}},N\right)\le \mathrm{d}_{\mathrm{K}}\left(\frac{N_G^{\subset}-\mathbb{E} N_G^{\subset}}{\sqrt{\Var N_G^{\subset}}},N\right)\le\frac{C}{\sqrt{s}}.
-\end{equation}
-Moreover, if Assumption~\ref{graph-ass1}-ii) holds, the same bound applies to the induced subgraph count $N_G^{=}$.
-\end{theorem}
-It can be shown that, 
-as a direct application of Proposition~\ref{prop:moments}, the growth of cumulants of subgraph counts is well controlled, which is essential for normal approximation in Theorem~\ref{propgraph}.
-\begin{prop}\label{subgraph-cumu-1}
-For any $\ell\in\mathbb{N}$ and $i\in\{=,\subset\}$, we have, for each $\pi\in\widetilde{\Pi}^\ell(k)$
-\begin{equation}\label{intgrand-0}
-\int_{\Gamma_s^{|\pi|}}\int_{[0,1]^{|\pi|\times|\pi|}_{\ne}}((f^{(i)}_G)^{\otimes\ell})_{\pi}(\bm{x},\bm{u})\mathrm{d}\bm{u}\lambda_d^{|\pi|}(\mathrm{d}\bm{x})\le 
-\frac{1}{|\mathrm{Aut}(G)|^\ell}\lambda_d(\Gamma_s)\left(\int_{\mathbb{R}^d}\varphi(z)\mathrm{d}z\right)^{|\pi|-1}\gamma^{|\pi|}.
-\end{equation}
-Moreover, we have 
-\begin{equation}
-	\cum_\ell(N_G^{(i)})\le \frac{1}{|\mathrm{Aut}(G)|^\ell}\left[\left(\gamma \int_{\mathbb{R}^d}\varphi(z)\mathrm{d}z\right)\vee1\right]^{\ell(k-1)+1}k^{k\ell}(\ell!)^k s.
-\end{equation}
- \end{prop}
-
-As a directly consequence of cumulants estimates established in Proposition~\ref{subgraph-cumu-1} and the proof of Theorem~\ref{propgraph}, we obtain moderate deviation principle, concentration inequality and normal approximation with Cram\'er correction for the normalized subgraph counts via the method of cumulants. 
-
-\begin{theorem}\label{thm:subgraphMDP}
-	Let $G$ be a connected graph with $k\ge2$ vertices, and $\{s_n\}_{n\in\mathbb{N}}$ be a positive real-valued sequence with $s_n\to\infty$. 
-Denote by $N_n^{\subset}$ and $N_n^{=}$ the non-induced subgraph count and induced subgraph counts, respectively, of copies of $G$ in 
-$\mathbb{G}_{\varphi}(\eta\cap\Gamma_{s_n})$, defined by
-\begin{align}
-	N_n^{\subset}&:=\frac1{|\mathrm{Aut}(G)|}\sum_{(x_1,\dots,x_k)\in\eta^k_{\ne}\cap\Gamma_{s_n}^k}\prod_{\{i,j\}\in E_G}\mathbf{1}\{x_i\leftrightarrow x_j\},\\
-	N_n^{=}&:=\frac1{|\mathrm{Aut}(G)|}\sum_{(x_1,\dots,x_k)\in\eta^k_{\ne}\cap\Gamma_{s_n}^k}\prod_{\{i,j\}\in E_G}
-    \mathbf{1}\{x_i\leftrightarrow x_j\}\prod_{\{\imath,\jmath\}\notin E_G}\mathbf{1}\{x_{\imath}\nleftrightarrow x_{\jmath}\}.
-\end{align}
-If Assumption~\ref{graph-ass1}-i) holds, then there exists constant $C$ (see \eqref{mdp-const1}) such that  
-$\{N_n^{\subset}\}_{n\in\mathbb{N}}$ satisfies 
-\textbf{$\mathrm{MDP}$}$(k-1,\{C\sqrt{s_n}\}_{n\in\mathbb{N}})$, \textbf{$\mathrm{CI}$}$(k-1, \{C\sqrt{s_n}\}_{n \in \mathbb{N}})$, and \textbf{$\mathrm{NACC}$}$(k-1,\{C\sqrt{s_n}\}_{n\in\mathbb{N}})$. 
-Moreover, if Assumption~\ref{graph-ass1}-ii) holds, then 
-$\{N_n^{=}\}_{n\in\mathbb{N}}$ satisfies 
-\textbf{$\mathrm{MDP}$}$(k-1,\{C\sqrt{s_n}\}_{n\in\mathbb{N}})$, \textbf{$\mathrm{CI}$}$(k-1, \{C\sqrt{s_n}\}_{n \in \mathbb{N}})$, and \textbf{$\mathrm{NACC}$}$(k-1,\{C\sqrt{s_n}\}_{n\in\mathbb{N}})$. 
-\end{theorem}
-\subsubsection{Subgraph counts with non-integrable connection function}
-
-\begin{ass}\label{bound-ass-1}
-The connection function $\varphi$ is radial with radial profile $\bar{\varphi}$. The function $\bar{\varphi}$ is non-increasing and there exist constants $l_{\bar{\varphi}}\in(0,\infty)$ and $\alpha\in(0,d)$ such that
-\begin{equation}
-\lim_{t\to\infty} t^{\alpha} \bar{\varphi}(t)=l_{\bar{\varphi}}.
-\end{equation}
-\end{ass}
-Before presenting the main results of this section, we first illustrate the key ideas with a toy example.
-\begin{example}
-	When $G=K_3$ is a triangle, according to Proposition~\ref{prop:expectation_variance}, we have
-\begin{align*}
-\Var(N_{K_3}^{\subset})=9I_1(s)+18I_2(s)+3I_3(s),
-\end{align*}
-where
-\begin{align*}
-	I_1(s)&:=\gamma^5\int_{\Gamma_s^5}\varphi(x_1-x_2)\varphi(x_2-x_3)\varphi(x_3-x_1)\varphi(x_1-x_4)\varphi(x_1-x_5)\varphi(x_4-x_5)\mathrm{d}(x_1,\dots,x_5),\\
-	I_2(s)&:=\gamma^4\int_{\Gamma_s^4}\varphi(x_1-x_2)\varphi(x_2-x_3)\varphi(x_3-x_1)\varphi(x_1-x_4)\varphi(x_4-x_2)\mathrm{d}(x_1,\dots,x_4),\\
-	I_3(s)&:=\gamma^3\int_{\Gamma_s^3}\varphi(x_1-x_2)\varphi(x_2-x_3)\varphi(x_3-x_1)\mathrm{d}(x_1,x_2,x_3).
-\end{align*}
-
-Moreover, by letting $v_i:=s^{-1/d}x_i$, we can write 
-\begin{align*}
-	I_1(s)&=\gamma^5\int_{\Gamma^5}\varphi(s^{1/d}(v_1-v_2))\varphi(s^{1/d}(v_2-v_3))\varphi(s^{1/d}(v_3-v_1))\\
-	      &\ \ \ \times\varphi(s^{1/d}(v_1-v_4))\varphi(s^{1/d}(v_1-v_5))\varphi(s^{1/d}(v_4-v_5))s^{5}\mathrm{d}(v_1,\dots,v_5),\\
-	      &\asymp s^5 s^{-6\frac{\alpha}d}\int_{\Gamma^5}\|v_1-v_2\|^{-\alpha}\|v_2-v_3\|^{-\alpha}\|v_3-v_1\|^{-\alpha}\\
-	      &\ \ \ \times\|v_1-v_4\|^{-\alpha}\|v_1-v_5\|^{-\alpha}\|v_4-v_5\|^{-\alpha}\mathrm{d}(v_1,\dots,v_5).
-\end{align*}
-Because $\varphi$ is bounded by $1$, integrations over $\Gamma$ is finite. Hence, we have 
-\begin{equation}
-	I_1(s)\asymp s^{5-6\alpha/d},~~I_2(s)\asymp s^{4-5\alpha/d},~~I_3(s)\asymp s^{3-3\alpha/d},
-\end{equation}
-and 
-\begin{equation}
-	\Var(N_{K_3}^{\subset})\asymp
-\begin{cases}
-	s^{5-6\alpha/d},\ \ \ &\mbox{when}~\alpha\in(0,\frac23d],\\
-	s^{3-3\alpha/d},\ \ \ &\mbox{when}~\alpha\in(\frac23d,d).
-\end{cases}
-\end{equation}
-\end{example}
-
-\begin{lemma}\label{noninteg-upper-1}
-If Assumption~\ref{bound-ass-1} holds, we have, for any $\ell\in\mathbb{N}$ and  $\pi\in\widetilde{\Pi}^\ell(k)$
-\begin{equation}\label{noninteg-upper-2}
-\int_{\Gamma_s^{|\pi|}}\int_{[0,1]^{|\pi|\times|\pi|}_{\ne}}((f^{\subset}_G)^{\otimes\ell})_{\pi}(\bm{x},\bm{u})\mathrm{d}\bm{u}\lambda_d^{|\pi|}(\mathrm{d}\bm{x})\asymp 
-s^{|\pi|-e((G^{\otimes\ell})_\pi)\alpha/d}.
-\end{equation}
-Moreover, suppose that $G$ is $K_1$-balanced, we have 
-\begin{align}
-	\label{cumasym1}
-    \cum_\ell(N_G^{\subset})\asymp
-\begin{cases}
-	s^{1+(k-1)\ell}\cdot s^{-\ell e(G)\alpha/d}, \ \ \ &\mbox{when}~\alpha\in(0,\frac{k-1}{e(G)}d],\\
-	s^{k-e(G)\alpha/d}, \ \ \ &\mbox{when}~\alpha\in(\frac{k-1}{e(G)}d,d).
-\end{cases}
-\end{align}
- \end{lemma}
-%}
-\begin{remark}
-	All trees, cycles, and complete graphs are $K_1$-balanced, see \cite{RucinskiVince86}. 
-\end{remark}
-
-\begin{remark}
-The assumption that $G$ is $K_1$-balanced is necessary to guarantee the dichotomy in \eqref{cumasym1}; see \cite[Proposition~6.1]{LiuPrivault25b} for a precise statement and proof.
-\end{remark}
-\iffalse
-\begin{lemma}\label{noninte-lower-1}
-If Assumption~\ref{bound-ass-1} holds, we have 
-\begin{equation}\label{lowerbound-2}
-	\Var(N_G^{\subset})\gtrsim s^{2k-1-2|E_G|\alpha/d}.
-\end{equation}
-\end{lemma}
-\begin{proof}
-For the convex set $\Gamma_s$, we denote the inradius of $\Gamma_s$ as $r(\Gamma_s)$. Given that the volume of $\Gamma_s$ is $s$, there exists a constant $c_1>0$ such that  $r(\Gamma_s)\le c_1 s^{1/d}$. Since $\bar{\varphi}(r)\asymp r^{-\alpha}$ is non-increasing, there exists a constant $c_2>0$ such that for all sufficiently large $s$  
-\begin{equation}
-	\inf_{x,y\in\Gamma_s}\varphi(x-y)=\inf_{0\le t\le 2r(\Gamma_s)}\bar{\varphi}(t)\ge c_2 r(\Gamma_s)^{-\alpha}\asymp s^{-\alpha/d}.
-\end{equation}
-The proof follows from that there exists a spanning tree in each connected graph, as in the proof of Proposition~\ref{subgraph-cumu-1}.
-Take $\rho \in \widetilde{\Pi}^2(k)$ to be the set partition such that 
-$\{(1,1),(2,1)\} \in \rho$ and every other block of $\rho$ contains exactly one element, 
-so that $|\rho| = 2k - 1$. 
-Consequently, there exists a spanning tree $I_{\rho} \in \mathcal{I}_{2k-1}$ of 
-$(G^{\otimes 2})_{\rho}$.
-Hence, we have 
-\begin{align*}
-&\Var(N_G^{\subset})\\
-&=\sum_{\pi\in\widetilde{\Pi}^2(k)}\int_{\Gamma_s^{|\pi|}}\int_{[0,1]^{|\pi|(|\pi|-1)/2}}(f^{\subset}_G\otimes f^{\subset}_G)_{\pi}(\bm{x},\bm{u})\mathrm{d}\bm{u}\gamma^{|\pi|}\mathrm{d}\bm{x}\nonumber\\
-&\ge\int_{(\mathbb{R}^d)^{2k-1}}\mathbf{1}(x_1,\dots,x_{2k-1}\in\Gamma_s)\left(\prod_{\{i,j\}\in E_{(G^{\otimes 2})_{\rho}}}\varphi(x_i-x_j)\right)\mathrm{d}(x_1,\dots,x_{2k-1})\\
-&\ge\int_{(\mathbb{R}^d)^{2k-1}}\mathbf{1}(x_1,\dots,x_{2k-1}\in\Gamma_s)\left(\prod_{\{i,j\}\in I_{\rho}}\varphi(x_i-x_j)\right)\mathrm{d}(x_1,\dots,x_{2k-1})
-\times\left[\inf_{x,y\in\Gamma_s}\varphi(x-y)\right]^{2|E_G|-(2k-2)}\\
-&\gtrsim s \left(s^{1-\alpha/d}\right)^{2k-2}\left(s^{-\alpha/d}\right)^{2|E_G|-(2k-2)}=s^{2k-1-2|E_G|\alpha/d}.
-\end{align*}
-\end{proof}
-\begin{remark}
-	Note the lower bound in \eqref{lowerbound-2} is sharp, meaning it coincides with the upper bound established in \eqref{upperbound-2},  when $|E_G|=k-1$, i.e., when $G$ is a tree.
-\end{remark}
-\fi
-
-From Lemma~\ref{noninteg-upper-1} and Theorem~\ref{normalapp1}, the following result is straightforward. 
-\begin{theorem}
-Assuming that Assumption~\ref{bound-ass-1} holds and $G$ is $K_1$-balanced, we have
-\begin{align}
-	\label{norm-opt}
-	\mathrm{d}_{\mathrm{Wass}}\left(\frac{N_G^{\subset}-\mathbb{E} N_G^{\subset}}{\sqrt{\Var N_G^{\subset}}},N\right)\le \mathrm{d}_{\mathrm{K}}\left(\frac{N_G^{\subset}-\mathbb{E} N_G^{\subset}}{\sqrt{\Var N_G^{\subset}}},N\right)\le\frac{C}{\Delta_s},
-\end{align}
-with 
-\begin{align}\label{non-integrable-rate0}
-\Delta_s:=
-\begin{cases}
-	\displaystyle
-	\sqrt{s}, \ \ \ &\mbox{when}~\alpha\in(0,\frac{k-1}{e(G)}d],\\
-	\displaystyle
-	\sqrt{s^{k-e(G)\alpha/d}}, \ \ \ &\mbox{when}~\alpha\in\left(\frac{k-1}{e(G)}d,(\frac{k}{e(G)}\wedge 1)d\right).
-\end{cases}
-\end{align}
-\end{theorem}
-\begin{remark}
-	The convergence rates established in \cite[Theorem~3.5]{LiuPrivault25b} are of order $O(\Delta_s^{-1/(2k-1)})$, where $\Delta_s$ is defined as in \eqref{non-integrable-rate0}. In contrast, our estimates in \eqref{norm-opt} provide what are conjected to be optimal rates of convergence. 
-\end{remark}
-
-
-%\subsection{edge-length functionals}
-\subsection{Edge-lengths}
-
-\begin{ass}\label{edgelength-ass1}
-	The function $\varphi$ is only radially dependent. Its radial part is denoted by $\bar{\varphi}$, that has a polynomial decay with some exponent $\alpha \in (d, \infty)$, i.e. there exists a constant $l_{\bar{\varphi}}\in(0,\infty)$ such that  
-\begin{equation}\label{eqn:assumption_phi}
-\lim_{t\to\infty} t^{\alpha} \bar{\varphi}(t)=l_{\bar{\varphi}}.
-\end{equation}
-\end{ass}
-
-Note that the condition $\alpha>d$ in Assumption \ref{edgelength-ass1} ensures that the (non-trivial) integrability property
-$$ 0 < \int_{\mathbb{R}^d} \varphi (x) \, \mathrm{d} x< \infty$$
-is satisfied.
-Together with the observation that $\bar{\varphi}$ as a probability is bounded by one, this yields the existence of a constant $C_{\bar{\varphi}}\in(0,\infty)$ such that
-\begin{equation}\label{eqn:Upper_bound_bar_varphi}
-\bar{\varphi}(t) \leq \frac{C_{\bar{\varphi}}}{t^\alpha}
-\end{equation}
-for all $t\in(0,\infty)$. Moreover, we define
-$$
-c_{\bar{\varphi}} := \frac{\gamma^2 d \kappa_d l_{\bar{\varphi}}}{2(\alpha-d)}.
-$$
-
-In the following, we first consider the point processes
-$$
-\tilde{\xi}_s := \frac{1}{2} \sum_{(x_1,x_2)\in\eta_{\neq}^2} \mathbf{1}\bigg\{x_1\leftrightarrow x_2, \frac{x_1+x_2}{2}\in\Gamma_s \bigg\} \delta_{s^{-\frac{1}{\alpha-d}}\|x_1-x_2\|}
-$$
-for $s\geq 1$, and also the functional form statistics 
-\begin{equation}\label{deflstau}
-    L_s (\tau):=\frac{1}{2} \sum_{(z_1, z_2) \in \eta^2_{\neq} \cap \Gamma_s^2} \mathbf{1}\{ z_1 \leftrightarrow z_2 \} \| z_1- z_2 \|^\tau, 
-\end{equation}
-for $\tau \in \mathbb{R}$ and $s\ge1$.
-
-Alternatively, one could also consider a modified version that eliminates boundary effects:
-\[
-\widetilde{L}_s(\tau)
-:= \frac{1}{2} \sum_{(z_1, z_2) \in \eta^2_{\neq}}
-   \mathbf{1}\!\left\{
-      \tfrac{z_1 + z_2}{2} \in \Gamma_s,\;
-      z_1 \leftrightarrow z_2
-   \right\}
-   \| z_1 - z_2 \|^{\tau}.
-\]
-Here, the summation runs over all pairs of points in $\eta$ whose {midpoint}
-lies inside $\Gamma_s$, regardless of whether both endpoints belong to $\Gamma_s$.
-%This statistic is the \emph{midpoint version} of the edge-length sum. 
-Here we focus on $L_s(\tau)$. The presence of boundary effects leads to different scaling properties and limit theorems.
-
-We first state the following result regarding the point process $\tilde{\xi}_s$.
-
-
-
-\begin{theorem}\label{thm:edge-length_process}
-Assume that \eqref{eqn:assumption_phi} is satisfied with $\alpha\in(d,\infty)$. Let $\zeta$ be a homogeneous Poisson process on $(0,\infty)$ with intensity $c_{\bar{\varphi}}$ and let
-$$
-\zeta^{(\alpha)}:= \sum_{t\in\zeta} \delta_{t^{-\frac{1}{\alpha-d}}}.
-$$
-\begin{itemize}
-\item [a)] For any $a\in(0,\infty)$,
-$$
-\mathrm{d}_{\rm KR}(\tilde{\xi}_s|_{[a,\infty)},\zeta^{(\alpha)}|_{[a,\infty)}) \leq \frac{\gamma^2 d \kappa_d }{2}\int_a^\infty \big|s^{\frac{\alpha}{\alpha-d}}v^{\alpha} \bar{\varphi}(s^{\frac{1}{\alpha-d}}v) -l_{\bar{\varphi}}\big| \, v^{d-\alpha-1}\, \mathrm{d}v + \frac{4\gamma^3 (d\kappa_d C_{\bar{\varphi}})^2}{(\alpha-d)^2 a^{2(\alpha-d)}} \frac{1}{s}.
-$$
-Moreover, the right-hand side vanishes as $s\to\infty$.
-\item [b)] One has
-$$
-\tilde{\xi}_s\overset{d}{\longrightarrow} \zeta^{(\alpha)}\quad \text{as} \quad s\to\infty.
-$$
-\item [c)] 
-Let $Z$ be a random variable such that $\mathbb{P}(Z>a)=e^{-c_{\bar{\varphi}}a^{d-\alpha}}$ for $a\in(0,\infty)$. Then,
-$$
-s^{-\frac{1}{\alpha-d}}\max_{(x_1,x_2)\in\eta_{\neq}^2, x_1\leftrightarrow x_2, \frac{x_1+x_2}{2}\in\Gamma_s} \|x_1-x_2\| \overset{d}{\longrightarrow} Z \quad \text{as} \quad s\to\infty.
-$$
-\end{itemize}
-\end{theorem}
-
-
-%Using the above notation, define
-% \begin{align}\label{originalUstat}
- %    S_t:= \frac{1}{k!}\sum_{(x_1, \ldots, x_k) \in \eta^k_{\neq}} f_t \Big( x_1, \ldots, x_k, (W_{x_i,x_j})_{i,j =1,\ldots, k, i \neq j} \Big) ,
-% \end{align}
-%where $f_t$, $t \geq 1$, is a measurable function and the sum is taken over all $k$-tuples of pairwise distinct points. Note that $S$ is not a Poisson $U$-statistics. Now consider the following. For two points $\hat{x}=(x,\mathbf{u}=(u_{i,l})_{i,l\in\mathbb{N}})$ and $\hat{y}=(y,\mathbf{v}=(v_{i,l})_{i,l\in\mathbb{N}})$ in $\hat{\eta}$ such that $x\leq y$ and $y\in A_i$ define $\hat{W}_{\hat{x},\hat{y}} := u_{i,1}$, and
-%$$ \hat{S}_t:= \frac{1}{k!}\sum_{(\hat{x}_1, \ldots, \hat{x}_k) \in \hat{\eta}^k_{\neq}} f_t \Big( {x}_1, \ldots, {x}_k, (\hat{W}_{\hat{x}_i,\hat{x}_j}) \Big) =:  \sum_{(\hat{x}_1, \ldots, \hat{x}_k) \in \hat{\eta}^k_{\neq}} \hat{f}_t ( \hat{x}_1, \ldots, \hat{x}_k ),$$
-%which on the other hand is a Poisson U-statistics. Now, choose the partition $\{A_i\}_{i\in\mathbb{N}}$ such that $\lambda_d (A_i) = \frac{\varepsilon}{i}$ for every $i \in \mathbb{N}$, where $\varepsilon>0$ is a given (later chosen to be sufficiently small) number. Then we have
-%\begin{align}\label{ShatS}
-%\begin{split}
-%    \mathbb{P} (S \neq \hat{S}) &= \mathbb{P} ( \exists i \in \mathbb{N} : \eta (A_i) \geq 2 ) \leq \sum_{i=1}^\infty \mathbb{P} ( \eta (A_i) \geq 2 ) \\
- %   & \leq \sum_{i=1}^\infty  \lambda_d (A_i)^2 = \varepsilon^2 \sum_{i=1}^\infty \frac{1}{k^2},
-%\end{split}
-%\end{align}
-%so that $\mathbb{P} (S \neq \hat{S}) \to 0$, as $\varepsilon \to 0$. Moreover, for every random variable $N$ we have
-%\begin{align} \label{Kineq}
- %    d_K (S,N) \leq \mathbb{P} (S \neq \hat{S}) + d_K (\hat{S},N) .
-%\end{align}
-
-
-%Based on the latter observations, the following approximations could be studied:
-
-%\begin{itemize}
-  %  \item Poisson process approximation, see \cite{dst}
- %   \item Quantitative Normal approximation (Wasserstein, Kolmogorov distance), %see \cite{reitznerschulte,schulte,eichelsbacher}
- %   \item Poisson approximation, see \cite{pianoforte}
- %   \item Moderate deviations and concentration inequalities, see \cite{schulte2, bonnet}
-%    \item Approximation by $\alpha$-stable distributions
-%\end{itemize}
-
-%One conjecture is that the point process
-%$$ \frac{1}{2} \sum_{(z_1, z_2) \in \eta^2_{\neq} \cap B^2(0, \rho)} \delta_{\|%z_1 - z_2\| - b_\rho}$$
-%converges in distribution to a Poisson point process, for a suitably chosen sequence $b_\rho$.
-
-%Recall that $\varphi$ denotes the connection function and that we make the following assumption on $\varphi$.
-%From the statements in Lemma \ref{lem:varlength} we observe that the variance asymptotics is not finite. 
-
-The following is the main result for the behavior of power-weighted edge-lengths. In particular we get different limit theorems (central or stable) depending on the values of $\alpha$, $d$ and $\tau$, including a distinctive regime with $\alpha =2d$, where a different limit theorem holds.
-
-\begin{theorem}\label{mainsumedges}
-    Let $L_s (\tau)$ be defined as in \eqref{deflstau} with $\tau>-d/2$. Suppose that Assumption \ref{edgelength-ass1} is satisfied. Then, as $s\to\infty$, the following trichotomy holds.
-
-\begin{enumerate}[label=\textup{(\roman*)},leftmargin=2.2em]
-\item {Gaussian regime.}
-If either
-\[
-\alpha \ge 2\tau+d
-\qquad\text{or}\qquad
-\alpha\in(d,2d),
-\]
-then
-\[
-\frac{L_s(\tau)-\E[L_s(\tau)]}{\sqrt{\Var(L_s(\tau))}}
-\overset{d}{\longrightarrow} N.
-\]
-
-\item {Stable regime.}
-If
-\[
-2d<\alpha<2\tau+d,
-\]
-then there exist centring constants $b_s\in\mathbb{R}$ and scaling constants $a_s>0$ such that
-\[
-\frac{L_s(\tau)-b_s}{a_s}
-\overset{d}{\longrightarrow} S_{\kappa},
-\qquad
-\kappa:=\frac{\alpha-d}{\tau}\in(0,2),
-\]
-where $S_{\kappa}$ is a non-degenerate $\kappa$-stable law.
-
-\item {Distinctive regime.}
-If
-\[
-\alpha=2d
-\qquad\text{and}\qquad
-\alpha<2\tau+d,
-\]
-then a distinctive, non-Gaussian and non-stable limit theorem holds, as specified in
-Theorem~\ref{thm:stable}.
-\end{enumerate}
-\end{theorem}
-
-Figure \ref{fig:phase-diagram-tau-alpha} summarizes the findings of Theorem \ref{mainsumedges}.
-
-\begin{figure}[H]
-\centering
-\begin{tikzpicture}[>=Latex, font=\small]
-
-\def\Tmax{6.5}
-\def\Amax{6.0}
-
-\def\yD{0.70}
-\def\yTwoD{1.90}
-
-\pgfmathsetmacro{\tTop}{(\Amax-\yD)/2}
-\pgfmathsetmacro{\tAtTwoD}{(\yTwoD-\yD)/2}
-
-\tikzset{hilite/.style={black!15}}
-\tikzset{hiliteLight/.style={black!7}}
-
-% Shadings
-\fill[hilite] (0,\yD) rectangle (\Tmax,\yTwoD);
-\fill[hilite] (0,\Amax) -- (\tTop,\Amax) -- (0,\yD) -- cycle;
-\fill[hiliteLight]
-  (\tAtTwoD,\yTwoD) -- (\Tmax,\yTwoD) -- (\Tmax,\Amax) -- (\tTop,\Amax) -- cycle;
-
-% Labels inside shaded regions
-\node[font=\bfseries\large] at ({0.55*\Tmax},{(\yD+\yTwoD)/2}) {Gaussian limit};
-\node[font=\bfseries\large] at ({0.56*\Tmax},{0.47*(\yTwoD+\Amax)}) {stable limit};
-
-% Axes
-\draw[->, thick] (0,0) -- (\Tmax,0) node[below] {$\tau$};
-\draw[->, thick] (0,0) -- (0,\Amax) node[left] {$\alpha$};
-
-% Ticks
-\draw (-0.10,\yD) -- (0.10,\yD) node[left=5pt] {$d$};
-\draw (-0.10,\yTwoD) -- (0.10,\yTwoD) node[left=5pt] {$2d$};
-
-% Horizontal line at alpha=d (full length)
-\draw[thick] (0,\yD) -- (\Tmax,\yD);
-
-% Horizontal line at alpha=2d: ONLY from the green-line intersection to the right
-\draw[thick, red!70!black] (\tAtTwoD,\yTwoD) -- (\Tmax,\yTwoD);
-
-% Red label OUTSIDE, to the right
-\node[red!70!black, anchor=west] at (\Tmax+0.15,\yTwoD) {$\alpha=2d$};
-
-% Green line alpha = 2*tau + d
-% Green line: dotted between d and 2d, solid above 2d
-\draw[thick, green!60!black, dotted] (0,\yD) -- (\tAtTwoD,\yTwoD);
-\draw[thick, green!60!black] (\tAtTwoD,\yTwoD) -- (\tTop,\Amax)
-  node[above right, text=green!60!black] {$\alpha = 2\tau + d$};
-
-\end{tikzpicture}
-\caption{Schematic phase diagram in the $(\tau,\alpha)$-plane.
-The grey region indicates parameter regimes in which a central limit theorem holds for the sums of power-weighted edge lengths.
-The green line $\alpha=2\tau+d$ marks a critical regime in which a central limit theorem still holds. The lighter grey region corresponds to regimes with stable (non-Gaussian) limit theorems.
-Finally, the red line $\alpha=2d$ highlights a boundary regime with a distinct limiting behaviour.}
-\label{fig:phase-diagram-tau-alpha}
-
-\end{figure}
-
-
-Section~\ref{regimeclt} contains the proofs of the central limit theorems, whereas Section~\ref{nongaussianregime} provides the proofs of the non-Gaussian limit theorems, covering both the stable regime and the critical (distinctive) case. Moreover, in partial regimes for the central limit theorem, we additionally provide upper bounds on the convergence rates.
-
-
-
-
-
-
-\subsection{Hub-to-hub edges}
-
-In the following we study the weighted random connection model such that
-$$
-\mathbb{P}(x\leftrightarrow y) = \varphi(\kappa(W_x,W_y)/\|x-y\|^d)
-$$
-for given $x,y\in\eta$, $x\neq y$, with weights $W_x$ and $W_y$. Here, $\kappa: [0,\infty)^2\to[0,\infty)$ is measurable and $\varphi:[0,\infty)\to[0,\infty)$ satisfies
-$$
-c_\varphi:=\int_{\mathbb{R}^d} \varphi(1/\|v\|^d) \, \mathrm{d}v <\infty.
-$$
-
-In the following, we are interested in edges whose endpoints have large weights. We denote such edges as hub-to-hub edges. Let $(t_s)_{s\geq 1}$ be a family of non-negative real numbers. For $s\geq 1$ we study
-$$
-E_s:= \frac{1}{2} \sum_{(x_1,x_2)\in\eta^2_{\neq}} \mathbf{1}\{ x_1\leftrightarrow x_2 \} \mathbf{1}\bigg\{ \frac{x_1+x_2}{2}\in \Gamma_s, W_{x_1},W_{x_2} \geq t_s \bigg\},
-$$
-i.e., we count all edges with vertices having their midpoint in the observation window and weights exceeding $t_s$.
-
-We have that
-$$
-\mathbb{E}[E_s] = \frac{\gamma^2}{2} \mathbb{E} \int_{(\mathbb{R}^d)^2} \mathbf{1}\bigg\{ \frac{x_1+x_2}{2}\in \Gamma_s \bigg\} \mathbf{1}\{W_1,W_2\geq t_s\}  \varphi(\kappa(W_1,W_2)/\|x_1-x_2\|^d) \, \mathrm{d}(x_1,x_2)
-$$
-with independent copies $W_1$ and $W_2$ of the typical weight. The substitutions $z=(x_1+x_2)/2$ and $u=x_1-x_2$ as well as $u'=u/\kappa(W_1,W_2)^{1/d}$ lead to
-\begin{align*}
-\mathbb{E}[E_s] & = \frac{\gamma^2}{2} \mathbb{E} \int_{(\mathbb{R}^d)^2} \mathbf{1}\{z\in \Gamma_s\} \mathbf{1}\{W_1,W_2\geq t_s\}  \varphi(\kappa(W_1,W_2)/\|u\|^d) \, \mathrm{d}(z,u) \\
-& =  \frac{\gamma^2 \lambda_d(\Gamma_s)}{2} \mathbb{E}\bigg[ \mathbf{1}\{W_1,W_2\geq t_s\}  \int_{\mathbb{R}^d}  \varphi(\kappa(W_1,W_2)/\|u\|^d) \, \mathrm{d}u \bigg] \\
-& =  \frac{\gamma^2 s}{2} \mathbb{E}\bigg[ \mathbf{1}\{W_1,W_2\geq t_s\}  \int_{\mathbb{R}^d} \kappa(W_1,W_2) \varphi(1/\|u'\|^d) \, \mathrm{d}u' \bigg] \\
-& = \frac{\gamma^2 s}{2} c_\varphi \mathbb{E}[\kappa(W_1,W_2) \mathbf{1}\{W_1,W_2\geq t_s\}].
-\end{align*}
-
-For $E_s$ we can derive the following Poisson and normal approximation results.
-
-\begin{theorem}\label{thm:hub-to-hub-edges}
-Denote by $W_1,\hdots,W_5$ independent copies of $W$.
-\begin{itemize}
-\item [a)] Assume that $\mathbb{E}[\kappa(W_1,W_2)]<\infty$ and $\mathbb{E}[\kappa(W_1,W_2) \kappa(W_1,W_3)]<\infty$. For $s\geq 1$ and $Z_s\sim\operatorname{Poisson}(\gamma^2 c_\varphi s \mathbb{E}[\kappa(W_1,W_2) \mathbf{1}\{W_1,W_2\geq t_s\}]/2)$, one has
-$$
-\mathrm{d}_{\mathrm{Wass}}(E_s, Z_s) \leq 4 \gamma^3 c_\varphi^2 s \mathbb{E}[ \mathbf{1}\{ W_1,W_2,W_3\geq t_s \} \kappa(W_1,W_2) \kappa(W_1,W_3) ].
-$$
-\item [b)] Assume that
-$$
-\mathbb{E}\bigg[\prod_{j=2}^i \kappa(W_1,W_j) \bigg]<\infty \quad \quad \text{for} \quad i\in\{4,5\}
-$$
-and
-$$
-\mathbb{E}\bigg[\prod_{j=1}^i \kappa(W_j,W_{j+1})\bigg]<\infty \quad \text{for} \quad i\in\{1,\hdots,4\}
-$$
-let $N$ be a standard normal random variable.
-Then, there exist constants $C_{\mathrm{Wass}},C_{\mathrm{K}}\in(0,\infty)$ only depending on $\gamma$ and $\varphi$ such that, for $s\geq 1$,
-$$
-\mathrm{d}_{\mathrm{Wass}}\bigg( \frac{E_s-\mathbb{E}[E_s]}{\sqrt{\operatorname{Var}[E_s]}}, N \bigg) \leq \frac{C_{\mathrm{Wass}}  R_s}{\sqrt{s} \mathbb{E}[\kappa(W_1,W_2) \mathbf{1}\{W_1,W_2\geq t_s\}]}
-$$
-and
-$$
-\mathrm{d}_{\mathrm{K}}\bigg( \frac{E_s-\mathbb{E}[E_s]}{\sqrt{\operatorname{Var}[E_s]}}, N \bigg) \leq \frac{C_{\mathrm{K}}  R_s}{\sqrt{s} \mathbb{E}[\kappa(W_1,W_2) \mathbf{1}\{W_1,W_2\geq t_s\}]}
-$$
-with
-\begin{align*}
-R_s & := \sum_{i=4}^5 \sqrt{\mathbb{E}\bigg[\prod_{j=2}^i \kappa(W_1,W_j) \mathbf{1}\{W_1,\hdots,W_{i+1}\geq t_s\}\bigg]} \\
-& \quad +\sum_{i=1}^4 \sqrt{\mathbb{E}\bigg[\prod_{j=1}^i \kappa(W_j,W_{j+1})\mathbf{1}\{W_1,\hdots,W_{i+1}\geq t_s\}\bigg]}.
-\end{align*}
-\end{itemize}
-\end{theorem}
-For $s\to\infty$ one should use Poisson approximation for $E_s$ if $\mathbb{E}[E_s]$ converges to some constant and normal approximation if $\mathbb{E}[E_s]\to\infty$.
-
-As an application of Theorem \ref{thm:hub-to-hub-edges} we consider the situation of the so-called product kernel $\kappa(w_1,w_2)=w_1w_2$, which is a very prominent choice for $\kappa$ and where our formulas simpliy.
-
-\begin{corollary}\label{cor:hub-to-hub-edges1}
-Suppose that $\kappa(w_1,w_2)=w_1w_2$.
-\begin{itemize}
-\item [a)] Assume that $\mathbb{E}[W^2]<\infty$. Let $(t_s)_{s\geq 1}$ be such that $\sqrt{s}\mathbb{E}[W\mathbf{1}\{W\geq t_s\}]=a$ for some $a\in(0,\infty)$ and let $Z\sim\operatorname{Poisson}(\gamma^2c_{\varphi}a^2/2)$. Then,
-$$
-\mathrm{d}_{\mathrm{Wass}}(E_s,Z) \leq 4\gamma^3c_{\varphi}^2 a^2 \mathbb{E}[W^2 \mathbf{1}\{W\geq t_s\}]
-$$
-for $s\geq 1$.
-\item [b)] Assume that $\mathbb{E}[W^4]<\infty$ and let $N$ be a standard normal random variable. Then, there exist constants $C_{\mathrm{Wass}}',C_{\mathrm{K}}'\in(0,\infty)$ only depending on $\gamma$ and $\varphi$ such that, for all $s\geq 1$,
-$$
-\mathrm{d}_{\mathrm{Wass}}\bigg( \frac{E_s-\mathbb{E}[E_s]}{\sqrt{\operatorname{Var}[E_s]}}, N \bigg) \leq \frac{C_{\mathrm{Wass}}  R_s'}{\sqrt{s}}
-$$
-and
-$$
-\mathrm{d}_{\mathrm{K}}\bigg( \frac{E_s-\mathbb{E}[E_s]}{\sqrt{\operatorname{Var}[E_s]}}, N \bigg) \leq \frac{C_{\mathrm{K}}  R_s'}{\sqrt{s}}
-$$
-with 
-\begin{align*}
-R_s':= & \frac{\sqrt{\mathbb{E}[W^3 \mathbf{1}\{W\geq t_s\}]}}{\sqrt{\mathbb{E}[W \mathbf{1}\{W\geq t_s\}]}} + \sqrt{\mathbb{E}[W^4 \mathbf{1}\{W\geq t_s\}]} + \frac{2+2\sqrt{\mathbb{E}[W^2 \mathbf{1}\{W\geq t_s\}]}^3}{\mathbb{E}[W \mathbf{1}\{W\geq t_s\}]}.
-\end{align*}
-\end{itemize}
-\end{corollary}
-
-
-Finally, we derive a compound Poisson approximation result for the total edge length of the hub-to-hub edges with midpoint in our observation window. Apart from the product kernel we additionally assume that the weights are Pareto distributed.
-
-\begin{theorem}\label{thm:hub-to-hub-edges2}
-Assume that $\kappa(x_1,x_2)=x_1x_2$ and that $W\sim\operatorname{Pareto}(\beta)$ with $\beta>2$. Let $(t_s)_{s\geq 1}$ be such that $\sqrt{s}\mathbb{E}[W\mathbf{1}\{W\geq t_s\}]=a$ for some $a\in(0,\infty)$ and let
-$$
-F_s= \frac{t_s^{-\frac{2}{d}}}{2} \sum_{(x_1,x_2)\in\eta_{\neq}^2} \mathbf{1}\{x_1\leftrightarrow x_2\} \mathbf{1}\bigg\{ \frac{x_1+x_2}{2}\in \Gamma_s, W_{x_1},W_{x_2}\geq t_s\bigg\} \|x_1-x_2\|.
-$$
-Denote by $\zeta$ a Poisson process on $\mathbb{R}$ with the intensity measure
-$$
-\mathbf{L}(A) := \frac{\gamma^2(\beta-1)^2a^2}{2\beta^2} \int_{\mathbb{R}^d} \mathbb{E}[\mathbf{1}\{(W_1W_2)^{1/d}\|v\|\in A\} W_1W_2] \varphi(1/\|v\|^d) \, \mathrm{d}v
-$$
-for $A\in\mathcal{B}(\mathbb{R})$ and let $Z:=\sum_{z\in\zeta} z$. Then,
-$$
-\mathrm{d_{TV}}(F_s,Z) \leq \frac{4\gamma^3 c_\varphi^2 a^2 \beta}{\beta-2}t_s^{2-\beta}
-$$
-for $s\geq 1$.
-\end{theorem}
-
 
 
 \section{Proofs of main results}

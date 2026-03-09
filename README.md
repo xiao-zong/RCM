@@ -80,3 +80,8 @@ For the next meeting on 12 Feb:
 1st March update:
 for next meeting on 6th March
 1. the \textcolor{cyan}{???} is still unsolved.
+2. improve the formlations for subgraph counts and edge-length functionals in Introduction.
+and adding reference for these two applications.
+3. mentioning $\eta$ is homogeneous Poisson 
+5. comments on our applications
+6. Switching the order for Section 3 and Section 4.
