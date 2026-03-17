@@ -152,7 +152,7 @@ $$
 where $\delta_y$ denotes the Dirac measure concentrated at a point $y\in\mathbb{Y}$. We also derive a quantitative bound for the Kantorovich-Rubinstein distance between $\tilde{\xi}$ and a Poisson process on $\mathbb{Y}$ under suitable assumptions. This result is employed to derive the Poisson and compound Poisson approximation bounds for $U$-statistics of the random connection model.
 
 %\textcolor{blue}{\em Comment on our applications, stationary Poisson process on Euclidean space}
-{With the general results for edge-marked Poisson processes at hand, we turn to several applications involving $U$-statistics in the random connection model.
+With the general results for edge-marked Poisson processes at hand, we turn to several applications involving $U$-statistics in the random connection model.
 
 Let $\eta$ be a homogeneous Poisson process in $\mathbb{R}^d$ with intensity $\gamma>0$. Let $\varphi\colon \mathbb{R}^d \to [0,1]$ be a measurable function satisfying $\varphi(x)=\varphi(-x)$ for all $x\in\mathbb{R}^d$ and
 \begin{equation}\label{g1}
@@ -165,10 +165,11 @@ Our first application concerns the edge-length functional. For this quantity we 
 Our second application deals with subgraph counts in the random connection model. We distinguish two regimes, depending on whether the connection function is integrable or non-integrable on $\mathbb{R}^d$. In the integrable case, we derive normal approximation bounds under both the Kolmogorov and Wasserstein distances in Theorem~\ref{propgraph}. Furthermore, based on cumulant estimates obtained in Proposition~\ref{subgraph-cumu-1}, we establish several refined probabilistic results, including a moderate deviation principle, concentration inequalities, and a normal approximation with Cramér correction; see Theorem~\ref{thm:subgraphMDP}.
 
 Our final application concerns hub-to-hub edges in the weighted random connection model. For this quantity we obtain Poisson and normal approximation results in Theorem~\ref{thm:hub-to-hub-edges}, as well as a compound Poisson approximation in Theorem~\ref{thm:hub-to-hub-edges2}.
-}
 
-\textcolor{blue}{This paper is organised as follows. }
-
+This paper is organized as follows. 
+In Section~\ref{Sec:RCM}, we present our results on $U$-statistics for the random connection model, with applications to several important functionals, including edge-length functionals, subgraph counts, and hub-to-hub edges. 
+Results in a more general framework of $U$-statistics for edge-marked Poisson processes are established in Section~\ref{Sec:edge}. 
+The proofs of the results on edge-marked Poisson processes are provided in Section~\ref{Sec:pfedge}, while the proofs of the applications to the random connection model are given in Section~\ref{Sec:pfRCM}.
 \iffalse
 \section{Introduction old}
 
@@ -188,7 +189,7 @@ with various approaches being proposed to analyze the structure and asymptotic p
 \fi
 
 
-\section{Results for $U$-statistics of random connection models}
+\section{Results for $U$-statistics of random connection models}\label{Sec:RCM}
 \iffalse
 The following examples can be studied:
 \begin{itemize}
@@ -818,7 +819,7 @@ for $s\geq 1$.
 
 
 
-\section{Results for $U$-statistics of edge-marked Poisson processes}
+\section{Results for $U$-statistics of edge-marked Poisson processes}\label{Sec:edge}
 
 
 
@@ -1427,7 +1428,7 @@ for all $\pi\in\widetilde{\Pi}^\ell(k)$, $\ell\ge3$ and $n\in\mathbb{N}$. Then $
 \end{theorem}
 
 
-\section{Proofs for edge-marked Poisson processes}
+\section{Proofs for edge-marked Poisson processes}\label{Sec:pfedge}
 \subsection{Approximation results}\label{sec:approximation}
 %\subsection{Construction of edge-marked Poisson processes}
 
@@ -1983,7 +1984,7 @@ The claim follows from the `main lemmas' presented in \cite{saulis}, see also th
 \end{proof}
 
 
-\section{Proofs for applications to random connection models}
+\section{Proofs for applications to random connection models}\label{Sec:pfRCM}
 \subsection{Edge-lengths}
 
 \subsubsection{Point process convergence for edge-lengths}
