@@ -79,26 +79,29 @@ We study a class of subgraph and edge-based statistics in the random connection 
 
 Random graphs have been considered extensively for many years. For such graphs, whose vertices or edges are random, many models were introduced and a rich variety of properties and questions can be investigated, making random graphs an important topic of probability theory. Apart from their mathematical beauty, a further motivation to study random graphs is that they can be suitable models for complex networks. The latter are large graphs with a highly non-trivial structure as they arise in many applications ranging from social networks to biology and the engineering of telecommunication networks. For a detailed introduction to random graphs and complex networks we refer, for example, to \cite{van_der_Hofstad_book}.
 
-Many random graph models such as Erd\H{o}s-R\'enyi graphs, rank-one inhomogeneous random graphs, the configuration model or preferential attachment models are purely combinatorial in the sense that the set of vertices are usually the natural numbers $1,\ldots,n$. In contrast, the vertices of spatial random graphs are points in Euclidean space and the edges depend on the geometry of the points. For many complex networks such an assumption is reasonable since the position of a vertex in space could provide its features and, thus, be relevant for the existence of edges. An important model for spatial random graphs is the random geometric graph, which are also known as Gilbert graphs. Their vertices are given by the points of a Poisson process $\eta$ on some space $\mathbb{X}$ and two vertices $x,y\in\eta$ are connected by an edge whenever their distance does not exceed a given threshold $r$, i.e., $\|x-y\|\leq r$. Random geometric graphs are a much studied model; see, for example, the monograph \cite{Penrose_book}. For given vertices the edges of a random geometric graph are completely deterministic. This is generalised by the so-called random connection model (RCM) where the edges between given vertices become random and the edge probability depends on the positions of the potential endpoints. The vertices of the random connection model are still the points of the Poisson process $\eta$ on a space $\mathbb{X}$ and moreover a symmetric function $\varphi:\mathbb{X}\times\mathbb{X}\to[0,1]$, the so-called connection function, is chosen. For each pair of vertices $x,y\in\eta$ it is decided independently if they are connected by an edge and the probability of an edge is given by $\varphi(x,y)$.
+Many random graph models, such as Erd\H{o}s-R\'enyi graphs, rank-one inhomogeneous random graphs, the configuration model or preferential attachment models are purely combinatorial in the sense that the set of vertices is typically $\{1,\ldots,n\}$, a subset of natural numbers. In contrast, the vertices of spatial random graphs are points in Euclidean space and 
+the presence of edges depends on the spatial relationships between these points.
+%the edges depend on the geometry of the points.
+For many complex networks such an assumption is reasonable since the position of a vertex in space could provide its features and, thus, be relevant for the existence of edges. An fundamental model of spatial random graphs is the random geometric graph, also known as the Gilbert graph. Their vertices are given by the points of a Poisson process $\eta$ on some space $\mathbb{X}$ and two vertices $x,y\in\eta$ are connected by an edge whenever their distance does not exceed a given threshold $r$, i.e., $\|x-y\|\leq r$. Random geometric graphs have been studied extensively; see, for example, the monograph \cite{Penrose_book}. For given vertices the edges of a random geometric graph are completely deterministic. This is generalized by the so-called random connection model (RCM) where the edges between given vertices become random and the edge probability depends on the positions of the potential endpoints. The vertices of the random connection model are still the points of the Poisson process $\eta$ on a space $\mathbb{X}$ and moreover a symmetric function $\varphi:\mathbb{X}\times\mathbb{X}\to[0,1]$, the so-called connection function, is chosen. For each pair of vertices $x,y\in\eta$ it is decided independently if they are connected by an edge and the probability of an edge is given by $\varphi(x,y)$.
 
 The random connection model was first introduced in \cite{Penrose1} as a model of continuum percolation, the term random connection model was later used in \cite{meesterroy}. Roughly speaking, the mechanism for drawing edges in the random connection model can be seen as a mixture between the Erd\H{o}s-R\'enyi graph, where each edge is present with the same probability, and the random geometric graph, where the edges are completely determined by the locations of the vertices.
 
-An important class of random connection models are so-called weighted random connection models (WRCM), where the vertices are equipped with i.i.d.\ weights that are also taken into account by the connection function. Such a class of random connection models was first studied in \cite{deprez2019scale}, where the authors considered the continuous counterpart to a long-range percolation model on the lattice from \cite{deijfen2013scale}. A further generalization of the random connection model are the so-called age-dependent random connection models, see, for example, \cite{gracar2019age}. In this paper we will consider several versions of such models.
+An important class of random connection models is the so-called weighted random connection model (WRCM), where the vertices are equipped with i.i.d.\ weights that are also taken into account by the connection function. Such a class of random connection models was first studied in \cite{deprez2019scale}, where a continuous analogue of the long-range percolation model on the lattice introduced in \cite{deijfen2013scale} was considered. A further generalization of the random connection model is the so-called age-dependent random connection model, see, for example, \cite{gracar2019age}. In this paper we will consider several versions of such models.
 
 Counting statistics on RCM have gained considerable attention in recent years, including isolated vertex counts \cite{Penrose2}, component counts \cite{Last_Nestmann_Schulte} and subgraph counts in \cite{can2022, LiuPrivault,LiuPrivault25b},
 with various approaches being proposed to analyze the structure and asymptotic properties of these random graphs.
 
-For an at most countable collection of random elements $(X_i)_{i\in I}$ taking values in a space $\mathbb{Y}$ and a measurable function $f:\mathbb{Y}^k\to\mathbb{R}$ with $k\in\mathbb{N}$, the random variable
+Let $(X_i)_{i\in I}$ be an at most countable collection of random elements taking values in a space $\mathbb{Y}$, and let $f:\mathbb{Y}^k\to\mathbb{R}$ be a measurable function, $k\in\mathbb{N}$. The random variable
 \[
 \sum_{(i_1,\ldots,i_k)\in I^k_{\neq}} f(X_{i_1},\ldots,X_{i_k}),
 \]
-where $I^k_{\neq}$ denotes the set of all $k$-tuples of distinct elements of $I$, is called a $U$-statistic. In the classical setting one considers $n$ i.i.d.\ random elements $(X_i)_{i\in\{1,\ldots,n\}}$, a framework that has played a central role in the study of symmetric kernels and their limit theorems. However, this classical formulation restricts the kernel to depend solely on vertex attributes. As a consequence, it is often insufficient for capturing the structural dependencies inherent in random graphs and point processes.
+where $I^k_{\neq}$ denotes the set of all $k$-tuples of distinct elements of $I$, is called a $U$-statistic. In the classical setting, one considers $n$ i.i.d.\ random elements $(X_i)_{i\in\{1,\ldots,n\}}$. This framework has played a central role in the study of symmetric kernels and their limit theorems. However, this classical formulation restricts the kernel to depend solely on vertex attributes. As a consequence, it is often insufficient for capturing the structural dependencies inherent in random graphs and point processes.
 
 To overcome this limitation, \cite{Janson91} introduced the notion of generalized $U$-statistics, which extend the classical definition by allowing the kernel to depend not only on vertex attributes but also on the edges between them. In their framework one considers sums of functions of the form
 $$
 f(X_{i_1},\ldots,X_{i_k},(Y_{i_j,i_\ell})_{j,\ell\in\{1,\dots,k\},\, j<\ell}),
 $$
-where $(X_i)_{i\in I}$ and $(Y_{i,j})_{i,j\in I,\,i<j}$ are two independent collections of i.i.d.\ random elements. This extension proved crucial for studying the asymptotic behaviour of subgraph counts and other graph-theoretic functionals, as it provides a unified framework for handling the dependencies induced by the underlying network structure. Further details can be found in Chapter~11 of the monograph \cite{janson}; see also the recent developments in \cite{zhangzs,bhattacharya23}.
+where $(X_i)_{i\in I}$ and $(Y_{i,j})_{i,j\in I,\,i<j}$ are two independent collections of i.i.d.\ random elements. This extension proved crucial for studying the asymptotic behavior of subgraph counts and other graph-theoretic functionals, as it provides a unified framework for handling the dependencies induced by the underlying network structure. Further details can be found in Chapter~11 of the monograph \cite{janson}; see also the recent developments in \cite{zhangzs,bhattacharya23}.
 
 In the context of the random connection model, it is therefore natural to adopt this generalized perspective. Rather than considering $k$-tuples of distinct points from a point process $\eta$ in isolation, one should also take into account the stochastic connectivity between them. Denote by $\eta^k_{\neq}$ the set of all $k$-tuples of distinct points of $\eta$, and write $\mathbf{1}\{x\leftrightarrow y\}$ for the indicator of the event that two points $x,y\in\eta$ are connected by an edge. For a measurable function $f:\mathbb{X}^k\times \{0,1\}^{\frac{k(k-1)}{2}}\to\mathbb{R}$,
 we define the random variable
@@ -113,9 +116,9 @@ $$
 \frac{1}{2}\sum_{(x_1,x_2)\in\eta^2_{\neq}\cap \widetilde{\Gamma}^2} \mathbf{1}\{x_1\leftrightarrow x_2\} \|x_1-x_2\|^\tau,
 $$
 for $\tau\in\mathbb{R}$. 
-Edge-length functionals have been extensively studied in the context of spatial random geometric graphs; see, for instance, \cite{hirsch2024upper,reitznerschultethaele,rs3,rs4,scs,trauthwein2025quantitative}. Related results for the random connection model can be found in \cite{iyer,Heerten_Hirsch_Otto}.
+Edge-length functionals have been extensively studied in the context of spatial random geometric graphs; see, for instance, \cite{reitznerschultethaele,hirsch2024upper,rs3,scs,trauthwein2025quantitative,rs4}. Related results for the random connection model can be found in \cite{iyer,Heerten_Hirsch_Otto}.
 
-Another important class of $U$-statistics arises from subgraph counts in the stationary random connection model. Let $G$ be a fixed connected graph with $k$ vertices labeled $1,\ldots,k$ and edge set $E_G$. When restricted to an observation window $\widetilde{\Gamma}\subseteq\mathbb{R}^d$, the number of subgraph isomorphic to $G$ can be written as the $U$-statistic:
+Another important class of $U$-statistics arises from subgraph counts in the stationary random connection model. Let $G$ be a fixed connected graph with $k$ vertices labeled $1,\ldots,k$ and edge set $E_G$. When restricted to an observation window $\widetilde{\Gamma}\subseteq\mathbb{R}^d$, the number of subgraphs isomorphic to $G$ can be written as the $U$-statistic:
 $$
 \sum_{(x_1,\ldots,x_k)\in\eta^{k}_{\neq}\cap \widetilde{\Gamma}^k} \prod_{\{i,j\}\in E_G} \mathbf{1}\{x_i\leftrightarrow x_j\},
 $$
@@ -129,11 +132,11 @@ is called a Poisson $U$-statistic. Such random variables arise in many problems 
 
 Since the random connection model involves a Poisson process, it is a natural question whether results for Poisson $U$-statistics can be applied to its $U$-statistics. As introduced above the $U$-statistics of the random connection model are not of the desired form since apart from the underlying Poisson process $\eta$ for the vertices one has also the random decisions, which edges are present. This additional randomness can be modelled by marking each pair of vertices $\{x,y\}$ independently by a random variable $U_{\{x,y\}}$ that is uniformly distributed on $[0,1]$ and drawing an edge between $x$ and $y$ if and only if $U_{\{x,y\}}\leq\varphi(x,y)$. This way the random connection is completely determined by $\eta$ and $(U_{\{x,y\}})_{(x,y)\in\eta^2_{\neq}}$. Now the latter can be constructed from a marked Poisson process $\widehat{\eta}$, where the point process without the marks has the same distribution as $\eta$ and the marks are sequences of independent random variables uniformly distributed on $[0,1]$. The idea is to take the points of $\widehat{\eta}$ without marks as $\eta$ and to derive $(U_{\{x,y\}})_{(x,y)\in\eta^2_{\neq}}$ from the marks. To this end, one can equip $\mathbb{X}$ with an order $\prec$ and a distance ${\rm d}$. If $x\prec y$ and $y$ is the $j$-th closest point of $\eta$ to $x$, we let $U_{\{x,y\}}$ be the $j$-th element from the mark sequence of $x$. This means that the random connection model can be seen as a function of the Poisson process $\widehat{\eta}$. Nevertheless, a $U$-statistic of the random connection model does not become a Poisson $U$-statistic with respect to $\widehat{\eta}$. This is caused by the fact that the way the marks are assigned to the pairs of vertices depends on all points of $\eta$ and thus destroys the structure of $U$-statistics.   
 
-In this paper, we address the problem that $U$-statistics of the random connection model are not Poisson $U$-statistics. This subtlety seems to have been overlooked in parts of the existing literature; see \cite{Heerten_Hirsch_Otto} and \cite{Otto25}, where formulae are used which are basically correct but whose validity is not immediate from the Poisson $U$-statistics framework. Our approach is to approximate $U$-statistics of the random connection model by Poisson $U$-statistics with respect to Poisson processes on enlarged spaces. This allows is to systematically and rigorously transfer results for Poisson $U$-statistics to $U$-statistics of the random connection model and, in particular, to justify the use of such formulae. The key approximation argument in our proofs is the same as that is employed in \cite{Last_Nestmann_Schulte} to derive second-order Poincar\'e inequalities for functionals of edge-marked Poisson processes.
+In this paper, we address the problem that $U$-statistics of the random connection model are not Poisson $U$-statistics. This subtlety seems to have been overlooked in parts of the existing literature; see \cite{Heerten_Hirsch_Otto} and \cite{Otto25}, where formulae are used which are basically correct but whose validity is not immediate from the Poisson $U$-statistics framework. Our approach is to approximate $U$-statistics of the random connection model by Poisson $U$-statistics with respect to Poisson processes on enlarged spaces. This allows us to systematically and rigorously transfer results for Poisson $U$-statistics to $U$-statistics of the random connection model and, in particular, to justify the use of such formulae. The key approximation argument in our proofs is the same as that is employed in \cite{Last_Nestmann_Schulte} to derive second-order Poincar\'e inequalities for functionals of edge-marked Poisson processes.
 
 %\textcolor{blue}{Refer to erroneous applications in \cite{Heerten_Hirsch_Otto} and \cite{Otto25}}
 
-We formulate our abstract results for the slightly more general framework of edge-marked Poisson processes, where each pair of points of a Poisson process $\eta$ in $\mathbb{X}$ is equipped with an i.i.d.\ random mark in a space $\mathbb{M}$, i.e., one has a collection of so-called edge-marks $(\mathcal{M}_{x,y})_{x,y\in\eta}$. As described above the random connection model can be obtained from an edge-marked Poisson process with marks uniformly distributed on $[0,1]$. The definition of a $U$-statistic of an edge-marked Poisson process is the same as that of a $U$-statistic of a random connection model in \eqref{eqn:Ustatistic_RCM} with the only difference that the indicators of edges are replaced by the pairwise marks, i.e., for a measurable function $f:\mathbb{X}^k\times\mathbb{M}^{k(k-1)}$ we are interested in random variables of the form
+We formulate our abstract results for the slightly more general framework of edge-marked Poisson processes, where each pair of points of a Poisson process $\eta$ in $\mathbb{X}$ is equipped with an i.i.d.\ random mark taking value in a space $\mathbb{M}$, i.e., one has a collection of so-called edge-marks $(\mathcal{M}_{x,y})_{x,y\in\eta}$. As described above the random connection model can be obtained from an edge-marked Poisson process with marks uniformly distributed on $[0,1]$. The definition of a $U$-statistic of an edge-marked Poisson process is the same as that of a $U$-statistic of a random connection model in \eqref{eqn:Ustatistic_RCM} with the only difference that the indicators of edges are replaced by the pairwise marks, i.e., for a measurable function $f:\mathbb{X}^k\times\mathbb{M}^{k(k-1)}$ we are interested in random variables of the form
 $$
 \sum_{(x_1,\ldots,x_k)\in\eta^k_{\neq}} f(x_1,\ldots,x_k, (\mathcal{M}_{x_i,x_j})_{i,j\in\{1,\ldots,k\},i\neq j}).
 $$ 
@@ -143,7 +146,7 @@ Under suitable assumptions we derive for such random variables
 \item quantitative bounds for the normal approximation with respect to the Kolmogorov and the Wasserstein distance
 \item a quantitative bound for Poisson approximation with respect to the Wasserstein distance
 \item a quantitative bound for compound Poisson approximation with respect to the total variation distance
-\item moderate deviation principles.
+\item moderate deviation principles, concentration inequalities, and normal approximation with Cramér correction.
 \end{itemize}
 Apart from $U$-statistics we also consider some associated point processes. For a measurable function $\tilde{f}:\mathbb{X}^k\to\mathbb{Y}$ with $k\in\mathbb{N}$ and some space $\mathbb{Y}$, we can define a point process
 $$
@@ -160,9 +163,9 @@ Let $\eta$ be a homogeneous Poisson process in $\mathbb{R}^d$ with intensity $\g
 \end{equation}
 Any two distinct points $x,y\in\eta$ are connected by an edge independently with probability $\varphi(x-y)$. This construction yields the classical random connection model.
 
-Our first application concerns the edge-length functional. For this quantity we establish a Poisson process approximation in Theorem~\ref{thm:edge-length_process} and further distributional approximation results in Theorem~\ref{mainsumedges}. In particular, Theorem~\ref{mainsumedges} reveals three distinct limiting regimes, namely a Gaussian limit, a stable limit and a third regime in which the limiting distribution is neither Gaussian nor stable. 
+Our first application concerns edge lengths. For the point process of edge lengths we establish a Poisson process approximation result in Theorem~\ref{thm:edge-length_process}, which includes convergence in distribution of the length of the longest edge in an observation window to a Fr\'echet distribution. Furthermore, we derive distributional approximation results for the edge-length functionals introduced above in Theorem~\ref{mainsumedges}. In particular, Theorem~\ref{mainsumedges} reveals three distinct limiting regimes, namely a Gaussian limit, a stable limit and a third regime in which the limiting distribution is neither Gaussian nor stable. 
 
-Our second application deals with subgraph counts in the random connection model. We distinguish two regimes, depending on whether the connection function is integrable or non-integrable on $\mathbb{R}^d$. In the integrable case, we derive normal approximation bounds under both the Kolmogorov and Wasserstein distances in Theorem~\ref{propgraph}. Furthermore, based on cumulant estimates obtained in Proposition~\ref{subgraph-cumu-1}, we establish several refined probabilistic results, including a moderate deviation principle, concentration inequalities, and a normal approximation with Cramér correction; see Theorem~\ref{thm:subgraphMDP}.
+Our second application deals with subgraph counts in the random connection model. We distinguish two regimes, depending on whether the connection function is integrable or non-integrable on $\mathbb{R}^d$. In both the integrable and the non-integrable cases, we derive normal approximation bounds under both the Kolmogorov and Wasserstein distances in Theorem~\ref{propgraph} and Theorem~\ref{thm:subgraph-non}, respectively. Furthermore, for the integrable case, based on cumulant estimates obtained in Proposition~\ref{subgraph-cumu-1}, we establish several refined probabilistic results, including a moderate deviation principle, concentration inequalities, and a normal approximation with Cramér correction; see Theorem~\ref{thm:subgraphMDP}. 
 
 Our final application concerns hub-to-hub edges in the weighted random connection model. For this quantity we obtain Poisson and normal approximation results in Theorem~\ref{thm:hub-to-hub-edges}, as well as a compound Poisson approximation in Theorem~\ref{thm:hub-to-hub-edges2}.
 
@@ -205,7 +208,7 @@ The following examples can be studied:
 \end{itemize}
 \fi 
 
-In this section, we explore several applications on the RCM based on a stationary Poisson process on $\mathbb{R}^d$. Our analysis covers a variety of functionals, including subgraph counts, edge lengths and hub-to-hub edges. 
+In this section, we explore several applications on the RCM based on a stationary Poisson process on $\mathbb{R}^d$. Our analysis covers a variety of functionals, including edge lengths, subgraph counts and hub-to-hub edges. 
 
 Let $\eta$ be a stationary Poisson process on $\mathbb{R}^d$ with intensity measure $\gamma\cdot \lambda_d$, where $\gamma>0$ is fixed and $\lambda_d$ denotes the Lebesgue measure on $\mathbb{R}^d$. 
 Let $\Gamma\subseteq\mathbb{R}^d$ be a compact convex set with $\lambda_d(\Gamma)=1$, and define $\Gamma_s:=s^{1/d}\Gamma$, for $s\ge1$. 
@@ -214,7 +217,7 @@ For any finite collection of points $\{x_1,\dots,x_r\}\subseteq\mathbb{R}^d$, we
 $$
 \mathbb{P}(x\leftrightarrow y)=\varphi(x-y).
 $$
-This framework naturally extends to the weighted random connection model, denoted $\mathbb{G}_{\varphi}(\{x_1,\dots,x_r\},W)$, by equipping each vertex with an i.i.d. weight drawn from a distribution $W$. In particular, we denote the Poisson RCM and its weighted counterpart base on the underlying Possion process $\eta$ as $\mathbb{G}_{\varphi}(\eta)$ and $\mathbb{G}_{\varphi}(\eta,W)$, respectively. 
+This framework naturally extends to the weighted random connection model, denoted $\mathbb{G}_{\varphi}(\{x_1,\dots,x_r\},W)$, by equipping each vertex with an i.i.d. weight drawn from a distribution $W$. In particular, we denote the Poisson RCM and its weighted counterpart based on the underlying Possion process $\eta$ as $\mathbb{G}_{\varphi}(\eta)$ and $\mathbb{G}_{\varphi}(\eta,W)$, respectively. 
 \iffalse
 \textcolor{cyan}{
 \footnote{It should be moved to next section.}
@@ -231,7 +234,7 @@ Therefore, taking $\mathbb{M}=[0,1]$, and $\mathbb{Q}$ to be the uniform distrib
 %	S=\sum_{(x_1,\dots,x_k)\in\eta^k_{\ne}}f\big(x_1,\dots,x_k,\left(\mathbf{1}(\mathcal{M}_{x_i,x_j}\le\varphi(x_i,x_j))_{i,j\in[k],i\ne j}\right)\big).
 %\end{equation*}
 %\subsection{edge-length functionals}
-\subsection{Edge-lengths}
+\subsection{Edge lengths}
 
 \begin{ass}\label{edgelength-ass1}
 	The function $\varphi$ is only radially dependent. Its radial part is denoted by $\bar{\varphi}$, that has a polynomial decay with some exponent $\alpha \in (d, \infty)$, i.e. there exists a constant $l_{\bar{\varphi}}\in(0,\infty)$ such that  
@@ -249,8 +252,9 @@ Together with the observation that $\bar{\varphi}$ as a probability is bounded b
 \end{equation}
 for all $t\in(0,\infty)$. Moreover, we define
 $$
-c_{\bar{\varphi}} := \frac{\gamma^2 d \kappa_d l_{\bar{\varphi}}}{2(\alpha-d)}.
+c_{\bar{\varphi}} := \frac{\gamma^2 d \kappa_d l_{\bar{\varphi}}}{2(\alpha-d)},
 $$
+where $\kappa_d$ denotes the volume of the $d$-dimensional unit ball.
 
 In the following, we first consider the point processes
 $$
@@ -280,11 +284,7 @@ Here we focus on $L_s(\tau)$. The presence of boundary effects leads to differen
 
 When studying the global structure of random graphs, it is often convenient to represent the graph, or certain graph functionals, as point processes. To formulate our results in this framework, we introduce some standard notation.
 
-Let $\mathbb{Y}$ be a locally compact second countable Hausdorff space equipped with its Borel $\sigma$-algebra $\mathcal{Y}$. Denote by $N_{\mathbb{Y}}$ the space of $\sigma$-finite counting measures on $\mathbb{Y}$, and let $\mathcal{N}_{\mathbb{Y}}$ be the $\sigma$-algebra generated by the evaluation mappings
-$$
-\omega \mapsto \omega(A), \qquad A \in \mathcal{Y}.
-$$
-A point process on $\mathbb{Y}$ is then defined as a random element taking values in $N_{\mathbb{Y}}$.
+Let $\mathbb{Y}$ be a locally compact second countable Hausdorff space equipped with its Borel $\sigma$-algebra $\mathcal{Y}$. Denote by $N_{\mathbb{Y}}$ the space of $\sigma$-finite counting measures on $\mathbb{Y}$, and let $\mathcal{N}_{\mathbb{Y}}$ be the $\sigma$-algebra generated by the evaluation mappings $\omega \mapsto \omega(A)$ for $A \in \mathcal{Y}$. A point process on $\mathbb{Y}$ is then defined as a random element taking values in $N_{\mathbb{Y}}$.
 
 To compare two point processes, we employ the Kantorovich--Rubinstein distance. Let $\xi$ and $\zeta$ be point processes on $\mathbb{Y}$ with distributions $P$ and $Q$, respectively. Their Kantorovich--Rubinstein distance is defined by
 \begin{equation}\label{def:KRdis}
@@ -296,7 +296,7 @@ $$
 :=
 \sup_{A\in\mathcal{Y}} |\nu_1(A)-\nu_2(A)|
 $$
-denotes the total variation distance between finite measures, and $\Sigma(P,Q)$ denotes the set of probability measures on $N_{\mathbb{Y}}\times N_{\mathbb{Y}}$ with first marginal $P$ and second marginal $Q$.
+is the total variation distance between finite measures $\nu_1$ and $\nu_2$ on $\mathbb{Y}$, and $\Sigma(P,Q)$ denotes the set of probability measures on $N_{\mathbb{Y}}\times N_{\mathbb{Y}}$ with first marginal $P$ and second marginal $Q$.
 
 We now state the following result concerning the point process $\tilde{\xi}_s$.
 
@@ -316,7 +316,7 @@ $$
 \tilde{\xi}_s\overset{d}{\longrightarrow} \zeta^{(\alpha)}\quad \text{as} \quad s\to\infty.
 $$
 \item [c)] 
-Let $Z$ be a random variable such that $\mathbb{P}(Z>a)=e^{-c_{\bar{\varphi}}a^{d-\alpha}}$ for $a\in(0,\infty)$. Then,
+Let $Z$ be a random variable such that $\mathbb{P}(Z\leq a)=e^{-c_{\bar{\varphi}}a^{d-\alpha}}$ for $a\in(0,\infty)$. Then,
 $$
 s^{-\frac{1}{\alpha-d}}\max_{(x_1,x_2)\in\eta_{\neq}^2, x_1\leftrightarrow x_2, \frac{x_1+x_2}{2}\in\Gamma_s} \|x_1-x_2\| \overset{d}{\longrightarrow} Z \quad \text{as} \quad s\to\infty.
 $$
@@ -360,7 +360,7 @@ $$
 %Recall that $\varphi$ denotes the connection function and that we make the following assumption on $\varphi$.
 %From the statements in Lemma \ref{lem:varlength} we observe that the variance asymptotics is not finite. 
 
-The following is the distributional approximation result for the behavior of power-weighted edge-lengths. In particular we get different limit theorems (central or stable) depending on the values of $\alpha$, $d$ and $\tau$, including a distinctive regime with $\alpha =2d$, where a different limit theorem holds.
+The following is the distributional approximation result for the behavior of power-weighted edge-length functionals. In particular we get different limit theorems (central or stable) depending on the values of $\alpha$, $d$ and $\tau$, including a distinctive regime with $\alpha =2d$, where a different limit theorem holds.
 
 \begin{theorem}\label{mainsumedges}
     Let $L_s (\tau)$ be defined as in \eqref{deflstau} with $\tau>-d/2$. Suppose that Assumption \ref{edgelength-ass1} is satisfied. Then, as $s\to\infty$, the following trichotomy holds.
@@ -376,9 +376,9 @@ If either
 then
 \[
 \frac{L_s(\tau)-\E[L_s(\tau)]}{\sqrt{\Var(L_s(\tau))}}
-\overset{d}{\longrightarrow} N.
+\overset{d}{\longrightarrow} N,
 \]
-
+where $N$ denotes a random variable with standard normal distribution.
 \item {Stable regime.}
 If
 \[
@@ -472,9 +472,9 @@ Section~\ref{regimeclt} contains the proofs of the central limit theorems, where
 
 
 \subsection{Subgraph counts}
-Let $G=(V_G,E_G)$ be a fixed connected graph of order $k$, $k\ge2$, with vertex set $V_G$ and edge set $E_G$. 
+Let $G=(V_G,E_G)$ be a fixed connected graph of order $k$, $k\ge2$, with vertex set $V_G$ and edge set $E_G$. For converience, we will write $V_G=[k]:=\{1,2,\ldots,k\}.$
 %For any two graphs $G_1$ and $G_2$, we denote $G_1\simeq G_2$ when $G_1$ is isomorphic to $G_2$. 
-Denote $|\mathrm{Aut}(G)|$ as the number of automorphism of $G$. 
+Denote $|\mathrm{Aut}(G)|$ as the number of automorphisms of $G$. 
 Define $v(G):=|V_G|$ as the number of vertices and $e(G):=|E_G|$ as the number of edges of the graph $G$. 
 For any two graphs $G_1,G_2$, we write $G_1\simeq G_2$ when $G_1$ is isomorphic to $G_2$. 
 \begin{defi}{\cite[pp.~64-65]{JLR}}
@@ -490,20 +490,34 @@ and strictly balanced if \eqref{balance1}
 holds as a strict inequality for all $H\subsetneq G$. 
 \item[2)] A graph $G$ is $K_1$-balanced, also called strongly balanced, if 
 \begin{equation}
-	\frac{e(H)}{v(H)-1}\le\frac{e(G)}{v(G)-1}, \qquad \quad \text{for all }H\subseteq G \quad \text{with} \quad v(H)>1,
+	\frac{e(H)}{v(H)-1}\le\frac{e(G)}{v(G)-1}, \qquad \quad \text{for all }H\subseteq G \quad \text{with} \quad v(H)>1.
 	\label{balance2}
 \end{equation}
-with the convention $0/0=0$.
+
 \end{itemize}
   \end{defi}
+Before proceeding, we need to introduce a few new notation about set partitions and graph contraction. 
 
-We consider $\ell$ copies of $G$ with the vertices, denoted by $x_i^{(r)}$ for $i \in [k]$ and $r \in [1, \dots, \ell]$. For a given partition $\pi \in \widetilde{\Pi}^\ell(k)$, the {\it contracted graph} $(G^{\otimes \ell})_{\pi}$ is constructed as follows:
+Let $A$ be a non-empty set. A partition $\sigma$ of $A$ is a collection $\{B_1,\dots,B_s\}$ of pairwise disjoint non-empty subsets $B_i\subseteq A$, called blocks, such that $B_1\cup\cdots\cup B_s=A$. The number $s$ of blocks in $\sigma$ is denoted by $|\sigma|$.
+% For any $n\in\N$, we denote $[n]:=\{1,\dots,n\}$.
+Let $t\in\N$ and $q\in\N$. Set $J_\ell:=\{(\ell,1),(\ell,2),\dots,(\ell,q)\}$, for $\ell=1,\dots,t.$ By $\Pi^t(q)$ we denote the set of all partitions $\sigma$ of $[t]\times[q]$ such that $|B\cap J_\ell|\le1$ for all $\ell\in[t]$ and $B\in\sigma$.
+
+Every partition $\sigma\in\Pi^t(q)$ induces a partition $\sigma^*$ of $[t]$ in the following way: $i,j\in[t]$ are in the same block of $\sigma^*$ whenever there exists a block $B\in\sigma$ such that $|B\cap J_i|=|B\cap J_j|=1$. Let $\widetilde{\Pi}^t(q)$ be the collection of all partitions $\sigma\in\Pi^t(q)$ such that $|\sigma^*|=1$. Note that partitions in $\Pi^t(q)$ and $\widetilde{\Pi}^t(q)$ are known as non-flat and connected non-flat, respectively, see \cite[Chapter~4]{peccati2011}. 
+We denote by $\overline{\Pi}^t(q)$ the collection of all partitions $\sigma\in\Pi^t(q)$ such that for each $\ell\in[t]$ there exists a block $B\in\sigma$ with $|B|\ge2$ and $B\cap J_\ell\ne\emptyset$.
+%By $\Pi_{\ge2}(q_1,\dots,q_t)$ and $\widetilde{\Pi}_{\ge2}(q_1,\dots,q_t)$, we denote the sets of all $\sigma\in\Pi(q_1,\dots,q_t)$ and $\sigma\in\widetilde{\Pi}(q_1,\dots,q_t)$ such that $|B|\ge2$ for every $B\in\sigma$. In the case $q_1=\dots=q_t=q$, we write $\Pi^t(q)$, $\widetilde{\Pi}^t(q)$, $\Pi^t_{\ge2}(q)$, $\widetilde{\Pi}^t_{\ge2}(q)$ and $\overline{\Pi}^t(q)$ instead of $\Pi(q_1,\dots,q_t)$, $\widetilde{\Pi}(q_1,\dots,q_t)$, $\Pi_{\ge2}(q_1,\dots,q_t)$, $\widetilde{\Pi}_{\ge2}(q_1,\dots,q_t)$ and $\overline{\Pi}(q_1,\dots,q_t)$ respectively.
+
+%\textcolor{blue}{Let $(S,\mathcal{S})$ be an arbitrary measurable space. For functions $f^{(\ell)}:S^{q}\to\R$, $\ell\in[t]$, we define their tensor product $\otimes_{\ell=1}^tf^{(\ell)}:S^{tq}\to\R$ by 
+%$$\otimes_{\ell=1}^tf^{(\ell)}(x_1,\dots,x_{tq}):=\prod_{\ell=1}^tf^{(\ell)}(x_{(\ell-1)q+1},\dots,x_{\ell q}).$$
+%For each $\sigma\in\Pi^t(q)$, the function $(\otimes_{\ell=1}^tf^{(\ell)})_\sigma:S^{|\sigma|}\to\mathbb{R}$ is obtained by replacing all variables that belong to the same block in $\sigma$ by a new common variable.}
+%not needed anymore.
+
+We consider $\ell$ copies of $G$ with the vertices, denoted by $x_i^{(r)}$ for $i\in[k]$ and $r\in[\ell]$. For a given partition $\pi \in \widetilde{\Pi}^\ell(k)$, the {\it contracted graph} $(G^{\otimes \ell})_{\pi}$ is constructed as follows:
 \begin{itemize}
     \item \textbf{Vertices:} The vertex set consists of the blocks of the partition $\pi$. Formally, two vertices $x_{i_1}^{(r_1)}$ and $x_{i_2}^{(r_2)}$ are identified as a single vertex in $(G^{\otimes \ell})_{\pi}$ if and only if the indices $(r_1, i_1)$ and $(r_2, i_2)$ belong to the same block of $\pi$. The resulting graph has exactly $|\pi|$ vertices.
     
     \item \textbf{Edges:} The edge set is inherited from the $\ell$ copies of $G$. For every original edge $\{i, j\} \in E_G$, we include the edges $\{x_i^{(r)}, x_j^{(r)}\}$ for all $r \in [\ell]$, subject to the vertex identifications defined by $\pi$.
 \end{itemize}
-Note that Because $G$ is connected and the identification process (contraction) does not break existing paths, the resulting graph $(G^{\otimes \ell})_{\pi}$ remains connected.
+Note that because $G$ is connected and the identification process (contraction) does not break existing paths, the resulting graph $(G^{\otimes \ell})_{\pi}$ remains connected.
 \subsubsection{Subgraph counts with integrable connection function}
 Suppose the connection function $\varphi$ satisfies 
 $$
@@ -548,19 +562,19 @@ $\mathbb{G}_{\varphi}(\eta\cap\Gamma_s)$, defined by
 \end{align}
 If Assumption~\ref{graph-ass1}-i) holds, then there exist constants $C,s_0>0$, depending only on $\varphi$, $k$ and $G$ such that when $s\ge s_0$,
 \begin{equation}
-	\mathrm{d}_{\mathrm{Wass}}\left(\frac{N_G^{\subset}-\mathbb{E} N_G^{\subset}}{\sqrt{\Var N_G^{\subset}}},N\right)\le \mathrm{d}_{\mathrm{K}}\left(\frac{N_G^{\subset}-\mathbb{E} N_G^{\subset}}{\sqrt{\Var N_G^{\subset}}},N\right)\le\frac{C}{\sqrt{s}}.
+	\mathrm{d}_{\mathrm{Wass}}\left(\frac{N_G^{\subset}-\mathbb{E} N_G^{\subset}}{\sqrt{\Var N_G^{\subset}}},N\right)\le \mathrm{d}_{\mathrm{K}}\left(\frac{N_G^{\subset}-\mathbb{E} N_G^{\subset}}{\sqrt{\Var N_G^{\subset}}},N\right)\le\frac{C}{\sqrt{s}},
 \end{equation}
-Moreover, if Assumption~\ref{graph-ass1}-ii) holds, the same bound applies to the induced subgraph count $N_G^{=}$.
+where $N$ denotes a random variable with standard normal distribution. Moreover, if Assumption~\ref{graph-ass1}-ii) holds, the same bound applies to the induced subgraph count $N_G^{=}$.
 \end{theorem}
 It can be shown that, 
 as a direct application of Proposition~\ref{prop:moments}, the growth of cumulants of subgraph counts is well controlled, which is essential for normal approximation in Theorem~\ref{propgraph}.
 \begin{prop}\label{subgraph-cumu-1}
-For any $\ell\in\mathbb{N}$ and $i\in\{=,\subset\}$, we have, for each $\pi\in\widetilde{\Pi}^\ell(k)$
-\begin{equation}\label{intgrand-0}
-\int_{\Gamma_s^{|\pi|}}\int_{[0,1]^{|\pi|\times|\pi|}_{\ne}}((f^{(i)}_G)^{\otimes\ell})_{\pi}(\bm{x},\bm{u})\mathrm{d}\bm{u}\lambda_d^{|\pi|}(\mathrm{d}\bm{x})\le 
-\frac{1}{|\mathrm{Aut}(G)|^\ell}\lambda_d(\Gamma_s)\left(\int_{\mathbb{R}^d}\varphi(z)\mathrm{d}z\right)^{|\pi|-1}\gamma^{|\pi|}.
-\end{equation}
-Moreover, we have 
+For any $\ell\in\mathbb{N}$ and $i\in\{=,\subset\}$, we have%, for each $\pi\in\widetilde{\Pi}^\ell(k)$
+%\begin{equation}\label{intgrand-0}
+%\int_{\Gamma_s^{|\pi|}}\int_{[0,1]^{|\pi|\times|\pi|}_{\ne}}((f^{(i)}_G)^{\otimes\ell})_{\pi}(\bm{x},\bm{u})\mathrm{d}\bm{u}\lambda_d^{|\pi|}(\mathrm{d}\bm{x})\le 
+%\frac{1}{|\mathrm{Aut}(G)|^\ell}\lambda_d(\Gamma_s)\left(\int_{\mathbb{R}^d}\varphi(z)\mathrm{d}z\right)^{|\pi|-1}\gamma^{|\pi|}.
+%\end{equation}
+%Moreover, we have 
 \begin{equation}
 	\cum_\ell(N_G^{(i)})\le \frac{1}{|\mathrm{Aut}(G)|^\ell}\left[\left(\gamma \int_{\mathbb{R}^d}\varphi(z)\mathrm{d}z\right)\vee1\right]^{\ell(k-1)+1}k^{k\ell}(\ell!)^k s.
 \end{equation}
@@ -568,8 +582,46 @@ Moreover, we have
 
 As a directly consequence of cumulants estimates established in Proposition~\ref{subgraph-cumu-1} and the proof of Theorem~\ref{propgraph}, we obtain moderate deviation principle, concentration inequality and normal approximation with Cram\'er correction for the normalized subgraph counts via the method of cumulants. 
 
+Let us first recall from \cite{DemboZeitouni2010} that a sequence of probability measures $(\mathbb{P}_n)_{n\in\mathbb{N}}$ on a topological space $\mathcal{Z}$ with $\sigma$-algebra $\mathscr{L}$ satisfies a large deviation principle (LDP) with speed $t_n\to\infty$ and good rate function $\mathcal{I}$ if the level sets $\{z\in\mathcal{Z}:\mathcal{I}(z)\le a\}$ are compact for all $0\le a<\infty$ and if for all $A\in\mathscr{L}$,
+\begin{equation*}
+	-\inf_{z\in\operatorname{int}(A)}\mathcal{I}(z)\le\liminf_{n\to\infty}t_n^{-1}\log\mathbb{P}_n(A)\le\limsup_{n\to\infty}t_n^{-1}\log\mathbb{P}_n(A)\le-\inf_{z\in\operatorname{cl}(A)}\mathcal{I}(z),
+\end{equation*}
+where $\operatorname{int}(A)$ and $\operatorname{cl}(A)$ stand for the interior and the closure of $A$, respectively. 
+A sequence of random variables $(X_n)_{n\in\mathbb{N}}$ satisfies a LDP if their distributions do. We will speak about a moderate deviation principle (MDP) instead of a LDP if the scaling of the involved random variables is between that of a law of large numbers and that of a central limit theorem.
+
+Let $(X_n)_{n\in\mathbb{N}}$ be a sequence of square-integrable random variables, $\beta\ge0$ be a constant and $(\Delta_n)_{n\in\mathbb{N}}$ be a positive real-valued sequence. For the ease of notation, we say that $(X_n)_{n\in\mathbb{N}}$ satisfies
+\begin{itemize}
+	\item \textbf{$\mathrm{MDP}$}$(\beta,(\Delta_n)_{n\in\mathbb{N}})$
+		if for any positive real-valued sequence $(a_n)_{n\in\mathbb{N}}$ with
+\begin{equation*}
+  \lim_{n \to \infty} a_n = \infty
+\qquad \text{and} \qquad
+\lim_{n \to \infty} \frac{a_n}{\Delta_n^{1/(1+2\beta)}} = 0,
+\end{equation*}
+the rescaled random variables
+$\left( a_n^{-1} \frac{X_n - \mathbb{E} X_n}{\sqrt{\operatorname{Var} X_n}} \right)_{n \in \mathbb{N}}$
+satisfy a MDP with speed $a_n^2$ and good rate function $\mathcal{I}(z) = \frac{z^2}{2}.$
+\item \textbf{$\mathrm{CI}$}$(\beta, (\Delta_n)_{n \in \mathbb{N}})$ 
+	if the Bernstein-type
+concentration inequality
+\begin{equation*}
+\mathbb{P}\!\left( |X_n - \mathbb{E} X_n| \ge z \sqrt{\Var(X_n)} \right)
+\le 2\exp\!\left(-\frac{1}{4}\min \left\{\frac{z^2}{2^{1+\beta}},\,(z \Delta_n)^{1/(1+\beta)}\right\}\right)
+\end{equation*}
+holds for all $n \in \mathbb{N}$ and $z \ge 0$.
+    \item \textbf{$\mathrm{NACC}$}$(\beta, (\Delta_n)_{n \in \mathbb{N}})$ if a normal approximation bound with Cramér correction holds, that is, if there exist constants $c_0, c_1, c_2 > 0$ only depending on $\beta$ such that for all $n \in \mathbb{N}$ and $z \in \left[0, c_0 \Delta_n^{1/(1+2\beta)}\right]$,
+    $$
+    \mathbb{P}(X_n - \mathbb{E}X_n \geq z \sqrt{\Var X_n}) = e^{L_{n,z}^+} (1 - \Phi(z)) \left( 1 + c_1 \theta_{n,z}^+ \frac{1+z}{\Delta_n^{1/(1+2\beta)}} \right)
+    $$ 
+    and
+    $$
+    \mathbb{P}(X_n - \mathbb{E}X_n \leq -z \sqrt{\Var X_n}) = e^{L_{n,z}^-} (1 - \Phi(z)) \left( 1 + c_1 \theta_{n,z}^- \frac{1+z}{\Delta_n^{1/(1+2\beta)}} \right)
+    $$ 
+    with $\theta_{n,z}^+, \theta_{n,z}^- \in [-1, 1]$ and $L_{n,z}^+, L_{n,z}^- \in (-c_2 z^3 / \Delta_n^{1/(1+2\beta)}, c_2 z^3 / \Delta_n^{1/(1+2\beta)})$, where $\Phi$ is the distribution function of a standard Gaussian random variable.
+\end{itemize}
+
 \begin{theorem}\label{thm:subgraphMDP}
-	Let $G$ be a connected graph with $k\ge2$ vertices, and $\{s_n\}_{n\in\mathbb{N}}$ be a positive real-valued sequence with $s_n\to\infty$. 
+	Let $G$ be a connected graph with $k\ge2$ vertices, and $(s_n)_{n\in\mathbb{N}}$ be a positive real-valued sequence with $s_n\to\infty$. 
 Denote by $N_n^{\subset}$ and $N_n^{=}$ the non-induced subgraph count and induced subgraph counts, respectively, of copies of $G$ in 
 $\mathbb{G}_{\varphi}(\eta\cap\Gamma_{s_n})$, defined by
 \begin{align}
@@ -577,12 +629,12 @@ $\mathbb{G}_{\varphi}(\eta\cap\Gamma_{s_n})$, defined by
 	N_n^{=}&:=\frac1{|\mathrm{Aut}(G)|}\sum_{(x_1,\dots,x_k)\in\eta^k_{\ne}\cap\Gamma_{s_n}^k}\prod_{\{i,j\}\in E_G}
     \mathbf{1}\{x_i\leftrightarrow x_j\}\prod_{\{\imath,\jmath\}\notin E_G}\mathbf{1}\{x_{\imath}\nleftrightarrow x_{\jmath}\}.
 \end{align}
-If Assumption~\ref{graph-ass1}-i) holds, then there exists constant $C$ (see \eqref{mdp-const1}) such that  
-$\{N_n^{\subset}\}_{n\in\mathbb{N}}$ satisfies 
-\textbf{$\mathrm{MDP}$}$(k-1,\{C\sqrt{s_n}\}_{n\in\mathbb{N}})$, \textbf{$\mathrm{CI}$}$(k-1, \{C\sqrt{s_n}\}_{n \in \mathbb{N}})$, and \textbf{$\mathrm{NACC}$}$(k-1,\{C\sqrt{s_n}\}_{n\in\mathbb{N}})$. 
+If Assumption~\ref{graph-ass1}-i) holds, then there exists a constant $C$ (see \eqref{mdp-const1}) such that  
+$(N_n^{\subset})_{n\in\mathbb{N}}$ satisfies 
+\textbf{$\mathrm{MDP}$}$(k-1,(C\sqrt{s_n})_{n\in\mathbb{N}})$, \textbf{$\mathrm{CI}$}$(k-1, (C\sqrt{s_n})_{n \in \mathbb{N}})$, and \textbf{$\mathrm{NACC}$}$(k-1,(C\sqrt{s_n})_{n\in\mathbb{N}})$. 
 Moreover, if Assumption~\ref{graph-ass1}-ii) holds, then 
-$\{N_n^{=}\}_{n\in\mathbb{N}}$ satisfies 
-\textbf{$\mathrm{MDP}$}$(k-1,\{C\sqrt{s_n}\}_{n\in\mathbb{N}})$, \textbf{$\mathrm{CI}$}$(k-1, \{C\sqrt{s_n}\}_{n \in \mathbb{N}})$, and \textbf{$\mathrm{NACC}$}$(k-1,\{C\sqrt{s_n}\}_{n\in\mathbb{N}})$. 
+$(N_n^{=})_{n\in\mathbb{N}}$ satisfies 
+\textbf{$\mathrm{MDP}$}$(k-1,(C\sqrt{s_n})_{n\in\mathbb{N}})$, \textbf{$\mathrm{CI}$}$(k-1, (C\sqrt{s_n})_{n \in \mathbb{N}})$, and \textbf{$\mathrm{NACC}$}$(k-1,(C\sqrt{s_n})_{n\in\mathbb{N}})$. 
 \end{theorem}
 \subsubsection{Subgraph counts with non-integrable connection function}
 
@@ -592,6 +644,11 @@ The connection function $\varphi$ is radial with radial profile $\bar{\varphi}$.
 \lim_{t\to\infty} t^{\alpha} \bar{\varphi}(t)=l_{\bar{\varphi}}.
 \end{equation}
 \end{ass}
+
+\textcolor{red}{Throughout the paper, we use the following standard asymptotic notation. 
+For nonnegative functions $f,g:(0,\infty)\to[0,\infty)$, all asymptotic relations are understood in the regime $x\to\infty$. In particular, we write $f(x)=O(g(x))$ if $\limsup_{x\to\infty} f(x)/g(x)<\infty$, and $f(x)=\Omega(g(x))$ if $\liminf_{x\to\infty} f(x)/g(x)>0$. Moreover, we write $f(x)\asymp g(x)$ if both relations hold, and $f(x)\sim g(x)$ if $f(x)/g(x)\to 1$.
+}
+
 Before presenting the main results of this section, we first illustrate the key ideas with a toy example.
 \begin{example}
 	When $G=K_3$ is a triangle, according to Proposition~\ref{prop:expectation_variance}, we have
@@ -600,19 +657,18 @@ Before presenting the main results of this section, we first illustrate the key 
 \end{align*}
 where
 \begin{align*}
-	I_1(s)&:=\gamma^5\int_{\Gamma_s^5}\varphi(x_1-x_2)\varphi(x_2-x_3)\varphi(x_3-x_1)\varphi(x_1-x_4)\varphi(x_1-x_5)\varphi(x_4-x_5)\mathrm{d}(x_1,\dots,x_5),\\
-	I_2(s)&:=\gamma^4\int_{\Gamma_s^4}\varphi(x_1-x_2)\varphi(x_2-x_3)\varphi(x_3-x_1)\varphi(x_1-x_4)\varphi(x_4-x_2)\mathrm{d}(x_1,\dots,x_4),\\
-	I_3(s)&:=\gamma^3\int_{\Gamma_s^3}\varphi(x_1-x_2)\varphi(x_2-x_3)\varphi(x_3-x_1)\mathrm{d}(x_1,x_2,x_3).
+	I_1(s)&:=\gamma^5\int_{\Gamma_s^5}\varphi(x_1-x_2)\varphi(x_2-x_3)\varphi(x_3-x_1)\varphi(x_1-x_4)\varphi(x_1-x_5)\varphi(x_4-x_5)\,\mathrm{d}(x_1,\dots,x_5),\\
+	I_2(s)&:=\gamma^4\int_{\Gamma_s^4}\varphi(x_1-x_2)\varphi(x_2-x_3)\varphi(x_3-x_1)\varphi(x_1-x_4)\varphi(x_4-x_2)\,\mathrm{d}(x_1,\dots,x_4),\\
+	I_3(s)&:=\gamma^3\int_{\Gamma_s^3}\varphi(x_1-x_2)\varphi(x_2-x_3)\varphi(x_3-x_1)\,\mathrm{d}(x_1,x_2,x_3).
 \end{align*}
-
 Moreover, by letting $v_i:=s^{-1/d}x_i$, we can write 
 \begin{align*}
 	I_1(s)&=\gamma^5\int_{\Gamma^5}\varphi(s^{1/d}(v_1-v_2))\varphi(s^{1/d}(v_2-v_3))\varphi(s^{1/d}(v_3-v_1))\\
-	      &\ \ \ \times\varphi(s^{1/d}(v_1-v_4))\varphi(s^{1/d}(v_1-v_5))\varphi(s^{1/d}(v_4-v_5))s^{5}\mathrm{d}(v_1,\dots,v_5),\\
+	      &\ \ \ \times\varphi(s^{1/d}(v_1-v_4))\varphi(s^{1/d}(v_1-v_5))\varphi(s^{1/d}(v_4-v_5))s^{5}\,\mathrm{d}(v_1,\dots,v_5),\\
 	      &\asymp s^5 s^{-6\frac{\alpha}d}\int_{\Gamma^5}\|v_1-v_2\|^{-\alpha}\|v_2-v_3\|^{-\alpha}\|v_3-v_1\|^{-\alpha}\\
-	      &\ \ \ \times\|v_1-v_4\|^{-\alpha}\|v_1-v_5\|^{-\alpha}\|v_4-v_5\|^{-\alpha}\mathrm{d}(v_1,\dots,v_5).
+	      &\ \ \ \times\|v_1-v_4\|^{-\alpha}\|v_1-v_5\|^{-\alpha}\|v_4-v_5\|^{-\alpha}\,\mathrm{d}(v_1,\dots,v_5).
 \end{align*}
-Because $\varphi$ is bounded by $1$, integrations over $\Gamma$ is finite. Hence, we have 
+Because $\varphi$ is bounded by $1$, integration over $\Gamma$ is finite. Hence, we have 
 \begin{equation}
 	I_1(s)\asymp s^{5-6\alpha/d},~~I_2(s)\asymp s^{4-5\alpha/d},~~I_3(s)\asymp s^{3-3\alpha/d},
 \end{equation}
@@ -627,12 +683,7 @@ and
 \end{example}
 
 \begin{lemma}\label{noninteg-upper-1}
-If Assumption~\ref{bound-ass-1} holds, we have, for any $\ell\in\mathbb{N}$ and  $\pi\in\widetilde{\Pi}^\ell(k)$
-\begin{equation}\label{noninteg-upper-2}
-\int_{\Gamma_s^{|\pi|}}\int_{[0,1]^{|\pi|\times|\pi|}_{\ne}}((f^{\subset}_G)^{\otimes\ell})_{\pi}(\bm{x},\bm{u})\mathrm{d}\bm{u}\lambda_d^{|\pi|}(\mathrm{d}\bm{x})\asymp 
-s^{|\pi|-e((G^{\otimes\ell})_\pi)\alpha/d}.
-\end{equation}
-Moreover, suppose that $G$ is $K_1$-balanced, we have 
+Assuming that Assumption~\ref{bound-ass-1} holds and $G$ is $K_1$-balanced, we have
 \begin{align}
 	\label{cumasym1}
     \cum_\ell(N_G^{\subset})\asymp
@@ -684,13 +735,13 @@ Hence, we have
 \fi
 
 From Lemma~\ref{noninteg-upper-1} and Theorem~\ref{normalapp1}, the following result is straightforward. 
-\begin{theorem}
-Assuming that Assumption~\ref{bound-ass-1} holds and $G$ is $K_1$-balanced, we have
+\begin{theorem}\label{thm:subgraph-non}
+Assuming that Assumption~\ref{bound-ass-1} holds and $G$ is $K_1$-balanced, then there exists a constant $C>0$, depending only on $\varphi$, $k$ and $G$ such that  
 \begin{align}
 	\label{norm-opt}
 	\mathrm{d}_{\mathrm{Wass}}\left(\frac{N_G^{\subset}-\mathbb{E} N_G^{\subset}}{\sqrt{\Var N_G^{\subset}}},N\right)\le \mathrm{d}_{\mathrm{K}}\left(\frac{N_G^{\subset}-\mathbb{E} N_G^{\subset}}{\sqrt{\Var N_G^{\subset}}},N\right)\le\frac{C}{\Delta_s},
 \end{align}
-with 
+where $N$ denotes a standard normal random variable and 
 \begin{align}\label{non-integrable-rate0}
 \Delta_s:=
 \begin{cases}
@@ -702,7 +753,7 @@ with
 \end{align}
 \end{theorem}
 \begin{remark}
-	The convergence rates established in \cite[Theorem~3.5]{LiuPrivault25b} are of order $O(\Delta_s^{-1/(2k-1)})$, where $\Delta_s$ is defined as in \eqref{non-integrable-rate0}. In contrast, our estimates in \eqref{norm-opt} provide what are conjected to be optimal rates of convergence. 
+	The convergence rates established in \cite[Theorem~3.5]{LiuPrivault25b} are of order $O(\Delta_s^{-1/(2k-1)})$, where $\Delta_s$ is defined as in \eqref{non-integrable-rate0}. In contrast, our estimates in \eqref{norm-opt} provide what are conjectured to be optimal rates of convergence. 
 \end{remark}
 
 
@@ -753,9 +804,9 @@ $$
 $$
 and
 $$
-\mathbb{E}\bigg[\prod_{j=1}^i \kappa(W_j,W_{j+1})\bigg]<\infty \quad \text{for} \quad i\in\{1,\ldots,4\}
+\mathbb{E}\bigg[\prod_{j=1}^i \kappa(W_j,W_{j+1})\bigg]<\infty \quad \text{for} \quad i\in\{1,\ldots,4\} .
 $$
-let $N$ be a standard normal random variable.
+Let $N$ be a standard normal random variable.
 Then, there exist constants $C_{\mathrm{Wass}},C_{\mathrm{K}}\in(0,\infty)$ only depending on $\gamma$ and $\varphi$ such that, for $s\geq 1$,
 $$
 \mathrm{d}_{\mathrm{Wass}}\bigg( \frac{E_s-\mathbb{E}[E_s]}{\sqrt{\operatorname{Var}[E_s]}}, N \bigg) \leq \frac{C_{\mathrm{Wass}}  R_s}{\sqrt{s} \mathbb{E}[\kappa(W_1,W_2) \mathbf{1}\{W_1,W_2\geq t_s\}]}
@@ -880,7 +931,7 @@ $$
 \widetilde{f}(x_1,\ldots,x_k, (u_{i,j})_{i,j\in[k],i\neq j}):=\frac{1}{k!}\sum_{\pi\in \mathrm{P}([k])}f(x_{\pi(1)},\ldots,x_{\pi(k)}, (u_{\pi(i),\pi(j)})_{i,j\in[k],i\neq j})
 $$
 for $x_1,\ldots,x_k\in\mathbb{X}^k$ and $\mathbf{u}\in\mathbb{M}^{k\times k}_{\neq}$, where $\mathrm{P}([k])$ is the set of all permutations of $[k]$.
-We often formulate assumptions on terms of the $U$-statistic
+We often formulate assumptions in terms of the $U$-statistic
 \begin{equation}\label{def-integ1}
 	\overline{S}:=\sum_{(x_1,\ldots,x_k)\in\eta^k_{\neq}} \left|f(x_1,\ldots,x_k, (\mathcal{M}_{x_i,x_j})_{i,j\in[k], i\neq j})\right|.
 \end{equation}
@@ -905,26 +956,14 @@ We start with formulae for expectations and variances of $U$-statistics of edge-
 \end{align}
 \end{enumerate}
 \end{prop}
-For higher moments, we need a few more notation about partitions. 
 
-Let $A$ be a non-empty set. A partition $\sigma$ of $A$ is a collection $\{B_1,\dots,B_s\}$ of pairwise disjoint non-empty subsets $B_i\subseteq A$, called blocks, such that $B_1\cup\cdots\cup B_s=A$. The number $s$ of blocks in $\sigma$ is denoted by $|\sigma|$.
-% For any $n\in\N$, we denote $[n]:=\{1,\dots,n\}$.
-Let $t\in\N$ and $q\in\N$. Set $J_\ell:=\{(\ell,1),(\ell,2),\dots,(\ell,q)\}$, for $\ell=1,\dots,t.$ By $\Pi^t(q)$ we denote the set of all partitions $\sigma$ of $[t]\times[q]$ such that $|B\cap J_\ell|\le1$ for all $\ell\in[t]$ and $B\in\sigma$.
+For higher moments, we need a few more totation.
 
-Every partition $\sigma\in\Pi^t(q)$ induces a partition $\sigma^*$ of $[t]$ in the following way: $i,j\in[t]$ are in the same block of $\sigma^*$ whenever there exists a block $B\in\sigma$ such that $|B\cap J_i|=|B\cap J_j|=1$. Let $\widetilde{\Pi}^t(q)$ be the collection of all partitions $\sigma\in\Pi^t(q)$ such that $|\sigma^*|=1$. Note that partitions in $\Pi^t(q)$ and $\widetilde{\Pi}^t(q)$ are known as non-flat and connected non-flat, respectively, see \cite[Chapter~4]{peccati2011}. 
-We denote by $\overline{\Pi}^t(q)$ the collection of all partitions $\sigma\in\Pi^t(q)$ such that for each $\ell\in[t]$ there exists a block $B\in\sigma$ with $|B|\ge2$ and $B\cap J_\ell\ne\emptyset$.
-%By $\Pi_{\ge2}(q_1,\dots,q_t)$ and $\widetilde{\Pi}_{\ge2}(q_1,\dots,q_t)$, we denote the sets of all $\sigma\in\Pi(q_1,\dots,q_t)$ and $\sigma\in\widetilde{\Pi}(q_1,\dots,q_t)$ such that $|B|\ge2$ for every $B\in\sigma$. In the case $q_1=\dots=q_t=q$, we write $\Pi^t(q)$, $\widetilde{\Pi}^t(q)$, $\Pi^t_{\ge2}(q)$, $\widetilde{\Pi}^t_{\ge2}(q)$ and $\overline{\Pi}^t(q)$ instead of $\Pi(q_1,\dots,q_t)$, $\widetilde{\Pi}(q_1,\dots,q_t)$, $\Pi_{\ge2}(q_1,\dots,q_t)$, $\widetilde{\Pi}_{\ge2}(q_1,\dots,q_t)$ and $\overline{\Pi}(q_1,\dots,q_t)$ respectively.
-
-%\textcolor{blue}{Let $(S,\mathcal{S})$ be an arbitrary measurable space. For functions $f^{(\ell)}:S^{q}\to\R$, $\ell\in[t]$, we define their tensor product $\otimes_{\ell=1}^tf^{(\ell)}:S^{tq}\to\R$ by 
-%$$\otimes_{\ell=1}^tf^{(\ell)}(x_1,\dots,x_{tq}):=\prod_{\ell=1}^tf^{(\ell)}(x_{(\ell-1)q+1},\dots,x_{\ell q}).$$
-%For each $\sigma\in\Pi^t(q)$, the function $(\otimes_{\ell=1}^tf^{(\ell)})_\sigma:S^{|\sigma|}\to\mathbb{R}$ is obtained by replacing all variables that belong to the same block in $\sigma$ by a new common variable.}
-%not needed anymore.
 For any $f: \mathbb{X}^k\times \mathbb{M}^{k\times k}_{\neq}\to\mathbb{R}$ with $k\in\mathbb{N}$, and for each $\sigma=\{b_1,\dots,b_{|\sigma|}\}\in\Pi^t(k)$, we denote $(f^{\otimes t})_{\sigma}:\mathbb{X}^{|\sigma|}\times \mathbb{M}^{|\sigma|\times |\sigma|}_{\neq}\to\mathbb{R}$ as 
 \begin{align}
   (f^{\otimes t})_{\sigma}(x_1,\dots,x_{|\sigma|},(u_{i,j})_{i,j\in[|\sigma|],i\ne j}):=\prod_{\ell=1}^t f(x^{(\ell)}_1,\dots,x^{(\ell)}_k,(u^{(\ell)}_{i,j})_{i,j\in[k],i\ne j}),
 \end{align}
 with $x^{(\ell)}_{t}:=x_i$ if $(\ell,t)\in b_i$, and $u^{(\ell)}_{t,s}:=u_{i,j}$ if $(\ell,t)\in b_i$ and $(\ell,s)\in b_j$.
-
 \begin{prop}\label{prop:moments}
     Suppose that $\E\left(\overline{S}^{\ell}\right)<\infty$ for some $\ell\in\N$, then 
     \begin{eqnarray}
@@ -1371,44 +1410,6 @@ g(t) := \inf_{a > 0} \max\left\{ a^{1/2 - 1/(2\alpha)},\; g_1(a,t),\; g_2(a,t),\
 \fi
 
 \subsection{Moderate deviations and concentration inequalities}
-Let us first recall from \cite{DemboZeitouni2010} that a sequence of probability measures $\{\mathbb{P}_n\}_{n\in\mathbb{N}}$ on a topological space $\mathcal{Z}$ with $\sigma$-algebra $\mathscr{L}$ satisfies a large deviation principle (LDP) with speed $t_n\to\infty$ and good rate function $\mathcal{I}$ if the level sets $\{z\in\mathcal{Z}:\mathcal{I}(z)\le a\}$ are compact for all $0\le a<\infty$ and if for all $A\in\mathscr{L}$,
-\begin{equation*}
-	-\inf_{z\in\operatorname{int}(A)}\mathcal{I}(z)\le\liminf_{n\to\infty}t_n^{-1}\log\mathbb{P}_n(A)\le\limsup_{n\to\infty}t_n^{-1}\log\mathbb{P}_n(A)\le-\inf_{z\in\operatorname{cl}(A)}\mathcal{I}(z),
-\end{equation*}
-where $\operatorname{int}(A)$ and $\operatorname{cl}(A)$ stand for the interior and the closure of $A$, respectively. 
-A sequence of random variables $\{X_n\}_{n\in\mathbb{N}}$ satisfies a LDP if their distributions do. We will speak about a moderate deviation principle (MDP) instead of a LDP if the scaling of the involved random variables is between that of a law of large numbers and that of a central limit theorem.
-
-Let $\{X_n\}_{n\in\mathbb{N}}$ be a sequence of square-integrable random variables, $\beta\ge0$ be a constant and $\{\Delta_n\}_{n\in\mathbb{N}}$ be a positive real-valued sequence. For the ease of notation, we say that $\{X_n\}_{n\in\mathbb{N}}$ satisfies
-\begin{itemize}
-	\item \textbf{$\mathrm{MDP}$}$(\beta,\{\Delta_n\}_{n\in\mathbb{N}})$
-		if for any positive real-valued sequence $\{a_n\}_{n\in\mathbb{N}}$ with
-\begin{equation*}
-  \lim_{n \to \infty} a_n = \infty
-\qquad \text{and} \qquad
-\lim_{n \to \infty} \frac{a_n}{\Delta_n^{1/(1+2\beta)}} = 0,
-\end{equation*}
-the rescaled random variables
-$\left\{ a_n^{-1} \frac{X_n - \mathbb{E} X_n}{\sqrt{\operatorname{Var} X_n}} \right\}_{n \in \mathbb{N}}$
-satisfy a MDP with speed $a_n^2$ and good rate function $\mathcal{I}(z) = \frac{z^2}{2}.$
-\item \textbf{$\mathrm{CI}$}$(\beta, \{\Delta_n\}_{n \in \mathbb{N}})$ 
-	if the Bernstein-type
-concentration inequality
-\begin{equation*}
-\mathbb{P}\!\left( |X_n - \mathbb{E} X_n| \ge z \sqrt{\Var(X_n)} \right)
-\le 2\exp\!\left(-\frac{1}{4}\min \left\{\frac{z^2}{2^{1+\beta}},\,(z \Delta_n)^{1/(1+\beta)}\right\}\right)
-\end{equation*}
-holds for all $n \in \mathbb{N}$ and $z \ge 0$.
-    \item \textbf{$\mathrm{NACC}$}$(\beta, \{\Delta_n\}_{n \in \mathbb{N}})$ if a normal approximation bound with Cramér correction holds, that is, if there exist constants $c_0, c_1, c_2 > 0$ only depending on $\beta$ such that for all $n \in \mathbb{N}$ and $z \in \left[0, c_0 \Delta_n^{1/(1+2\beta)}\right]$,
-    $$
-    \mathbb{P}(X_n - \mathbb{E}X_n \geq z \sqrt{\Var X_n}) = e^{L_{n,z}^+} (1 - \Phi(z)) \left( 1 + c_1 \theta_{n,z}^+ \frac{1+z}{\Delta_n^{1/(1+2\beta)}} \right)
-    $$ 
-    and
-    $$
-    \mathbb{P}(X_n - \mathbb{E}X_n \leq -z \sqrt{\Var X_n}) = e^{L_{n,z}^-} (1 - \Phi(z)) \left( 1 + c_1 \theta_{n,z}^- \frac{1+z}{\Delta_n^{1/(1+2\beta)}} \right)
-    $$ 
-    with $\theta_{n,z}^+, \theta_{n,z}^- \in [-1, 1]$ and $L_{n,z}^+, L_{n,z}^- \in (-c_2 z^3 / \Delta_n^{1/(1+2\beta)}, c_2 z^3 / \Delta_n^{1/(1+2\beta)})$, where $\Phi$ is the distribution function of a standard Gaussian random variable.
-\end{itemize}
-
 The next result extends \cite[Theorem~3.2]{schulte2} from sums of Poisson $U$-statistics to $U$-statistics of edge-marked Poisson processes. 
 %adding balanced condition for non-integrable subgraph count and refine the normal approximation
 
@@ -1417,10 +1418,9 @@ The next result extends \cite[Theorem~3.2]{schulte2} from sums of Poisson $U$-st
 Define 
 $$S_n:=\sum_{(x_1,\ldots,x_k)\in(\eta_n)^k_{\neq}} f_n(x_1,\ldots,x_k, (\mathcal{M}_{x_i,x_j})_{i,j\in[k], i\neq j}),$$
 for $n\in\mathbb{N}$.
-Suppose that $\E\left(\overline{S}_n^\ell\right)<\infty$ for all $\ell\ge1$ with $\overline{S}_n$ given in \eqref{def-integ1}. 
-Let $X_n:=$ for $n\in\mathbb{N}$. Suppose that there is a positive real-valuled sequence $\{b_n\}_{n\in\mathbb{N}}$ such that
+Suppose that $\E\left(\overline{S}_n^\ell\right)<\infty$ for all $\ell\ge1$ with $\overline{S}_n$ given in \eqref{def-integ1}. Suppose that there is a positive real-valuled sequence $\{b_n\}_{n\in\mathbb{N}}$ such that
 \begin{equation}
-	(\Var S_n)^{-\ell/2}\left|\int_{\mathbb{X}^{|\pi|}}\int_{\mathbb{M}^{|\pi|\times|\pi|}_{\ne}}(f_n^{\otimes\ell})_{\pi}(\bm{x},\bm{u})\mathbb{Q}^{|\pi|\times|\pi|}_{\ne}(\mathrm{d}\bm{u})\lambda_n^{|\pi|}(\mathrm{d}\bm{x})\right|\le b_n^{\ell-2}
+	(\Var S_n)^{-\ell/2}\left|\int_{\mathbb{X}^{|\pi|}}\int_{\mathbb{M}^{|\pi|\times|\pi|}_{\ne}}(f_n^{\otimes\ell})_{\pi}(\bm{x},\bm{u}) \, \mathbb{Q}^{|\pi|\times|\pi|}_{\ne}(\mathrm{d}\bm{u}) \, \lambda_n^{|\pi|}(\mathrm{d}\bm{x})\right|\le b_n^{\ell-2}
 \end{equation}
 for all $\pi\in\widetilde{\Pi}^\ell(k)$, $\ell\ge3$ and $n\in\mathbb{N}$. Then $\{S_n\}_{n\in\mathbb{N}}$ satisfies 
 \textbf{$\mathrm{MDP}$}$(k-1,\{(b_nk^{3k})^{-1}\}_{n\in\mathbb{N}})$, 
@@ -1480,7 +1480,7 @@ for all $\ell,n\in\mathbb{N}$.
 
 We define $\widehat{\mathbb{X}}:=\mathbb{X}\times \mathbb{M}^{\mathbb{N}\times\mathbb{N}}$ and $\widehat{\lambda}:=\lambda\otimes \mathbb{Q}^{\mathbb{N}\times\mathbb{N}}$. Let $\widehat{\eta}$ be a Poisson process on $\widehat{\mathbb{X}}$ with intensity measure $\widehat{\lambda}$.
 
-Let $n\in\mathbb{N}$ and let $(x,(u_{i,j})_{i,j\in\mathbb{N}})$ and $(y,(v_{i,j})_{i,j\in\mathbb{N}})$ be distinct points of $\widehat{\eta}$. Suppose that $y\in A^{(n)}_\ell$ for some $\ell\in\mathbb{N}$. Now we order the points of $\widehat{\eta}$ whose projections to $\mathbb{X}$ are in $A^{(n)}_\ell$ according to the distances of their projections to $\mathbb{X}$ to $x$ with respect to the distance function $\operatorname{dist}$. Note that the assumption \eqref{eqn:uniqueness_distances} ensures that this ordering is almost surely unique. If $y$ is the $k$-th closest point to $x$ in $A^{(n)}_\ell$, then we define 
+Let $n\in\mathbb{N}$ and let $(x,(u_{i,j})_{i,j\in\mathbb{N}})$ and $(y,(v_{i,j})_{i,j\in\mathbb{N}})$ be distinct points of $\widehat{\eta}$. Suppose that $y\in A^{(n)}_\ell$ for some $\ell\in\mathbb{N}$. Now we order the points of $\widehat{\eta}$ whose projections to $\mathbb{X}$ are in $A^{(n)}_\ell$ according to the distances of their projections to $\mathbb{X}$ with respect to the distance function $\operatorname{dist}$. Note that the assumption \eqref{eqn:uniqueness_distances} ensures that this ordering is almost surely unique. If $y$ is the $k$-th closest point to $x$ in $A^{(n)}_\ell$, then we define 
 \begin{equation}
 	\widetilde{\mathcal{M}}^{(n)}_{x,y}:=u_{\ell,k}.
 \end{equation}
@@ -1600,7 +1600,7 @@ For $\pi\in\widetilde{\Pi}_{\ge2}(i,i,j,j)$, denote $|\pi|$ the number of blocks
 Let $F\in L^2(\mathbb{P}_\eta)$ be an absolutely convergent $U$-statistics of order $k$ with variance $\Var F>0$ and let $N$ be a standard Gaussian random variable. Then 
 \begin{eqnarray}
 	\mathrm{d}_{\mathrm{Wass}}\left(\frac{F-\E F}{\sqrt{\Var F}},N\right)&\le&2k^{7/2}\sum_{1\le i\le j\le k}\frac{\sqrt{M_{ij}(f)}}{\Var F},\\
-	\mathrm{d}_{\mathrm{K}}\left(\frac{F-\E F}{\sqrt{\Var F}},N\right)&\le&19k^5\sum_{i,j=1}^k\frac{\sqrt{M_{ij}(f)}}{\Var F}
+	\mathrm{d}_{\mathrm{K}}\left(\frac{F-\E F}{\sqrt{\Var F}},N\right)&\le&19k^5\sum_{i,j=1}^k\frac{\sqrt{M_{ij}(f)}}{\Var F} ,
 \end{eqnarray}
 where 
 \begin{equation}
@@ -1631,7 +1631,7 @@ We prepare the proof of Theorem~\ref{normalapp1} with the following lemmas.
 \begin{proof}
 \begin{enumerate}
         \item[1)] 
-According to the coupling $(\widetilde{S}^{(n)},\widehat{S}^{(n)})$ constructed in previous section, together with the Cauchy-Schwarz inequality and \eqref{diff2} it follows that 
+According to the coupling $(\widetilde{S}^{(n)},\widehat{S}^{(n)})$ constructed in the previous section, together with the Cauchy-Schwarz inequality and \eqref{diff2} it follows that 
 \begin{eqnarray*}
     &&\E\left[\left|S-\widehat{S}^{(n)}\right|^p\right]\\
     &=&\E\left[\left|\widetilde{S}^{(n)}-\widehat{S}^{(n)}\right|^p\mathbf{1}_{\{\widetilde{S}^{(n)}\ne\widehat{S}^{(n)}\}}\right]\\
@@ -1683,7 +1683,7 @@ there exists an increasing sequence of measurable sets $(B_m)_{m\in\mathbb{N}}$ 
 \begin{equation*}
 f_m(x_1,\ldots,x_k, (u_{i,j})_{i,j\in[k], i\neq j}):=f(x_1,\ldots,x_k, (u_{i,j})_{i,j\in[k], i\neq j})\mathbf{1}_{\{(x_1,\ldots,x_k)\in B_m\}}\mathbf{1}_{\{|f|\le m\}}.
 \end{equation*}
-It is clear that $f_m$ converges to $f$ as $m\to\infty$ pointwisely.
+It is clear that $f_m$ converges pointwise to $f$ as $m\to\infty$.
 Let $S_m$ be defined by replacing $f$ with $f_m$ in \eqref{def:ustat}. 
 \begin{enumerate}
 \item[1)] 
@@ -1764,7 +1764,7 @@ Therefore, according to \cite[Lemma~6.2]{Last_Nestmann_Schulte}, we have
 \end{equation}
 for $I\in\{\mathrm{Wass, K}\}$.
 
-\item[2)] For general $f$, we can define $S_m$ be defined by replacing $f$ with $f_m$ in \eqref{def:ustat} with $f_m:\mathbb{X}^k\times \mathbb{M}^{k\times k}_{\neq}\to\mathbb{R}$ defined by 
+\item[2)] For general $f$, we can define $S_m$ by replacing $f$ with $f_m$ in \eqref{def:ustat} with $f_m:\mathbb{X}^k\times \mathbb{M}^{k\times k}_{\neq}\to\mathbb{R}$ defined by 
 \begin{equation*}
 f_m(x_1,\ldots,x_k, (u_{i,j})_{i,j\in[k], i\neq j}):=f(x_1,\ldots,x_k, (u_{i,j})_{i,j\in[k], i\neq j})\mathbf{1}_{\{(x_1,\ldots,x_k)\in B_m\}}\mathbf{1}_{\{|f|\le m\}},
 \end{equation*}
@@ -1860,7 +1860,7 @@ M_{22}(f) & = 48\int_{\mathbb{X}^4} \int_{\mathbb{M}_{\neq}^{4\times 4}} |f(x_1,
 & \quad + 48 \int_{\mathbb{X}^3} \int_{\mathbb{M}_{\neq}^{3\times 3}} f(x_1,x_2,\mathbf{u}_{\{1,2\}})^2 f(x_1,x_3,\mathbf{u}_{\{2,3\}})^2 \, \mathbb{Q}_{\neq}^{3\times 3}(\mathrm{d}\mathbf{u}) \, \lambda^3(\mathrm{d}\mathbf{x}) \\
 & \quad + 8 \int_{\mathbb{X}^2} \int_{\mathbb{M}_{\neq}^{2\times 2}} f(x_1,x_2,\mathbf{u}_{\{1,2\}})^4 \, \mathbb{Q}_{\neq}^{2\times 2}(\mathrm{d}\mathbf{u}) \, \lambda^2(\mathrm{d}\mathbf{x}).
 \end{align*}
-Applying inequality $ab\leq \frac{a^2+b^2}{2}$ for $a,b\in(0,\infty)$ to the second summand of $M_{22}(f)$ leads to
+Applying the inequality $ab\leq \frac{a^2+b^2}{2}$ for $a,b\in(0,\infty)$ to the second summand of $M_{22}(f)$ leads to
 \begin{align*}
 & 96 \int_{\mathbb{X}^3} \int_{\mathbb{M}_{\neq}^{3\times 3}} |f(x_1,x_2,\mathbf{u}_{\{1,2\}}) f(x_2,x_3,\mathbf{u}_{\{2,3\}}) f(x_1,x_3,\mathbf{u}_{\{1,3\}})^2| \, \mathbb{Q}_{\neq}^{3\times 3}(\mathrm{d}\mathbf{u}) \, \lambda^3(\mathrm{d}\mathbf{x}) \\
 & \leq  48 \int_{\mathbb{X}^3} \int_{\mathbb{M}_{\neq}^{3\times 3}} (f(x_1,x_2,\mathbf{u}_{\{1,2\}})^2 + f(x_2,x_3,\mathbf{u}_{\{2,3\}})^2) f(x_1,x_3,\mathbf{u}_{\{1,3\}})^2 \, \mathbb{Q}_{\neq}^{3\times 3}(\mathrm{d}\mathbf{u}) \, \lambda^3(\mathrm{d}\mathbf{x}) \\
@@ -1904,10 +1904,10 @@ $$
 From the definition of the Kantorovich-Rubinstein distance, the Cauchy-Schwarz inequality and \eqref{diff2} it follows that
 \begin{align*}
 	\mathrm{d}_{\rm KR}(\widetilde{\xi}^{(n)},\widehat{\xi}^{(n)}) & \leq \E\big[ \mathbf{1}\{ \widetilde{\xi}^{(n)}\neq\widehat{\xi}^{(n)} \} (\widetilde{\xi}^{(n)}(\mathbb{Y})+\widehat{\xi}^{(n)}(\mathbb{Y})) \big] \\
-& \leq \mathbb{P}( \widetilde{\xi}^{(n)}\neq\widehat{\xi}^{(n)} )^{1/2} \big( (\E \widetilde{\xi}^{(n)}(\mathbb{Y})^2)^{1/2} + (\E \widetilde{\xi}^{(n)}(\mathbb{Y})^2)^{1/2} \big) \\
-& \leq \varepsilon_n \sqrt{\sum_{\ell=1}^\infty \frac{1}{\ell^2} } \big( (\E \widetilde{\xi}^{(n)}(\mathbb{Y})^2)^{1/2} + (\E \widetilde{\xi}^{(n)}(\mathbb{Y})^2)^{1/2} \big).
+& \leq \mathbb{P}( \widetilde{\xi}^{(n)}\neq\widehat{\xi}^{(n)} )^{1/2} \big( (\E \widetilde{\xi}^{(n)}(\mathbb{Y})^2)^{1/2} + (\E \widehat{\xi}^{(n)}(\mathbb{Y})^2)^{1/2} \big) \\
+& \leq \varepsilon_n \sqrt{\sum_{\ell=1}^\infty \frac{1}{\ell^2} } \big( (\E \widetilde{\xi}^{(n)}(\mathbb{Y})^2)^{1/2} + (\E \widehat{\xi}^{(n)}(\mathbb{Y})^2)^{1/2} \big).
 \end{align*}
-Because of $\E \widetilde{\xi}^{(n)}(\mathbb{Y})^2, \E \widetilde{\xi}^{(n)}(\mathbb{Y})^2 \leq \E \eta(B)^k<\infty$ by the assumption on $g$, we see that
+Because of $\E \widetilde{\xi}^{(n)}(\mathbb{Y})^2, \E \widehat{\xi}^{(n)}(\mathbb{Y})^2 \leq \E \eta(B)^k<\infty$ by the assumption on $g$, we see that
 $$
 \lim_{n\to\infty} \mathrm{d}_{\rm KR}(\widetilde{\xi}^{(n)},\widehat{\xi}^{(n)})=0.
 $$
@@ -1932,7 +1932,7 @@ $$
 and denote by $\mathbf{L}_m$ the intensity measure of $\xi_m$. From the triangle inequality and the first part of the proof we know that
 \begin{align*}
 \mathrm{d}_{\rm KR}(\xi,\zeta) & \leq \mathrm{d}_{\rm KR}(\xi_m,\xi) + \mathrm{d}_{\rm KR}(\xi_m,\zeta) \\
-			       & \leq  \mathrm{d}_{\rm KR}(\xi_m,\xi) + \mathrm{d}_{\rm TV}(\mathbf{L}_m,\mathbf{M}) + 2(\E\xi_m(\mathbb{Y})^2 - (\E\xi_m(\mathbb{Y}))^2 - \E\xi_m(\mathbb{Y}) )
+			       & \leq  \mathrm{d}_{\rm KR}(\xi_m,\xi) + \mathrm{d}_{\rm TV}(\mathbf{L}_m,\mathbf{M}) + 2(\E\xi_m(\mathbb{Y})^2 - (\E\xi_m(\mathbb{Y}))^2 - \E\xi_m(\mathbb{Y}) ).
 \end{align*}
 Because every point of $\xi_m$ is also contained in $\xi$, we deduce that
 $$
@@ -1985,9 +1985,9 @@ The claim follows from the `main lemmas' presented in \cite{saulis}, see also th
 
 
 \section{Proofs for applications to random connection models}\label{Sec:pfRCM}
-\subsection{Edge-lengths}
+\subsection{Edge lengths}
 
-\subsubsection{Point process convergence for edge-lengths}
+\subsubsection{Point process convergence for edge lengths}
 
 \begin{proof}[Proof of Theorem~\ref{thm:edge-length_process}]
 Let $A\in\mathcal{B}(\mathbb{R})$ be such that $A\subset [a,\infty)$. For the intensity measure $\widetilde{\mathbf{L}}_s$ of $\tilde{\xi}_s$ we obtain
@@ -1996,7 +1996,7 @@ Let $A\in\mathcal{B}(\mathbb{R})$ be such that $A\subset [a,\infty)$. For the in
 & = \frac{\gamma^2}{2} \int_{(\mathbb{R}^d)^2} \mathbf{1}\bigg\{ \frac{x_1+x_2}{2} \in \Gamma_s\bigg\} \mathbf{1}\{s^{-\frac{1}{\alpha-d}}\|x_1-x_2\|\in A\} \bar{\varphi}(\|x_1-x_2\|) \, \mathrm{d}(x_1,x_2) \\
 & = \frac{\gamma^2}{2} \int_{(\mathbb{R}^d)^2} \mathbf{1}\{ y \in \Gamma_s\} \mathbf{1}\{s^{-\frac{1}{\alpha-d}}\|z\|\in A\} \bar{\varphi}(\|z\|) \, \mathrm{d}(y,z) \\
 & = \frac{\gamma^2 \lambda_d(\Gamma_s)}{2} \int_{\mathbb{R}^d} \mathbf{1}\{s^{-\frac{1}{\alpha-d}}\|z\|\in A\} \bar{\varphi}(\|z\|) \, \mathrm{d}z = \frac{\gamma^2 s}{2} d\kappa_d \int_0^\infty \mathbf{1}\{s^{-\frac{1}{\alpha-d}}u\in A\} \bar{\varphi}(u) u^{d-1} \, \mathrm{d}u \\
-& = \frac{d\kappa_d \gamma^2}{2} s^{1+\frac{d}{\alpha-d}} \int_0^\infty \mathbf{1}\{v\in A\} \bar{\varphi}(s^{\frac{1}{\alpha-d}}v) v^{d-1} \, \mathrm{d}v = \frac{d\kappa_d \gamma^2}{2} \int_A s^{\frac{\alpha}{\alpha-d}} \bar{\varphi}(s^{\frac{1}{\alpha-d}}v) v^{d-1} \, \mathrm{d}v.
+& = \frac{\gamma^2 d\kappa_d}{2} s^{1+\frac{d}{\alpha-d}} \int_0^\infty \mathbf{1}\{v\in A\} \bar{\varphi}(s^{\frac{1}{\alpha-d}}v) v^{d-1} \, \mathrm{d}v = \frac{\gamma^2 d\kappa_d}{2} \int_A s^{\frac{\alpha}{\alpha-d}} \bar{\varphi}(s^{\frac{1}{\alpha-d}}v) v^{d-1} \, \mathrm{d}v.
 \end{align*}
 The intensity measure $\mathbf{L}$ of $\zeta^{(\alpha)}$ satisfies
 \begin{align*}
@@ -2009,7 +2009,7 @@ $$
 $$
 so that
 \begin{align*}
-\mathrm{d}_{\rm TV}(\widetilde{\mathbf{L}}_s|_A, \mathbf{L}|_A) & \leq \frac{\gamma^2 d \kappa_d }{2}\int_a^\infty |s^{\frac{\alpha}{\alpha-d}} \bar{\varphi}(s^{\frac{1}{\alpha-d}}v) v^{d-1}-l_{\bar{\varphi}}v^{d-\alpha-1}| \, \mathrm{d}v \\
+\mathrm{d}_{\rm TV}(\widetilde{\mathbf{L}}_s|_{[a,\infty)}, \mathbf{L}|_{[a,\infty)}) & \leq \frac{\gamma^2 d \kappa_d }{2}\int_a^\infty |s^{\frac{\alpha}{\alpha-d}} \bar{\varphi}(s^{\frac{1}{\alpha-d}}v) v^{d-1}-l_{\bar{\varphi}}v^{d-\alpha-1}| \, \mathrm{d}v \\
 & \leq \frac{\gamma^2 d \kappa_d }{2}\int_a^\infty \big|s^{\frac{\alpha}{\alpha-d}}v^{\alpha} \bar{\varphi}(s^{\frac{1}{\alpha-d}}v) -l_{\bar{\varphi}}\big| \, v^{d-\alpha-1}\, \mathrm{d}v.
 \end{align*}
 Moreover, we have
@@ -2043,11 +2043,11 @@ for all $v\geq a$. Thus, the dominated convergence theorem leads to
 $$
 \lim_{s\to\infty} \int_a^\infty \big|s^{\frac{\alpha}{\alpha-d}}v^{\alpha} \bar{\varphi}(s^{\frac{1}{\alpha-d}}v) -l_{\bar{\varphi}}\big| \, v^{d-\alpha-1}\, \mathrm{d}v = 0.
 $$
-Since the second part of the bound in part a) obviously vanishes as $s\to\infty$, we see that
+As the second part of the bound in part a) obviously vanishes as $s\to\infty$, we see that
 $$
 \lim_{s\to\infty} {\rm d}_{\rm KR}(\tilde{\xi}_s|_{[a,\infty)},\zeta^{(\alpha)}|_{[a,\infty)})=0.
 $$
-Since convergence in the Kantorovich--Rubinstein distance implies convergence in distribution, we obtain that
+Since convergence in the Kantorovich--Rubinstein distance implies convergence in distribution (see Proposition 2.1 in \cite{dst}), we obtain
 $$
 \tilde{\xi}_s|_{[a,\infty)}\overset{d}{\longrightarrow}\zeta^{(\alpha)}|_{[a,\infty)} \quad \text{as} \quad s\to\infty.
 $$
@@ -2055,17 +2055,17 @@ By \cite[Theorem 23.16]{Kallenberg_2023} this implies that $\tilde{\xi}_s\overse
 
 Let $a\in(0,\infty)$ be fixed. We see that
 $$
-\mathbb{P}(\zeta^{(\alpha)}((a,\infty))=0)= \mathbb{P}(\zeta((0,a^{d-\alpha}))=0) = e^{-c_{\bar{\varphi}} a^{d-\alpha}}=\mathbb{P}(Z>a)
+\mathbb{P}(\zeta^{(\alpha)}((a,\infty))=0)= \mathbb{P}(\zeta((0,a^{d-\alpha}))=0) = e^{-c_{\bar{\varphi}} a^{d-\alpha}}=\mathbb{P}(Z\le a)
 $$
 and that
 $$
-\mathbb{P}\bigg( s^{-\frac{1}{\alpha-d}}\max_{(x_1,x_2)\in\eta_{\neq}^2, x_1\leftrightarrow x_2, \frac{x_1+x_2}{2}\in\Gamma_s} \|x_1-x_2\|>a\bigg) = \mathbb{P}(\tilde{\xi}_s((a,\infty))=0).
+\mathbb{P}\bigg( s^{-\frac{1}{\alpha-d}}\max_{(x_1,x_2)\in\eta_{\neq}^2, x_1\leftrightarrow x_2, \frac{x_1+x_2}{2}\in\Gamma_s} \|x_1-x_2\|\le a\bigg) = \mathbb{P}(\tilde{\xi}_s((a,\infty))=0).
 $$
 This implies that
 \begin{align*}
-\left| \mathbb{P}\bigg( s^{-\frac{1}{\alpha-d}}\max_{(x_1,x_2)\in\eta_{\neq}^2,x_1\leftrightarrow x_2, \frac{x_1+x_2}{2}\in\Gamma_s} \|x_1-x_2\|>a\bigg) - \mathbb{P}(Z>a) \right| & \leq {\rm d}_{\rm TV}(\tilde{\xi}_s((a,\infty)),\zeta^{(\alpha)}((a,\infty))) \\ & \leq {\rm d}_{\rm KR}(\tilde{\xi}_s|_{[a,\infty)},\zeta^{(\alpha)}|_{[a,\infty)}).
+\left| \mathbb{P}\bigg( s^{-\frac{1}{\alpha-d}}\max_{(x_1,x_2)\in\eta_{\neq}^2,x_1\leftrightarrow x_2, \frac{x_1+x_2}{2}\in\Gamma_s} \|x_1-x_2\|\le a\bigg) - \mathbb{P}(Z\le a) \right| & \leq {\rm d}_{\rm TV}(\tilde{\xi}_s((a,\infty)),\zeta^{(\alpha)}((a,\infty))) \\ & \leq {\rm d}_{\rm KR}(\tilde{\xi}_s|_{[a,\infty)},\zeta^{(\alpha)}|_{[a,\infty)}).
 \end{align*}
-Since, by part b), the right-hand side converges to zero as $s\to\infty$. This shows part c). 
+By part b), the right-hand side converges to zero as $s\to\infty$. This shows part c). 
 \end{proof}
 
 \subsubsection{Asymptotic expectation and variance}
@@ -2087,6 +2087,11 @@ where $\kappa_d$ denotes the volume of the $d$-dimensional unit ball and $\opera
 
 \begin{proof}
 By Proposition \ref{prop:expectation_variance} a) we have
+$$
+\mathbb{E}[L_s (\tau)]= \frac{\gamma^2}{2} \int_{\Gamma_s} \int_{\Gamma_s} 
+       \varphi(x-y)\,\|y-x\|^{\tau}\, \mathrm{d}x\, \mathrm{d}y.
+$$
+This can be rewritten as
 \begin{align*}
 \mathbb{E}[L_s (\tau)]
   &= \frac{\gamma^2}{2} \int_{\Gamma_s} \int_{\Gamma_s} \mathbf{1}\{\|x-y\|\le\operatorname{diam}(\Gamma_s)\}
@@ -2095,7 +2100,7 @@ By Proposition \ref{prop:expectation_variance} a) we have
        \varphi(z)\,\|z\|^{\tau}\, \mathbf{1}_{\{y+z \in \Gamma_s\}}\, \mathrm{d}z\, \mathrm{d}y \\[0.5em]
   &= \frac{\gamma^2}{2} \int_{\mathbb{R}^d} \mathbf{1}\{\|z\|\le\operatorname{diam}(\Gamma_s)\} \varphi(z)\,\|z\|^{\tau}\,
        \lambda_d\big(\Gamma_s\cap (\Gamma_s+z)\big)\, \mathrm{d}z \\[0.5em]
-  &= \int_{0}^{\infty}\int_{\mathbb{S}^{d-1}} 
+  &= \frac{\gamma^2}{2}\int_{0}^{\infty}\int_{\mathbb{S}^{d-1}} 
       \mathbf{1}\{r\le\operatorname{diam}(\Gamma_s)\} \bar{\varphi}(r)\,r^{\tau+d-1}\,
        \lambda_d\!\big(\Gamma_s\cap (\Gamma_s+ru)\big)\,
         \mathrm{d}u\, \mathrm{d}r \\
@@ -2104,7 +2109,13 @@ By Proposition \ref{prop:expectation_variance} a) we have
        \lambda_d\!\big(\Gamma_s\cap (\Gamma_s+ru)\big)\,
         \mathrm{d}u\, \mathrm{d}r.
 \end{align*}
-Now the proof is completed by applying Cauchy’s surface area formula.
+Now the proof is completed by applying 
+\begin{align*}
+   d \kappa_d \lambda_d(\Gamma_s)  -\kappa_{d-1} \operatorname{surf}(\Gamma_s) r\leq \int_{\mathbb{S}^{d-1}} 
+       \lambda_d\!\big(\Gamma_s\cap (\Gamma_s+ru)\big)\,
+        \mathrm{d}u \leq d \kappa_d \lambda_d(\Gamma_s),
+\end{align*}
+which is Equation (3.4) in \cite{reitznerschultethaele} and derived there from Cauchy’s surface area formula (see Equation (6.12) in \cite{SW}).
 \end{proof}
 
 
@@ -2123,7 +2134,7 @@ Next we give a formula for the variance.
         & \quad + \gamma^3\int_{\Gamma_s}\int_{\Gamma_s} \varphi(x_1-y) \| y-x_1 \|^\tau \, \mathrm{d} x_1 \int_{\Gamma_s} \varphi(x_2-y)  \| y-x_2 \|^\tau \, \mathrm{d} x_2 \, \mathrm{d} y.
     \end{split} 
     \end{align}
-Moreover, if $\bar{\varphi}$ satisfies Assumption \ref{edgelength-ass1}, there is a constant $C \in (0, \infty)$ independent of $s$ such that
+Moreover, if $\bar{\varphi}$ satisfies Assumption \ref{edgelength-ass1}, there is a constant $C \in (0, \infty)$ such that, for $s$ sufficientlz large,
 $$ \frac{1}{C} s \left( \frac{1}{C} + s^{\frac{2\tau + d -\alpha}{d}} \right) \leq \operatorname{Var}[L_s (\tau)] \leq Cs\left( {C} + s^{\frac{2\tau + d -\alpha}{d}} \right), \quad \text{ if } \alpha \neq d+2\tau,$$
 and
 $$ \frac{1}{C} s \left( \frac{1}{C} + \log s^{\frac{1}{d}} \right) \leq \operatorname{Var}[L_s (\tau)] \leq  Cs ( C +\log s^{\frac{1}{d}}), \quad \text{ if } \alpha = d+2\tau.$$
@@ -2131,66 +2142,117 @@ $$ \frac{1}{C} s \left( \frac{1}{C} + \log s^{\frac{1}{d}} \right) \leq \operato
 
 \begin{proof}
     The formula in \eqref{varformula} follows from Proposition \ref{prop:expectation_variance} b). %can be proven by proceeding as in the proof of \cite[Theorem 3.3]{reitznerschultethaele}. 
-    Based on this formula, we now calculate the order of the variance. Concerning the first term on the right-hand side of \eqref{varformula}, similarly as in the proof of Lemma \ref{lem:expectedlength} we have
+    Based on this formula, we now calculate the order of the variance. Concerning the first term on the right-hand side of \eqref{varformula}, as in the proof of Lemma \ref{lem:expectedlength} we have
     
 \begin{align*}
 I(s) 
   &:= \int_{\Gamma_s} \int_{\Gamma_s} 
        \varphi(x-y)\,\|y-x\|^{2\tau}\, \mathrm{d}x\, \mathrm{d}y \\[0.5em]
-  &= \int_{\Gamma_s} \int_{\mathbb{R}^d} 
-       \varphi(z)\,\|z\|^{2\tau}\, \mathbf{1}_{\{y+z \in \Gamma_s\}}\, \mathrm{d}z\, \mathrm{d}y \\[0.5em]
-  &= \int_{\mathbb{R}^d} \varphi(z)\,\|z\|^{2\tau}\,
-       \lambda_d\big(\Gamma_s\cap (\Gamma_s+z)\big)\, \mathrm{d}z \\[0.5em]
-  &= \int_{0}^{\infty}\int_{\mathbb{S}^{d-1}} 
+  %&= \int_{\Gamma_s} \int_{\Gamma_s} \mathbf{1}\{ \|x-y\|\le \operatorname{diam}(\Gamma_s) \}
+  %     \varphi(x-y)\,\|y-x\|^{2\tau}\, \mathrm{d}x\, \mathrm{d}y \\[0.5em]
+  %&= \int_{\Gamma_s} \int_{\mathbb{R}^d} \mathbf{1}\{ \|z\|\le \operatorname{diam}(\Gamma) s^{\frac{1}{d}} \}
+  %     \varphi(z)\,\|z\|^{2\tau}\, \mathbf{1}_{\{y+z \in \Gamma_s\}}\, \mathrm{d}z\, \mathrm{d}y \\[0.5em]
+  %&= \int_{\mathbb{R}^d} \varphi(z)\,\|z\|^{2\tau}\, \mathbf{1}\{ \|z\|\le \operatorname{diam}(\Gamma) s^{\frac{1}{d}} \}
+  %     \lambda_d\big(\Gamma_s\cap (\Gamma_s+z)\big)\, \mathrm{d}z \\[0.5em]
+  %&= \int_{0}^{\infty}\int_{\mathbb{S}^{d-1}} 
+  %     \bar{\varphi}(r)\,r^{2\tau+d-1}\,
+  %     \lambda_d\!\big(\Gamma_s\cap (\Gamma_s+ru)\big)\,
+  %      \mathrm{d}u\, \mathrm{d}r \\
+  &= \int_{0}^{\operatorname{diam}(\Gamma)s^{\frac{1}{d}}}\int_{\mathbb{S}^{d-1}} 
        \bar{\varphi}(r)\,r^{2\tau+d-1}\,
        \lambda_d\!\big(\Gamma_s\cap (\Gamma_s+ru)\big)\,
-        \mathrm{d}u\, \mathrm{d}r \\
-  &= \int_{0}^{cs^{\frac{1}{d}}}\int_{\mathbb{S}^{d-1}} 
-       \bar{\varphi}(r)\,r^{2\tau+d-1}\,
-       \lambda_d\!\big(\Gamma_s\cap (\Gamma_s+ru)\big)\,
-        \mathrm{d}u\, \mathrm{d}r
+        \mathrm{d}u\, \mathrm{d}r.
 \end{align*}
-with
+%with
+%\begin{align*}
+%   d \kappa_d \lambda_d(\Gamma_s)  -\kappa_{d-1} \operatorname{surf}(\Gamma_s) r\leq \int_{\mathbb{S}^{d-1}} 
+%       \lambda_d\!\big(\Gamma_s\cap (\Gamma_s+ru)\big)\,
+%        \mathrm{d}u \leq d \kappa_d \lambda_d(\Gamma_s) 
+%\end{align*}
+%so that the variance asymptotics depends on whether
+%$$\int_0^\infty \bar{\varphi} (r) r^{2\tau + d -1} \mathrm{d} r< \infty$$ 
+%or not. 
+Note that
+$$
+\lambda_d\!\big(\Gamma_s\cap (\Gamma_s+ru)\big) \leq s
+$$
+for all $u\in \mathbb{S}^{d-1}$ and $r\geq 0$ and that there exists a constant $\overline{r}>0$ such that
+$$
+\lambda_d\!\big(\Gamma_s\cap (\Gamma_s+ru)\big) \geq \frac{s}{2}
+$$
+for all $u\in \mathbb{S}^{d-1}$ and $0\leq r\leq \overline{r}$.
+From \eqref{eqn:Upper_bound_bar_varphi} it follows that
 \begin{align*}
-   d \kappa_d \lambda_d(\Gamma_s)  -\kappa_{d-1} \operatorname{surf}(\Gamma_s) r\leq \int_{\mathbb{S}^{d-1}} 
-       \lambda_d\!\big(\Gamma_s\cap (\Gamma_s+ru)\big)\,
-        \mathrm{d}u \leq d \kappa_d \lambda_d(\Gamma_s) 
+\int_0^{\operatorname{diam}(\Gamma)s^{1/d}} \bar{\varphi}(r) r^{2\tau+d-1} \, \mathrm{d}r & \leq 1 + \int_1^{\operatorname{diam}(\Gamma)s^{1/d}} \bar{\varphi}(r) r^{2\tau+d-1} \, \mathrm{d}r \\
+& \leq 1 + C_{\bar{\varphi}}\int_1^{\operatorname{diam}(\Gamma)s^{1/d}} r^{2\tau+d-1-\alpha} \, \mathrm{d}r \\
+& =\begin{cases} 1+ \frac{C_{\bar{\varphi}}}{2\tau+d-\alpha} (\operatorname{diam}(\Gamma)^{2\tau+d-\alpha}s^{\frac{2\tau+d-\alpha}{d}}-1), & \quad 2\tau+d\neq\alpha, \\  1+C_{\bar{\varphi}} (\log \operatorname{diam}(\Gamma)+  \log s^{\frac{1}{d}}), & \quad 2\tau+d=\alpha. \end{cases}
 \end{align*}
-so that the variance asymptotics depends on whether
-$$\int_0^\infty \bar{\varphi} (r) r^{2\tau + d -1} \mathrm{d} r< \infty$$ 
-or not. Moreover the asymptotics of $I(s)$, as $s \to \infty$, is
-$$ C_1 s (C_1 + s^{\frac{2\tau + d -\alpha}{d}} )\leq I(s) \leq C_2 s (C_2 + s^{\frac{2\tau + d -\alpha}{d}} ) $$
-for some constants $C_1, C_2>0$, if $\alpha \neq 2\tau +d$, and
-$$ C_1 s (C_1 + \log s^{\frac{1}{d}} )\leq I(s) \leq C_2 s (C_2 + \log s^{\frac{1}{d}} ) $$
+On the other hand, by \eqref{eqn:assumption_phi}, there exists a $r_0\in(0,\infty)$ such that $\varphi(r)\geq \frac{l_{\bar{\varphi}}}{2}r^{-\alpha}$ for $r\ge r_0$ so that, for $s$ sufficiently large,
+\begin{align*}
+\int_0^{\overline{r}s^{1/d}} \bar{\varphi}(r) r^{2\tau+d-1} \, \mathrm{d}r & \geq \int_{r_0}^{\overline{r}s^{1/d}} \bar{\varphi}(r) r^{2\tau+d-1} \, \mathrm{d}r \geq \frac{l_{\bar{\varphi}}}{2} \int_{r_0}^{\overline{r}s^{1/d}}  r^{2\tau+d-1-\alpha} \, \mathrm{d}r \\
+& = \begin{cases} \frac{l_{\bar{\varphi}}}{2(2\tau+d-\alpha)} (\overline{r}^{2\tau+d-\alpha}s^{\frac{2\tau+d-\alpha}{d}} - 1), & \quad 2\tau+d\neq\alpha,\\ \frac{l_{\bar{\varphi}}}{2} ( \log \overline{r}+  \log s^{\frac{1}{d}} -\log r_0), & \quad 2\tau+d\neq\alpha. \end{cases}
+\end{align*}
+Thus, there exist constants $C_1, C_2>0$ such that, for $s$ sufficiently large,
+$$ C_1 s (1 + s^{\frac{2\tau + d -\alpha}{d}} )\leq I(s) \leq C_2 s (1 + s^{\frac{2\tau + d -\alpha}{d}} ) $$
+if $\alpha \neq 2\tau +d$ and
+$$ C_1 s (1 + \log s^{\frac{1}{d}} )\leq I(s) \leq C_2 s (1 + \log s^{\frac{1}{d}} ) $$
 if $\alpha = 2\tau +d$.
 
 Similarly, considering the second term on the right-hand side of \eqref{varformula} we obtain
 \begin{align*}
 J(s) 
   &:= \int_{\Gamma_s}\!
-     \Bigg(\int_{\Gamma_s} \varphi(x_1-y)\,\|y-x_1\|^{\tau}\,\mathrm{d}x_1\Bigg)
-     \Bigg(\int_{\Gamma_s} \varphi(x_2-y)\,\|y-x_2\|^{\tau}\,\mathrm{d}x_2\Bigg)
+     \Bigg(\int_{\Gamma_s} \mathbf{1}\{\|y-x_1\|\leq \operatorname{diam}(\Gamma_s)\} \varphi(x_1-y)\,\|y-x_1\|^{\tau}\,\mathrm{d}x_1\Bigg) \\
+     & \qquad \qquad \Bigg(\int_{\Gamma_s} \mathbf{1}\{\|y-x_2\|\leq \operatorname{diam}(\Gamma_s)\} \varphi(x_2-y)\,\|y-x_2\|^{\tau}\,\mathrm{d}x_2\Bigg)
      \mathrm{d}y \\[0.4em]
   &= \int_{\Gamma_s}\!
-     \int_{\mathbb{R}^d}\!\int_{\mathbb{R}^d}
+     \int_{\mathbb{R}^d}\!\int_{\mathbb{R}^d} \mathbf{1}\{\|z_1\|,\|z_2\|\leq \operatorname{diam}(\Gamma) s^{\frac{1}{d}}\}
         \varphi(z_1)g(z_2)\,\|z_1\|^{\tau}\|z_2\|^{\tau}\,
         \mathbf{1}_{\{y+z_1\in \Gamma_s\}}\,
         \mathbf{1}_{\{y+z_2\in \Gamma_s\}}\,
         \mathrm{d}z_1\,\mathrm{d}z_2\,\mathrm{d}y \\[0.4em]
-  &= \int_{\mathbb{R}^d}\!\int_{\mathbb{R}^d}
+  &= \int_{\mathbb{R}^d}\!\int_{\mathbb{R}^d} \mathbf{1}\{\|z_1\|,\|z_2\|\leq \operatorname{diam}(\Gamma) s^{\frac{1}{d}}\}
         \varphi(z_1)\varphi(z_2)\,\|z_1\|^{\tau}\|z_2\|^{\tau}\,
         \lambda_d\!\big(\Gamma_s\cap(\Gamma_s+z_1)\cap(\Gamma_s+z_2)\big)\,
         \mathrm{d}z_1\,\mathrm{d}z_2 \\[0.6em]
-  &= \int_{0}^{cs^{\frac{1}{d}}}\!\!\int_{0}^{cs^{\frac{1}{d}}}
+  &= \int_{0}^{\operatorname{diam}(\Gamma) s^{\frac{1}{d}}}\!\!\int_{0}^{\operatorname{diam}(\Gamma) s^{\frac{1}{d}}}
      \int_{\mathbb{S}^{d-1}}\!\int_{\mathbb{S}^{d-1}}
-        \varphi(r_1)\varphi(r_2)\,r_1^{\tau}r_2^{\tau}\,
-      \lambda_d\!\big(\Gamma_s\cap(\Gamma_s+r u_1)\cap(\Gamma_s+r u_2)\big)\,
+        \bar{\varphi}(r_1)\bar{\varphi}(r_2)\,r_1^{\tau}r_2^{\tau}\,
+      \lambda_d\!\big(\Gamma_s\cap(\Gamma_s+r_1 u_1)\cap(\Gamma_s+r_2 u_2)\big)\,
         \mathrm{d}u_1\,\mathrm{d}u_2\,
-        \mathrm{d}r_1\,\mathrm{d}r_2 
+        \mathrm{d}r_1\,\mathrm{d}r_2.
 \end{align*}
+Obviously, one has
+$$
+\lambda_d\!\big(\Gamma_s\cap(\Gamma_s+r_1 u_1)\cap(\Gamma_s+r_2 u_2)\big) \leq s.
+$$
+Moreover, there exists a $\tilde{r}>0$ such that
+$$
+\lambda_d\!\big(\Gamma_s\cap(\Gamma_s+r_1 u_1)\cap(\Gamma_s+r_2 u_2)\big) \geq \frac{s}{2}
+$$
+for all $u_1,u_2\in \mathbb{S}^{d-1}$ and $0\le r_1,r_2\leq \tilde{r} s^{\frac{1}{d}}$. Together with
+\begin{align}
+ \int_{0}^{\operatorname{diam}(\Gamma) s^{\frac{1}{d}}} \bar{\varphi}(r) r^{\tau+d-1} \, \mathrm{d}r & \leq 1+ C_{\bar{\varphi}} \int_1^{\operatorname{diam}(\Gamma) s^{\frac{1}{d}}} r^{\tau+d-1-\alpha} \, \mathrm{d}r \notag \\
+& = \begin{cases} 1 + \frac{C_{\bar{\varphi}}}{\tau+d-\alpha} (\operatorname{diam}(\Gamma)^{\tau+d-\alpha} s^{\frac{\tau+d-\alpha}{d}}-1), & \quad \alpha\neq \tau+d, \\ 1 + C_{\bar{\varphi}} ( \log \operatorname{diam}(\Gamma) + \log s^{\frac{1}{d}}), & \quad \alpha= \tau+d,  \end{cases} \label{eqn:upper_bound_barvarphi}
+\end{align}
+and
+\begin{align*}
+\int_{0}^{\tilde{r} s^{\frac{1}{d}}} \bar{\varphi}(r) r^{\tau+d-1} \, \mathrm{d}r & \geq \frac{l_{\bar{\varphi}}}{2} \int_{r_0}^{\tilde{r} s^{\frac{1}{d}}} r^{\tau+d-1-\alpha} \, \mathrm{d}r \\
+& = \begin{cases}  \frac{l_{\bar{\varphi}}}{2(\tau+d-\alpha)} (\tilde{r}^{\tau+d-\alpha} s^{\frac{\tau+d-\alpha}{d}}-r_0^{\tau+d-\alpha}), & \quad \alpha\neq \tau+d, \\ \frac{l_{\bar{\varphi}}}{2} ( \log \tilde{r} + \log s^{\frac{1}{d}} - \log r_0), & \quad \alpha= \tau+d,  \end{cases}
+\end{align*}
+for $s$ sufficiently large, we see that there exist constants $C_3,C_4>0$ such that, for $s$ sufficiently large,
+$$
+C_3 s (1+s^{\frac{\tau+d-\alpha}{d}})^2 \leq J(s) \leq C_4 s (1+s^{\frac{\tau+d-\alpha}{d}})^2
+$$
+if $\alpha\neq \tau+d$ and
+$$
+C_3 s (1+\log s^{\frac{1}{d}})^2 \leq J(s) \leq C_4 s (1+\log s^{\frac{1}{d}})^2
+$$
+if $\alpha = \tau+d$. Thus, $J(s)$ is of a smaller order than $I(s)$ if $\alpha\notin\{d+\tau,d+2\tau\}$.
+\iffalse
 with the asymptotic bound
 $$ \frac{1}{C} s\leq \lambda_d\!\big(\Gamma_s\cap(\Gamma_s+r u_1)\cap(\Gamma_s+r u_2)\big) \leq {C} s ,$$
-so that the assertion follows easily.
+so that the assertion follows easily. \fi
 \end{proof}
 
 \subsubsection{Regimes with central limit theorem} \label{regimeclt}
@@ -2340,7 +2402,7 @@ so that we have proven the following.
 Next we prove that $L_{s,a} (\tau)$ satisfies a central limit theorem for every $a>0$ and the regime $2\tau+d<\alpha$. The strategy is identical to the proof of Theorem \ref{CLT:sumsedgelengths}, with the key difference that the truncation will give us better (quantitative convergence) bounds.
 
 \begin{lemma}\label{lem:CLT_truncated}
-Let $\tau > -d$ and $a>0$. 
+Let $\tau > -d/2$ and $a>0$. 
 Assume that $\bar{\varphi}$ satisfies Assumption \ref{edgelength-ass1} with exponent $\alpha>2\tau+d$. Then there exists a constant $C\in(0,\infty)$, independent of $s$, such that
 \begin{align*}
 \mathrm{d}_{\mathrm{Wass}}\!\left(
@@ -2379,7 +2441,7 @@ Applying Corollary~\ref{normalapp1k2} yields the stated bounds with rate $s^{-1/
 Thus, Lemma \ref{truncationlemma1} and Lemma \ref{lem:CLT_truncated} yield the following theorem, giving a central limit theorem in the entire regime $\alpha>2\tau+d$ for $L_{s}(\tau)$.
 
 \begin{theorem}\label{thm:CLTedgelengths_full}
-Let $\tau > -d$ and assume that $\bar{\varphi}(r)$ satisfies Assumption \ref{edgelength-ass1} with exponent $\alpha>2\tau+d$. 
+Let $\tau > -d/2$ and assume that $\bar{\varphi}(r)$ satisfies Assumption \ref{edgelength-ass1} with exponent $\alpha>2\tau+d$. 
 Then, as $s\to\infty$,
 \[
 \frac{L_{s}(\tau)-\E[L_{s}(\tau)]}{\sqrt{\Var[L_{s}(\tau)]}}
@@ -2434,7 +2496,7 @@ In particular, if $\tau \in (0, \frac{d}{2}]$, a central limit theorem holds.
 \end{theorem}
 
 
-Again note that Theorem \ref{CLT:sumsedgelengthscritical} only yieldls a central limit theorem for $\tau\in (0, \frac{d}{2}]$. Therefore, once more we use a truncation technique to obtain a central limit theorem for $\tau > \frac{d}{2}$ as well. For $\tau>0$ define the truncated statistic
+Again note that Theorem \ref{CLT:sumsedgelengthscritical} only yields a central limit theorem for $\tau\in (0, \frac{d}{2}]$. Therefore, once more we use a truncation technique to obtain a central limit theorem for $\tau > \frac{d}{2}$ as well. For $\tau>0$ define the truncated statistic
 \[
 \overline{L}_s(\tau)
 := \frac{1}{2}\sum_{(x_1,x_2)\in \eta^2_{\neq}\cap \Gamma_s^2}
@@ -2572,7 +2634,7 @@ s^{\tau/(d-\alpha)} L_s(\tau) \overset{d}{\longrightarrow} \sum_{t\in \zeta} t^\
 $$
 \item [b)] For $\tau=\alpha-d$,
 $$
-s^{\tau/(d-\alpha)} \bigg(L_s(\tau) - \frac{1}{2} \mathbb{E}\sum_{(x_1,x_2)\in\eta^2_{\neq}} \mathbf{1}\{\|x_1-x_2\|\leq 1\} \|x_1-x_2\|^\tau \bigg) \overset{d}{\longrightarrow} S \quad \text{as} \quad s\to\infty
+s^{\tau/(d-\alpha)} \bigg(L_s(\tau) - \frac{1}{2} \mathbb{E}\sum_{(x_1,x_2)\in\eta^2_{\neq} \cap \Gamma_s^2} \mathbf{1}\{x_1 \leftrightarrow x_2, \|x_1-x_2\|\leq 1\} \|x_1-x_2\|^\tau \bigg) \overset{d}{\longrightarrow} S \quad \text{as} \quad s\to\infty
 $$
 with a random variable $S$ given by
 $$
@@ -2621,13 +2683,13 @@ $$
 $$
 i.e., $\sum_{t\in \zeta} t^\tau$ follows an alpha-stable distribution with parameter $\frac{\alpha-d}{\tau}$. In case of $\tau=\alpha-d$, one has, for $a\in(0,1)$,
 $$
-\mathbb{E}\sum_{t\in(a,1)} t^{\tau} = c_{\bar\varphi}\int_a^1 t^{-1} \, \mathrm{d}t = c_{\bar\varphi}\log(a)
+\mathbb{E}\sum_{t\in\zeta\cap(a,1)} t^{\tau} = c_{\bar\varphi}\int_a^1 t^{-1} \, \mathrm{d}t = c_{\bar\varphi}\log(a)
 $$
 and
 \begin{align*}
 & \sum_{t\in \zeta^{(1)}\cap(a,\infty)} t^\tau - \mathbb{E} \sum_{t\in \zeta^{(1)}\cap(a,1)} t^\tau + \ldots + \sum_{t\in \zeta^{(m)}\cap(a,\infty)} t^\tau - \mathbb{E}\sum_{t\in \zeta^{(m)}\cap(a,1)} t^\tau \\
 & = \sum_{t\in (\zeta^{(1)}+\ldots+\zeta^{(m)})\cap(a,\infty)} t^\tau - m c_{\bar\varphi}\log(a) \\
-& \overset{d}{=} \sum_{t\in m^{\frac{1}{\alpha-d}}\zeta\cap (a,1)} t^\tau - m c_{\bar\varphi}\log(a) = m^{\frac{\tau}{\alpha-d}} \sum_{t\in \zeta\cap (m^{\frac{1}{d-\alpha}}a,\infty)} t^\tau - m c_{\bar\varphi}\log(a) \\
+& \overset{d}{=} \sum_{t\in m^{\frac{1}{\alpha-d}}\zeta\cap (a,\infty)} t^\tau - m c_{\bar\varphi}\log(a) = m^{\frac{\tau}{\alpha-d}} \sum_{t\in \zeta\cap (m^{\frac{1}{d-\alpha}}a,\infty)} t^\tau - m c_{\bar\varphi}\log(a) \\
 & = m \bigg(\sum_{t\in \zeta\cap (m^{\frac{1}{d-\alpha}}a,\infty)} t^\tau - c_{\bar\varphi}\log(m^{\frac{1}{d-\alpha}}a) \bigg) - \frac{c_{\bar\varphi}}{\alpha-d} m \log(m).
 \end{align*}
 Letting $a\to0$ proves that
@@ -2642,7 +2704,7 @@ and
 \begin{align*}
 & \sum_{t\in \zeta^{(1)}\cap(a,\infty)} t^\tau - \mathbb{E} \sum_{t\in \zeta^{(1)}\cap(a,\infty)} t^\tau + \ldots + \sum_{t\in \zeta^{(m)}\cap(a,\infty)} t^\tau - \mathbb{E}\sum_{t\in \zeta^{(m)}\cap(a,\infty)} t^\tau \\
 & = \sum_{t\in (\zeta^{(1)}+\ldots+\zeta^{(m)})\cap(a,\infty)} t^\tau - m c_{\bar\varphi} a^{\tau+d-\alpha}\\
-& \overset{d}{=} \sum_{t\in m^{\frac{1}{\alpha-d}}\zeta\cap (a,1)} t^\tau - m c_{\bar\varphi} a^{\tau+d-\alpha} = m^{\frac{\tau}{\alpha-d}} \sum_{t\in \zeta\cap (m^{\frac{1}{d-\alpha}}a,\infty)} t^\tau - m c_{\bar\varphi} m^{-\frac{\tau+d-\alpha}{d-\alpha}} (m^{\frac{1}{d-\alpha}}a)^{\tau+d-\alpha} \\
+& \overset{d}{=} \sum_{t\in m^{\frac{1}{\alpha-d}}\zeta\cap (a,\infty)} t^\tau - m c_{\bar\varphi} a^{\tau+d-\alpha} = m^{\frac{\tau}{\alpha-d}} \sum_{t\in \zeta\cap (m^{\frac{1}{d-\alpha}}a,\infty)} t^\tau - m c_{\bar\varphi} m^{-\frac{\tau+d-\alpha}{d-\alpha}} (m^{\frac{1}{d-\alpha}}a)^{\tau+d-\alpha} \\
 & = m^{\frac{\tau}{\alpha-d}} \bigg(\sum_{t\in \zeta\cap (m^{\frac{1}{d-\alpha}}a,\infty)} t^\tau - c_{\bar\varphi} (m^{\frac{1}{d-\alpha}}a)^{\tau+d-\alpha} \bigg).
 \end{align*}
 Now $a\to0$ leads to
@@ -2681,7 +2743,7 @@ $$
 \end{prop}
 
 \begin{proof}
-Let $A\in\mathcal{B}(\mathbb{R})$ be such that $A\subset[a,\infty)$. The intensity measure of $\xi_s$ is given by
+Let $A\in\mathcal{B}(\mathbb{R})$ be such that $A\subseteq[a,\infty)$. The intensity measure of $\xi_s$ is given by
 \begin{align*}
 \mathbf{L}_s(A)
 & = \frac{1}{2}\E \sum_{(x_1,x_2)\in\eta^2_{\neq}\cap\Gamma_s^2}
@@ -2691,7 +2753,7 @@ Let $A\in\mathcal{B}(\mathbb{R})$ be such that $A\subset[a,\infty)$. The intensi
 \mathbf{1}\Big\{s^{\frac{1}{d-\alpha}}\|x_1-x_2\|\in A\Big\}\,
 \bar\varphi(\|x_1-x_2\|)\,\mathrm{d}x_1\,\mathrm{d}x_2.
 \end{align*}
-Equivalently, with the changes of variables $z=y-x$ and $v=s^{\frac{1}{d-\alpha}}z$,
+Equivalently, with the changes of variables $z=x_1-x_2$ and $v=s^{\frac{1}{d-\alpha}}z$,
 \begin{align*}
 \mathbf{L}_s(A)
 & = \frac{\gamma^2}{2}\int_{\R^d}
@@ -2713,9 +2775,9 @@ Equivalently, with the changes of variables $z=y-x$ and $v=s^{\frac{1}{d-\alpha}
 \end{align*}
 For $\alpha>2d$ we have
 $$
-\mathbf{L}(A)= c_{\bar\varphi}(\alpha-d)\int_0^\infty \mathbf{1}\{u\in A\}\,u^{d-\alpha-1}\,\mathrm{d}u.
+\mathbf{L}(A)= c_{\bar\varphi}(\alpha-d)\int_0^\infty \mathbf{1}\{u\in A\}\,u^{d-\alpha-1}\,\mathrm{d}u
 $$
-We may substitute $t=u^{\,d-\alpha}$ (equivalently $v=t^{1/(d-\alpha)}$) and use spherical coordinates, yielding
+so that spherical coordinates lead to
 \begin{align*}
 \mathbf{L}(A) = \frac{c_{\bar\varphi}(\alpha-d)}{d\kappa_d}\int_{\mathbb{R}^d} \mathbf{1}\{\|v\|\in A\} \|v\|^{-\alpha} \,\mathrm{d}v  = \frac{\gamma^2 l_{\bar{\varphi}}}{2}\int_{\mathbb{R}^d} \mathbf{1}\{\|v\|\in A\} \|v\|^{-\alpha} \,\mathrm{d}v.
 \end{align*}
@@ -2920,65 +2982,83 @@ Let $\alpha\in[2d,\infty)$ and $a>0$.
 \begin{itemize}
 \item [a)] For $\tau\in(\alpha-d,\infty)$,
 $$
-\limsup_{s\to \infty} s^{-\frac{\tau}{\alpha-d}} \mathbb{E}[L_{s,\leq a}(\tau)] \leq \frac{C_{\bar{\varphi}}\gamma^2 }{2(\tau-\alpha+d)} a^{\tau-\alpha+d}.
+\limsup_{s\to \infty} s^{-\frac{\tau}{\alpha-d}} \mathbb{E}[L_{s,\leq a}(\tau)] \leq \frac{C_{\bar{\varphi}}d\kappa_d\gamma^2 }{2(\tau-\alpha+d)} a^{\tau-\alpha+d}.
 $$
 \item [b)] For $\tau\in(\frac{\alpha-d}{2},\alpha-d]$,
-$$\limsup_{s\to\infty} s^{-\frac{2\tau}{\alpha-d}} \operatorname{Var}[L_{s,\leq a}(\tau)] \leq \frac{C_{\bar{\varphi}}\gamma^2 }{2(2\tau-\alpha+d)} a^{2\tau-\alpha+d}.$$
+$$\limsup_{s\to\infty} s^{-\frac{2\tau}{\alpha-d}} \operatorname{Var}[L_{s,\leq a}(\tau)] \leq \frac{C_{\bar{\varphi}}d\kappa_d\gamma^2 }{2(2\tau-\alpha+d)} a^{2\tau-\alpha+d}.$$
 \end{itemize}
 \end{lemma}
 
 \begin{proof}
-For $\tau>\alpha-d$ and $s\geq 1$ we have
+For $\tau>\alpha-d$ and $s\geq 1$ the same computations as in the proof of Lemma \ref{lem:expectedlength} and in \eqref{eqn:upper_bound_barvarphi} with $\operatorname{diam}(\Gamma_s)=\operatorname{diam}(\Gamma)s^{\frac{1}{d}}$ replaced by $s^{\frac{1}{\alpha-d}}a$ yield
 \begin{align*}
-s^{-\frac{\tau}{\alpha-d}}\mathbb{E} L_{s,\leq a}(\tau) & = \frac{s^{-\frac{\tau}{\alpha-d}}}{2} \mathbb{E} \sum_{(x_1,x_2)\in\eta^2_{\neq}\cap \Gamma_s^2} \mathbf{1}\big\{\|x_1-x_2\|\leq s^{\frac{1}{\alpha-d}}a\big\} \|x_1-x_2\|^\tau \\
-& = \frac{\gamma^2 s^{-\frac{\tau}{\alpha-d}}}{2} \int_{\Gamma_s^2} \mathbf{1}\big\{\|x_1-x_2\|\leq s^{\frac{1}{\alpha-d}}a\big\} \|x_1-x_2\|^\tau \bar{\varphi}(\|x_1-x_2\|) \, \mathrm{d}(x_1,x_2) \\
-& \le \frac{\gamma^2 s^{-\frac{\tau}{\alpha-d}}}{2} \int_{(\mathbb{R}^d)^2} \mathbf{1}\{y\in\Gamma_s,\|z\|\leq s^{\frac{1}{\alpha-d}}a\} \|z\|^\tau \bar{\varphi}(\|z\|) \, \mathrm{d}(y,z) \\
-& \le \frac{C_{\bar{\varphi}}\gamma^2 s^{1-\frac{\tau}{\alpha-d}}}{2} \int_{(\mathbb{R}^d)^2} \mathbf{1}\{\|z\|\leq s^{\frac{1}{\alpha-d}}a\} \|z\|^{\tau-\alpha} \, \mathrm{d}(y,z),
-\end{align*}
-where we used \eqref{eqn:Upper_bound_bar_varphi} in the last step. Spherical coordinates lead to
-\begin{align*}
-s^{-\frac{\tau}{\alpha-d}}\mathbb{E}[L_{s,\leq a}(\tau)] & \leq \frac{C_{\bar{\varphi}}\gamma^2 s^{1-\frac{\tau}{\alpha-d}}}{2} \int_0^{s^{\frac{1}{\alpha-d}}a} r^{\tau-\alpha+d-1} \, \mathrm{d}r = \frac{C_{\bar{\varphi}}\gamma^2 }{2(\tau-\alpha+d)}s^{1-\frac{\tau}{\alpha-d}} s^{\frac{\tau-\alpha+d}{\alpha-d}} a^{\tau-\alpha+d} \\
-& = \frac{C_{\bar{\varphi}}\gamma^2 }{2(\tau-\alpha+d)} a^{\tau-\alpha+d},
+s^{-\frac{\tau}{\alpha-d}}\mathbb{E} L_{s,\leq a}(\tau) & = \frac{\gamma^2}{2} s^{-\frac{\tau}{\alpha-d}} \int_{0}^{s^{\frac{1}{\alpha-d}}a}\int_{\mathbb{S}^{d-1}} 
+       \bar{\varphi}(r)\,r^{\tau+d-1}\,
+       \lambda_d\!\big(\Gamma_s\cap (\Gamma_s+ru)\big)\,
+        \mathrm{d}u\, \mathrm{d}r \\
+        & \le \frac{d\kappa_d\gamma^2}{2} s^{1-\frac{\tau}{\alpha-d}} \int_{0}^{s^{\frac{1}{\alpha-d}}a} 
+       \bar{\varphi}(r)\,r^{\tau+d-1} \, \mathrm{d}r\\
+       & \le \frac{d\kappa_d\gamma^2}{2} s^{1-\frac{\tau}{\alpha-d}} 
+    \bigg( 1 + \frac{C_{\bar{\varphi}}}{\tau+d-\alpha}(a^{\tau+d-\alpha} s^{\frac{\tau+d-\alpha}{\alpha-d}}-1)\bigg)\\
+             %  & \le \frac{d\kappa_d\gamma^2}{2} s^{1-\frac{\tau}{\alpha-d}} + \frac{d\kappa_d\gamma^2}{2} s^{1-\frac{\tau}{\alpha-d}} \int_{1}^{s^{\frac{1}{\alpha-d}}a} 
+       %\bar{\varphi}(r)\,r^{\tau+d-1} \, \mathrm{d}r\\
+       %& \le \frac{d\kappa_d\gamma^2}{2} s^{1-\frac{\tau}{\alpha-d}}+\frac{C_{\bar{\varphi}}d\kappa_d\gamma^2}{2} s^{1-\frac{\tau}{\alpha-d}} \int_{0}^{s^{\frac{1}{\alpha-d}}a} r^{\tau-\alpha+d-1} \, \mathrm{d}r \\
+       %& \le \frac{d\kappa_d\gamma^2}{2} s^{1-\frac{\tau}{\alpha-d}}+\frac{C_{\bar{\varphi}}d\kappa_d\gamma^2}{2(\tau-\alpha+d)} s^{1-\frac{\tau}{\alpha-d}} (s^{\frac{1}{\alpha-d}}a)^{\tau-\alpha+d} \\
+       & = \frac{d\kappa_d\gamma^2}{2} s^{1-\frac{\tau}{\alpha-d}}+\frac{C_{\bar{\varphi}}d\kappa_d\gamma^2}{2(\tau-\alpha+d)} a^{\tau-\alpha+d},
 \end{align*}
 which proves part a).
 
-Next assume that $\tau\in(\frac{\alpha-d}{2},\alpha-d]$. Then, one has
+Next assume that $\tau\in(\frac{\alpha-d}{2},\alpha-d]$. By Proposition \ref{prop:expectation_variance} b), one has
 \begin{align*}
-\operatorname{Var}[L_{s,\leq a}(\tau)] & \leq \frac{\gamma^2}{2} \int_{\Gamma_s^2} \mathbf{1}\big\{\|x_1-x_2\|\leq s^{\frac{1}{\alpha-d}}a\big\} \|x_1-x_2\|^{2\tau} \bar{\varphi}(\|x_1-x_2\|) \, \mathrm{d}(x_1,x_2) \\
+\operatorname{Var}[L_{s,\leq a}(\tau)] & = \frac{\gamma^2}{2} \int_{\Gamma_s^2} \mathbf{1}\big\{\|x_1-x_2\|\leq s^{\frac{1}{\alpha-d}}a\big\} \|x_1-x_2\|^{2\tau} \bar{\varphi}(\|x_1-x_2\|) \, \mathrm{d}(x_1,x_2) \\
 & \quad + \gamma^3 \int_{\Gamma_s^3} \mathbf{1}\big\{\|x_1-x_2\|\leq s^{\frac{1}{\alpha-d}}a, \|x_1-x_2\|\leq s^{\frac{1}{\alpha-d}}a\big\} \\
 & \hspace{2cm} \quad \times \|x_1-x_2\|^{\tau} \bar{\varphi}(\|x_1-x_2\|) \|x_1-x_3\|^{\tau} \bar{\varphi}(\|x_1-x_3\|)  \, \mathrm{d}(x_1,x_2,x_3) \\
 & =: I_1 + I_2
 \end{align*}
-for $s\geq 1$. Arguing as above yields
+for $s\geq 1$. Arguing as in the proof of Lemma \ref{lem:varlength} with $\operatorname{diam}(\Gamma)s^{\frac{1}{d}}$ replaced by $a s^{\frac{1}{\alpha-d}}$ yields 
 $$
-s^{-\frac{2\tau}{\alpha-d}}I_1 \leq \frac{C_{\bar{\varphi}}\gamma^2 }{2(2\tau-\alpha+d)} a^{2\tau-\alpha+d}.
+s^{-\frac{2\tau}{\alpha-d}}I_1 \leq \frac{C_{\bar{\varphi}}d\kappa_d\gamma^2 }{2(2\tau-\alpha+d)} a^{2\tau-\alpha+d}.
 $$
-Substitution leads to
-\begin{align*}
-s^{-\frac{2\tau}{\alpha-d}}I_2 & \leq s^{-\frac{2\tau}{\alpha-d}} \gamma^3 \int_{(\mathbb{R}^d)^3} \mathbf{1}\bigg\{x_1\in\Gamma_s,\|x_1-x_2\|\leq s^{\frac{1}{\alpha-d}}a, \|x_1-x_2\|\leq s^{\frac{1}{\alpha-d}}a\bigg\} \\
-& \hspace{2cm} \quad \times \|x_1-x_2\|^{\tau} \bar{\varphi}(\|x_1-x_2\|) \|x_1-x_3\|^{\tau} \bar{\varphi}(\|x_1-x_3\|)  \, \mathrm{d}(x_1,x_2,x_3) \\
-& = s^{-\frac{2\tau}{\alpha-d}} \gamma^3 \int_{(\mathbb{R}^d)^3} \mathbf{1}\bigg\{y\in\Gamma_s,\|z_1\|\leq s^{\frac{1}{\alpha-d}}a, \|z_2\|\leq s^{\frac{1}{\alpha-d}}a\bigg\} \\
-& \hspace{2cm} \quad \times \|z_1\|^{\tau} \bar{\varphi}(\|z_1\|) \|z_2\|^{\tau} \bar{\varphi}(\|z_2\|)  \, \mathrm{d}(y,z_1,z_2) \\
-& = s^{1-\frac{2\tau}{\alpha-d}} \gamma^3 \int_{(\mathbb{R}^d)^2} \mathbf{1}\bigg\{\|z_1\|\leq s^{\frac{1}{\alpha-d}}a, \|z_2\|\leq s^{\frac{1}{\alpha-d}}a\bigg\} \|z_1\|^{\tau} \bar{\varphi}(\|z_1\|) \|z_2\|^{\tau} \bar{\varphi}(\|z_2\|)  \, \mathrm{d}(z_1,z_2). %\\
+and
+$$
+s^{-\frac{2\tau}{\alpha-d}}I_2 \leq \gamma^3 (d\kappa_d)^2 s^{1-\frac{2\tau}{\alpha-d}} \bigg( \int_0^{s^{\frac{1}{\alpha-d}}a} \bar{\varphi}(r) r^{\tau+d-1} \, \mathrm{d}r \bigg)^2 = \gamma^3 (d\kappa_d)^2 s^{1-\frac{2\tau}{\alpha-d}} R_s^2
+$$
+with
+$$
+R_s := \begin{cases} 1 + \frac{C_{\bar{\varphi}}}{\tau+d-\alpha} (a^{\tau+d-\alpha} s^{\frac{\tau+d-\alpha}{\alpha-d}}-1), & \quad \tau\in(\frac{\alpha-d}{2},\alpha-d), \\ 1+C_{\bar{\varphi}}\big( \log a + \frac{\log s}{\alpha-d}\big), & \quad \tau=\alpha-d.\end{cases}
+$$
+
+%Arguing as above yields
+%$$
+%s^{-\frac{2\tau}{\alpha-d}}I_1 \leq \frac{C_{\bar{\varphi}}\gamma^2 }{2(2\tau-\alpha+d)} a^{2\tau-\alpha+d}.
+%$$
+%Substitution leads to
+%\begin{align*}
+%s^{-\frac{2\tau}{\alpha-d}}I_2 & \leq s^{-\frac{2\tau}{\alpha-d}} \gamma^3 \int_{(\mathbb{R}^d)^3} \mathbf{1}\bigg\{x_1\in\Gamma_s,\|x_1-x_2\|\leq s^{\frac{1}{\alpha-d}}a, \|x_1-x_2\|\leq s^{\frac{1}{\alpha-d}}a\bigg\} \\
+%& \hspace{2cm} \quad \times \|x_1-x_2\|^{\tau} \bar{\varphi}(\|x_1-x_2\|) \|x_1-x_3\|^{\tau} \bar{\varphi}(\|x_1-x_3\|)  \, \mathrm{d}(x_1,x_2,x_3) \\
+%& = s^{-\frac{2\tau}{\alpha-d}} \gamma^3 \int_{(\mathbb{R}^d)^3} \mathbf{1}\bigg\{y\in\Gamma_s,\|z_1\|\leq s^{\frac{1}{\alpha-d}}a, \|z_2\|\leq s^{\frac{1}{\alpha-d}}a\bigg\} \\
+%& \hspace{2cm} \quad \times \|z_1\|^{\tau} \bar{\varphi}(\|z_1\|) \|z_2\|^{\tau} \bar{\varphi}(\|z_2\|)  \, \mathrm{d}(y,z_1,z_2) \\
+%& = s^{1-\frac{2\tau}{\alpha-d}} \gamma^3 \int_{(\mathbb{R}^d)^2} \mathbf{1}\bigg\{\|z_1\|\leq s^{\frac{1}{\alpha-d}}a, \|z_2\|\leq s^{\frac{1}{\alpha-d}}a\bigg\} \|z_1\|^{\tau} \bar{\varphi}(\|z_1\|) \|z_2\|^{\tau} \bar{\varphi}(\|z_2\|)  \, \mathrm{d}(z_1,z_2). %\\
 %& \leq C_{\bar{\varphi}} s^{1-\frac{2\tau}{\alpha-d}} \gamma^3 \int_{(\mathbb{R}^d)^2} \mathbf{1}\bigg\{\|z_1\|\leq s^{\frac{1}{\alpha-d}}a, \|z_2\|\leq s^{\frac{1}{\alpha-d}}a\bigg\}  \|z_1\|^{\tau-\alpha} \|z_2\|^{\tau-\alpha} \, \mathrm{d}(z_1,z_2).
-\end{align*}
-By spherical coordinates and \eqref{eqn:Upper_bound_bar_varphi} we obtain
-\begin{align*}
-\int_{\mathbb{R}^d}  \mathbf{1}\Big\{\|z\|\leq s^{\frac{1}{\alpha-d}}a\Big\} \|z\|^{\tau} \bar{\varphi}(\|z\|) \, \mathrm{d}z & = d\kappa_d \int_0^{s^{\frac{1}{\alpha-d}}a} r^{\tau+d-1} \bar{\varphi}(r) \, \mathrm{d}r \\
-& \leq d\kappa_d + d\kappa_d \int_1^{s^{\frac{1}{\alpha-d}}a} r^{\tau+d-1} \bar{\varphi}(r) \, \mathrm{d}r \\
-& \leq d\kappa_d + d\kappa_d C_{\bar{\varphi}} \int_1^{s^{\frac{1}{\alpha-d}}a} r^{\tau+d-1-\alpha} \, \mathrm{d}r.
-\end{align*}
-We have
-$$
-\int_1^{s^{\frac{1}{\alpha-d}}a} r^{\tau+d-1-\alpha} \, \mathrm{d}r = \begin{cases} \frac{1-s^{\frac{\tau+d-\alpha}{\alpha-d}}a^{\tau+d-\alpha}}{\tau+d-\alpha}, & \quad \tau \in (\frac{\alpha-d}{2},\alpha-d), \\ \frac{\log s}{\alpha-d}+\log(a), & \quad \tau=\alpha-d,\end{cases}
-$$
-where the exponent of $s$ is negative in the first case. Thus, we see that
+%\end{align*}
+%By spherical coordinates and \eqref{eqn:Upper_bound_bar_varphi} we obtain
+%\begin{align*}
+%\int_{\mathbb{R}^d}  \mathbf{1}\Big\{\|z\|\leq s^{\frac{1}{\alpha-d}}a\Big\} \|z\|^{\tau} \bar{\varphi}(\|z\|) \, \mathrm{d}z & = d\kappa_d \int_0^{s^{\frac{1}{\alpha-d}}a} r^{\tau+d-1} \bar{\varphi}(r) \, \mathrm{d}r \\
+%& \leq d\kappa_d + d\kappa_d \int_1^{s^{\frac{1}{\alpha-d}}a} r^{\tau+d-1} \bar{\varphi}(r) \, \mathrm{d}r \\
+%& \leq d\kappa_d + d\kappa_d C_{\bar{\varphi}} \int_1^{s^{\frac{1}{\alpha-d}}a} r^{\tau+d-1-\alpha} \, \mathrm{d}r.
+%\end{align*}
+%We have
+%$$
+%\int_1^{s^{\frac{1}{\alpha-d}}a} r^{\tau+d-1-\alpha} \, \mathrm{d}r = \begin{cases} \frac{1-s^{\frac{\tau+d-\alpha}{\alpha-d}}a^{\tau+d-\alpha}}{\tau+d-\alpha}, & \quad \tau \in (\frac{\alpha-d}{2},\alpha-d), \\ \frac{\log s}{\alpha-d}+\log(a), & \quad \tau=\alpha-d,\end{cases}
+%$$
+%where 
+Since the exponent of $s$ is negative in the first case, we see that
 $$
 \lim_{s\to\infty} s^{-\frac{2\tau}{\alpha-d}}I_2 = 0.
 $$
 This implies
 $$
-\limsup_{s\to\infty} s^{-\frac{2\tau}{\alpha-d}} \operatorname{Var}[L_{s,\leq a}(\tau)] \leq \frac{C_{\bar{\varphi}}\gamma^2 }{2(2\tau-\alpha+d)} a^{2\tau-\alpha+d},
+\limsup_{s\to\infty} s^{-\frac{2\tau}{\alpha-d}} \operatorname{Var}[L_{s,\leq a}(\tau)] \leq \frac{C_{\bar{\varphi}}d\kappa_d\gamma^2 }{2(2\tau-\alpha+d)} a^{2\tau-\alpha+d},
 $$
 which proves part b).
 \end{proof}
@@ -3014,7 +3094,7 @@ Here, the second term vanishes as $a\to0$. On the other hand, by Lemma \ref{lem:
 $$
 \limsup_{s\to\infty} \bigg| \mathbb{E}h(s^{-\frac{\tau}{\alpha-d}}L_s(\tau)) - \mathbb{E}h\bigg(\sum_{t\in\zeta} t^\tau\bigg) \bigg| \leq \limsup_{s\to\infty} s^{-\frac{\tau}{\alpha-d}} \mathbb{E}L_{s,\leq a}(\tau)\leq \frac{C_{\bar{\varphi}}\gamma^2 }{2(\tau-\alpha+d)} a^{\tau-\alpha+d}, 
 $$
-where the right-hand side converges to zero as $a\to\infty$. Thus, we have shown that
+where the right-hand side converges to zero as $a\to0$. Thus, we have shown that
 $$
 \lim_{s\to\infty} \mathbb{E}h(s^{-\frac{\tau}{\alpha-d}}L_s(\tau)) = \mathbb{E}h\bigg(\sum_{t\in\zeta} t^\tau\bigg),
 $$
@@ -3043,7 +3123,7 @@ $$
 From Lemma \ref{lem:truncation_edge_length} b) it follows that
 \begin{align*}
 \limsup_{s\to\infty} R_1(a,s) & \leq \limsup_{s\to\infty} s^{-\frac{\tau}{\alpha-d}} \mathbb{E} \big| L_{s,>a}(\tau) - \mathbb{E} L_{s,>a}(\tau) \big| \leq \limsup_{s\to\infty} s^{-\frac{\tau}{\alpha-d}} \sqrt{\operatorname{Var}[L_{s,>a}(\tau) }]   \\
-& \leq \frac{\sqrt{C_{\bar{\varphi}}}\gamma }{\sqrt{2(2\tau-\alpha+d)}} a^{\tau-\frac{\alpha+d}{2}},
+& \leq \frac{\sqrt{C_{\bar{\varphi}}}\gamma }{\sqrt{2(2\tau-\alpha+d)}} a^{\tau-\frac{\alpha-d}{2}},
 \end{align*}
 where the right-hand side vanishes as $a\to0$. By the definition of $T$ one has $R_3(a)\to0$ as $a\to 0$. Thus, first letting $s\to\infty$ and then $a\to 0$ leads to
 $$
@@ -3051,14 +3131,14 @@ $$
 $$
 which is part c).
 
-Finally, we argue analogously for $\tau=\alpha-d$. For $h\in\operatorname{Lip}_{1,1}$, $s\geq 1$ and $a\in(0,\infty)$ one has
+Finally, we argue analogously for $\tau=\alpha-d$. For $h\in\operatorname{Lip}_{1,1}$, $s\geq 1$ and $a\in(0,1)$ one has
 \begin{align*}
-& \bigg| \mathbb{E} h\bigg(s^{-\frac{\tau}{\alpha-d}}\bigg(L_s(\tau)-\frac{1}{2}\mathbb{E}\sum_{(x_1,x_2)\in\eta^2_{\neq}} \mathbf{1}\{\|x_1-x_2\|\leq 1\} \|x_1-x_2\|^\tau\bigg)\bigg)  - \mathbb{E} h(S)\bigg| \\
-& \leq \bigg| \mathbb{E} h\bigg(s^{-\frac{\tau}{\alpha-d}}\bigg(L_s(\tau)-\frac{1}{2}\mathbb{E}\sum_{(x_1,x_2)\in\eta^2_{\neq}} \mathbf{1}\{\|x_1-x_2\|\leq 1\} \|x_1-x_2\|^\tau\bigg)\bigg) \\
-& \quad \quad - \mathbb{E} h\bigg(s^{-\frac{\tau}{\alpha-d}}\bigg(L_{s,>a}(\tau)-\frac{1}{2}\mathbb{E}\sum_{(x_1,x_2)\in\eta^2_{\neq}} \mathbf{1}\{a<\|x_1-x_2\|\leq 1\} \|x_1-x_2\|^\tau\bigg)\bigg) \bigg| \\
-& \quad + \bigg| \mathbb{E} h\bigg(s^{-\frac{\tau}{\alpha-d}}\bigg(L_{s,>a}(\tau)-\frac{1}{2}\mathbb{E}\sum_{(x_1,x_2)\in\eta^2_{\neq}} \mathbf{1}\{a<\|x_1-x_2\|\leq 1\} \|x_1-x_2\|^\tau\bigg)\bigg) \\
-& \quad \quad - \mathbb{E} h\bigg( \sum_{t\in \zeta\cap(a,\infty)} t^\tau - \mathbb{E} \sum_{t\in \zeta\cap(a,\infty)} t^\tau \bigg)\bigg| \\
-& \quad + \bigg| \mathbb{E} h\bigg( \sum_{t\in \zeta\cap(a,\infty)} t^\tau - \mathbb{E} \sum_{t\in \zeta\cap(a,\infty)} t^\tau \bigg) -\mathbb{E}h(S) \bigg| \\
+& \bigg| \mathbb{E} h\bigg(s^{-\frac{\tau}{\alpha-d}}\bigg(L_s(\tau)-\frac{1}{2}\mathbb{E}\sum_{(x_1,x_2)\in\eta^2_{\neq}} \mathbf{1}\{x_1\leftrightarrow x_2, \|x_1-x_2\|\leq s^{\frac{1}{\alpha-d}}\} \|x_1-x_2\|^\tau\bigg)\bigg)  - \mathbb{E} h(S)\bigg| \\
+& \leq \bigg| \mathbb{E} h\bigg(s^{-\frac{\tau}{\alpha-d}}\bigg(L_s(\tau)-\frac{1}{2}\mathbb{E}\sum_{(x_1,x_2)\in\eta^2_{\neq}} \mathbf{1}\{x_1\leftrightarrow x_2, \|x_1-x_2\|\leq s^{\frac{1}{\alpha-d}}\} \|x_1-x_2\|^\tau\bigg)\bigg) \\
+& \quad \quad - \mathbb{E} h\bigg(s^{-\frac{\tau}{\alpha-d}}\bigg(L_{s,>a}(\tau)-\frac{1}{2}\mathbb{E}\sum_{(x_1,x_2)\in\eta^2_{\neq}} \mathbf{1}\{x_1\leftrightarrow x_2, s^{\frac{1}{\alpha-d}}a<\|x_1-x_2\|\leq s^{\frac{1}{\alpha-d}}\} \|x_1-x_2\|^\tau\bigg)\bigg) \bigg| \\
+& \quad + \bigg| \mathbb{E} h\bigg(s^{-\frac{\tau}{\alpha-d}}\bigg(L_{s,>a}(\tau)-\frac{1}{2}\mathbb{E}\sum_{(x_1,x_2)\in\eta^2_{\neq}} \mathbf{1}\{x_1\leftrightarrow x_2, s^{\frac{1}{\alpha-d}}a<\|x_1-x_2\|\leq s^{\frac{1}{\alpha-d}}\} \|x_1-x_2\|^\tau\bigg)\bigg) \\
+& \quad \quad - \mathbb{E} h\bigg( \sum_{t\in \zeta\cap(a,\infty)} t^\tau - \mathbb{E} \sum_{t\in \zeta\cap(a,1]} t^\tau \bigg)\bigg| \\
+& \quad + \bigg| \mathbb{E} h\bigg( \sum_{t\in \zeta\cap(a,\infty)} t^\tau - \mathbb{E} \sum_{t\in \zeta\cap(a,1]} t^\tau \bigg) -\mathbb{E}h(S) \bigg| \\
 & =: R_1(s,a) + R_2(a,s) + R_3(a).
 \end{align*}
 From Lemma \ref{lem:truncation_edge_length} we derive that
@@ -3067,15 +3147,16 @@ $$
 $$
 while the definition of $S$ yields $\lim_{a\to0} R_3(a)=0$. Because of
 $$
-s^{-\frac{\tau}{\alpha-d}}\mathbb{E}\frac{1}{2}\sum_{(x_1,x_2)\in\eta^2_{\neq}} \mathbf{1}\{\|x_1-x_2\|\leq 1\} \|x_1-x_2\|^\tau = \mathbb{E} \sum_{t\in \zeta\cap(0,\infty)} t^\tau,
+s^{-\frac{\tau}{\alpha-d}}\mathbb{E}\frac{1}{2}\sum_{(x_1,x_2)\in\eta^2_{\neq}} \mathbf{1}\{x_1\leftrightarrow x_2,s^{\frac{1}{\alpha-d}}a<\|x_1-x_2\|\leq s^{\frac{1}{\alpha-d}}\} \|x_1-x_2\|^\tau = \mathbb{E} \sum_{t\in \zeta\cap(a,1]} t^\tau,
 $$
 which follows from \textcolor{cyan}{???}, and \eqref{eqn:convergence_truncated}, we see that
-$$
-s^{-\frac{\tau}{\alpha-d}}\bigg(L_{s,>a}(\tau)-\mathbb{E}\frac{1}{2}\sum_{(x_1,x_2)\in\eta^2_{\neq}} \mathbf{1}\{a<\|x_1-x_2\|\leq 1\} \|x_1-x_2\|^\tau\bigg)\bigg) \overset{d}{\longrightarrow} \sum_{t\in \zeta\cap(a,\infty)} t^\tau - \mathbb{E} \sum_{t\in \zeta\cap(a,\infty)} t^\tau
-$$
+\begin{align*}
+& s^{-\frac{\tau}{\alpha-d}}\bigg(L_{s,>a}(\tau)-\mathbb{E}\frac{1}{2}\sum_{(x_1,x_2)\in\eta^2_{\neq}} \mathbf{1}\{x_1\leftrightarrow x_2, s^{\frac{1}{\alpha-d}}a<\|x_1-x_2\|\leq s^{\frac{1}{\alpha-d}}\} \|x_1-x_2\|^\tau\bigg)\bigg) \\
+& \overset{d}{\longrightarrow} \sum_{t\in \zeta\cap(a,\infty)} t^\tau - \mathbb{E} \sum_{t\in \zeta\cap(a,1]} t^\tau
+\end{align*}
 as $s\to\infty$. This shows that $\lim_{s\to\infty} R_2(a,s)=0$. Combining the above estimates yields
 $$
-\lim_{s\to\infty} \mathbb{E} h\bigg(s^{-\frac{\tau}{\alpha-d}}\bigg(L_s(\tau)-\mathbb{E}\frac{1}{2}\sum_{(x_1,x_2)\in\eta^2_{\neq}} \mathbf{1}\{\|x_1-x_2\|\leq 1\} \|x_1-x_2\|^\tau\bigg)\bigg)  = \mathbb{E} h(S),
+\lim_{s\to\infty} \mathbb{E} h\bigg(s^{-\frac{\tau}{\alpha-d}}\bigg(L_s(\tau)-\mathbb{E}\frac{1}{2}\sum_{(x_1,x_2)\in\eta^2_{\neq}} \mathbf{1}\{x_1\leftrightarrow x_2, \|x_1-x_2\|\leq s^{\frac{1}{\alpha-d}}\} \|x_1-x_2\|^\tau\bigg)\bigg)  = \mathbb{E} h(S),
 $$
 which gives c).
 \end{proof}
@@ -3096,7 +3177,7 @@ $f^{=}_G:(\R^d)^k\times [0,1]^{k(k-1)/2}\to\{0,1\}$ as
 \end{equation}
 	Because of \eqref{momeq-3}, it is necessary to show that for each $\pi\in\widetilde{\Pi}^\ell(k)$
 	\begin{equation}\label{intgrand-1}
-		\int_{\Gamma_s^{|\pi|}}\int_{[0,1]^{|\pi|\times|\pi|}_{\ne}}((f^{(i)}_G)^{\otimes\ell})_{\pi}(\bm{x},\bm{u})\mathrm{d}\bm{u}\lambda_d^{|\pi|}(\mathrm{d}\bm{x})\le C s
+		\int_{\Gamma_s^{|\pi|}}\int_{[0,1]^{|\pi|\times|\pi|}_{\ne}}((f^{(i)}_G)^{\otimes\ell})_{\pi}(\bm{x},\bm{u})\,\mathrm{d}\bm{u}\lambda_d^{|\pi|}(\mathrm{d}\bm{x})\le C s
 \end{equation}
 For $n\in\mathbb{N}$, we use the abbreviation $\mathbf{I}_n:=\{(i,j)\in[n]^2:i<j\}$ and denote 
 \begin{equation*}
@@ -3106,18 +3187,18 @@ Because graph $G$ is connected, for any $\pi\in\widetilde{\Pi}^\ell(k)$, the con
 Consequently, there exists a spanning tree of $(G^{\otimes \ell})_{\pi}$, which is isomorphic to a tree $I_{\pi}\in\mathcal{I}_{|\pi|}$.
 Therefore, the integral in \eqref{intgrand-1} is bounded by 
 \begin{align}
-	&\int_{\Gamma_s^{|\pi|}}\int_{[0,1]^{|\pi|\times|\pi|}_{\ne}}((f^{(i)}_G)^{\otimes\ell})_{\pi}(\bm{x},\bm{u})\mathrm{d}\bm{u}\lambda_d^{|\pi|}(\mathrm{d}\bm{x})\nonumber\\
-	&\le\frac1{|\mathrm{Aut}(G)|^\ell}\int_{(\mathbb{R}^d)^{|\pi|}}\mathbf{1}(x_1,\dots,x_{|\pi|}\in\Gamma_s)\left(\prod_{r=1}^\ell\prod_{\{i,j\}\in E_G}\varphi\left(x_i^{(r)}-x_j^{(r)}\right)\right)_{\pi}\gamma^{|\pi|}\mathrm{d}\bm{x}\nonumber\\
-	&\le\frac1{|\mathrm{Aut}(G)|^\ell}\int_{(\mathbb{R}^d)^{|\pi|}}\mathbf{1}(x_1\in\Gamma_s)\left(\prod_{r=1}^\ell\prod_{\{i,j\}\in E_G}\varphi\left(x_i^{(r)}-x_j^{(r)}\right)\right)_{\pi}\gamma^{|\pi|}\mathrm{d}\bm{x}\nonumber\\
-	&\le\frac1{|\mathrm{Aut}(G)|^\ell}\int_{(\mathbb{R}^d)^{|\pi|}}\mathbf{1}(x_1\in\Gamma_s)\prod_{\{i,j\}\in I_{|\pi|}}\varphi\left(x_i^{(r)}-x_j^{(r)}\right)_{\pi}\gamma^{|\pi|}\mathrm{d}\bm{x}\nonumber\\
-&=\frac{1}{|\mathrm{Aut}(G)|^\ell}\lambda_d(\Gamma_s)\left(\int_{\mathbb{R}^d}\varphi(z)\mathrm{d}z\right)^{|\pi|-1}\gamma^{|\pi|},\label{intgrand-2}
+	&\int_{\Gamma_s^{|\pi|}}\int_{[0,1]^{|\pi|\times|\pi|}_{\ne}}((f^{(i)}_G)^{\otimes\ell})_{\pi}(\bm{x},\bm{u})\,\mathrm{d}\bm{u}\lambda_d^{|\pi|}(\mathrm{d}\bm{x})\nonumber\\
+	&\le\frac1{|\mathrm{Aut}(G)|^\ell}\int_{(\mathbb{R}^d)^{|\pi|}}\mathbf{1}(x_1,\dots,x_{|\pi|}\in\Gamma_s)\left(\prod_{r=1}^\ell\prod_{\{i,j\}\in E_G}\varphi\left(x_i^{(r)}-x_j^{(r)}\right)\right)_{\pi}\gamma^{|\pi|}\,\mathrm{d}\bm{x}\nonumber\\
+	&\le\frac1{|\mathrm{Aut}(G)|^\ell}\int_{(\mathbb{R}^d)^{|\pi|}}\mathbf{1}(x_1\in\Gamma_s)\left(\prod_{r=1}^\ell\prod_{\{i,j\}\in E_G}\varphi\left(x_i^{(r)}-x_j^{(r)}\right)\right)_{\pi}\gamma^{|\pi|}\,\mathrm{d}\bm{x}\nonumber\\
+	&\le\frac1{|\mathrm{Aut}(G)|^\ell}\int_{(\mathbb{R}^d)^{|\pi|}}\mathbf{1}(x_1\in\Gamma_s)\prod_{\{i,j\}\in I_{|\pi|}}\varphi\left(x_i^{(r)}-x_j^{(r)}\right)_{\pi}\gamma^{|\pi|}\,\mathrm{d}\bm{x}\nonumber\\
+&=\frac{1}{|\mathrm{Aut}(G)|^\ell}\lambda_d(\Gamma_s)\left(\int_{\mathbb{R}^d}\varphi(z)\,\mathrm{d}z\right)^{|\pi|-1}\gamma^{|\pi|},\label{intgrand-2}
 \end{align}
 where the last equation is obtained by integrating successively beginning with the variables, except $x_1$, whose indices are leaves of the tree $I_{\pi}$.
 Because $|\pi|\le \ell(k-1)+1$ for all $\pi\in\widetilde{\Pi}^\ell(k)$, combining \eqref{intgrand-2} with cumulant identities in \eqref{momeq-3}, we have 
 \begin{align}
-    	\cum_\ell(N_G^{I})&\le \sum_{\pi\in\widetilde{\Pi}^\ell(k)}\frac{1}{|\mathrm{Aut}(G)|^\ell}\lambda_d(\Gamma_s)\left(\int_{\mathbb{R}^d}\varphi(z)\mathrm{d}z\right)^{|\pi|-1}\gamma^{|\pi|}\nonumber\\
-        &\le \frac{1}{|\mathrm{Aut}(G)|^\ell}\left[\left(\gamma \int_{\mathbb{R}^d}\varphi(z)\mathrm{d}z\right)\vee1\right]^{\ell(k-1)+1}\left|\widetilde{\Pi}^\ell(k)\right|s\nonumber\\
-        &\le \frac{1}{|\mathrm{Aut}(G)|^\ell}\left[\left(\gamma \int_{\mathbb{R}^d}\varphi(z)\mathrm{d}z\right)\vee1\right]^{\ell(k-1)+1}k^{k\ell}(\ell!)^ks,
+    	\cum_\ell(N_G^{I})&\le \sum_{\pi\in\widetilde{\Pi}^\ell(k)}\frac{1}{|\mathrm{Aut}(G)|^\ell}\lambda_d(\Gamma_s)\left(\int_{\mathbb{R}^d}\varphi(z)\,\mathrm{d}z\right)^{|\pi|-1}\gamma^{|\pi|}\nonumber\\
+        &\le \frac{1}{|\mathrm{Aut}(G)|^\ell}\left[\left(\gamma \int_{\mathbb{R}^d}\varphi(z)\,\mathrm{d}z\right)\vee1\right]^{\ell(k-1)+1}\left|\widetilde{\Pi}^\ell(k)\right|s\nonumber\\
+        &\le \frac{1}{|\mathrm{Aut}(G)|^\ell}\left[\left(\gamma \int_{\mathbb{R}^d}\varphi(z)\,\mathrm{d}z\right)\vee1\right]^{\ell(k-1)+1}k^{k\ell}(\ell!)^ks,
 \end{align}
 where the last inequality comes from \cite[Proposition~6.1]{schulte2}. 
 \end{proof}
@@ -3154,11 +3235,11 @@ When Assumption~\ref{graph-ass1}-ii) holds, it immediately implies that
 \end{equation*}
 Hence, it follows that
 $$
-\int_{(\mathbb{R}^d)^{k-1}} \prod_{\{i,j\}\in E_G}\varphi(x_i-x_j)\prod_{\{\imath,\jmath\}\notin E_G}(1-\varphi(x_{\imath}-x_{\jmath}))\mathrm{d}(x_2,\dots,x_k)>0.
+\int_{(\mathbb{R}^d)^{k-1}} \prod_{\{i,j\}\in E_G}\varphi(x_i-x_j)\prod_{\{\imath,\jmath\}\notin E_G}(1-\varphi(x_{\imath}-x_{\jmath}))\,\mathrm{d}(x_2,\dots,x_k)>0.
 $$
 with $x_1:=0$. By the monotone convergence theorem there exists an $r_0\in(0,\infty)$ such that
 $$
-\underline{c}:=\inf_{x_1\in\Gamma}\int_{(B(x_1,r_0))^{k-1}} \prod_{\{i,j\}\in E_G}\varphi(x_i-x_j)\prod_{\{\imath,\jmath\}\notin E_G}(1-\varphi(x_{\imath}-x_{\jmath}))\mathrm{d}(x_2,\dots,x_k)>0.
+\underline{c}:=\inf_{x_1\in\Gamma}\int_{(B(x_1,r_0))^{k-1}} \prod_{\{i,j\}\in E_G}\varphi(x_i-x_j)\prod_{\{\imath,\jmath\}\notin E_G}(1-\varphi(x_{\imath}-x_{\jmath}))\,\mathrm{d}(x_2,\dots,x_k)>0.
 $$
 Since $\Gamma$ is compact and convex and $\lambda_d(\Gamma)=1$, there exists an $s_0\geq 1$ such that
 $$
@@ -3168,10 +3249,10 @@ for all $s\ge s_0$.
 Therefore, following from \eqref{momeq-3}, we have
 \begin{align}
 \Var(N_G^{=})
-&=\sum_{\pi\in\widetilde{\Pi}^2(k)}\int_{\Gamma_s^{|\pi|}}\int_{[0,1]^{|\pi|(|\pi|-1)/2}}(f^{=}_G\otimes f^{=}_G)_{\pi}(\bm{x},\bm{u})\mathrm{d}\bm{u}\gamma^{|\pi|}\mathrm{d}\bm{x}\nonumber\\
-	&\ge\int_{(\Gamma_s)^{k}}\int_{[0,1]^{k(k-1)/2}}f^{=}_G(\bm{x},\bm{u})\mathrm{d}\bm{u}\gamma^{k}\mathrm{d}\bm{x}\nonumber\\
-	&=\frac{1}{|\mathrm{Aut}(G)|}\int_{(\Gamma_s)^k}\prod_{\{i,j\}\in E_G}\varphi(x_i-x_j)\prod_{\{\imath,\jmath\}\notin E_G}(1-\varphi(x_{\imath}-x_{\jmath}))\gamma^k\mathrm{d}\bm{x}\nonumber\\
-	&\ge\frac{\gamma^k}{|\mathrm{Aut}(G)|}\int_{\Gamma_s}\mathrm{d}x_1\int_{(\Gamma_s\cap B(x_1,r_0))^{k-1}}\prod_{\{i,j\}\in E_G}\varphi(x_i-x_j)\prod_{\{\imath,\jmath\}\notin E_G}(1-\varphi(x_{\imath}-x_{\jmath}))\mathrm{d}(x_2,\dots,x_k)\nonumber\\
+&=\sum_{\pi\in\widetilde{\Pi}^2(k)}\int_{\Gamma_s^{|\pi|}}\int_{[0,1]^{|\pi|(|\pi|-1)/2}}(f^{=}_G\otimes f^{=}_G)_{\pi}(\bm{x},\bm{u})\,\mathrm{d}\bm{u}\gamma^{|\pi|}\,\mathrm{d}\bm{x}\nonumber\\
+	&\ge\int_{(\Gamma_s)^{k}}\int_{[0,1]^{k(k-1)/2}}f^{=}_G(\bm{x},\bm{u})\,\mathrm{d}\bm{u}\gamma^{k}\,\mathrm{d}\bm{x}\nonumber\\
+	&=\frac{1}{|\mathrm{Aut}(G)|}\int_{(\Gamma_s)^k}\prod_{\{i,j\}\in E_G}\varphi(x_i-x_j)\prod_{\{\imath,\jmath\}\notin E_G}(1-\varphi(x_{\imath}-x_{\jmath}))\gamma^k\,\mathrm{d}\bm{x}\nonumber\\
+	&\ge\frac{\gamma^k}{|\mathrm{Aut}(G)|}\int_{\Gamma_s}\,\mathrm{d}x_1\int_{(\Gamma_s\cap B(x_1,r_0))^{k-1}}\prod_{\{i,j\}\in E_G}\varphi(x_i-x_j)\prod_{\{\imath,\jmath\}\notin E_G}(1-\varphi(x_{\imath}-x_{\jmath}))\,\mathrm{d}(x_2,\dots,x_k)\nonumber\\
 	&\ge\frac{\underline{c}\gamma^k}{2|\mathrm{Aut}(G)|}s,\label{graphvar3}
 \end{align} 
 whenever $s\ge s_0$. 
@@ -3180,7 +3261,7 @@ whenever $s\ge s_0$.
 %\begin{equation}\label{varbound1}
 %	\frac{\underline{c}\gamma^{k}}{2|\mathrm{Aut}(G)|}s\le \Var(N_G^{=})\le C' s.
 %\end{equation}
-On the other hand, using the estimates in \eqref{intgrand-0} with $\ell=4$, we have
+On the other hand, using the estimates in \eqref{intgrand-2} with $\ell=4$, we have
 \begin{equation}\label{mom-bound1}
 	\max_{1\le i,j\le k}M_{i,j}(f^{=}_G)\le \tilde{C}s.
 \end{equation}
@@ -3197,36 +3278,42 @@ The non-induced case can be treated analogously and is therefore omitted. This c
 	\cum_{\ell}\left(\frac{N_n^{=}-\mathbb{E}N_n^{=}}{\sqrt{\Var(N_n^{=})}}\right)&=\frac{\cum_{\ell}(N_n^{=})}{\Var(N_n^{=})^{\ell/2}}\nonumber\\
 																&\le\frac{
 																\frac{1}{|\mathrm{Aut}(G)|^\ell}\left[\left(\gamma \int_{\mathbb{R}^d}\varphi(z)\mathrm{d}z\right)\vee1\right]^{\ell(k-1)+1}k^{k\ell}(\ell!)^k s_n}{(\frac{\underline{c}\gamma^k}{2|\mathrm{Aut}(G)|}s_n)^{\ell/2}}\nonumber\\
-																&=(\ell!)^ks_n^{1-\ell/2}T^\ell\left[\left(\gamma \int_{\mathbb{R}^d}\varphi(z)\mathrm{d}z\right)\vee1\right]\label{cumuboun1}
+																&=(\ell!)^ks_n^{1-\ell/2}T^\ell\left[\left(\gamma \int_{\mathbb{R}^d}\varphi(z)\,\mathrm{d}z\right)\vee1\right]\label{cumuboun1}
 \end{align}
 where 
 $$
-T:=k^k\left[\left(\gamma \int_{\mathbb{R}^d}\varphi(z)\mathrm{d}z\right)\vee1\right]^{k-1}\left(\frac2{\underline{c}\gamma^k|\mathrm{Aut}(G)|}\right)^{1/2}.
+T:=k^k\left[\left(\gamma \int_{\mathbb{R}^d}\varphi(z)\,\mathrm{d}z\right)\vee1\right]^{k-1}\left(\frac2{\underline{c}\gamma^k|\mathrm{Aut}(G)|}\right)^{1/2}.
 $$
 Furthermore, since for $\ell\ge3$ we have
 $$
-\left[\left(\gamma \int_{\mathbb{R}^d}\varphi(z)\mathrm{d}z\right)\vee1\right]T^2 \le \left(\left[\left(\gamma \int_{\mathbb{R}^d}\varphi(z)\mathrm{d}z\right)\vee1\right]T^2\right)^{\ell-2},
+\left[\left(\gamma \int_{\mathbb{R}^d}\varphi(z)\,\mathrm{d}z\right)\vee1\right]T^2 \le \left(\left[\left(\gamma \int_{\mathbb{R}^d}\varphi(z)\,\mathrm{d}z\right)\vee1\right]T^2\right)^{\ell-2},
 $$
 combining this with \eqref{cumuboun1} allows us to define
 \begin{equation}\label{mdp-const1}
-\Delta_n := \frac{\sqrt{s_n}}{\left[\left(\gamma \int_{\mathbb{R}^d}\varphi(z)\mathrm{d}z\right)\vee1\right]T^{3}}.
+\Delta_n := \frac{\sqrt{s_n}}{\left[\left(\gamma \int_{\mathbb{R}^d}\varphi(z)\,\mathrm{d}z\right)\vee1\right]T^{3}}.
 \end{equation}
 According to Theorem~\ref{thm:MDP}, we complete the proof.
 \end{proof}
 
 
 \begin{proof}[Proof of Lemma~\ref{noninteg-upper-1}]
-	We need modifty the estimates appeared in \eqref{intgrand-2}. By letting $v_i:=s^{-1/d}x_i$, we have 
+We first establish that,
+for any $\ell\in\mathbb{N}$ and  $\pi\in\widetilde{\Pi}^\ell(k)$
+\begin{equation}\label{noninteg-upper-2}
+\int_{\Gamma_s^{|\pi|}}\int_{[0,1]^{|\pi|\times|\pi|}_{\ne}}((f^{\subset}_G)^{\otimes\ell})_{\pi}(\bm{x},\bm{u})\,\mathrm{d}\bm{u}\,\lambda_d^{|\pi|}(\mathrm{d}\bm{x})\asymp 
+s^{|\pi|-e((G^{\otimes\ell})_\pi)\alpha/d}.
+\end{equation}
+To show this, we need to modify the estimates appearing in \eqref{intgrand-2}. By letting $v_i:=s^{-1/d}x_i$, we have 
 \begin{align}
-  	&\int_{\Gamma_s^{|\pi|}}\int_{[0,1]^{|\pi|\times|\pi|}_{\ne}}((f^{\subset}_G)^{\otimes\ell})_{\pi}(\bm{x},\bm{u})\mathrm{d}\bm{u}\lambda_d^{|\pi|}(\mathrm{d}\bm{x})\nonumber\\
-	&=\frac1{|\mathrm{Aut}(G)|^\ell}\int_{\Gamma_s^{|\pi|}}\left(\prod_{r=1}^\ell\prod_{\{i,j\}\in E_G}\varphi\left(x_i^{(r)}-x_j^{(r)}\right)\right)_{\pi}\gamma^{|\pi|}\mathrm{d}\bm{x}\nonumber\\
-	&=\frac1{|\mathrm{Aut}(G)|^\ell}\int_{\Gamma_s^{|\pi|}}\prod_{\{i,j\}\in E((G^{\otimes\ell})_\pi)}\varphi(x_i-x_j)\gamma^{|\pi|}\mathrm{d}\bm{x}\nonumber\\
-	&=\frac{\gamma^{|\pi|}}{|\mathrm{Aut}(G)|^\ell}\int_{\Gamma^{|\pi|}}\prod_{\{i,j\}\in E((G^{\otimes\ell})_\pi)}\varphi(s^{1/d}(v_i-v_j))s^{|\pi|}\mathrm{d}\bm{v}.\label{subgraph-integral-1}
+  	&\int_{\Gamma_s^{|\pi|}}\int_{[0,1]^{|\pi|\times|\pi|}_{\ne}}((f^{\subset}_G)^{\otimes\ell})_{\pi}(\bm{x},\bm{u})\,\mathrm{d}\bm{u}\lambda_d^{|\pi|}(\mathrm{d}\bm{x})\nonumber\\
+	&=\frac1{|\mathrm{Aut}(G)|^\ell}\int_{\Gamma_s^{|\pi|}}\left(\prod_{r=1}^\ell\prod_{\{i,j\}\in E_G}\varphi\left(x_i^{(r)}-x_j^{(r)}\right)\right)_{\pi}\gamma^{|\pi|}\,\mathrm{d}\bm{x}\nonumber\\
+	&=\frac1{|\mathrm{Aut}(G)|^\ell}\int_{\Gamma_s^{|\pi|}}\prod_{\{i,j\}\in E((G^{\otimes\ell})_\pi)}\varphi(x_i-x_j)\gamma^{|\pi|}\,\mathrm{d}\bm{x}\nonumber\\
+	&=\frac{\gamma^{|\pi|}}{|\mathrm{Aut}(G)|^\ell}\int_{\Gamma^{|\pi|}}\prod_{\{i,j\}\in E((G^{\otimes\ell})_\pi)}\varphi(s^{1/d}(v_i-v_j))s^{|\pi|}\,\mathrm{d}\bm{v}.\label{subgraph-integral-1}
 \end{align}
 Due to the Assumption~\ref{bound-ass-1} and the connection function $\varphi\le1$, we further have
 
 \begin{align}\label{subgraph-integral-2}
-	\int_{\Gamma^{|\pi|}}\prod_{\{i,j\}\in E((G^{\otimes\ell})_\ell)}\varphi(s^{1/d}(v_i-v_j))\mathrm{d}\bm{v}&\asymp s^{-e((G^{\otimes\ell})_\pi)\alpha/d}\int_{\Gamma^{|\pi|}}\prod_{\{i,j\}\in E((G^{\otimes\ell})_\pi)}\varphi(v_i-v_j)\mathrm{d}\bm{v}.
+	\int_{\Gamma^{|\pi|}}\prod_{\{i,j\}\in E((G^{\otimes\ell})_\ell)}\varphi(s^{1/d}(v_i-v_j))\,\mathrm{d}\bm{v}&\asymp s^{-e((G^{\otimes\ell})_\pi)\alpha/d}\int_{\Gamma^{|\pi|}}\prod_{\{i,j\}\in E((G^{\otimes\ell})_\pi)}\varphi(v_i-v_j)\,\mathrm{d}\bm{v}.
 \end{align}
 Hence, \eqref{noninteg-upper-2} is obtained by combining estimates from \eqref{subgraph-integral-1} and \eqref{subgraph-integral-2}.
 When $G$ is $K_1$-balanced, the dichotomy presented in \eqref{cumasym1} follows from  \eqref{noninteg-upper-2} and a convex analysis of the leading terms in the cumulant expressions \eqref{momeq-3}. This approach is analogous to the one employed in \cite[Proposition~7.1]{LiuPrivault25b}.
@@ -3251,7 +3338,7 @@ r_0 & = \gamma^3 \mathbb{E} \int_{(\mathbb{R}^d)^3} \mathbf{1}\bigg\{ \frac{x_1+
 \end{align*}
 By the same arguments as for the computation of $\mathbb{E}[E_s]$ above, we obtain
 $$
-r_0 \leq \gamma^3 c_\varphi^2 s \mathbb{E}[ \mathbf{1}\{ W_1,W_2,W_3\geq t_s \} \kappa(W_1,W_2) \kappa(W_1,W_3)]
+r_0 \leq \gamma^3 c_\varphi^2 s \mathbb{E}[ \mathbf{1}\{ W_1,W_2,W_3\geq t_s \} \kappa(W_1,W_2) \kappa(W_1,W_3)] .
 $$
 Now an application of Corollary \ref{cor:Poisson_approximation} proves part a).
 
@@ -3326,58 +3413,6 @@ As in the proof of Theorem \ref{thm:hub-to-hub-edges} we obtain that
 \end{align*}
 Now the statement follows from Corollary \ref{compound}.
 \end{proof}
-
-\section{Related work on the RCM}
-
-\begin{itemize}
-\item \cite{Last_Nestmann_Schulte}: component counts, study of functionals of edge-marked Poisson processes
-
-\item \cite{LiuPrivault}: Cumulant bounds for subgraph counts
-
-\item \cite{Heerten_Hirsch_Otto}: Cumulant bounds for subgraph counts
-
-\item \cite{Hirsch_Lachieze-Rey_Takashi_Owada}: Normal approximation for subgraph counts in the age-dependent random connection model
-
-\item \cite{rs2,rs3,scs}: Extreme value limits for maximum edge-lengths
-
-\end{itemize}
-\section{To-Do-List}
-\begin{itemize}
-\item List of notation
-\begin{enumerate}
-\item vertex set $\eta$ (stationary intensity measure $\gamma\cdot\lambda_d$, $\gamma>0$) 
-\item window $\Gamma_s:=s^{1/d}\Gamma$ with $\Gamma$ such that $\lambda_d(\Gamma)=1$, maybe $\Gamma$ compact and convex
-\item $\eta_s:=\eta\cap {\Gamma_s}$
-\item (unweighed) RCM with connection function $\varphi$ (translation-invariant)
-$$\int_{\mathbb{R}^d}\varphi(z)\mathrm{d}z<\infty,$$
-$\varphi(x,y)=\varphi(x-y)=\varphi(y-x)$ (more general than $\varphi(x,y)=\varphi(\|x-y\|)$)
-moment assumption hopefully sufficient for normal approximation of subgraph counts, stronger moment assumptions for edge-length functionals, for example
-$$\int_{\mathbb{R}^d}\varphi(z) \|z\|^{4\tau} \mathrm{d}z<\infty.$$
-$\tau$ for edge-length functionals.
-\item Weighted random connection model
-$$
-\int_{\mathbb{R}^d} \int_{[0,\infty)^2} \varphi(z,w_1,w_2) \mathbb{W}^2(d(w_1,w_2)) \, dz <\infty.
-$$
-\item subgraph counting with non-integrable connection function
-\item Parametric weighted RCM $(\eta,\varphi,W)$, $\mathbb{W}$ for the distribution of mark $W$, $W_x$ for the weight of $x\in\eta$, 
-$$\IP(W>t)=\ell(t)t^{-\alpha},$$
-with $\ell$ being a slowly varying function, special form of $\varphi$,
-$$
-\varphi(x,y,W_x,W_y)= \phi(\kappa(W_x,W_y)/\|x-y\|)
-$$
-checking the existing notations in the literature. 
-Subgraph counting could require assumptions like
-$$
-\mathbb{E}[\kappa(W_1,W_2)^{\beta_G}]<\infty
-$$
-with $\beta_G$ depending on the considered subgraph $G$
-\end{enumerate}
-
-\item application for hub-to-hub edges of weighted RCM (power law weights): counts of edges (normal and Poisson approximation) and sums of edges lengths (normal, ?$\alpha$-stable? and compound Poisson approximation)
-\item Poisson approximation (modifications needed), compound Poisson approximation and $\alpha$-stable approximation
-\item Concentration inequality and moderate deviation (last)
-\item introduce Poisson $U$-statistics 
-\end{itemize}
 
 
 
